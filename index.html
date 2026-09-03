@@ -211,6 +211,7 @@
   .bm-btn:hover{color:var(--yellow);}
   .bm-btn.on{color:var(--yellow); text-shadow:0 0 12px rgba(255,230,0,.9);}
 
+  /* Distinct Color-Coded Inner Session Subtabs */
   .stabs{
     display:flex; gap:10px; flex-wrap:wrap; align-items:center;
     border-bottom:2px solid var(--whisper); margin:26px 0 22px; padding-bottom:10px;
@@ -574,8 +575,8 @@
     <h1>Eliot's <em>AI Quest</em></h1>
     <p class="subtitle">From AI Explorer to Game Creator: Building & Deploying an HTML Game.</p>
     <div class="times">
-      <span class="fri-dot"></span>Fridays 1:30–3:00
-      <span class="wed-dot"></span>Wednesdays 1:45–3:15
+      <span class="fri-dot"></span>Fridays 1:30–3:00[cite: 1]
+      <span class="wed-dot"></span>Wednesdays 1:45–3:15[cite: 1]
     </div>
     <div class="breaths" aria-label="Jump to a session">
       <button class="st fri" data-target="sess-1" aria-label="Session 1"></button>
@@ -645,52 +646,15 @@
             </div>
 
             <div class="agenda-step">
-              <span class="agenda-tag">03 // Setup Checklist</span>
-              <p>Verify your iPad setup before we dive in:</p>
-              
-              <div class="setup-checklist">
-                <span class="checklist-title">Mission Equipment Checklist</span>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c1">
-                  <span>1. Gemini installed / shortcut created</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c2">
-                  <span>2. Logged into Gemini</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c3">
-                  <span>3. Google account usable</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c4">
-                  <span>4. AirDrop enabled</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c5">
-                  <span>5. Chrome installed</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c6">
-                  <span>6. Koder installed</span>
-                </label>
-                <label class="check-item">
-                  <input type="checkbox" data-check="s1_c7">
-                  <span>7. Introduction to our working guide</span>
-                </label>
-              </div>
-
-              <div class="guide-blurb">
-                <p><b>What is HTML?</b> It stands for <b>HyperText Markup Language</b>—the foundational code skeleton of every website on Earth.</p>
-                <p><b>The Superpower:</b> It runs everywhere without installs, works natively inside any browser on your iPad, and lets you build real games you can instantly text or AirDrop to your friends!</p>
-              </div>
-            </div>
-
-            <div class="agenda-step">
-              <span class="agenda-tag">04 // Definition: AI (Artificial Intelligence)</span>
+              <span class="agenda-tag">03 // Definition: AI (Artificial Intelligence)</span>
               <p><b>Artificial:</b> Made by human hands and tools—not occurring naturally on its own.</p>
               <p><b>Intelligence:</b> The ability to take in new information, learn from observations, adapt, and solve problems to reach a goal.</p>
               <p><b>A Big Lesson: Humans are still required!</b> AI does not have common sense, empathy, or <b>human intuition</b>—that deep gut feeling where a person spots subtle context, fairness, or creative leaps that raw math misses. It needs human directors, coders, and judges to steer it in the right direction.</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">04 // Foundation: Statistics</span>
+              <p><b>Predicting outcomes using historical observations:</b> How do you predict who wins a soccer match? Who runs faster? You don't guess blindly—you examine past matches, weather conditions, stamina, injuries, and speed records. What factors do you consider when coming up with your answer? That is how AI models calculate predictions from data.</p>
             </div>
 
             <div class="agenda-step">
@@ -756,8 +720,45 @@
             </div>
 
             <div class="agenda-step">
-              <span class="agenda-tag">06 // Foundation: Statistics</span>
-              <p><b>Predicting outcomes using historical observations:</b> How do you predict who wins a soccer match? Who runs faster? You don't guess blindly—you examine past matches, weather conditions, stamina, injuries, and speed records. What factors do you consider when coming up with your answer? That is how AI models calculate predictions from data.</p>
+              <span class="agenda-tag">06 // Setup Checklist</span>
+              <p>Verify your iPad setup before we dive in:</p>
+              
+              <div class="setup-checklist">
+                <span class="checklist-title">Mission Equipment Checklist</span>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c1">
+                  <span>1. Gemini installed / shortcut created</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c2">
+                  <span>2. Logged into Gemini</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c3">
+                  <span>3. Google account usable</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c4">
+                  <span>4. AirDrop enabled</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c5">
+                  <span>5. Chrome installed</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c6">
+                  <span>6. Koder installed</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c7">
+                  <span>7. Introduction to our working guide</span>
+                </label>
+              </div>
+
+              <div class="guide-blurb">
+                <p><b>What is HTML?</b> It stands for <b>HyperText Markup Language</b>—the foundational code skeleton of every website on Earth.</p>
+                <p><b>The Superpower:</b> It runs everywhere without installs, works natively inside any browser on your iPad, and lets you build real games you can instantly text or AirDrop to your friends!</p>
+              </div>
             </div>
           </div>
           <p class="mission">Next Up: Jump to the "Marble Game" tab to see dynamic (stochastic) probability in action!</p>
