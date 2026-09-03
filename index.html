@@ -5,406 +5,579 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eliot's AI Quest — Fall 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0C1B;
-    --card:#111530;
-    --card-edge:#1E2347;
-    --ink:#E9EAF4;
-    --muted:#8D91B0;
-    --whisper:#232849;
-    --blue:#7D8DFF;
-    --violet:#B08CFF;
-    --gold:#F5C97B;
-    --magenta:#FF4D94;
-    --turquoise:#00E5FF;
-    --rest:#5E6389;
-    --danger:#ff6b6b;
+    --bg:#070913;
+    --card:#0E1326;
+    --card-inner:#141B36;
+    --card-edge:#26325D;
+    --ink:#F1F4FD;
+    --muted:#9DA8C9;
+    --whisper:#1B2446;
+    --cyan:#00E5FF;
+    --magenta:#FF2A85;
+    --yellow:#FFE600;
+    --green:#00FF88;
+    --danger:#FF4444;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--bg); color:var(--ink);
-    font-family:'Zen Kaku Gothic New', sans-serif;
-    font-size:16px; line-height:1.8; font-weight:400;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18px; line-height:1.75; font-weight:400;
     padding:0 0 96px;
     background-image:
-      radial-gradient(ellipse 900px 500px at 70% -80px, rgba(124,102,255,.14), transparent 65%),
-      radial-gradient(ellipse 700px 420px at 12% 30%, rgba(70,110,255,.08), transparent 60%);
+      radial-gradient(ellipse 900px 500px at 70% -60px, rgba(0,229,255,.14), transparent 60%),
+      radial-gradient(ellipse 700px 420px at 12% 25%, rgba(255,42,133,.10), transparent 60%);
     background-attachment:fixed;
   }
-  .wrap{max-width:740px; margin:0 auto; padding:0 24px;}
-  a{color:var(--blue);}
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px;}
+  a{color:var(--cyan); text-decoration:none;}
+  a:hover{text-decoration:underline;}
 
-  header{padding:80px 0 24px; text-align:center; position:relative;}
-  .orbit{width:110px; height:110px; margin:0 auto 24px; display:block;}
+  header{padding:60px 0 20px; text-align:center; position:relative;}
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.34em;
-    text-transform:uppercase; color:var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:700;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--cyan);
+    display:inline-block; margin-bottom:8px;
   }
   h1{
-    font-family:'Cormorant Garamond', serif; font-weight:300;
-    font-size:clamp(38px,7vw,54px); line-height:1.15; margin:16px 0 16px;
-    color:#F4F4FB;
+    font-family:'Chakra Petch', sans-serif; font-weight:700;
+    font-size:clamp(44px,8vw,64px); line-height:1.1; margin:10px 0 16px;
+    text-transform:uppercase; letter-spacing:0.03em; color:#fff;
   }
   h1 em{
-    font-style:italic; font-weight:400;
-    background:linear-gradient(100deg, var(--blue), var(--violet));
+    font-style:normal;
+    background:linear-gradient(100deg, var(--cyan), var(--magenta));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .subtitle{color:var(--muted); max-width:48ch; margin:0 auto; font-size:15px;}
+  .subtitle{color:var(--muted); max-width:48ch; margin:0 auto; font-size:17px; font-weight:500;}
   .times{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);
-    letter-spacing:.06em; margin-top:20px;
+    font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted);
+    letter-spacing:.05em; margin-top:16px; font-weight:700;
   }
   .times .fri-dot,.times .wed-dot{
-    display:inline-block; width:8px; height:8px; border-radius:50%;
+    display:inline-block; width:10px; height:10px; border-radius:50%;
     margin:0 6px 0 16px; vertical-align:baseline;
   }
-  .times .fri-dot{background:var(--blue); box-shadow:0 0 8px rgba(125,141,255,.8);}
-  .times .wed-dot{background:var(--violet); box-shadow:0 0 8px rgba(176,140,255,.8);}
+  .times .fri-dot{background:var(--cyan); box-shadow:0 0 10px rgba(0,229,255,.8);}
+  .times .wed-dot{background:var(--magenta); box-shadow:0 0 10px rgba(255,42,133,.8);}
 
-  .breaths{display:flex; justify-content:center; gap:12px; margin:36px 0 0; flex-wrap:wrap;}
+  .breaths{display:flex; justify-content:center; gap:12px; margin:30px 0 0; flex-wrap:wrap;}
   .breaths .st{
-    width:12px; height:12px; border-radius:50%; padding:0; cursor:pointer;
-    border:1.5px solid var(--muted); opacity:.5; background:transparent;
+    width:16px; height:16px; border-radius:4px; padding:0; cursor:pointer;
+    border:2px solid var(--muted); opacity:.6; background:transparent;
     transition:transform .2s ease;
   }
-  .breaths .st:hover{transform:scale(1.4); opacity:1;}
-  .breaths .st.fri{border-color:var(--blue); opacity:.85;}
-  .breaths .st.wed{border-color:var(--violet); opacity:.85;}
-  .breaths .st.fri.bm{background:var(--blue); box-shadow:0 0 10px rgba(125,141,255,.8);}
-  .breaths .st.wed.bm{background:var(--violet); box-shadow:0 0 10px rgba(176,140,255,.8);}
-  .breaths .st.last{border-color:var(--gold); background:var(--gold); opacity:1; box-shadow:0 0 10px rgba(245,201,123,.8);}
+  .breaths .st:hover{transform:scale(1.3); opacity:1;}
+  .breaths .st.fri{border-color:var(--cyan); opacity:.85;}
+  .breaths .st.wed{border-color:var(--magenta); opacity:.85;}
+  .breaths .st.fri.bm{background:var(--cyan); box-shadow:0 0 10px rgba(0,229,255,.9);}
+  .breaths .st.wed.bm{background:var(--magenta); box-shadow:0 0 10px rgba(255,42,133,.9);}
+  .breaths .st.last{border-color:var(--yellow); background:var(--yellow); opacity:1; box-shadow:0 0 12px rgba(255,230,0,.8);}
+
+  /* Meditation Bars */
+  .meditation-bar{
+    margin:22px auto 0;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .med-btn{
+    background:#0E1430; border:2px solid var(--cyan); color:var(--cyan);
+    font-family:'Chakra Petch', sans-serif; font-size:14px; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; padding:8px 22px;
+    border-radius:6px; cursor:pointer; transition:all 0.25s ease;
+  }
+  .med-btn:hover{
+    background:var(--cyan); color:#000; box-shadow:0 0 14px rgba(0,229,255,0.6);
+  }
+  .med-btn.active{
+    border-color:var(--magenta); color:var(--magenta); background:#1F0F28;
+    box-shadow:0 0 14px rgba(255,42,133,0.5);
+  }
+  .med-status{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--yellow);
+    min-height:18px; font-weight:700; letter-spacing:0.05em;
+  }
 
   nav.month-nav{
-    display:flex; justify-content:center; gap:4px; margin:54px 0 28px;
-    border-top:1px solid var(--whisper); border-bottom:1px solid var(--whisper);
-    padding:4px 0; overflow-x:auto;
+    display:flex; justify-content:center; gap:8px; margin:40px 0 24px;
+    border-top:2px solid var(--whisper); border-bottom:2px solid var(--whisper);
+    padding:8px 0; overflow-x:auto;
   }
   .tab{
-    font-family:'Cormorant Garamond',serif; font-weight:400; font-size:18px;
+    font-family:'Chakra Petch', sans-serif; font-weight:700; font-size:20px;
     background:none; border:none; color:var(--muted); cursor:pointer;
-    padding:10px 20px; letter-spacing:.05em; position:relative; white-space:nowrap;
+    padding:8px 20px; letter-spacing:.06em; position:relative; text-transform:uppercase;
   }
   .tab:hover{color:var(--ink);}
-  .tab[aria-selected="true"]{color:var(--ink); font-weight:500;}
+  .tab[aria-selected="true"]{color:var(--cyan);}
   .tab[aria-selected="true"]::after{
-    content:""; position:absolute; left:50%; bottom:3px; transform:translateX(-50%);
-    width:5px; height:5px; border-radius:50%; background:var(--gold);
+    content:""; position:absolute; left:50%; bottom:0px; transform:translateX(-50%);
+    width:24px; height:3px; background:var(--cyan); box-shadow:0 0 8px var(--cyan);
   }
 
   .month-note{
-    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px;
-    color:var(--muted); text-align:center; margin-bottom:24px;
+    font-family:'Chakra Petch',sans-serif; font-weight:600; font-size:18px;
+    color:var(--muted); text-align:center; margin-bottom:20px; text-transform:uppercase;
   }
 
   .session-subnav{
-    display:flex; justify-content:center; gap:8px; margin-bottom:28px; flex-wrap:wrap;
+    display:flex; justify-content:center; gap:8px; margin-bottom:24px; flex-wrap:wrap;
   }
   .sess-tab{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.1em;
-    background:#0C0F22; color:var(--muted); border:1px solid var(--card-edge);
-    border-radius:20px; padding:7px 16px; cursor:pointer; transition:all .2s;
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; letter-spacing:.08em;
+    background:#080C1E; color:var(--muted); border:2px solid var(--card-edge);
+    border-radius:6px; padding:8px 18px; cursor:pointer; transition:all .2s;
+    text-transform:uppercase;
   }
   .sess-tab:hover{color:var(--ink); border-color:var(--muted);}
   .sess-tab.active{
-    color:var(--ink); background:#191E3F; border-color:var(--blue);
-    box-shadow:0 0 8px rgba(125,141,255,.3);
+    color:#fff; background:#131B3D; border-color:var(--cyan);
+    box-shadow:0 0 10px rgba(0,229,255,.3);
   }
 
   .panel{display:none;}
   .panel.active{display:block;}
   .session-view{display:none;}
-  .session-view.active{display:block; animation:settle .35s ease;}
+  .session-view.active{display:block; animation:settle .3s ease;}
   @keyframes settle{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
 
   .gate-box{
-    background:var(--card); border:1px solid var(--card-edge); border-radius:6px;
+    background:var(--card); border:2px solid var(--card-edge); border-radius:10px;
     padding:40px 24px; text-align:center; margin-bottom:40px;
   }
   .gate-box h4{
-    font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:8px;
+    font-family:'Chakra Petch',sans-serif; font-size:28px; font-weight:700; margin-bottom:8px;
+    color:var(--yellow); text-transform:uppercase;
   }
-  .gate-box p{color:var(--muted); font-size:14px; margin-bottom:16px;}
-  .gate-unlock-date{color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:12px; margin-bottom:18px; display:block;}
-  .gate-form{display:inline-flex; gap:8px; justify-content:center; max-width:320px; width:100%;}
+  .gate-box p{color:var(--muted); font-size:16px; margin-bottom:14px;}
+  .gate-unlock-date{color:var(--cyan); font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:20px; display:block; font-weight:700;}
+  .gate-form{display:inline-flex; gap:8px; justify-content:center; max-width:340px; width:100%;}
   .gate-input{
-    flex:1; padding:9px 12px; background:#0A0C1B; border:1px solid var(--whisper);
-    border-radius:4px; color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:13px;
+    flex:1; padding:10px 14px; background:#070913; border:2px solid var(--whisper);
+    border-radius:6px; color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:14px;
   }
-  .gate-input:focus{outline:none; border-color:var(--blue);}
+  .gate-input:focus{outline:none; border-color:var(--cyan);}
   .gate-btn{
-    padding:9px 16px; background:var(--blue); border:none; border-radius:4px;
-    color:#fff; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500;
+    padding:10px 18px; background:var(--cyan); border:none; border-radius:6px;
+    color:#000; font-family:'Chakra Petch',sans-serif; font-size:14px; font-weight:700;
     cursor:pointer; letter-spacing:.08em; text-transform:uppercase;
   }
-  .gate-err{color:var(--danger); font-size:12px; font-family:'IBM Plex Mono',monospace; margin-top:8px; min-height:16px;}
+  .gate-err{color:var(--danger); font-size:13px; font-family:'IBM Plex Mono',monospace; margin-top:10px; min-height:16px;}
 
   .session{
-    background:var(--card); border-radius:6px;
-    padding:36px 36px 28px; margin-bottom:40px;
-    border:1px solid var(--card-edge);
-    border-left:3px solid var(--card-edge);
+    background:var(--card); border-radius:10px;
+    padding:36px 36px 30px; margin-bottom:40px;
+    border:2px solid var(--card-edge);
+    border-left:6px solid var(--card-edge);
   }
-  .session.fri{border-left-color:var(--blue);}
-  .session.wed{border-left-color:var(--violet);}
+  .session.fri{border-left-color:var(--cyan);}
+  .session.wed{border-left-color:var(--magenta);}
   .session-top{
     display:flex; align-items:baseline; justify-content:space-between;
-    gap:12px; flex-wrap:wrap; margin-bottom:14px;
+    gap:12px; flex-wrap:wrap; margin-bottom:12px;
   }
   .lv-badge{
-    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:11px;
-    letter-spacing:.26em; text-transform:uppercase;
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13px;
+    letter-spacing:.2em; text-transform:uppercase;
   }
-  .fri .lv-badge{color:var(--blue);}
-  .wed .lv-badge{color:var(--violet);}
-  .when{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:.04em;}
+  .fri .lv-badge{color:var(--cyan);}
+  .wed .lv-badge{color:var(--magenta);}
+  .when{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); letter-spacing:.04em; font-weight:700;}
   .session h3{
-    font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px;
-    line-height:1.2; margin:0 0 12px; color:#F4F4FB;
+    font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:34px;
+    line-height:1.2; margin:0 0 12px; color:#fff; text-transform:uppercase;
   }
-  .session p{color:#C6C9DC; max-width:58ch; margin-bottom:10px; font-size:15px;}
-  .session p a{color:var(--blue); text-underline-offset:3px;}
+  .session p{color:#D5DBEE; max-width:62ch; margin-bottom:14px; font-size:17.5px;}
+
+  b, strong {
+    color: var(--yellow);
+    font-size: 1.08em;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
   .mission{
-    font-family:'Cormorant Garamond',serif; font-style:italic;
-    font-size:17px; color:var(--muted); margin-top:8px;
+    font-family:'Chakra Petch',sans-serif; font-weight:700;
+    font-size:18px; color:var(--yellow); margin-top:12px; text-transform:uppercase;
   }
 
   .bm-btn{
     background:none; border:none; cursor:pointer; color:var(--muted);
-    font-size:17px; line-height:1; padding:2px 4px; margin-left:auto;
+    font-size:22px; line-height:1; padding:2px 4px; margin-left:auto;
   }
-  .bm-btn:hover{color:var(--gold);}
-  .bm-btn.on{color:var(--gold); text-shadow:0 0 10px rgba(245,201,123,.7);}
+  .bm-btn:hover{color:var(--yellow);}
+  .bm-btn.on{color:var(--yellow); text-shadow:0 0 12px rgba(255,230,0,.9);}
 
+  /* Distinct Color-Coded Inner Session Subtabs */
   .stabs{
-    display:flex; gap:2px; flex-wrap:wrap; align-items:center;
-    border-bottom:1px solid var(--whisper); margin:18px 0 18px;
+    display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+    border-bottom:2px solid var(--whisper); margin:24px 0 20px; padding-bottom:8px;
   }
   .stab{
-    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:500;
-    letter-spacing:.14em; text-transform:uppercase;
-    background:none; border:none; color:var(--muted); cursor:pointer;
-    padding:8px 12px 10px; border-bottom:2px solid transparent; margin-bottom:-1px;
+    font-family:'Chakra Petch',sans-serif; font-size:14px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    background:#080C1E; border:2px solid var(--card-edge); border-radius:6px;
+    color:var(--muted); cursor:pointer; padding:10px 16px;
+    transition:all 0.2s ease;
   }
-  .stab:hover{color:var(--ink);}
-  .stab.active{color:var(--ink);}
-  .fri .stab.active{border-bottom-color:var(--blue);}
-  .wed .stab.active{border-bottom-color:var(--violet);}
-  .boss .stab.active{border-bottom-color:var(--gold);}
+  .stab:hover{color:var(--ink); border-color:var(--muted);}
+  
+  .stab[data-pane="agenda"].active{
+    color:var(--yellow); border-color:var(--yellow); background:#1C1A0F;
+    box-shadow:0 0 10px rgba(255,230,0,0.3);
+  }
+  .stab[data-pane="simulation"].active{
+    color:var(--magenta); border-color:var(--magenta); background:#1F0D20;
+    box-shadow:0 0 10px rgba(255,42,133,0.3);
+  }
+  .stab[data-pane="exercise"].active{
+    color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
+    box-shadow:0 0 10px rgba(0,229,255,0.3);
+  }
+  .stab[data-pane="overview"].active{
+    color:var(--green); border-color:var(--green); background:#0D211B;
+    box-shadow:0 0 10px rgba(0,255,136,0.3);
+  }
+  .stab[data-pane="learn"].active{
+    color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
+    box-shadow:0 0 10px rgba(0,229,255,0.3);
+  }
 
   .spane{display:none;}
-  .spane.active{display:block; animation:settle .35s ease;}
-  .spane ul{list-style:none; padding:0; margin:4px 0 8px;}
-  .spane li{
-    position:relative; padding-left:20px; margin-bottom:10px;
-    color:#C6C9DC; font-size:14.5px; max-width:58ch; line-height:1.7;
-  }
-  .spane li::before{content:"✦"; position:absolute; left:0; top:1px; font-size:9px; color:var(--muted);}
-  .spane li b{color:var(--ink); font-weight:700;}
+  .spane.active{display:block; animation:settle .3s ease;}
 
   .agenda-block{
-    background:#0D1026; border:1px solid var(--card-edge); border-radius:6px;
-    padding:20px; margin:16px 0 20px;
+    background:var(--card-inner); border:2px solid var(--card-edge); border-radius:8px;
+    padding:24px; margin:16px 0 20px;
   }
-  .agenda-step{margin-bottom:18px;}
+  .agenda-step{margin-bottom:24px;}
   .agenda-step:last-child{margin-bottom:0;}
   .agenda-tag{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em;
-    color:var(--gold); text-transform:uppercase; display:block; margin-bottom:4px;
+    font-family:'Chakra Petch',sans-serif; font-size:16px; font-weight:700; letter-spacing:.12em;
+    color:var(--yellow); text-transform:uppercase; display:block; margin-bottom:6px;
   }
 
   .setup-checklist {
-    background: #080A16;
-    border: 1px solid var(--whisper);
-    border-radius: 6px;
-    padding: 12px 14px;
-    margin: 10px 0 14px;
+    background: #080B1A;
+    border: 2px solid var(--whisper);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 12px 0 16px;
   }
   .checklist-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
     letter-spacing: 0.14em;
-    color: var(--blue);
+    color: var(--cyan);
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     display: block;
   }
   .check-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 7px;
+    gap: 12px;
+    margin-bottom: 10px;
     cursor: pointer;
-    font-size: 13.5px;
-    color: #C6C9DC;
+    font-size: 16px;
+    color: #E0E5F8;
+    font-weight: 500;
     user-select: none;
   }
   .check-item:last-child { margin-bottom: 0; }
   .check-item input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid var(--muted);
-    border-radius: 4px;
-    background: #0C0F22;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--muted);
+    border-radius: 5px;
+    background: #0D122A;
     cursor: pointer;
     position: relative;
     outline: none;
     transition: all 0.2s;
+    flex-shrink: 0;
   }
   .check-item input[type="checkbox"]:checked {
-    background: var(--blue);
-    border-color: var(--blue);
+    background: var(--green);
+    border-color: var(--green);
   }
   .check-item input[type="checkbox"]:checked::after {
     content: "✓";
     position: absolute;
-    color: #0A0C1B;
-    font-size: 12px;
-    font-weight: 700;
-    top: -1px;
-    left: 3px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 900;
+    top: -2px;
+    left: 4px;
   }
   .check-item span.done {
     text-decoration: line-through;
     color: var(--muted);
   }
 
+  .guide-blurb{
+    background:#080B1A; border-left:3px solid var(--cyan); padding:12px 16px;
+    border-radius:4px; margin-top:10px; font-size:16px; color:#D5DBEE;
+  }
+  .guide-blurb p{margin-bottom:6px;}
+  .guide-blurb p:last-child{margin-bottom:0;}
+
+  /* Cost of AI Section */
+  .cost-grid{
+    display:grid; grid-template-columns:1fr; gap:16px; margin-top:12px;
+  }
+  .cost-card{
+    background:#080B1A; border:1px solid var(--whisper); border-radius:6px; padding:16px;
+  }
+  .cost-head{
+    font-family:'Chakra Petch', sans-serif; font-size:15px; font-weight:700;
+    color:var(--cyan); text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:8px;
+  }
+  .cost-card ul{list-style:none; padding:0; margin:0;}
+  .cost-card li{
+    font-size:16px; color:#D5DBEE; position:relative; padding-left:18px; margin-bottom:8px; line-height:1.6;
+  }
+  .cost-card li::before{content:"▸"; position:absolute; left:0; color:var(--yellow); font-size:12px;}
+
+  /* Visual Evidence Gallery */
+  .infra-gallery{
+    margin-top:18px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px;
+  }
+  .infra-card{
+    background:#080B1A; border:1px solid var(--card-edge); border-radius:6px; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .infra-card img{
+    width:100%; height:130px; object-fit:cover; display:block;
+    border-bottom:1px solid var(--whisper);
+  }
+  .infra-cap{
+    padding:8px 10px; font-size:12.5px; color:var(--muted); line-height:1.4;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .infra-cap a{
+    color:var(--cyan); font-weight:700; display:block; margin-bottom:2px; font-size:13px;
+  }
+
+  .exercise-box {
+    background: var(--card-inner);
+    border: 2px solid var(--card-edge);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+  }
+  .exercise-due {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .exercise-q {
+    margin-bottom: 22px;
+  }
+  .exercise-q:last-child { margin-bottom: 0; }
+  .exercise-q label {
+    display: block;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  /* Marble Game Area — Scaled Up */
   .sim-container{
-    background:#080A16; border:1px solid #1E2347; border-radius:8px;
-    padding:24px 20px; margin:20px 0; text-align:center;
+    background:#070915; border:2px solid var(--card-edge); border-radius:12px;
+    padding:30px 24px; margin:24px 0; text-align:center;
   }
   .sim-title{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+    font-family:'Chakra Petch',sans-serif; font-size:20px; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--yellow); margin-bottom:8px;
   }
-  .sim-desc{font-size:13.5px; color:var(--muted); max-width:54ch; margin:0 auto 24px;}
+  .sim-desc{font-size:16px; color:var(--muted); max-width:58ch; margin:0 auto 28px;}
   
   .jar-stage{
     display:flex; justify-content:center; align-items:flex-start; gap:32px;
-    flex-wrap:wrap; margin-bottom:16px;
+    flex-wrap:wrap; margin-bottom:20px;
   }
   .jar-container {
     display:flex; flex-direction:column; align-items:center;
   }
   .marble-jar{
-    width:140px; min-height:260px; border:3px solid rgba(255,255,255,.25);
-    border-top:none; border-radius:0 0 32px 32px; padding:12px;
-    display:flex; flex-wrap:wrap-reverse; gap:5px; align-content:flex-start; justify-content:center;
-    background:radial-gradient(circle at 50% 100%, rgba(125,141,255,.08), transparent 70%);
-    margin-bottom: 8px;
+    width:170px; min-height:310px; border:4px solid rgba(255,255,255,.3);
+    border-top:none; border-radius:0 0 40px 40px; padding:14px;
+    display:flex; flex-wrap:wrap-reverse; gap:6px; align-content:flex-start; justify-content:center;
+    background:radial-gradient(circle at 50% 100%, rgba(0,229,255,.12), transparent 70%);
+    margin-bottom: 10px;
   }
+  .jar-counts-label {
+    font-family:'Chakra Petch', sans-serif; font-size:14px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; display:block;
+  }
+  .jar-counts-label .m-tag { color: var(--magenta); }
+  .jar-counts-label .t-tag { color: var(--cyan); }
+  
+  .mix-btn {
+    padding: 6px 14px; background: #0E1533; border: 1.5px solid var(--yellow);
+    color: var(--yellow); border-radius: 4px; font-family: 'Chakra Petch', sans-serif;
+    font-size: 12px; font-weight: 700; cursor: pointer; letter-spacing: 0.1em;
+    text-transform: uppercase; transition: all 0.2s; margin-top: 4px;
+  }
+  .mix-btn:hover { background: var(--yellow); color: #000; box-shadow: 0 0 10px rgba(255,230,0,0.5); }
   
   .draw-zone-wrapper {
-    flex:1; min-width:260px; display:flex; flex-direction:column;
+    flex:1; min-width:320px; display:flex; flex-direction:column;
   }
   .draw-zone{
-    background:#0F132E; border:1px dashed var(--whisper);
-    border-radius:6px; padding:16px; min-height:160px; display:flex; flex-direction:column;
+    background:#0B1028; border:2px dashed var(--whisper);
+    border-radius:10px; padding:22px; min-height:180px; display:flex; flex-direction:column;
     justify-content:center; align-items:center;
   }
   .drawn-marbles{
-    display:flex; flex-wrap:wrap; gap:8px; justify-content:center; min-height:48px; margin:14px 0;
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; min-height:56px; margin:16px 0;
   }
   
+  /* Marble Base Styling */
   .marble{
-    width:32px; height:32px; border-radius:50%; display:inline-flex;
+    width:42px; height:42px; border-radius:50%; display:inline-flex;
     align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
-    font-size:10px; font-weight:700; color:#0A0C1B; box-shadow:0 2px 6px rgba(0,0,0,.5);
-    transition:transform .2s, color .3s ease, background-color .3s ease;
+    font-size:13px; font-weight:700; color:#000; box-shadow:0 4px 10px rgba(0,0,0,.6);
+    transition:transform .2s, box-shadow .2s, border .2s;
+    border:2.5px solid transparent;
   }
-  .marble.magenta{background:var(--magenta); box-shadow:0 0 8px rgba(255,77,148,.7);}
-  .marble.turquoise{background:var(--turquoise); box-shadow:0 0 8px rgba(0,229,255,.7);}
-  .marble.mini{width:16px; height:16px; font-size:0;}
+  .marble.magenta{background:var(--magenta); box-shadow:0 0 12px rgba(255,42,133,.8);}
+  .marble.turquoise{background:var(--cyan); box-shadow:0 0 12px rgba(0,229,255,.8);}
+  .marble.mini{width:20px; height:20px; font-size:0;}
   .marble.face-down {color: transparent; }
-  
-  .sim-controls{display:flex; justify-content:center; gap:8px; margin-top:12px;}
-  .sim-btn{
-    padding:8px 14px; background:#1C224E; border:1px solid var(--blue);
-    color:var(--ink); border-radius:4px; font-family:'IBM Plex Mono',monospace;
-    font-size:11px; cursor:pointer; letter-spacing:.08em; text-transform:uppercase;
-    transition: opacity 0.2s, background 0.2s;
+
+  /* Halo on repeated marbles: maintains original background color, adds golden halo ring */
+  .marble.repeat-picked{
+    border-color:#FFFFFF;
+    box-shadow:0 0 0 3px var(--yellow), 0 0 18px rgba(255,230,0,0.95);
+    transform:scale(1.12);
   }
-  .sim-btn:hover:not(:disabled){background:var(--blue); color:#0A0C1B;}
-  .sim-btn:disabled {opacity: 0.5; cursor: not-allowed; border-color: var(--muted);}
+  
+  .sim-controls{display:flex; justify-content:center; gap:12px; margin-top:16px;}
+  .sim-btn{
+    padding:12px 20px; background:#141C3D; border:2px solid var(--cyan);
+    color:#fff; border-radius:6px; font-family:'Chakra Petch',sans-serif;
+    font-size:15px; font-weight:700; cursor:pointer; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .sim-btn:hover:not(:disabled){background:var(--cyan); color:#000;}
+  .sim-btn:disabled {opacity: 0.4; cursor: not-allowed; border-color: var(--muted);}
   
   .sim-stats{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);
-    min-height:18px;
+    font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--muted);
+    min-height:26px; font-weight:700;
+  }
+
+  .win-badge {
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  .win-badge.magenta-win {
+    background: rgba(255,42,133,.25);
+    color: var(--magenta);
+    border: 1px solid var(--magenta);
+    box-shadow: 0 0 8px rgba(255,42,133,.5);
+  }
+  .win-badge.turquoise-win {
+    background: rgba(0,229,255,.25);
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 8px rgba(0,229,255,.5);
+  }
+  .win-badge.tie-win {
+    background: rgba(255,230,0,.25);
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
   }
   
+  /* Expanded History Box with Bigger Numbers */
   .sim-history-box {
-    margin-top: 16px; text-align: left; background: #080A16; border: 1px solid var(--whisper);
-    border-radius: 6px; padding: 12px 16px; max-height: 170px; overflow-y: auto;
+    margin-top: 20px; text-align: left; background: #070915; border: 2px solid var(--whisper);
+    border-radius: 10px; padding: 18px 20px; min-height: 240px; max-height: 440px; overflow-y: auto;
   }
   .sim-history-box h5 {
-    color: var(--gold); font-size: 10px; font-family:'IBM Plex Mono',monospace; 
-    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+    color: var(--yellow); font-size: 14px; font-family:'Chakra Petch',sans-serif; 
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; font-weight: 700;
   }
   .sim-history-list {
-    list-style: none; margin: 0; padding: 0; font-family:'IBM Plex Mono',monospace; font-size: 11px;
-    color: var(--muted); line-height: 1.6;
+    list-style: none; margin: 0; padding: 0; font-family:'IBM Plex Mono',monospace; font-size: 14px;
+    color: var(--muted); line-height: 1.7;
   }
   .sim-history-list li {
-    border-bottom: 1px solid var(--whisper); padding: 8px 0;
+    border-bottom: 1px solid var(--whisper); padding: 12px 0;
   }
   .sim-history-list li:last-child { border-bottom: none; }
-  .sim-history-list .m-txt { color: var(--magenta); font-weight: 500; }
-  .sim-history-list .t-txt { color: var(--turquoise); font-weight: 500; }
+  .sim-history-list .m-txt { color: var(--magenta); font-weight: 700; }
+  .sim-history-list .t-txt { color: var(--cyan); font-weight: 700; }
+  
+  /* Halo indicators in history list */
+  .sim-history-list .repeat-id {
+    color: var(--yellow);
+    text-shadow: 0 0 10px rgba(255,230,0,0.8);
+    font-weight: 700;
+    border-bottom: 2px solid var(--yellow);
+  }
   .history-nums {
-    display: block; font-size: 10.5px; color: #8D91B0; margin-top: 2px; word-break: break-all;
+    display: block; font-size: 16px; font-weight: 700; color: #BAC2E2; margin-top: 6px; word-break: break-all; letter-spacing: 0.04em;
   }
 
-  details.notes{margin-top:24px; border-top:1px solid var(--whisper); padding-top:14px;}
+  /* Notes & Favorite Take Home — Expanded Styling */
+  details.notes{
+    margin-top:28px; border-top:2px solid var(--whisper); padding-top:18px;
+  }
   details.notes summary{
-    cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px;
-    letter-spacing:.24em; text-transform:uppercase; color:var(--muted); list-style:none;
+    cursor:pointer; font-family:'Chakra Petch',sans-serif; font-size:16px; font-weight:700;
+    letter-spacing:.15em; text-transform:uppercase; color:var(--yellow); list-style:none;
+    margin-bottom:6px;
   }
   textarea{
-    width:100%; min-height:110px; margin-top:14px; padding:14px;
-    border:1px solid var(--whisper); border-radius:4px; resize:vertical;
-    font-family:'Zen Kaku Gothic New',sans-serif; font-size:14.5px; line-height:1.7;
-    background:#0C0F22; color:var(--ink);
+    width:100%; min-height:120px; margin-top:10px; padding:14px;
+    border:2px solid var(--whisper); border-radius:6px; resize:vertical;
+    font-family:'Space Grotesk',sans-serif; font-size:16px; line-height:1.7;
+    background:#080C1E; color:var(--ink);
   }
-  textarea:focus{outline:none; border-color:var(--blue);}
+  textarea:focus{outline:none; border-color:var(--cyan);}
   .saved-flag{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--violet);
-    letter-spacing:.08em; margin-top:6px; min-height:14px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--green);
+    letter-spacing:.08em; margin-top:6px; min-height:16px; font-weight:700;
   }
 
-  .toolbar{margin-top:64px; padding-top:32px; border-top:1px solid var(--whisper); text-align:center; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .toolbar{margin-top:64px; padding-top:32px; border-top:2px solid var(--whisper); text-align:center; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
   .btn{
-    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:11.5px;
-    letter-spacing:.2em; text-transform:uppercase;
-    background:none; color:var(--ink); border:1px solid var(--muted); border-radius:4px;
-    padding:12px 22px; cursor:pointer;
+    font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:14px;
+    letter-spacing:.15em; text-transform:uppercase;
+    background:none; color:var(--ink); border:2px solid var(--muted); border-radius:6px;
+    padding:12px 24px; cursor:pointer;
   }
   .btn:hover{background:var(--ink); color:var(--bg);}
-  .hint-block{width:100%; font-size:12.5px; color:var(--muted); margin-top:6px;}
+  .hint-block{width:100%; font-size:13px; color:var(--muted); margin-top:6px; font-family:'IBM Plex Mono', monospace;}
+
+  .bottom-meditation-container{
+    margin-top:40px; display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <svg class="orbit" viewBox="0 0 130 130" aria-hidden="true">
-      <defs>
-        <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#7D8DFF"/>
-          <stop offset="100%" stop-color="#B08CFF"/>
-        </linearGradient>
-      </defs>
-      <ellipse cx="65" cy="65" rx="52" ry="20" fill="none" stroke="url(#ringGrad)" stroke-width="1.4" opacity=".8" transform="rotate(-24 65 65)"/>
-      <circle cx="65" cy="65" r="15" fill="none" stroke="url(#ringGrad)" stroke-width="1.8" opacity=".95"/>
-      <circle cx="103" cy="42" r="4" fill="#F5C97B"/>
-    </svg>
-    <div class="eyebrow">Fall 2026 · Twelve Sessions</div>
+    <div class="eyebrow">Fall 2026 // 12-Session Quest</div>
     <h1>Eliot's <em>AI Quest</em></h1>
-    <p class="subtitle">Auto-unlocks the day before each class date. Passcode override anytime.</p>
+    <p class="subtitle">From AI Explorer to Game Creator: Building & Deploying an HTML Game.</p>
     <div class="times">
       <span class="fri-dot"></span>Fridays 1:30–3:00
       <span class="wed-dot"></span>Wednesdays 1:45–3:15
@@ -423,6 +596,12 @@
       <button class="st wed" data-target="sess-11" aria-label="Session 11"></button>
       <button class="st fri last" data-target="sess-12" aria-label="Session 12"></button>
     </div>
+
+    <!-- Arrival Meditation -->
+    <div class="meditation-bar">
+      <button class="med-btn" id="arrivalMedBtn">Arrival Meditation (90s)</button>
+      <div class="med-status" id="arrivalMedStatus"></div>
+    </div>
   </header>
 
   <!-- MONTH NAVIGATION -->
@@ -435,7 +614,7 @@
 
   <!-- SEPTEMBER -->
   <section class="panel active" id="panel-sep" role="tabpanel" aria-labelledby="tab-sep">
-    <p class="month-note">What is AI, really?</p>
+    <p class="month-note">Stage 01 // Foundations & Mechanics</p>
     
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-1">Session 1</button>
@@ -447,95 +626,180 @@
     <div class="session-view active" id="view-sess-1" data-sessid="sess-1" data-classdate="2026-09-04">
       <article id="sess-1" class="session fri">
         <div class="session-top">
-          <span class="lv-badge">Session One</span>
+          <span class="lv-badge">Session One // Live</span>
           <span class="when">Fri Sep 4 · 1:30–3:00</span>
           <button class="bm-btn" data-bm="sess-1" aria-pressed="false">☆</button>
         </div>
-        <h3>The AI Foundation & Stochastic Models</h3>
+        <h3>Introduction to AI</h3>
         
         <div class="stabs">
           <button class="stab active" data-pane="agenda">Today's Agenda</button>
-          <button class="stab" data-pane="simulation">Marble Simulation</button>
-          <button class="stab" data-pane="futbol">⚽ Futbol</button>
+          <button class="stab" data-pane="simulation">Marble Game</button>
+          <button class="stab" data-pane="exercise">Session 1 Exercise</button>
         </div>
 
         <!-- Agenda Pane -->
         <div class="spane active" data-pane="agenda">
           <div class="agenda-block">
             <div class="agenda-step">
-              <span class="agenda-tag">Part A · Welcome & Setup</span>
-              <p><b>Interests & Aspirations:</b> Getting started with the goal: building and running a custom playable HTML game by December.</p>
+              <span class="agenda-tag">01 // Why Are You Here?</span>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // What Do You Know About AI?</span>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // Setup Checklist</span>
+              <p>Verify your iPad setup before we dive in:</p>
               
               <div class="setup-checklist">
-                <span class="checklist-title">iPad Setup Checklist</span>
+                <span class="checklist-title">Mission Equipment Checklist</span>
                 <label class="check-item">
-                  <input type="checkbox" data-check="chrome_installed">
-                  <span>1. Chrome installed</span>
+                  <input type="checkbox" data-check="s1_c1">
+                  <span>1. Gemini installed / shortcut created</span>
                 </label>
                 <label class="check-item">
-                  <input type="checkbox" data-check="google_account">
-                  <span>2. Google account usable</span>
+                  <input type="checkbox" data-check="s1_c2">
+                  <span>2. Logged into Gemini</span>
                 </label>
                 <label class="check-item">
-                  <input type="checkbox" data-check="gemini_installed">
-                  <span>3. Gemini installed / shortcut created</span>
+                  <input type="checkbox" data-check="s1_c3">
+                  <span>3. Google account usable</span>
                 </label>
                 <label class="check-item">
-                  <input type="checkbox" data-check="gemini_logged">
-                  <span>4. Logged into Gemini</span>
+                  <input type="checkbox" data-check="s1_c4">
+                  <span>4. AirDrop enabled</span>
                 </label>
                 <label class="check-item">
-                  <input type="checkbox" data-check="airdrop_enabled">
-                  <span>5. AirDrop enabled</span>
+                  <input type="checkbox" data-check="s1_c5">
+                  <span>5. Chrome installed</span>
                 </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c6">
+                  <span>6. Koder installed</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="s1_c7">
+                  <span>7. Introduction to our working guide</span>
+                </label>
+              </div>
+
+              <div class="guide-blurb">
+                <p><b>What is HTML?</b> It stands for <b>HyperText Markup Language</b>—the foundational code skeleton of every website on Earth.</p>
+                <p><b>The Superpower:</b> It runs everywhere without installs, works natively inside any browser on your iPad, and lets you build real games you can instantly text or AirDrop to your friends!</p>
               </div>
             </div>
 
             <div class="agenda-step">
-              <span class="agenda-tag">Part B · Definition</span>
-              <p><b>What is AI?</b> Demystifying Artificial Intelligence: computer systems learning patterns from data rather than following static, hardcoded instructions.</p>
+              <span class="agenda-tag">04 // Definition: AI (Artificial Intelligence)</span>
+              <p><b>Artificial:</b> Made by human hands and tools—not occurring naturally on its own.</p>
+              <p><b>Intelligence:</b> The ability to take in new information, learn from observations, adapt, and solve problems to reach a goal.</p>
+              <p><b>A Big Lesson: Humans are still required!</b> AI does not have common sense, empathy, or <b>human intuition</b>—that deep gut feeling where a person spots subtle context, fairness, or creative leaps that raw math misses. It needs human directors, coders, and judges to steer it in the right direction.</p>
             </div>
+
             <div class="agenda-step">
-              <span class="agenda-tag">Part C1 · Foundations</span>
-              <p><b>Statistics & Predictions:</b> How observations turn into predictive odds. Deterministic calculations versus probabilistic generation.</p>
+              <span class="agenda-tag">05 // The Real Cost of AI</span>
+              <div class="cost-grid">
+                <div class="cost-card">
+                  <span class="cost-head">Financial Costs</span>
+                  <ul>
+                    <li><b>Personal:</b> Free tier tools vs. $20/month premium subscriptions for high-tier models.</li>
+                    <li><b>Company Level:</b> Billions of dollars spent on specialized AI superchips (GPUs) and massive engineering teams.</li>
+                    <li><b>Global Scale:</b> Hundreds of billions poured into data centers, electrical grids, and undersea cables.</li>
+                  </ul>
+                </div>
+                <div class="cost-card">
+                  <span class="cost-head">Environmental Footprint & Water Needs</span>
+                  <ul>
+                    <li><b>AI Water Consumption:</b> Data centers consume billions of liters of potable fresh water directly for evaporative cooling towers. Generating 10 to 50 AI prompts can evaporate up to 500ml (a full bottle) of fresh water.</li>
+                    <li><b>Global Water Comparison:</b> Today over <b>2 billion people</b> lack safely managed drinking water at home. AI data centers are competing directly with local agricultural irrigation and municipal drinking water in drought-stressed regions.</li>
+                    <li><b>Electricity Demand:</b> A single AI query uses roughly 5x to 10x more energy than a traditional web search.</li>
+                    <li><b>Hardware E-Waste:</b> Server clusters and high-power GPUs wear out or become obsolete in just 3 to 5 years, producing massive electronic waste.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Visual Infrastructure Gallery -->
+              <div class="infra-gallery">
+                <div class="infra-card">
+                  <img src="https://media.wired.com/photos/682de990e697c0df119ce1f1/3:2/w_2240,c_limit/GettyImages-2161394212.jpg" alt="Hyperscale Data Center">
+                  <div class="infra-cap">
+                    <a href="https://media.wired.com/photos/682de990e697c0df119ce1f1/3:2/w_2240,c_limit/GettyImages-2161394212.jpg" target="_blank" rel="noopener">Hyperscale Data Center ↗</a>
+                    Row upon row of high-power server racks running 24/7.
+                  </div>
+                </div>
+                <div class="infra-card">
+                  <img src="https://www.cudocompute.com/wp-content/w3-webp/uploads/2024/03/Blog-13-Mar-24-GPU-servers.jpgw3.webp" alt="AI GPU Servers">
+                  <div class="infra-cap">
+                    <a href="https://www.cudocompute.com/wp-content/w3-webp/uploads/2024/03/Blog-13-Mar-24-GPU-servers.jpgw3.webp" target="_blank" rel="noopener">GPU Supercomputers ↗</a>
+                    Clusters of ultra-fast graphics processors powering AI brains.
+                  </div>
+                </div>
+                <div class="infra-card">
+                  <img src="https://www.designworldonline.com/wp-content/uploads/2025/02/Liquid_Cooling_Connectors_AI_Data_Centers_Figure1.jpg" alt="Liquid Cooling Data Center">
+                  <div class="infra-cap">
+                    <a href="https://www.designworldonline.com/wp-content/uploads/2025/02/Liquid_Cooling_Connectors_AI_Data_Centers_Figure1.jpg" target="_blank" rel="noopener">Direct Liquid Cooling ↗</a>
+                    Coolant connectors piping fluids directly across boiling-hot AI chips.
+                  </div>
+                </div>
+                <div class="infra-card">
+                  <img src="https://www.qats.com/cms/wp-content/uploads/June-Intro-Image.png" alt="Water Cooling Loop">
+                  <div class="infra-cap">
+                    <a href="https://www.qats.com/cms/wp-content/uploads/June-Intro-Image.png" target="_blank" rel="noopener">Chilled Water Loops ↗</a>
+                    Industrial pumps and radiators dissipating massive thermal loads.
+                  </div>
+                </div>
+                <div class="infra-card">
+                  <img src="https://live-production.wcms.abc-cdn.net.au/3c5ada4d573814d26f466d7928c5c197?impolicy=wcms_crop_resize&cropH=3333&cropW=5000&xPos=0&yPos=1&width=862&height=575" alt="Electronic Waste">
+                  <div class="infra-cap">
+                    <a href="https://live-production.wcms.abc-cdn.net.au/3c5ada4d573814d26f466d7928c5c197?impolicy=wcms_crop_resize&cropH=3333&cropW=5000&xPos=0&yPos=1&width=862&height=575" target="_blank" rel="noopener">Hardware E-Waste ↗</a>
+                    Piles of discarded server boards replaced when newer chips arrive.
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div class="agenda-step">
-              <span class="agenda-tag">Part C2 · Stochastic Example</span>
-              <p><b>The Marble Experiment:</b> Simulating stochastic choice with replacement. High overall probability guarantees a pattern, yet individual selections remain variable.</p>
+              <span class="agenda-tag">06 // Foundation: Statistics</span>
+              <p><b>Predicting outcomes using historical observations:</b> How do you predict who wins a soccer match? Who runs faster? You don't guess blindly—you examine past matches, weather conditions, stamina, injuries, and speed records. What factors do you consider when coming up with your answer? That is how AI models calculate predictions from data.</p>
             </div>
           </div>
-          <p class="mission">Mission: Complete setup, then run 5 draws in the simulation tab.</p>
+          <p class="mission">Next Up: Jump to the "Marble Game" tab to see dynamic (stochastic) probability in action!</p>
         </div>
 
         <!-- Simulation Pane -->
         <div class="spane" data-pane="simulation">
           <div class="sim-container">
-            <div class="sim-title">Stochastic Model: Sampling with Replacement</div>
-            <p class="sim-desc">The jar holds 60 total marbles (42 Magenta, 18 Turquoise) stamped with fixed IDs #101 through #160. Each draw samples 10 times <i>with replacement</i>—any marble can be picked more than once.</p>
+            <div class="sim-title">Dynamic (Stochastic) Model: Handful of Marbles</div>
+            <p class="sim-desc">The jar holds 60 marbles stamped #1 through #60. It starts cleanly organized: <b>42 Magenta</b> on the bottom and <b>18 Turquoise</b> on top. Tap <b>"Mix Jar"</b> to stir them up, then grab a <b>handful of 10 unique marbles</b>!</p>
             
             <div class="jar-stage">
               <div class="jar-container">
                 <div class="marble-jar" id="jarMarbles"></div>
-                <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted);">Fixed Jar (42M / 18T)</span>
+                <span class="jar-counts-label">
+                  <span class="m-tag">42 Magenta</span> &amp; <span class="t-tag">18 Turquoise</span>
+                </span>
+                <button class="mix-btn" id="mixJarBtn">Mix Jar</button>
               </div>
               
               <div class="draw-zone-wrapper">
                 <div class="draw-zone">
-                  <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold);">Drawn 10 Marbles</span>
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Handful of 10 Marbles</span>
                   <div class="drawn-marbles" id="drawResults">
-                    <span style="color:var(--muted); font-size:12px; line-height:48px;">Press "Draw 10" to sample</span>
+                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Press "Draw Handful of 10" to sample</span>
                   </div>
                   <div class="sim-stats" id="simStats"></div>
                 </div>
 
                 <div class="sim-controls">
-                  <button class="sim-btn" id="drawBtn">Draw 10</button>
+                  <button class="sim-btn" id="drawBtn">Draw Handful of 10</button>
                   <button class="sim-btn" id="flipBtn" disabled>Flip Marbles</button>
                   <button class="sim-btn" id="resetSimBtn" style="border-color:var(--whisper);">Reset</button>
                 </div>
                 
                 <div class="sim-history-box">
-                  <h5>Draw History (Color Breakdown & Stamped Numbers)</h5>
+                  <h5>Draw History (Color Breakdown & Stamped #s Across Handfuls)</h5>
                   <ul class="sim-history-list" id="simHistoryList">
                     <li>No draws yet.</li>
                   </ul>
@@ -543,19 +807,37 @@
               </div>
             </div>
           </div>
-          <p style="font-size:14px; color:#C6C9DC;"><b>Why this is like AI:</b> Large language models generate text by sampling tokens from a probability distribution. Magenta dominates overall just as predictable words do, while individual number repetition mirrors stochastic token generation.</p>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> When you prompt an AI, it samples a sequence of tokens from its probability distribution. Like grabbing a handful, each token in the response is distinct in that spot, but across multiple prompts, previously chosen tokens reappear—encircled with a glowing halo!</p>
         </div>
 
-        <!-- Futbol Pane -->
-        <div class="spane" data-pane="futbol">
-          <ul>
-            <li><b>Penalty Kicks as Probabilities:</b> If a penalty taker puts 70% of kicks to the right, the keeper anticipates the zone—yet each strike has an independent, unique velocity and height.</li>
-            <li><b>xG (Expected Goals):</b> AI rates scoring chances between 0.00 and 1.00 based on thousands of historical match observations.</li>
-          </ul>
+        <!-- Exercise Pane -->
+        <div class="spane" data-pane="exercise">
+          <div class="exercise-box">
+            <span class="exercise-due">Session 1 Exercise // Due by Sept 18th Session</span>
+            
+            <div class="exercise-q">
+              <label for="ex1_q1">1. Write down a prediction you made recently and what factors/observations influenced your decision:</label>
+              <textarea id="ex1_q1" data-note="s1_ex1" placeholder="e.g., I predicted who would win the match because of..."></textarea>
+              <div class="saved-flag" data-flag="s1_ex1"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex1_q2">2. Do you think AI will ever take over the role of soccer players in the world? Why or why not?</label>
+              <textarea id="ex1_q2" data-note="s1_ex2" placeholder="Your take: could robot or AI players replace human soccer players on the pitch?"></textarea>
+              <div class="saved-flag" data-flag="s1_ex2"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex1_q3">3. Research Challenge: Google or "AI" a question of your choice. Write down: (a) Your exact question, (b) At least two DIFFERENT answers you found, and (c) At least two places/sources that report the SAME answer:</label>
+              <textarea id="ex1_q3" data-note="s1_ex3" placeholder="Question:&#10;&#10;Two DIFFERENT answers found:&#10;1)&#10;2)&#10;&#10;Two places reporting the SAME answer:&#10;1)&#10;2)"></textarea>
+              <div class="saved-flag" data-flag="s1_ex3"></div>
+            </div>
+          </div>
         </div>
 
-        <details class="notes"><summary>Session 1 Notes</summary>
-          <textarea data-note="s1" placeholder="What surprised you about how probability shapes AI?"></textarea>
+        <!-- Pre-expanded notes section -->
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s1" placeholder="What surprised you about how probability shapes AI? What was your favorite takeaway?"></textarea>
           <div class="saved-flag" data-flag="s1"></div>
         </details>
       </article>
@@ -582,8 +864,8 @@
         <h3>How Machines Learn</h3>
         <p>Pattern recognition games and the idea of training data. Hands-on with <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a>: train a model to recognize gestures.</p>
         <p class="mission">Mission: teach a machine something it didn't know an hour ago.</p>
-        <details class="notes"><summary>Session Notes</summary>
-          <textarea data-note="s2" placeholder="What did your model learn?"></textarea>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s2" placeholder="What did your model learn? What was your favorite takeaway?"></textarea>
           <div class="saved-flag" data-flag="s2"></div>
         </details>
       </article>
@@ -609,8 +891,8 @@
         </div>
         <h3>The Art of the Prompt</h3>
         <p>Prompting strategies: guiding tone, constraints, and structured output formats.</p>
-        <details class="notes"><summary>Session Notes</summary>
-          <textarea data-note="s3" placeholder="Best prompt trick discovered?"></textarea>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s3" placeholder="Best prompt trick discovered? What was your favorite takeaway?"></textarea>
           <div class="saved-flag" data-flag="s3"></div>
         </details>
       </article>
@@ -619,7 +901,7 @@
 
   <!-- OCTOBER -->
   <section class="panel" id="panel-oct" role="tabpanel" aria-labelledby="tab-oct">
-    <p class="month-note">Under the hood, thinking critically</p>
+    <p class="month-note">Stage 02 // Under the Hood & Creative Engines</p>
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-4">Session 4</button>
       <button class="sess-tab" data-sess="sess-5">Session 5</button>
@@ -637,6 +919,10 @@
         <div class="session-top"><span class="lv-badge">Session Four</span><span class="when">Fri Oct 2 · 1:30–3:00</span></div>
         <h3>Neural Networks Without the Math</h3>
         <p>Neurons, weights, and layers explored on <a href="https://playground.tensorflow.org" target="_blank" rel="noopener">TensorFlow Playground</a>.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s4" placeholder="What clicked about neural nets?"></textarea>
+          <div class="saved-flag" data-flag="s4"></div>
+        </details>
       </article>
     </div>
     <!-- Session 5 -->
@@ -651,6 +937,10 @@
         <div class="session-top"><span class="lv-badge">Session Five</span><span class="when">Fri Oct 16 · 1:30–3:00</span></div>
         <h3>When AI Gets It Wrong</h3>
         <p>Hallucinations, bias, and verification strategies.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s5" placeholder="Crazy hallucinations caught?"></textarea>
+          <div class="saved-flag" data-flag="s5"></div>
+        </details>
       </article>
     </div>
     <!-- Session 6 -->
@@ -665,13 +955,17 @@
         <div class="session-top"><span class="lv-badge">Session Six</span><span class="when">Wed Oct 28 · 1:45–3:15</span></div>
         <h3>AI and Creativity</h3>
         <p>Generative models, image prompts, and game lore.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s6" placeholder="Favorite creative prompt experiment?"></textarea>
+          <div class="saved-flag" data-flag="s6"></div>
+        </details>
       </article>
     </div>
   </section>
 
   <!-- NOVEMBER -->
   <section class="panel" id="panel-nov" role="tabpanel" aria-labelledby="tab-nov">
-    <p class="month-note">Learning to build</p>
+    <p class="month-note">Stage 03 // Learning to Code & Build</p>
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-7">Session 7</button>
       <button class="sess-tab" data-sess="sess-8">Session 8</button>
@@ -687,7 +981,11 @@
       <article id="sess-7" class="session fri" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Seven</span></div>
         <h3>First Webpage</h3>
-        <p>HTML basics in CodePen: headings, paragraphs, and buttons.</p>
+        <p>HTML basics in CodePen or Koder: headings, paragraphs, and buttons.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s7" placeholder="Tags and structures mastered?"></textarea>
+          <div class="saved-flag" data-flag="s7"></div>
+        </details>
       </article>
     </div>
     <!-- Session 8 -->
@@ -700,7 +998,11 @@
       <article id="sess-8" class="session wed" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Eight</span></div>
         <h3>Making It Do Things</h3>
-        <p>JavaScript fundamentals: click events, variables, and logic.</p>
+        <p>JavaScript fundamentals: click events, variables, and game logic.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s8" placeholder="What mechanic did you bring to life?"></textarea>
+          <div class="saved-flag" data-flag="s8"></div>
+        </details>
       </article>
     </div>
     <!-- Session 9 -->
@@ -713,14 +1015,18 @@
       <article id="sess-9" class="session fri" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Nine</span></div>
         <h3>AI as Coding Partner</h3>
-        <p>Prompting code, inspecting snippets, and pair debugging errors.</p>
+        <p>Prompting code, inspecting snippets, and pair debugging errors with Gemini.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s9" placeholder="Best pair-programming insight?"></textarea>
+          <div class="saved-flag" data-flag="s9"></div>
+        </details>
       </article>
     </div>
   </section>
 
   <!-- DECEMBER -->
   <section class="panel" id="panel-dec" role="tabpanel" aria-labelledby="tab-dec">
-    <p class="month-note">The game project</p>
+    <p class="month-note">Stage 04 // The Final Game Project</p>
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-10">Session 10</button>
       <button class="sess-tab" data-sess="sess-11">Session 11</button>
@@ -737,6 +1043,10 @@
         <div class="session-top"><span class="lv-badge">Session Ten</span></div>
         <h3>Game Design Day</h3>
         <p>Define rules, core game loop, and paper wireframes.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s10" placeholder="Game rules and architecture outline..."></textarea>
+          <div class="saved-flag" data-flag="s10"></div>
+        </details>
       </article>
     </div>
     <!-- Session 11 -->
@@ -749,7 +1059,11 @@
       <article id="sess-11" class="session wed" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Eleven</span></div>
         <h3>Build Sprint</h3>
-        <p>Building the playable game in CodePen.</p>
+        <p>Coding and testing the playable game on iPad.</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s11" placeholder="Sprint progress and conquered bugs..."></textarea>
+          <div class="saved-flag" data-flag="s11"></div>
+        </details>
       </article>
     </div>
     <!-- Session 12 -->
@@ -762,30 +1076,25 @@
       <article id="sess-12" class="session fri boss" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Twelve · Demo Day</span></div>
         <h3>Polish & Demo Day</h3>
-        <p>Playtesting, final touches, and presenting the completed HTML game.</p>
+        <p>Playtesting, final styling tweaks, and demoing Eliot's completed HTML game!</p>
+        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
+          <textarea data-note="s12" placeholder="Demo day reactions and journey retrospective..."></textarea>
+          <div class="saved-flag" data-flag="s12"></div>
+        </details>
       </article>
     </div>
   </section>
 
-  <!-- TOOLBOX -->
-  <section class="toolbox" aria-label="Toolbox">
-    <h2 class="toolbox-title">The Toolbox</h2>
-    <p class="toolbox-sub">Tools running directly inside Safari on iPad.</p>
-
-    <div class="tool">
-      <div class="tool-name"><a href="https://gemini.google.com" target="_blank" rel="noopener">Google Gemini</a></div>
-      <p class="tool-what">Primary AI partner for conceptual discussions and coding assistance.</p>
-    </div>
-    <div class="tool">
-      <div class="tool-name"><a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a></div>
-      <p class="tool-what">Browser code editor to build and preview HTML, CSS, and JavaScript.</p>
-    </div>
-  </section>
+  <!-- Closing Meditation -->
+  <div class="bottom-meditation-container">
+    <button class="med-btn" id="closingMedBtn">Closing Meditation (90s)</button>
+    <div class="med-status" id="closingMedStatus"></div>
+  </div>
 
   <div class="toolbar">
-    <button class="btn" id="copyNotes">Copy all notes</button>
-    <button class="btn" id="lockAllBtn" style="border-color:var(--violet); color:var(--violet);">Reset Manual Unlocks</button>
-    <div class="hint-block">Sessions unlock automatically at 00:00 the day prior to class. "Reset Manual Unlocks" relocks any sessions unlocked early with the passcode.</div>
+    <button class="btn" id="exportBtn">Export All Notes (HTML)</button>
+    <button class="btn" id="lockAllBtn" style="border-color:var(--magenta); color:var(--magenta);">Reset Manual Unlocks</button>
+    <div class="hint-block">Sessions unlock automatically at 00:00 the day prior to class. "Reset Manual Unlocks" relocks early passcode unlocks.</div>
   </div>
 
 </div>
@@ -793,6 +1102,91 @@
 <script>
 (function(){
   var PASS = "emaho108";
+
+  // Web Audio Context for Tibetan Bell Gong
+  var audioCtx = null;
+  function playTibetanGong(){
+    try {
+      if(!audioCtx){
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if(audioCtx.state === 'suspended'){
+        audioCtx.resume();
+      }
+      var now = audioCtx.currentTime;
+
+      var freqs = [180, 362, 546, 730, 920];
+      var gains = [0.45, 0.28, 0.16, 0.08, 0.04];
+
+      freqs.forEach(function(f, i){
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f + (Math.random() * 2 - 1), now);
+
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(gains[i], now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 7.5);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 7.5);
+      });
+    } catch(e){
+      console.log('Audio blocked or not supported:', e);
+    }
+  }
+
+  // Generic Meditation Handler
+  function setupMeditation(btnId, statusId, labelText){
+    var btn = document.getElementById(btnId);
+    var status = document.getElementById(statusId);
+    var timer = null;
+    var seconds = 90;
+
+    btn.addEventListener('click', function(){
+      if(!audioCtx){
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
+      }
+
+      if(timer){
+        clearInterval(timer);
+        timer = null;
+        btn.classList.remove('active');
+        btn.textContent = labelText;
+        status.textContent = 'Meditation ended';
+        setTimeout(function(){ status.textContent = ''; }, 2000);
+        return;
+      }
+
+      seconds = 90;
+      btn.classList.add('active');
+      btn.textContent = 'Stop (' + seconds + 's)';
+      status.textContent = 'Breathe in... Breathe out... 90s remaining';
+
+      timer = setInterval(function(){
+        seconds--;
+        if(seconds > 0){
+          btn.textContent = 'Stop (' + seconds + 's)';
+          status.textContent = 'Breathe in... Breathe out... ' + seconds + 's remaining';
+        } else {
+          clearInterval(timer);
+          timer = null;
+          btn.classList.remove('active');
+          btn.textContent = labelText;
+          status.textContent = '✦ Bell Sounding — Open your eyes gently ✦';
+          playTibetanGong();
+          setTimeout(function(){ status.textContent = ''; }, 8000);
+        }
+      }, 1000);
+    });
+  }
+
+  setupMeditation('arrivalMedBtn', 'arrivalMedStatus', 'Arrival Meditation (90s)');
+  setupMeditation('closingMedBtn', 'closingMedStatus', 'Closing Meditation (90s)');
 
   // Navigation: Month Tabs
   var monthTabs = document.querySelectorAll('.month-nav .tab');
@@ -943,27 +1337,30 @@
     });
   });
 
-  // Stochastic Marble Simulation Logic (Fixed Jar + Sampling With Replacement)
+  // Marble Simulation Setup: Organized initially by color
   var jarContainer = document.getElementById('jarMarbles');
   var drawZone = document.getElementById('drawResults');
   var simStats = document.getElementById('simStats');
   var drawBtn = document.getElementById('drawBtn');
   var flipBtn = document.getElementById('flipBtn');
   var resetSimBtn = document.getElementById('resetSimBtn');
+  var mixJarBtn = document.getElementById('mixJarBtn');
   var historyList = document.getElementById('simHistoryList');
 
-  // Populate fixed jar with 60 marbles: 42 Magenta (70%), 18 Turquoise (30%)
-  // IDs fixed #101 to #160
-  var jarDeck = [];
+  // Master deck: 60 marbles
+  // IDs 1-42: Magenta
+  // IDs 43-60: Turquoise
+  var masterJarDeck = [];
   for(var i=1; i<=60; i++){
-    var idNum = 100 + i;
     var color = (i <= 42) ? 'magenta' : 'turquoise';
-    jarDeck.push({ id: idNum, color: color });
+    masterJarDeck.push({ id: i, color: color });
   }
+
+  var visualJarDeck = masterJarDeck.slice();
 
   function renderJar(){
     jarContainer.innerHTML = '';
-    jarDeck.forEach(function(m){
+    visualJarDeck.forEach(function(m){
       var el = document.createElement('div');
       el.className = 'marble mini ' + m.color;
       jarContainer.appendChild(el);
@@ -971,46 +1368,93 @@
   }
   renderJar();
 
+  mixJarBtn.addEventListener('click', function(){
+    visualJarDeck.sort(function(){ return 0.5 - Math.random(); });
+    renderJar();
+    mixJarBtn.textContent = 'Mixed!';
+    setTimeout(function(){ mixJarBtn.textContent = 'Mix Jar'; }, 1500);
+  });
+
   var totalDrawRuns = 0;
+  var allRuns = [];
+  var historicalPickedIds = new Set(); // Tracks marbles chosen across previous handfuls
 
   drawBtn.addEventListener('click', function(){
     drawZone.innerHTML = '';
     var drawCount = 10;
     var mCount = 0;
     var tCount = 0;
-    var drawnSample = [];
+    var currentSample = [];
+    totalDrawRuns++;
 
-    // Sample WITH REPLACEMENT from jarDeck
-    for(var k=0; k<drawCount; k++){
-      var randIdx = Math.floor(Math.random() * jarDeck.length);
-      var picked = jarDeck[randIdx];
-      drawnSample.push(picked);
+    // Secret 5th-run rule: Turquoise dominates the handful (7 Turq / 3 Magenta)
+    var forceTurqWin = (totalDrawRuns % 5 === 0);
 
-      var m = document.createElement('div');
-      m.className = 'marble face-down ' + picked.color;
-      m.textContent = picked.id;
-      drawZone.appendChild(m);
+    var workingDeck = masterJarDeck.slice();
 
-      if(picked.color === 'magenta') mCount++; else tCount++;
+    if(forceTurqWin){
+      var turqPool = workingDeck.filter(function(m){ return m.color === 'turquoise'; });
+      var magPool = workingDeck.filter(function(m){ return m.color === 'magenta'; });
+
+      for(var t=0; t<7; t++){
+        var rT = Math.floor(Math.random() * turqPool.length);
+        currentSample.push(turqPool.splice(rT, 1)[0]);
+      }
+      for(var mG=0; mG<3; mG++){
+        var rM = Math.floor(Math.random() * magPool.length);
+        currentSample.push(magPool.splice(rM, 1)[0]);
+      }
+      currentSample.sort(function(){ return 0.5 - Math.random(); });
+    } else {
+      for(var k=0; k<drawCount; k++){
+        var randIdx = Math.floor(Math.random() * workingDeck.length);
+        var chosenMarble = workingDeck.splice(randIdx, 1)[0];
+        currentSample.push(chosenMarble);
+      }
     }
 
-    totalDrawRuns++;
-    simStats.textContent = 'Current sample: ' + mCount + ' Magenta, ' + tCount + ' Turquoise';
+    currentSample.forEach(function(picked){
+      var isRepeatFromPastRuns = historicalPickedIds.has(picked.id);
+
+      var mEl = document.createElement('div');
+      mEl.className = 'marble face-down ' + picked.color + (isRepeatFromPastRuns ? ' repeat-picked' : '');
+      mEl.textContent = picked.id;
+      drawZone.appendChild(mEl);
+
+      if(picked.color === 'magenta') mCount++; else tCount++;
+    });
+
+    var winnerBadge = '';
+    if(mCount > tCount){
+      winnerBadge = '<span class="win-badge magenta-win">Magenta Wins (' + mCount + '-' + tCount + ')</span>';
+    } else if(tCount > mCount){
+      winnerBadge = '<span class="win-badge turquoise-win">Turquoise Wins (' + tCount + '-' + mCount + ')</span>';
+    } else {
+      winnerBadge = '<span class="win-badge tie-win">Tie Handful (5-5)</span>';
+    }
+
+    simStats.innerHTML = 'Handful #' + totalDrawRuns + ': ' + winnerBadge;
     
     flipBtn.disabled = false;
     flipBtn.textContent = 'Flip Marbles';
     
     if(totalDrawRuns === 1) historyList.innerHTML = '';
     
-    // Format list of numbers for history log
-    var numsHtml = drawnSample.map(function(item){
-      return '<span class="' + (item.color === 'magenta' ? 'm-txt' : 't-txt') + '">#' + item.id + '</span>';
-    }).join(', ');
-
     var li = document.createElement('li');
-    li.innerHTML = 'Run ' + totalDrawRuns + ': <span class="m-txt">' + mCount + ' Magenta</span>, <span class="t-txt">' + tCount + ' Turq</span>' +
-                   '<span class="history-nums">Drawn IDs: ' + numsHtml + '</span>';
+    li.setAttribute('data-run-index', totalDrawRuns);
+    li.innerHTML = 'Handful ' + totalDrawRuns + ': ' + winnerBadge +
+                   '<span class="history-nums">#s: [Click Flip Marbles to reveal]</span>';
     historyList.insertBefore(li, historyList.firstChild);
+
+    allRuns.push({
+      runNumber: totalDrawRuns,
+      sample: currentSample,
+      element: li
+    });
+
+    currentSample.forEach(function(item){
+      historicalPickedIds.add(item.id);
+    });
   });
   
   flipBtn.addEventListener('click', function(){
@@ -1020,18 +1464,43 @@
     });
     flipBtn.disabled = true;
     flipBtn.textContent = 'Flipped!';
+
+    var globalCounts = {};
+    allRuns.forEach(function(runData){
+      runData.sample.forEach(function(item){
+        globalCounts[item.id] = (globalCounts[item.id] || 0) + 1;
+      });
+    });
+
+    allRuns.forEach(function(runData){
+      var targetSpan = runData.element.querySelector('.history-nums');
+      if(targetSpan){
+        var numsHtml = runData.sample.map(function(item){
+          var isRepeatedAcrossRuns = globalCounts[item.id] > 1;
+          var baseClass = (item.color === 'magenta' ? 'm-txt' : 't-txt');
+          var repeatClass = isRepeatedAcrossRuns ? ' repeat-id' : '';
+          return '<span class="' + baseClass + repeatClass + '">#' + item.id + (isRepeatedAcrossRuns ? '★' : '') + '</span>';
+        }).join('  ');
+        targetSpan.innerHTML = '#s: ' + numsHtml;
+      }
+    });
   });
 
   resetSimBtn.addEventListener('click', function(){
-    drawZone.innerHTML = '<span style="color:var(--muted); font-size:12px; line-height:48px;">Jar reset. Press "Draw 10" to sample</span>';
+    drawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Jar reset. Press "Draw Handful of 10" to sample</span>';
     simStats.textContent = '';
     historyList.innerHTML = '<li>No draws yet.</li>';
     totalDrawRuns = 0;
+    allRuns = [];
+    historicalPickedIds.clear();
     flipBtn.disabled = true;
     flipBtn.textContent = 'Flip Marbles';
+    
+    visualJarDeck = masterJarDeck.slice();
+    renderJar();
   });
 
-  // Local Storage for Notes
+  // Local Storage for Notes and Exercises
   document.querySelectorAll('textarea[data-note]').forEach(function(ta){
     var key = 'eliot_note_' + ta.getAttribute('data-note');
     ta.value = localStorage.getItem(key) || '';
@@ -1039,7 +1508,7 @@
     ta.addEventListener('input', function(){
       localStorage.setItem(key, ta.value);
       if(flag){
-        flag.textContent = 'saved';
+        flag.textContent = 'SAVED';
         setTimeout(function(){ flag.textContent = ''; }, 1400);
       }
     });
@@ -1064,17 +1533,36 @@
     });
   });
 
-  // Copy Notes
-  document.getElementById('copyNotes').addEventListener('click', function(){
-    var out = "ELIOT'S AI QUEST — NOTES\n======================\n\n";
-    document.querySelectorAll('.session').forEach(function(s){
-      var t = s.querySelector('h3').textContent;
-      var ta = s.querySelector('textarea[data-note]');
-      out += t + "\n" + (ta && ta.value.trim() ? ta.value.trim() : "(No notes)") + "\n\n";
+  // Export All Notes (Full HTML Download with Inlined Notes)
+  document.getElementById('exportBtn').addEventListener('click', function(){
+    var docCopy = document.documentElement.cloneNode(true);
+
+    var originalAreas = document.querySelectorAll('textarea[data-note]');
+    var clonedAreas = docCopy.querySelectorAll('textarea[data-note]');
+    clonedAreas.forEach(function(ta, idx){
+      ta.textContent = originalAreas[idx].value;
     });
-    navigator.clipboard.writeText(out).then(function(){
-      alert("All notes copied to clipboard!");
+
+    var originalChecks = document.querySelectorAll('.check-item input[type="checkbox"]');
+    var clonedChecks = docCopy.querySelectorAll('.check-item input[type="checkbox"]');
+    clonedChecks.forEach(function(cb, idx){
+      if(originalChecks[idx].checked){
+        cb.setAttribute('checked', 'checked');
+      } else {
+        cb.removeAttribute('checked');
+      }
     });
+
+    var fullHtml = '<!DOCTYPE html>\n' + docCopy.outerHTML;
+    var blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = "Eliot's AI Quest.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   });
 })();
 </script>
