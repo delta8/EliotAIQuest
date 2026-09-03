@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliot's AI Quest — Fall 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0C1B;
+    --card:#111530;
+    --card-edge:#1E2347;
+    --ink:#E9EAF4;
+    --muted:#8D91B0;
+    --whisper:#232849;
+    --blue:#7D8DFF;
+    --violet:#B08CFF;
+    --gold:#F5C97B;
+    --magenta:#FF4D94;
+    --turquoise:#00E5FF;
+    --rest:#5E6389;
+    --danger:#ff6b6b;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:16px; line-height:1.8; font-weight:400;
+    padding:0 0 96px;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 70% -80px, rgba(124,102,255,.14), transparent 65%),
+      radial-gradient(ellipse 700px 420px at 12% 30%, rgba(70,110,255,.08), transparent 60%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:740px; margin:0 auto; padding:0 24px;}
+  a{color:var(--blue);}
+
+  header{padding:80px 0 24px; text-align:center; position:relative;}
+  .orbit{width:110px; height:110px; margin:0 auto 24px; display:block;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.34em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif; font-weight:300;
+    font-size:clamp(38px,7vw,54px); line-height:1.15; margin:16px 0 16px;
+    color:#F4F4FB;
+  }
+  h1 em{
+    font-style:italic; font-weight:400;
+    background:linear-gradient(100deg, var(--blue), var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .subtitle{color:var(--muted); max-width:48ch; margin:0 auto; font-size:15px;}
+  .times{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);
+    letter-spacing:.06em; margin-top:20px;
+  }
+  .times .fri-dot,.times .wed-dot{
+    display:inline-block; width:8px; height:8px; border-radius:50%;
+    margin:0 6px 0 16px; vertical-align:baseline;
+  }
+  .times .fri-dot{background:var(--blue); box-shadow:0 0 8px rgba(125,141,255,.8);}
+  .times .wed-dot{background:var(--violet); box-shadow:0 0 8px rgba(176,140,255,.8);}
+
+  .breaths{display:flex; justify-content:center; gap:12px; margin:36px 0 0; flex-wrap:wrap;}
+  .breaths .st{
+    width:12px; height:12px; border-radius:50%; padding:0; cursor:pointer;
+    border:1.5px solid var(--muted); opacity:.5; background:transparent;
+    transition:transform .2s ease;
+  }
+  .breaths .st:hover{transform:scale(1.4); opacity:1;}
+  .breaths .st.fri{border-color:var(--blue); opacity:.85;}
+  .breaths .st.wed{border-color:var(--violet); opacity:.85;}
+  .breaths .st.fri.bm{background:var(--blue); box-shadow:0 0 10px rgba(125,141,255,.8);}
+  .breaths .st.wed.bm{background:var(--violet); box-shadow:0 0 10px rgba(176,140,255,.8);}
+  .breaths .st.last{border-color:var(--gold); background:var(--gold); opacity:1; box-shadow:0 0 10px rgba(245,201,123,.8);}
+
+  nav.month-nav{
+    display:flex; justify-content:center; gap:4px; margin:54px 0 28px;
+    border-top:1px solid var(--whisper); border-bottom:1px solid var(--whisper);
+    padding:4px 0; overflow-x:auto;
+  }
+  .tab{
+    font-family:'Cormorant Garamond',serif; font-weight:400; font-size:18px;
+    background:none; border:none; color:var(--muted); cursor:pointer;
+    padding:10px 20px; letter-spacing:.05em; position:relative; white-space:nowrap;
+  }
+  .tab:hover{color:var(--ink);}
+  .tab[aria-selected="true"]{color:var(--ink); font-weight:500;}
+  .tab[aria-selected="true"]::after{
+    content:""; position:absolute; left:50%; bottom:3px; transform:translateX(-50%);
+    width:5px; height:5px; border-radius:50%; background:var(--gold);
+  }
+
+  .month-note{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px;
+    color:var(--muted); text-align:center; margin-bottom:24px;
+  }
+
+  .session-subnav{
+    display:flex; justify-content:center; gap:8px; margin-bottom:28px; flex-wrap:wrap;
+  }
+  .sess-tab{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.1em;
+    background:#0C0F22; color:var(--muted); border:1px solid var(--card-edge);
+    border-radius:20px; padding:7px 16px; cursor:pointer; transition:all .2s;
+  }
+  .sess-tab:hover{color:var(--ink); border-color:var(--muted);}
+  .sess-tab.active{
+    color:var(--ink); background:#191E3F; border-color:var(--blue);
+    box-shadow:0 0 8px rgba(125,141,255,.3);
+  }
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .session-view{display:none;}
+  .session-view.active{display:block; animation:settle .35s ease;}
+  @keyframes settle{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+
+  .gate-box{
+    background:var(--card); border:1px solid var(--card-edge); border-radius:6px;
+    padding:40px 24px; text-align:center; margin-bottom:40px;
+  }
+  .gate-box h4{
+    font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:8px;
+  }
+  .gate-box p{color:var(--muted); font-size:14px; margin-bottom:16px;}
+  .gate-unlock-date{color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:12px; margin-bottom:18px; display:block;}
+  .gate-form{display:inline-flex; gap:8px; justify-content:center; max-width:320px; width:100%;}
+  .gate-input{
+    flex:1; padding:9px 12px; background:#0A0C1B; border:1px solid var(--whisper);
+    border-radius:4px; color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:13px;
+  }
+  .gate-input:focus{outline:none; border-color:var(--blue);}
+  .gate-btn{
+    padding:9px 16px; background:var(--blue); border:none; border-radius:4px;
+    color:#fff; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500;
+    cursor:pointer; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .gate-err{color:var(--danger); font-size:12px; font-family:'IBM Plex Mono',monospace; margin-top:8px; min-height:16px;}
+
+  .session{
+    background:var(--card); border-radius:6px;
+    padding:36px 36px 28px; margin-bottom:40px;
+    border:1px solid var(--card-edge);
+    border-left:3px solid var(--card-edge);
+  }
+  .session.fri{border-left-color:var(--blue);}
+  .session.wed{border-left-color:var(--violet);}
+  .session-top{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:12px; flex-wrap:wrap; margin-bottom:14px;
+  }
+  .lv-badge{
+    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:11px;
+    letter-spacing:.26em; text-transform:uppercase;
+  }
+  .fri .lv-badge{color:var(--blue);}
+  .wed .lv-badge{color:var(--violet);}
+  .when{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:.04em;}
+  .session h3{
+    font-family:'Cormorant Garamond',serif; font-weight:500; font-size:30px;
+    line-height:1.2; margin:0 0 12px; color:#F4F4FB;
+  }
+  .session p{color:#C6C9DC; max-width:58ch; margin-bottom:10px; font-size:15px;}
+  .session p a{color:var(--blue); text-underline-offset:3px;}
+  .mission{
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:17px; color:var(--muted); margin-top:8px;
+  }
+
+  .bm-btn{
+    background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:17px; line-height:1; padding:2px 4px; margin-left:auto;
+  }
+  .bm-btn:hover{color:var(--gold);}
+  .bm-btn.on{color:var(--gold); text-shadow:0 0 10px rgba(245,201,123,.7);}
+
+  .stabs{
+    display:flex; gap:2px; flex-wrap:wrap; align-items:center;
+    border-bottom:1px solid var(--whisper); margin:18px 0 18px;
+  }
+  .stab{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase;
+    background:none; border:none; color:var(--muted); cursor:pointer;
+    padding:8px 12px 10px; border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  .stab:hover{color:var(--ink);}
+  .stab.active{color:var(--ink);}
+  .fri .stab.active{border-bottom-color:var(--blue);}
+  .wed .stab.active{border-bottom-color:var(--violet);}
+  .boss .stab.active{border-bottom-color:var(--gold);}
+
+  .spane{display:none;}
+  .spane.active{display:block; animation:settle .35s ease;}
+  .spane ul{list-style:none; padding:0; margin:4px 0 8px;}
+  .spane li{
+    position:relative; padding-left:20px; margin-bottom:10px;
+    color:#C6C9DC; font-size:14.5px; max-width:58ch; line-height:1.7;
+  }
+  .spane li::before{content:"✦"; position:absolute; left:0; top:1px; font-size:9px; color:var(--muted);}
+  .spane li b{color:var(--ink); font-weight:700;}
+
+  .agenda-block{
+    background:#0D1026; border:1px solid var(--card-edge); border-radius:6px;
+    padding:20px; margin:16px 0 20px;
+  }
+  .agenda-step{margin-bottom:18px;}
+  .agenda-step:last-child{margin-bottom:0;}
+  .agenda-tag{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em;
+    color:var(--gold); text-transform:uppercase; display:block; margin-bottom:4px;
+  }
+
+  .setup-checklist {
+    background: #080A16;
+    border: 1px solid var(--whisper);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 10px 0 14px;
+  }
+  .checklist-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 7px;
+    cursor: pointer;
+    font-size: 13.5px;
+    color: #C6C9DC;
+    user-select: none;
+  }
+  .check-item:last-child { margin-bottom: 0; }
+  .check-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    background: #0C0F22;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .check-item input[type="checkbox"]:checked {
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .check-item input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: #0A0C1B;
+    font-size: 12px;
+    font-weight: 700;
+    top: -1px;
+    left: 3px;
+  }
+  .check-item span.done {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+
+  .sim-container{
+    background:#080A16; border:1px solid #1E2347; border-radius:8px;
+    padding:24px 20px; margin:20px 0; text-align:center;
+  }
+  .sim-title{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+  }
+  .sim-desc{font-size:13.5px; color:var(--muted); max-width:54ch; margin:0 auto 24px;}
+  
+  .jar-stage{
+    display:flex; justify-content:center; align-items:flex-start; gap:32px;
+    flex-wrap:wrap; margin-bottom:16px;
+  }
+  .jar-container {
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .marble-jar{
+    width:140px; min-height:260px; border:3px solid rgba(255,255,255,.25);
+    border-top:none; border-radius:0 0 32px 32px; padding:12px;
+    display:flex; flex-wrap:wrap-reverse; gap:5px; align-content:flex-start; justify-content:center;
+    background:radial-gradient(circle at 50% 100%, rgba(125,141,255,.08), transparent 70%);
+    margin-bottom: 8px;
+  }
+  
+  .draw-zone-wrapper {
+    flex:1; min-width:260px; display:flex; flex-direction:column;
+  }
+  .draw-zone{
+    background:#0F132E; border:1px dashed var(--whisper);
+    border-radius:6px; padding:16px; min-height:160px; display:flex; flex-direction:column;
+    justify-content:center; align-items:center;
+  }
+  .drawn-marbles{
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center; min-height:48px; margin:14px 0;
+  }
+  
+  .marble{
+    width:32px; height:32px; border-radius:50%; display:inline-flex;
+    align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+    font-size:10px; font-weight:700; color:#0A0C1B; box-shadow:0 2px 6px rgba(0,0,0,.5);
+    transition:transform .2s, color .3s ease, background-color .3s ease;
+  }
+  .marble.magenta{background:var(--magenta); box-shadow:0 0 8px rgba(255,77,148,.7);}
+  .marble.turquoise{background:var(--turquoise); box-shadow:0 0 8px rgba(0,229,255,.7);}
+  .marble.mini{width:16px; height:16px; font-size:0;}
+  .marble.face-down {color: transparent; }
+  
+  .sim-controls{display:flex; justify-content:center; gap:8px; margin-top:12px;}
+  .sim-btn{
+    padding:8px 14px; background:#1C224E; border:1px solid var(--blue);
+    color:var(--ink); border-radius:4px; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; cursor:pointer; letter-spacing:.08em; text-transform:uppercase;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  .sim-btn:hover:not(:disabled){background:var(--blue); color:#0A0C1B;}
+  .sim-btn:disabled {opacity: 0.5; cursor: not-allowed; border-color: var(--muted);}
+  
+  .sim-stats{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);
+    min-height:18px;
+  }
+  
+  .sim-history-box {
+    margin-top: 16px; text-align: left; background: #080A16; border: 1px solid var(--whisper);
+    border-radius: 6px; padding: 12px 16px; max-height: 170px; overflow-y: auto;
+  }
+  .sim-history-box h5 {
+    color: var(--gold); font-size: 10px; font-family:'IBM Plex Mono',monospace; 
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sim-history-list {
+    list-style: none; margin: 0; padding: 0; font-family:'IBM Plex Mono',monospace; font-size: 11px;
+    color: var(--muted); line-height: 1.6;
+  }
+  .sim-history-list li {
+    border-bottom: 1px solid var(--whisper); padding: 8px 0;
+  }
+  .sim-history-list li:last-child { border-bottom: none; }
+  .sim-history-list .m-txt { color: var(--magenta); font-weight: 500; }
+  .sim-history-list .t-txt { color: var(--turquoise); font-weight: 500; }
+  .history-nums {
+    display: block; font-size: 10.5px; color: #8D91B0; margin-top: 2px; word-break: break-all;
+  }
+
+  details.notes{margin-top:24px; border-top:1px solid var(--whisper); padding-top:14px;}
+  details.notes summary{
+    cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:.24em; text-transform:uppercase; color:var(--muted); list-style:none;
+  }
+  textarea{
+    width:100%; min-height:110px; margin-top:14px; padding:14px;
+    border:1px solid var(--whisper); border-radius:4px; resize:vertical;
+    font-family:'Zen Kaku Gothic New',sans-serif; font-size:14.5px; line-height:1.7;
+    background:#0C0F22; color:var(--ink);
+  }
+  textarea:focus{outline:none; border-color:var(--blue);}
+  .saved-flag{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--violet);
+    letter-spacing:.08em; margin-top:6px; min-height:14px;
+  }
+
+  .toolbar{margin-top:64px; padding-top:32px; border-top:1px solid var(--whisper); text-align:center; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:11.5px;
+    letter-spacing:.2em; text-transform:uppercase;
+    background:none; color:var(--ink); border:1px solid var(--muted); border-radius:4px;
+    padding:12px 22px; cursor:pointer;
+  }
+  .btn:hover{background:var(--ink); color:var(--bg);}
+  .hint-block{width:100%; font-size:12.5px; color:var(--muted); margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="orbit" viewBox="0 0 130 130" aria-hidden="true">
+      <defs>
+        <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#7D8DFF"/>
+          <stop offset="100%" stop-color="#B08CFF"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="65" cy="65" rx="52" ry="20" fill="none" stroke="url(#ringGrad)" stroke-width="1.4" opacity=".8" transform="rotate(-24 65 65)"/>
+      <circle cx="65" cy="65" r="15" fill="none" stroke="url(#ringGrad)" stroke-width="1.8" opacity=".95"/>
+      <circle cx="103" cy="42" r="4" fill="#F5C97B"/>
+    </svg>
+    <div class="eyebrow">Fall 2026 · Twelve Sessions</div>
+    <h1>Eliot's <em>AI Quest</em></h1>
+    <p class="subtitle">Auto-unlocks the day before each class date. Passcode override anytime.</p>
+    <div class="times">
+      <span class="fri-dot"></span>Fridays 1:30–3:00
+      <span class="wed-dot"></span>Wednesdays 1:45–3:15
+    </div>
+    <div class="breaths" aria-label="Jump to a session">
+      <button class="st fri" data-target="sess-1" aria-label="Session 1"></button>
+      <button class="st fri" data-target="sess-2" aria-label="Session 2"></button>
+      <button class="st wed" data-target="sess-3" aria-label="Session 3"></button>
+      <button class="st fri" data-target="sess-4" aria-label="Session 4"></button>
+      <button class="st fri" data-target="sess-5" aria-label="Session 5"></button>
+      <button class="st wed" data-target="sess-6" aria-label="Session 6"></button>
+      <button class="st fri" data-target="sess-7" aria-label="Session 7"></button>
+      <button class="st wed" data-target="sess-8" aria-label="Session 8"></button>
+      <button class="st fri" data-target="sess-9" aria-label="Session 9"></button>
+      <button class="st fri" data-target="sess-10" aria-label="Session 10"></button>
+      <button class="st wed" data-target="sess-11" aria-label="Session 11"></button>
+      <button class="st fri last" data-target="sess-12" aria-label="Session 12"></button>
+    </div>
+  </header>
+
+  <!-- MONTH NAVIGATION -->
+  <nav class="month-nav" role="tablist" aria-label="Months">
+    <button class="tab" role="tab" id="tab-sep" aria-selected="true" aria-controls="panel-sep">September</button>
+    <button class="tab" role="tab" id="tab-oct" aria-selected="false" aria-controls="panel-oct">October</button>
+    <button class="tab" role="tab" id="tab-nov" aria-selected="false" aria-controls="panel-nov">November</button>
+    <button class="tab" role="tab" id="tab-dec" aria-selected="false" aria-controls="panel-dec">December</button>
+  </nav>
+
+  <!-- SEPTEMBER -->
+  <section class="panel active" id="panel-sep" role="tabpanel" aria-labelledby="tab-sep">
+    <p class="month-note">What is AI, really?</p>
+    
+    <div class="session-subnav">
+      <button class="sess-tab active" data-sess="sess-1">Session 1</button>
+      <button class="sess-tab" data-sess="sess-2">Session 2</button>
+      <button class="sess-tab" data-sess="sess-3">Session 3</button>
+    </div>
+
+    <!-- Session 1: ALWAYS UNLOCKED -->
+    <div class="session-view active" id="view-sess-1" data-sessid="sess-1" data-classdate="2026-09-04">
+      <article id="sess-1" class="session fri">
+        <div class="session-top">
+          <span class="lv-badge">Session One</span>
+          <span class="when">Fri Sep 4 · 1:30–3:00</span>
+          <button class="bm-btn" data-bm="sess-1" aria-pressed="false">☆</button>
+        </div>
+        <h3>The AI Foundation & Stochastic Models</h3>
+        
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="simulation">Marble Simulation</button>
+          <button class="stab" data-pane="futbol">⚽ Futbol</button>
+        </div>
+
+        <!-- Agenda Pane -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">Part A · Welcome & Setup</span>
+              <p><b>Interests & Aspirations:</b> Getting started with the goal: building and running a custom playable HTML game by December.</p>
+              
+              <div class="setup-checklist">
+                <span class="checklist-title">iPad Setup Checklist</span>
+                <label class="check-item">
+                  <input type="checkbox" data-check="chrome_installed">
+                  <span>1. Chrome installed</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="google_account">
+                  <span>2. Google account usable</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="gemini_installed">
+                  <span>3. Gemini installed / shortcut created</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="gemini_logged">
+                  <span>4. Logged into Gemini</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" data-check="airdrop_enabled">
+                  <span>5. AirDrop enabled</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">Part B · Definition</span>
+              <p><b>What is AI?</b> Demystifying Artificial Intelligence: computer systems learning patterns from data rather than following static, hardcoded instructions.</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">Part C1 · Foundations</span>
+              <p><b>Statistics & Predictions:</b> How observations turn into predictive odds. Deterministic calculations versus probabilistic generation.</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">Part C2 · Stochastic Example</span>
+              <p><b>The Marble Experiment:</b> Simulating stochastic choice with replacement. High overall probability guarantees a pattern, yet individual selections remain variable.</p>
+            </div>
+          </div>
+          <p class="mission">Mission: Complete setup, then run 5 draws in the simulation tab.</p>
+        </div>
+
+        <!-- Simulation Pane -->
+        <div class="spane" data-pane="simulation">
+          <div class="sim-container">
+            <div class="sim-title">Stochastic Model: Sampling with Replacement</div>
+            <p class="sim-desc">The jar holds 60 total marbles (42 Magenta, 18 Turquoise) stamped with fixed IDs #101 through #160. Each draw samples 10 times <i>with replacement</i>—any marble can be picked more than once.</p>
+            
+            <div class="jar-stage">
+              <div class="jar-container">
+                <div class="marble-jar" id="jarMarbles"></div>
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted);">Fixed Jar (42M / 18T)</span>
+              </div>
+              
+              <div class="draw-zone-wrapper">
+                <div class="draw-zone">
+                  <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold);">Drawn 10 Marbles</span>
+                  <div class="drawn-marbles" id="drawResults">
+                    <span style="color:var(--muted); font-size:12px; line-height:48px;">Press "Draw 10" to sample</span>
+                  </div>
+                  <div class="sim-stats" id="simStats"></div>
+                </div>
+
+                <div class="sim-controls">
+                  <button class="sim-btn" id="drawBtn">Draw 10</button>
+                  <button class="sim-btn" id="flipBtn" disabled>Flip Marbles</button>
+                  <button class="sim-btn" id="resetSimBtn" style="border-color:var(--whisper);">Reset</button>
+                </div>
+                
+                <div class="sim-history-box">
+                  <h5>Draw History (Color Breakdown & Stamped Numbers)</h5>
+                  <ul class="sim-history-list" id="simHistoryList">
+                    <li>No draws yet.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:14px; color:#C6C9DC;"><b>Why this is like AI:</b> Large language models generate text by sampling tokens from a probability distribution. Magenta dominates overall just as predictable words do, while individual number repetition mirrors stochastic token generation.</p>
+        </div>
+
+        <!-- Futbol Pane -->
+        <div class="spane" data-pane="futbol">
+          <ul>
+            <li><b>Penalty Kicks as Probabilities:</b> If a penalty taker puts 70% of kicks to the right, the keeper anticipates the zone—yet each strike has an independent, unique velocity and height.</li>
+            <li><b>xG (Expected Goals):</b> AI rates scoring chances between 0.00 and 1.00 based on thousands of historical match observations.</li>
+          </ul>
+        </div>
+
+        <details class="notes"><summary>Session 1 Notes</summary>
+          <textarea data-note="s1" placeholder="What surprised you about how probability shapes AI?"></textarea>
+          <div class="saved-flag" data-flag="s1"></div>
+        </details>
+      </article>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session-view" id="view-sess-2" data-sessid="sess-2" data-classdate="2026-09-18">
+      <div class="gate-box">
+        <h4>Session 2 Locked</h4>
+        <p>Auto-unlocks the day before class, or enter passcode.</p>
+        <span class="gate-unlock-date">Class: Fri Sep 18 · Unlocks Sep 17</span>
+        <div class="gate-form">
+          <input type="password" class="gate-input" placeholder="Passcode">
+          <button class="gate-btn">Unlock</button>
+        </div>
+        <div class="gate-err"></div>
+      </div>
+      <article id="sess-2" class="session fri" style="display:none;">
+        <div class="session-top">
+          <span class="lv-badge">Session Two</span>
+          <span class="when">Fri Sep 18 · 1:30–3:00</span>
+          <button class="bm-btn" data-bm="sess-2" aria-pressed="false">☆</button>
+        </div>
+        <h3>How Machines Learn</h3>
+        <p>Pattern recognition games and the idea of training data. Hands-on with <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a>: train a model to recognize gestures.</p>
+        <p class="mission">Mission: teach a machine something it didn't know an hour ago.</p>
+        <details class="notes"><summary>Session Notes</summary>
+          <textarea data-note="s2" placeholder="What did your model learn?"></textarea>
+          <div class="saved-flag" data-flag="s2"></div>
+        </details>
+      </article>
+    </div>
+
+    <!-- Session 3 -->
+    <div class="session-view" id="view-sess-3" data-sessid="sess-3" data-classdate="2026-09-30">
+      <div class="gate-box">
+        <h4>Session 3 Locked</h4>
+        <p>Auto-unlocks the day before class, or enter passcode.</p>
+        <span class="gate-unlock-date">Class: Wed Sep 30 · Unlocks Sep 29</span>
+        <div class="gate-form">
+          <input type="password" class="gate-input" placeholder="Passcode">
+          <button class="gate-btn">Unlock</button>
+        </div>
+        <div class="gate-err"></div>
+      </div>
+      <article id="sess-3" class="session wed" style="display:none;">
+        <div class="session-top">
+          <span class="lv-badge">Session Three</span>
+          <span class="when">Wed Sep 30 · 1:45–3:15</span>
+          <button class="bm-btn" data-bm="sess-3" aria-pressed="false">☆</button>
+        </div>
+        <h3>The Art of the Prompt</h3>
+        <p>Prompting strategies: guiding tone, constraints, and structured output formats.</p>
+        <details class="notes"><summary>Session Notes</summary>
+          <textarea data-note="s3" placeholder="Best prompt trick discovered?"></textarea>
+          <div class="saved-flag" data-flag="s3"></div>
+        </details>
+      </article>
+    </div>
+  </section>
+
+  <!-- OCTOBER -->
+  <section class="panel" id="panel-oct" role="tabpanel" aria-labelledby="tab-oct">
+    <p class="month-note">Under the hood, thinking critically</p>
+    <div class="session-subnav">
+      <button class="sess-tab active" data-sess="sess-4">Session 4</button>
+      <button class="sess-tab" data-sess="sess-5">Session 5</button>
+      <button class="sess-tab" data-sess="sess-6">Session 6</button>
+    </div>
+    <!-- Session 4 -->
+    <div class="session-view active" id="view-sess-4" data-sessid="sess-4" data-classdate="2026-10-02">
+      <div class="gate-box">
+        <h4>Session 4 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Oct 2 · Unlocks Oct 1</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+        <div class="gate-err"></div>
+      </div>
+      <article id="sess-4" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Four</span><span class="when">Fri Oct 2 · 1:30–3:00</span></div>
+        <h3>Neural Networks Without the Math</h3>
+        <p>Neurons, weights, and layers explored on <a href="https://playground.tensorflow.org" target="_blank" rel="noopener">TensorFlow Playground</a>.</p>
+      </article>
+    </div>
+    <!-- Session 5 -->
+    <div class="session-view" id="view-sess-5" data-sessid="sess-5" data-classdate="2026-10-16">
+      <div class="gate-box">
+        <h4>Session 5 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Oct 16 · Unlocks Oct 15</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+        <div class="gate-err"></div>
+      </div>
+      <article id="sess-5" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Five</span><span class="when">Fri Oct 16 · 1:30–3:00</span></div>
+        <h3>When AI Gets It Wrong</h3>
+        <p>Hallucinations, bias, and verification strategies.</p>
+      </article>
+    </div>
+    <!-- Session 6 -->
+    <div class="session-view" id="view-sess-6" data-sessid="sess-6" data-classdate="2026-10-28">
+      <div class="gate-box">
+        <h4>Session 6 Locked</h4>
+        <span class="gate-unlock-date">Class: Wed Oct 28 · Unlocks Oct 27</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+        <div class="gate-err"></div>
+      </div>
+      <article id="sess-6" class="session wed" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Six</span><span class="when">Wed Oct 28 · 1:45–3:15</span></div>
+        <h3>AI and Creativity</h3>
+        <p>Generative models, image prompts, and game lore.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- NOVEMBER -->
+  <section class="panel" id="panel-nov" role="tabpanel" aria-labelledby="tab-nov">
+    <p class="month-note">Learning to build</p>
+    <div class="session-subnav">
+      <button class="sess-tab active" data-sess="sess-7">Session 7</button>
+      <button class="sess-tab" data-sess="sess-8">Session 8</button>
+      <button class="sess-tab" data-sess="sess-9">Session 9</button>
+    </div>
+    <!-- Session 7 -->
+    <div class="session-view active" id="view-sess-7" data-sessid="sess-7" data-classdate="2026-11-06">
+      <div class="gate-box">
+        <h4>Session 7 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Nov 6 · Unlocks Nov 5</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-7" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Seven</span></div>
+        <h3>First Webpage</h3>
+        <p>HTML basics in CodePen: headings, paragraphs, and buttons.</p>
+      </article>
+    </div>
+    <!-- Session 8 -->
+    <div class="session-view" id="view-sess-8" data-sessid="sess-8" data-classdate="2026-11-11">
+      <div class="gate-box">
+        <h4>Session 8 Locked</h4>
+        <span class="gate-unlock-date">Class: Wed Nov 11 · Unlocks Nov 10</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-8" class="session wed" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Eight</span></div>
+        <h3>Making It Do Things</h3>
+        <p>JavaScript fundamentals: click events, variables, and logic.</p>
+      </article>
+    </div>
+    <!-- Session 9 -->
+    <div class="session-view" id="view-sess-9" data-sessid="sess-9" data-classdate="2026-11-20">
+      <div class="gate-box">
+        <h4>Session 9 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Nov 20 · Unlocks Nov 19</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-9" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Nine</span></div>
+        <h3>AI as Coding Partner</h3>
+        <p>Prompting code, inspecting snippets, and pair debugging errors.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- DECEMBER -->
+  <section class="panel" id="panel-dec" role="tabpanel" aria-labelledby="tab-dec">
+    <p class="month-note">The game project</p>
+    <div class="session-subnav">
+      <button class="sess-tab active" data-sess="sess-10">Session 10</button>
+      <button class="sess-tab" data-sess="sess-11">Session 11</button>
+      <button class="sess-tab" data-sess="sess-12">Session 12</button>
+    </div>
+    <!-- Session 10 -->
+    <div class="session-view active" id="view-sess-10" data-sessid="sess-10" data-classdate="2026-12-04">
+      <div class="gate-box">
+        <h4>Session 10 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Dec 4 · Unlocks Dec 3</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-10" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Ten</span></div>
+        <h3>Game Design Day</h3>
+        <p>Define rules, core game loop, and paper wireframes.</p>
+      </article>
+    </div>
+    <!-- Session 11 -->
+    <div class="session-view" id="view-sess-11" data-sessid="sess-11" data-classdate="2026-12-09">
+      <div class="gate-box">
+        <h4>Session 11 Locked</h4>
+        <span class="gate-unlock-date">Class: Wed Dec 9 · Unlocks Dec 8</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-11" class="session wed" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Eleven</span></div>
+        <h3>Build Sprint</h3>
+        <p>Building the playable game in CodePen.</p>
+      </article>
+    </div>
+    <!-- Session 12 -->
+    <div class="session-view" id="view-sess-12" data-sessid="sess-12" data-classdate="2026-12-18">
+      <div class="gate-box">
+        <h4>Session 12 Locked</h4>
+        <span class="gate-unlock-date">Class: Fri Dec 18 · Unlocks Dec 17</span>
+        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+      </div>
+      <article id="sess-12" class="session fri boss" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Twelve · Demo Day</span></div>
+        <h3>Polish & Demo Day</h3>
+        <p>Playtesting, final touches, and presenting the completed HTML game.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- TOOLBOX -->
+  <section class="toolbox" aria-label="Toolbox">
+    <h2 class="toolbox-title">The Toolbox</h2>
+    <p class="toolbox-sub">Tools running directly inside Safari on iPad.</p>
+
+    <div class="tool">
+      <div class="tool-name"><a href="https://gemini.google.com" target="_blank" rel="noopener">Google Gemini</a></div>
+      <p class="tool-what">Primary AI partner for conceptual discussions and coding assistance.</p>
+    </div>
+    <div class="tool">
+      <div class="tool-name"><a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a></div>
+      <p class="tool-what">Browser code editor to build and preview HTML, CSS, and JavaScript.</p>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <button class="btn" id="copyNotes">Copy all notes</button>
+    <button class="btn" id="lockAllBtn" style="border-color:var(--violet); color:var(--violet);">Reset Manual Unlocks</button>
+    <div class="hint-block">Sessions unlock automatically at 00:00 the day prior to class. "Reset Manual Unlocks" relocks any sessions unlocked early with the passcode.</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var PASS = "emaho108";
+
+  // Navigation: Month Tabs
+  var monthTabs = document.querySelectorAll('.month-nav .tab');
+  var monthPanels = document.querySelectorAll('.panel');
+
+  function selectMonth(tab){
+    monthTabs.forEach(function(t){ t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+    monthPanels.forEach(function(p){
+      var active = p.getAttribute('aria-labelledby') === tab.id;
+      p.classList.toggle('active', active);
+    });
+  }
+
+  monthTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ selectMonth(tab); });
+  });
+
+  // Navigation: Session Sub-tabs
+  document.querySelectorAll('.panel').forEach(function(panel){
+    var sessBtns = panel.querySelectorAll('.sess-tab');
+    sessBtns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        sessBtns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        var targetId = 'view-' + btn.getAttribute('data-sess');
+        panel.querySelectorAll('.session-view').forEach(function(v){
+          v.classList.toggle('active', v.id === targetId);
+        });
+      });
+    });
+  });
+
+  // Auto-Unlock & Password Verification
+  function unlockSession(viewEl){
+    var gate = viewEl.querySelector('.gate-box');
+    var article = viewEl.querySelector('article.session');
+    if(gate) gate.style.display = 'none';
+    if(article) article.style.display = 'block';
+  }
+
+  var now = new Date();
+
+  document.querySelectorAll('.session-view').forEach(function(viewEl){
+    var sessId = viewEl.getAttribute('data-sessid');
+    var classDateStr = viewEl.getAttribute('data-classdate');
+
+    var autoUnlocked = false;
+    if(classDateStr){
+      var classDate = new Date(classDateStr + 'T00:00:00');
+      var unlockDate = new Date(classDate);
+      unlockDate.setDate(unlockDate.getDate() - 1);
+      if(now >= unlockDate){
+        autoUnlocked = true;
+      }
+    }
+
+    if(sessId === 'sess-1' || autoUnlocked){
+      unlockSession(viewEl);
+      return;
+    }
+
+    var manuallyUnlocked = localStorage.getItem('unlocked_' + sessId) === 'true';
+    if(manuallyUnlocked){
+      unlockSession(viewEl);
+    } else {
+      var btn = viewEl.querySelector('.gate-btn');
+      var input = viewEl.querySelector('.gate-input');
+      var err = viewEl.querySelector('.gate-err');
+
+      function attempt(){
+        if(input.value.trim() === PASS){
+          localStorage.setItem('unlocked_' + sessId, 'true');
+          unlockSession(viewEl);
+        } else {
+          err.textContent = "Incorrect passcode. Try again.";
+          input.value = "";
+          setTimeout(function(){ err.textContent = ""; }, 2200);
+        }
+      }
+
+      if(btn && input){
+        btn.addEventListener('click', attempt);
+        input.addEventListener('keydown', function(e){ if(e.key === 'Enter') attempt(); });
+      }
+    }
+  });
+
+  // Reset Button
+  document.getElementById('lockAllBtn').addEventListener('click', function(){
+    for(var i=2; i<=12; i++){
+      localStorage.removeItem('unlocked_sess-' + i);
+    }
+    location.reload();
+  });
+
+  // Direct Breath Dot Navigation
+  document.querySelectorAll('.breaths .st').forEach(function(dot){
+    dot.addEventListener('click', function(){
+      var sessId = dot.getAttribute('data-target');
+      var view = document.getElementById('view-' + sessId);
+      if(!view) return;
+      var panel = view.closest('.panel');
+      var mTab = document.getElementById(panel.getAttribute('aria-labelledby'));
+      selectMonth(mTab);
+
+      panel.querySelectorAll('.sess-tab').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-sess') === sessId);
+      });
+      panel.querySelectorAll('.session-view').forEach(function(v){
+        v.classList.toggle('active', v.id === ('view-' + sessId));
+      });
+      view.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+
+  // Inner Subtabs
+  document.querySelectorAll('.session').forEach(function(sess){
+    var stabs = sess.querySelectorAll('.stab[data-pane]');
+    stabs.forEach(function(b){
+      b.addEventListener('click', function(){
+        var pName = b.getAttribute('data-pane');
+        stabs.forEach(function(x){ x.classList.toggle('active', x === b); });
+        sess.querySelectorAll('.spane').forEach(function(p){
+          p.classList.toggle('active', p.getAttribute('data-pane') === pName);
+        });
+      });
+    });
+  });
+
+  // Setup Checklist LocalStorage Persistence
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(function(cb){
+    var key = 'eliot_check_' + cb.getAttribute('data-check');
+    var span = cb.nextElementSibling;
+
+    if(localStorage.getItem(key) === '1'){
+      cb.checked = true;
+      if(span) span.classList.add('done');
+    }
+
+    cb.addEventListener('change', function(){
+      if(cb.checked){
+        localStorage.setItem(key, '1');
+        if(span) span.classList.add('done');
+      } else {
+        localStorage.removeItem(key);
+        if(span) span.classList.remove('done');
+      }
+    });
+  });
+
+  // Stochastic Marble Simulation Logic (Fixed Jar + Sampling With Replacement)
+  var jarContainer = document.getElementById('jarMarbles');
+  var drawZone = document.getElementById('drawResults');
+  var simStats = document.getElementById('simStats');
+  var drawBtn = document.getElementById('drawBtn');
+  var flipBtn = document.getElementById('flipBtn');
+  var resetSimBtn = document.getElementById('resetSimBtn');
+  var historyList = document.getElementById('simHistoryList');
+
+  // Populate fixed jar with 60 marbles: 42 Magenta (70%), 18 Turquoise (30%)
+  // IDs fixed #101 to #160
+  var jarDeck = [];
+  for(var i=1; i<=60; i++){
+    var idNum = 100 + i;
+    var color = (i <= 42) ? 'magenta' : 'turquoise';
+    jarDeck.push({ id: idNum, color: color });
+  }
+
+  function renderJar(){
+    jarContainer.innerHTML = '';
+    jarDeck.forEach(function(m){
+      var el = document.createElement('div');
+      el.className = 'marble mini ' + m.color;
+      jarContainer.appendChild(el);
+    });
+  }
+  renderJar();
+
+  var totalDrawRuns = 0;
+
+  drawBtn.addEventListener('click', function(){
+    drawZone.innerHTML = '';
+    var drawCount = 10;
+    var mCount = 0;
+    var tCount = 0;
+    var drawnSample = [];
+
+    // Sample WITH REPLACEMENT from jarDeck
+    for(var k=0; k<drawCount; k++){
+      var randIdx = Math.floor(Math.random() * jarDeck.length);
+      var picked = jarDeck[randIdx];
+      drawnSample.push(picked);
+
+      var m = document.createElement('div');
+      m.className = 'marble face-down ' + picked.color;
+      m.textContent = picked.id;
+      drawZone.appendChild(m);
+
+      if(picked.color === 'magenta') mCount++; else tCount++;
+    }
+
+    totalDrawRuns++;
+    simStats.textContent = 'Current sample: ' + mCount + ' Magenta, ' + tCount + ' Turquoise';
+    
+    flipBtn.disabled = false;
+    flipBtn.textContent = 'Flip Marbles';
+    
+    if(totalDrawRuns === 1) historyList.innerHTML = '';
+    
+    // Format list of numbers for history log
+    var numsHtml = drawnSample.map(function(item){
+      return '<span class="' + (item.color === 'magenta' ? 'm-txt' : 't-txt') + '">#' + item.id + '</span>';
+    }).join(', ');
+
+    var li = document.createElement('li');
+    li.innerHTML = 'Run ' + totalDrawRuns + ': <span class="m-txt">' + mCount + ' Magenta</span>, <span class="t-txt">' + tCount + ' Turq</span>' +
+                   '<span class="history-nums">Drawn IDs: ' + numsHtml + '</span>';
+    historyList.insertBefore(li, historyList.firstChild);
+  });
+  
+  flipBtn.addEventListener('click', function(){
+    var currentMarbles = drawZone.querySelectorAll('.marble');
+    currentMarbles.forEach(function(m) {
+      m.classList.remove('face-down');
+    });
+    flipBtn.disabled = true;
+    flipBtn.textContent = 'Flipped!';
+  });
+
+  resetSimBtn.addEventListener('click', function(){
+    drawZone.innerHTML = '<span style="color:var(--muted); font-size:12px; line-height:48px;">Jar reset. Press "Draw 10" to sample</span>';
+    simStats.textContent = '';
+    historyList.innerHTML = '<li>No draws yet.</li>';
+    totalDrawRuns = 0;
+    flipBtn.disabled = true;
+    flipBtn.textContent = 'Flip Marbles';
+  });
+
+  // Local Storage for Notes
+  document.querySelectorAll('textarea[data-note]').forEach(function(ta){
+    var key = 'eliot_note_' + ta.getAttribute('data-note');
+    ta.value = localStorage.getItem(key) || '';
+    var flag = document.querySelector('.saved-flag[data-flag="'+ta.getAttribute('data-note')+'"]');
+    ta.addEventListener('input', function(){
+      localStorage.setItem(key, ta.value);
+      if(flag){
+        flag.textContent = 'saved';
+        setTimeout(function(){ flag.textContent = ''; }, 1400);
+      }
+    });
+  });
+
+  // Bookmark Toggle
+  document.querySelectorAll('.bm-btn').forEach(function(b){
+    var id = b.getAttribute('data-bm');
+    var key = 'eliot_bm_' + id;
+    if(localStorage.getItem(key) === '1'){
+      b.classList.add('on');
+      b.textContent = '★';
+      var dot = document.querySelector('.breaths .st[data-target="'+id+'"]');
+      if(dot) dot.classList.add('bm');
+    }
+    b.addEventListener('click', function(){
+      var on = b.classList.toggle('on');
+      b.textContent = on ? '★' : '☆';
+      localStorage.setItem(key, on ? '1' : '0');
+      var dot = document.querySelector('.breaths .st[data-target="'+id+'"]');
+      if(dot) dot.classList.toggle('bm', on);
+    });
+  });
+
+  // Copy Notes
+  document.getElementById('copyNotes').addEventListener('click', function(){
+    var out = "ELIOT'S AI QUEST — NOTES\n======================\n\n";
+    document.querySelectorAll('.session').forEach(function(s){
+      var t = s.querySelector('h3').textContent;
+      var ta = s.querySelector('textarea[data-note]');
+      out += t + "\n" + (ta && ta.value.trim() ? ta.value.trim() : "(No notes)") + "\n\n";
+    });
+    navigator.clipboard.writeText(out).then(function(){
+      alert("All notes copied to clipboard!");
+    });
+  });
+})();
+</script>
+</body>
+</html>
