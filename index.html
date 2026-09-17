@@ -638,6 +638,8 @@
   .fd-brushlabel { color: var(--fd-muted); display: inline-flex; align-items: center; gap: 6px; }
   .fd-brushlabel input { width: 80px; }
   .fd-paintbar .fd-reveal.active { background: var(--fd-star); color: #001a33; }
+  .fd-uploadrow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .fd-uploadrow .fd-upload { padding: 12px 8px; }
 
   .fd-loglist { display: grid; gap: 12px; margin-top: 12px; }
   .fd-logrow { display: grid; grid-template-columns: 120px 1fr; gap: 14px; background: var(--fd-panel); border: 1px solid var(--fd-line); border-radius: 12px; padding: 12px; }
@@ -956,16 +958,33 @@
         <div class="spane active" data-pane="agenda">
           <div class="agenda-block">
             <div class="agenda-step">
-              <span class="agenda-tag">01 // Pattern Recognition &amp; Training Data</span>
-              <p>How do computers learn to recognize patterns? Just like humans, they need training examples—lots of them. But what happens when your sample size is too small or biased?</p>
+              <span class="agenda-tag">01 // What Do You Remember?</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Human Engagement</b></li>
+                <li><b>Environmental Impact</b></li>
+                <li><b>Stochastic/Dynamic</b></li>
+              </ul>
             </div>
+
             <div class="agenda-step">
-              <span class="agenda-tag">02 // The Power of Population &amp; Sample Size</span>
-              <p>Explore how changing the total jar population size alters statistical reliability. Jump to the <b>Sample Size</b> tab to test out different jar scales!</p>
-            </div>
-            <div class="agenda-step">
-              <span class="agenda-tag">03 // Feather Detective Lab</span>
-              <p>Put machine classification to the test by uploading feather photos and adjusting contextual clues in our interactive computer vision lab.</p>
+              <span class="agenda-tag">02 // Review AI in Last Week</span>
+              <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                  <label style="display: block; font-size: 16px; color: var(--muted); margin-bottom: 6px;">What did you use AI to do?</label>
+                  <textarea data-note="s2_rev_1" placeholder="Your reflections..."></textarea>
+                  <div class="saved-flag" data-flag="s2_rev_1"></div>
+                </div>
+                <div>
+                  <label style="display: block; font-size: 16px; color: var(--muted); margin-bottom: 6px;">What did you notice?</label>
+                  <textarea data-note="s2_rev_2" placeholder="Your observations..."></textarea>
+                  <div class="saved-flag" data-flag="s2_rev_2"></div>
+                </div>
+                <div>
+                  <label style="display: block; font-size: 16px; color: var(--muted); margin-bottom: 6px;">Did you keep in mind human engagement and impact on environment?</label>
+                  <textarea data-note="s2_rev_3" placeholder="Thoughts on impact and engagement..."></textarea>
+                  <div class="saved-flag" data-flag="s2_rev_3"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1032,10 +1051,10 @@
 
             <div class="fd-sim">
               <div class="fd-sim-left">
-                <label class="fd-upload">
-                  <input type="file" id="fd-file" accept="image/*" capture="environment">
-                  <span>📷 Take or upload a feather photo</span>
-                </label>
+                <div class="fd-uploadrow">
+                  <label class="fd-upload"><input type="file" id="fd-file-cam" accept="image/*" capture="environment"><span>📷 Take a photo</span></label>
+                  <label class="fd-upload"><input type="file" id="fd-file" accept="image/*"><span>🖼️ Choose a photo</span></label>
+                </div>
                 <div class="fd-preview" id="fd-preview"><canvas id="fd-canvas" width="320" height="240"></canvas><p class="fd-preview-empty" id="fd-preview-empty">No photo yet</p></div>
                 <label class="fd-toggle"><input type="checkbox" id="fd-showmask"> Show what the model counts as “feather” (vs background)</label>
                 <div class="fd-paintbar">
@@ -2068,7 +2087,9 @@
       if(blk.some(function(b){return !b;})) return;
       function bg2(px,py,ch){ var fx=px/BS-0.5, fy=py/BS-0.5, x0=Math.max(0,Math.min(BW-1,Math.floor(fx))), y0=Math.max(0,Math.min(BH-1,Math.floor(fy))), x1=Math.min(BW-1,x0+1), y1=Math.min(BH-1,y0+1), tx=Math.max(0,Math.min(1,fx-x0)), ty=Math.max(0,Math.min(1,fy-y0));
         var a=blk[y0*BW+x0][ch], b=blk[y0*BW+x1][ch], c=blk[y1*BW+x0][ch], e=blk[y1*BW+x1][ch]; return (a*(1-tx)+b*tx)*(1-ty)+(c*(1-tx)+e*tx)*ty; }
-      count=0; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; var dr=d[i*4]-bg2(px,py,0),dg=d[i*4+1]-bg2(px,py,1),db=d[i*4+2]-bg2(px,py,2); mask[i]=Math.sqrt(dr*dr+dg*dg+db*db)>42?1:0; count+=mask[i]; }
+      count=0; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; var b0=bg2(px,py,0),b1=bg2(px,py,1),b2=bg2(px,py,2); var dr=d[i*4]-b0,dg=d[i*4+1]-b1,db=d[i*4+2]-b2;
+        var dist=Math.sqrt(dr*dr+dg*dg+db*db), dl=Math.abs((d[i*4]*.299+d[i*4+1]*.587+d[i*4+2]*.114)-(b0*.299+b1*.587+b2*.114));
+        mask[i]=(dist>42||dl>26)?1:0; count+=mask[i]; }
     })();
     function components(){ var lab=new Int32Array(N), sizes=[], cur=0, stack=[];
       for(var i=0;i<N;i++){ if(!mask[i]||lab[i]) continue; cur++; var sz=0; stack.push(i); lab[i]=cur;
@@ -2095,6 +2116,7 @@
       if(l<0.3) k='black';
       else if(l>0.82&&s<0.25) k='white';
       else if(h>=185&&h<270&&s>0.08) k='blue';
+      else if(s<0.2&&l>0.58&&(h<60||h>=185)) k='white';
       else if(s<0.13) k=(l<0.55?'gray':'white');
       else if(h>=75&&h<185) k='green';
       else if(h<12||h>=340) k= (s<0.55||l>0.7)?'rust':'red';
@@ -2163,7 +2185,8 @@
 
   function loadImage(src){ var im=new Image(); im.onload=function(){ currentImg=im; userMask=null; setPaintMode(null); features=analyze(im); previewEmpty.style.display='none'; drawPreview(); describeFeatures(features); run(true); }; im.src=src; }
 
-  document.getElementById('fd-file').addEventListener('change', function(e){ var f=e.target.files&&e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ loadImage(rd.result); }; rd.readAsDataURL(f); });
+  function onFile(e){ var f=e.target.files&&e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ loadImage(rd.result); }; rd.readAsDataURL(f); e.target.value=''; }
+  document.getElementById('fd-file').addEventListener('change', onFile); document.getElementById('fd-file-cam').addEventListener('change', onFile);
   document.getElementById('fd-showmask').addEventListener('change', drawPreview);
 
   function getFactors(){ return {location:val('fd-f-location'),social:val('fd-f-social'),habitat:val('fd-f-habitat'),size:val('fd-f-size'),part:val('fd-f-part')}; }
