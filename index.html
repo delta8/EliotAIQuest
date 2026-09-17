@@ -229,7 +229,8 @@
     color:var(--yellow); border-color:var(--yellow); background:#1C1A0F;
     box-shadow:0 0 10px rgba(255,230,0,0.3);
   }
-  .stab[data-pane="simulation"].active{
+  .stab[data-pane="simulation"].active,
+  .stab[data-pane="sample-size"].active{
     color:var(--magenta); border-color:var(--magenta); background:#1F0D20;
     box-shadow:0 0 10px rgba(255,42,133,0.3);
   }
@@ -237,13 +238,9 @@
     color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
     box-shadow:0 0 10px rgba(0,229,255,0.3);
   }
-  .stab[data-pane="overview"].active{
+  .stab[data-pane="feather-lab"].active{
     color:var(--green); border-color:var(--green); background:#0D211B;
     box-shadow:0 0 10px rgba(0,255,136,0.3);
-  }
-  .stab[data-pane="learn"].active{
-    color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
-    box-shadow:0 0 10px rgba(0,229,255,0.3);
   }
 
   .spane{display:none;}
@@ -345,7 +342,7 @@
   }
   .cost-card li::before{content:"▸"; position:absolute; left:0; color:var(--yellow); font-size:14px;}
 
-  /* Visual Evidence Gallery - Scaled */
+  /* Visual Infrastructure Gallery - Scaled */
   .infra-gallery{
     margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;
   }
@@ -459,14 +456,13 @@
   .marble.mini{width:22px; height:22px; font-size:0;}
   .marble.face-down {color: transparent; }
 
-  /* Golden Halo effect preserving underlying marble color */
   .marble.repeat-picked{
     border-color:#FFFFFF;
     box-shadow:0 0 0 3px var(--yellow), 0 0 18px rgba(255,230,0,0.95);
     transform:scale(1.12);
   }
   
-  .sim-controls{display:flex; justify-content:center; gap:14px; margin-top:18px;}
+  .sim-controls{display:flex; justify-content:center; gap:14px; margin-top:18px; align-items:center; flex-wrap:wrap;}
   .sim-btn{
     padding:12px 24px; background:#141C3D; border:2px solid var(--cyan);
     color:#fff; border-radius:6px; font-family:'Chakra Petch',sans-serif;
@@ -503,7 +499,6 @@
     border: 1px solid var(--yellow);
   }
   
-  /* Expanded History Box */
   .sim-history-box {
     margin-top: 22px; text-align: left; background: #070915; border: 2px solid var(--whisper);
     border-radius: 10px; padding: 20px 22px; min-height: 250px; max-height: 460px; overflow-y: auto;
@@ -565,6 +560,97 @@
   .bottom-meditation-container{
     margin-top:40px; display:flex; flex-direction:column; align-items:center; gap:8px;
   }
+
+  /* ============================================================
+     FEATHER DETECTIVE — styles scoped under #feather-lab
+     ============================================================ */
+  :root {
+    --fd-navy: #0b1026; --fd-violet: #6d4fc2; --fd-star: #6fb1ff;
+    --fd-gold: #f2c14e; --fd-ink: #e9ecff; --fd-muted: #a9b1d6;
+    --fd-panel: rgba(255,255,255,0.05); --fd-line: rgba(255,255,255,0.12);
+  }
+  #feather-lab { max-width: 1040px; margin: 0 auto; padding: 20px 0; }
+  #feather-lab h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 0 0 6px; color: var(--fd-gold); letter-spacing: .3px; }
+  #feather-lab h3 { font-size: 1.25rem; margin: 30px 0 10px; color: var(--fd-star); border-bottom: 1px solid var(--fd-line); padding-bottom: 6px; }
+  #feather-lab h4 { margin: 0 0 6px; color: var(--fd-gold); font-size: 1.02rem; }
+  #feather-lab p { margin: 0 0 10px; color: #D5DBEE; }
+  .fd-kicker { color: var(--fd-muted); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; margin-bottom: 4px; font-family:'IBM Plex Mono', monospace; font-weight:700;}
+  .fd-intro { color: var(--fd-muted); max-width: 70ch; }
+  
+  .fd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 14px; }
+  .fd-card { background: var(--fd-panel); border: 1px solid var(--fd-line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .fd-imgwrap { position: relative; background: #1a1f38; }
+  .fd-imgwrap img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: contain; background: #1a1f38; }
+  .fd-num { position: absolute; top: 8px; left: 8px; background: rgba(11,16,38,.85); color: var(--fd-gold); font-weight: 700; padding: 3px 9px; border-radius: 999px; font-size: .85rem; }
+  .fd-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .fd-guess, .fd-log input, .fd-log select, .fd-reflect textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); color: var(--fd-ink);
+    border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92rem; }
+  .fd-reveal { align-self: flex-start; background: transparent; color: var(--fd-star); border: 1px solid var(--fd-star); border-radius: 999px;
+    padding: 6px 14px; font: inherit; font-size: .85rem; cursor: pointer; }
+  .fd-reveal:hover { background: rgba(111,177,255,.15); }
+  .fd-tag { display: inline-block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; padding: 2px 8px; border-radius: 999px; margin-right: 6px; }
+  .fd-tag-conf { background: var(--fd-star); color: #001a33; }
+  .fd-tag-factor { background: var(--fd-violet); color: #fff; }
+
+  .fd-notice { color: var(--fd-muted); font-size: .88rem; }
+
+  .fd-sim { display: grid; gap: 18px; grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.2fr); margin-top: 14px; }
+  @media (max-width: 720px) { .fd-sim { grid-template-columns: 1fr; } }
+  .fd-upload { display: block; border: 2px dashed var(--fd-star); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; color: var(--fd-star); background: rgba(111,177,255,.06); }
+  .fd-upload input { display: none; }
+  .fd-preview { position: relative; margin-top: 10px; background: #1a1f38; border-radius: 12px; overflow: hidden; border: 1px solid var(--fd-line); }
+  .fd-preview canvas { display: block; width: 100%; height: auto; touch-action: manipulation; }
+  .fd-preview-empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--fd-muted); margin: 0; }
+  .fd-toggle { display: block; font-size: .82rem; color: var(--fd-muted); margin-top: 8px; }
+  .fd-seen { margin-top: 12px; background: var(--fd-panel); border: 1px solid var(--fd-line); border-radius: 12px; padding: 12px 14px; }
+  .fd-cbar { display: grid; grid-template-columns: 90px 1fr 40px; gap: 8px; align-items: center; font-size: .82rem; margin: 3px 0; }
+  .fd-cname i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: middle; border: 1px solid rgba(255,255,255,.2); }
+  .fd-ctrack { height: 8px; background: rgba(0,0,0,.35); border-radius: 999px; overflow: hidden; }
+  .fd-ctrack b { display: block; height: 100%; border-radius: 999px; }
+  .fd-cpct { text-align: right; color: var(--fd-muted); }
+  .fd-factors-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .fd-factors-grid label { font-size: .8rem; color: var(--fd-muted); display: flex; flex-direction: column; gap: 4px; }
+  .fd-factors-grid select { width: 100%; background: rgba(0,0,0,.35); color: var(--fd-ink); border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .9rem; }
+  .fd-result { margin-top: 14px; background: var(--fd-panel); border: 1px solid var(--fd-line); border-radius: 12px; padding: 14px 16px; }
+  .fd-verdict { font-size: 1.05rem; margin-bottom: 10px; }
+  .fd-ranked { margin: 0; padding-left: 20px; }
+  .fd-ranked li { margin-bottom: 10px; }
+  .fd-rank-row { display: flex; justify-content: space-between; font-weight: 600; }
+  .fd-rank-pct { color: var(--fd-gold); }
+  .fd-rank-track { height: 8px; background: rgba(0,0,0,.35); border-radius: 999px; overflow: hidden; margin: 4px 0; }
+  .fd-rank-track b { display: block; height: 100%; background: linear-gradient(90deg, var(--fd-violet), var(--fd-star)); border-radius: 999px; }
+  .fd-rank-note { font-size: .82rem; color: var(--fd-muted); }
+  .fd-changed { margin-top: 10px; padding: 10px 12px; border-left: 3px solid var(--fd-gold); background: rgba(242,193,78,.08); font-size: .88rem; border-radius: 6px; }
+  .fd-work { margin-top: 10px; font-size: .88rem; }
+  .fd-work summary { cursor: pointer; color: var(--fd-star); }
+  .fd-work ul { margin: 8px 0 0; padding-left: 18px; }
+  .fd-work li b { display: inline-block; min-width: 44px; }
+  .fd-work li.plus b { color: #7ee2a8; } .fd-work li.minus b { color: #ff8a8a; } .fd-work li.zero b { color: var(--fd-muted); }
+  .fd-help { margin-top: 10px; font-size: .88rem; color: var(--fd-muted); }
+  
+  .fd-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .fd-btn { background: var(--fd-violet); color: #fff; border: 0; border-radius: 999px; padding: 9px 18px; font: inherit; cursor: pointer; }
+  .fd-btn.ghost { background: transparent; border: 1px solid var(--fd-line); color: var(--fd-muted); }
+  .fd-saved { font-size: .8rem; color: var(--fd-muted); align-self: center; }
+
+  .fd-paintbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; font-size: .82rem; }
+  .fd-paintlabel { color: var(--fd-muted); }
+  .fd-brushlabel { color: var(--fd-muted); display: inline-flex; align-items: center; gap: 6px; }
+  .fd-brushlabel input { width: 80px; }
+  .fd-paintbar .fd-reveal.active { background: var(--fd-star); color: #001a33; }
+
+  .fd-loglist { display: grid; gap: 12px; margin-top: 12px; }
+  .fd-logrow { display: grid; grid-template-columns: 120px 1fr; gap: 14px; background: var(--fd-panel); border: 1px solid var(--fd-line); border-radius: 12px; padding: 12px; }
+  @media (max-width: 520px) { .fd-logrow { grid-template-columns: 1fr; } }
+  .fd-logthumb { position: relative; background: #1a1f38; border-radius: 8px; overflow: hidden; align-self: start; }
+  .fd-logthumb img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; }
+  .fd-logbody { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .fd-logmeta { font-size: .8rem; color: var(--fd-muted); margin: 0; }
+  .fd-logmodel { margin: 0; font-size: .92rem; }
+  .fd-logseen { margin: 0; font-size: .8rem; color: var(--fd-muted); }
+  .fd-logbody textarea { min-height: 56px; resize: vertical; width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); color: var(--fd-ink); border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92rem; }
+  .fd-logbody input[type=text] { width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); color: var(--fd-ink); border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92rem; }
+  .fd-logdel { align-self: flex-end; border-color: var(--fd-line); color: var(--fd-muted); }
 </style>
 </head>
 <body>
@@ -575,8 +661,8 @@
     <h1>Eliot's <em>AI Quest</em></h1>
     <p class="subtitle">From AI Explorer to Game Creator: Building & Deploying an HTML Game.</p>
     <div class="times">
-      <span class="fri-dot"></span>Fridays 1:30–3:00[cite: 1]
-      <span class="wed-dot"></span>Wednesdays 1:45–3:15[cite: 1]
+      <span class="fri-dot"></span>Fridays 1:30–3:00
+      <span class="wed-dot"></span>Wednesdays 1:45–3:15
     </div>
     <div class="breaths" aria-label="Jump to a session">
       <button class="st fri" data-target="sess-1" aria-label="Session 1"></button>
@@ -853,13 +939,218 @@
       </div>
       <article id="sess-2" class="session fri" style="display:none;">
         <div class="session-top">
-          <span class="lv-badge">Session Two</span>
+          <span class="lv-badge">Session Two // Live Lab</span>
           <span class="when">Fri Sep 18 · 1:30–3:00</span>
           <button class="bm-btn" data-bm="sess-2" aria-pressed="false">☆</button>
         </div>
-        <h3>How Machines Learn</h3>
-        <p>Pattern recognition games and the idea of training data. Hands-on with <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a>: train a model to recognize gestures.</p>
-        <p class="mission">Mission: teach a machine something it didn't know an hour ago.</p>
+        <h3>How Machines Learn &amp; Sample Size</h3>
+        
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="sample-size">Sample Size</button>
+          <button class="stab" data-pane="feather-lab">Feather Detective</button>
+          <button class="stab" data-pane="exercise">Session 2 Exercise</button>
+        </div>
+
+        <!-- Agenda Pane -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">01 // Pattern Recognition &amp; Training Data</span>
+              <p>How do computers learn to recognize patterns? Just like humans, they need training examples—lots of them. But what happens when your sample size is too small or biased?</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // The Power of Sample Size</span>
+              <p>Explore how drawing different sample sizes changes statistical reliability. Jump to the <b>Sample Size</b> tab to test out different numbers of draws from our population jar!</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // Feather Detective Lab</span>
+              <p>Put machine classification to the test by uploading feather photos and adjusting contextual clues in our interactive computer vision lab.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Size Pane (Marble Game with Adjustable Sample Size) -->
+        <div class="spane" data-pane="sample-size">
+          <div class="sim-container">
+            <div class="sim-title">Sample Size Impact Simulator</div>
+            <p class="sim-desc">The jar holds 60 marbles total: <b>42 Magenta</b> (70%) and <b>18 Turquoise</b> (30%). Select a sample size below and draw to see how larger sample sizes stabilize your results and approach the true population ratio!</p>
+            
+            <div class="jar-stage">
+              <div class="jar-container">
+                <div class="marble-jar" id="ssJarMarbles"></div>
+                <span class="jar-counts-label">
+                  <span class="m-tag">42 Magenta (70%)</span> &amp; <span class="t-tag">18 Turquoise (30%)</span>
+                </span>
+                <button class="mix-btn" id="ssMixJarBtn">Mix Jar</button>
+              </div>
+              
+              <div class="draw-zone-wrapper">
+                <div class="draw-zone">
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Sample Draw Results</span>
+                  <div class="drawn-marbles" id="ssDrawResults">
+                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Select sample size &amp; press Draw</span>
+                  </div>
+                  <div class="sim-stats" id="ssSimStats"></div>
+                </div>
+
+                <div class="sim-controls" style="margin-top:16px;">
+                  <label style="font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--cyan); font-weight:700; text-transform:uppercase;">
+                    Sample Size:
+                    <select id="ssSampleSizeSelect" style="background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
+                      <option value="3">3 Marbles (Tiny)</option>
+                      <option value="5">5 Marbles (Small)</option>
+                      <option value="10" selected>10 Marbles (Standard)</option>
+                      <option value="20">20 Marbles (Large)</option>
+                      <option value="30">30 Marbles (Very Large)</option>
+                    </select>
+                  </label>
+                  <button class="sim-btn" id="ssDrawBtn">Draw Sample</button>
+                  <button class="sim-btn" id="ssResetSimBtn" style="border-color:var(--whisper);">Reset</button>
+                </div>
+                
+                <div class="sim-history-box">
+                  <h5>Sample Size Comparison Log</h5>
+                  <ul class="sim-history-list" id="ssSimHistoryList">
+                    <li>No samples drawn yet.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Key Insight:</b> With a tiny sample size (like 3), you will frequently get wild errors (e.g., 100% turquoise or 100% magenta). As you increase your sample size to 20 or 30, your estimated percentage consistently hovers near the true 70/30 population split.</p>
+        </div>
+
+        <!-- Feather Detective Pane -->
+        <div class="spane" data-pane="feather-lab">
+          <section id="feather-lab">
+            <p class="fd-kicker">Hands-on lab · Can the AI see what you see?</p>
+            <h2>🪶 Feather ID Simulator</h2>
+            <p class="fd-intro">Photograph a feather, tell the model what you know, and watch which clue changes its answer. Log each one and make your own final call.</p>
+
+            <h3>On-demand ID simulator</h3>
+            <p class="fd-intro">Take or upload a feather photo. A tiny bird-ID model built right into this page will look at the photo, combine it with the clues you give it, and show its work. It is a see-through version of a real AI, so you can watch which clue changes the answer.</p>
+
+            <div class="fd-sim">
+              <div class="fd-sim-left">
+                <label class="fd-upload">
+                  <input type="file" id="fd-file" accept="image/*" capture="environment">
+                  <span>📷 Take or upload a feather photo</span>
+                </label>
+                <div class="fd-preview" id="fd-preview"><canvas id="fd-canvas" width="320" height="240"></canvas><p class="fd-preview-empty" id="fd-preview-empty">No photo yet</p></div>
+                <label class="fd-toggle"><input type="checkbox" id="fd-showmask"> Show what the model counts as “feather” (vs background)</label>
+                <div class="fd-paintbar">
+                  <span class="fd-paintlabel">Not right? Color it yourself:</span>
+                  <button class="fd-reveal" type="button" id="fd-paint">🖌️ Paint feather</button>
+                  <button class="fd-reveal" type="button" id="fd-erase">🧽 Erase</button>
+                  <label class="fd-brushlabel">Brush <input type="range" id="fd-brush" min="3" max="30" value="10"></label>
+                  <button class="fd-reveal" type="button" id="fd-paint-reset">↺ Back to auto</button>
+                  <span class="fd-notice" id="fd-paint-hint"></span>
+                </div>
+
+                <div class="fd-seen" id="fd-seen" hidden>
+                  <h4>What the model sees</h4>
+                  <div id="fd-colorbars" class="fd-colorbars"></div>
+                  <p id="fd-seen-text" class="fd-notice"></p>
+                </div>
+              </div>
+
+              <div class="fd-sim-right">
+                <h4>Clues you give it</h4>
+                <div class="fd-factors-grid">
+                  <label>Location
+                    <select id="fd-f-location">
+                      <option value="unknown">Unknown</option>
+                      <option value="durham">Durham, NC</option>
+                      <option value="himalayas">Himalayas</option>
+                      <option value="europe">Europe</option>
+                      <option value="africa">Africa</option>
+                      <option value="utah">Utah</option>
+                    </select></label>
+                  <label>Bird was seen
+                    <select id="fd-f-social">
+                      <option value="unknown">Unknown</option>
+                      <option value="solo">Solo</option>
+                      <option value="group">In a group</option>
+                    </select></label>
+                  <label>Micro-habitat
+                    <select id="fd-f-habitat">
+                      <option value="unknown">Unknown</option>
+                      <option value="backyard">Backyard</option>
+                      <option value="river">River / water</option>
+                    </select></label>
+                  <label>Feather length
+                    <select id="fd-f-size">
+                      <option value="unknown">Unknown</option>
+                      <option value="tiny">Under 2 in</option>
+                      <option value="small">2–5 in</option>
+                      <option value="medium">5–9 in</option>
+                      <option value="large">Over 9 in</option>
+                    </select></label>
+                  <label>Which part?
+                    <select id="fd-f-part">
+                      <option value="unknown">Unknown</option>
+                      <option value="wing">Wing (stiff, curved)</option>
+                      <option value="tail">Tail (stiff, straight)</option>
+                      <option value="body">Body (fluffy base)</option>
+                      <option value="down">Down (all fluff)</option>
+                    </select></label>
+                </div>
+                <div class="fd-actions" style="margin-top:8px">
+                  <button class="fd-btn" type="button" id="fd-run">Identify</button>
+                  <button class="fd-btn ghost" type="button" id="fd-reset-factors">Reset clues</button>
+                </div>
+
+                <div id="fd-result" class="fd-result" hidden>
+                  <div class="fd-verdict" id="fd-verdict"></div>
+                  <ol class="fd-ranked" id="fd-ranked"></ol>
+                  <div class="fd-changed" id="fd-changed" hidden></div>
+                  <details class="fd-work"><summary>Show the model’s work (top pick)</summary><ul id="fd-work"></ul></details>
+                  <div class="fd-help" id="fd-help"></div>
+                  <div class="fd-actions"><button class="fd-btn" type="button" id="fd-log-add">➕ Log this feather</button><span class="fd-saved" id="fd-log-status"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <h3>Feather log</h3>
+            <p class="fd-intro">Every feather you log gets a line here with the photo, the clues you gave, and what the model said. Add your own final call and notes. Saved on this device.</p>
+            <div id="fd-loglist" class="fd-loglist"></div>
+            <p class="fd-notice" id="fd-log-empty">Nothing logged yet — identify a feather, then tap “Log this feather.”</p>
+            <div class="fd-actions">
+              <button class="fd-btn" type="button" id="fd-log-copy">Copy log as text</button>
+              <button class="fd-btn ghost" type="button" id="fd-log-csv">Download CSV</button>
+              <button class="fd-btn ghost" type="button" id="fd-log-clear">Clear log</button>
+              <span class="fd-saved" id="fd-log-status2"></span>
+            </div>
+          </section>
+        </div>
+
+        <!-- Exercise Pane -->
+        <div class="spane" data-pane="exercise">
+          <div class="exercise-box">
+            <span class="exercise-due">Session 2 Exercise // Train a Machine Learning Model</span>
+            <p style="margin-bottom:20px; font-size:17px; color:#D5DBEE;">Open <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> in a new tab to complete this hands-on machine learning exercise.</p>
+            
+            <div class="exercise-q">
+              <label for="ex2_q1">1. Choose to train on tree vs flower vs grass; soccer poses, or rock vs plant vs water. Which category did you pick and why?</label>
+              <textarea id="ex2_q1" data-note="s2_ex1" placeholder="Describe your chosen categories..."></textarea>
+              <div class="saved-flag" data-flag="s2_ex1"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex2_q2">2. Start by taking a sample size of 5 of each. How does this impact your results? Then try 10 and then 15. How does a larger sample size impact your model's accuracy and stability?</label>
+              <textarea id="ex2_q2" data-note="s2_ex2" placeholder="Compare results across 5, 10, and 15 samples..."></textarea>
+              <div class="saved-flag" data-flag="s2_ex2"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex2_q3">3. What is the most surprising thing you learned from training your own model?</label>
+              <textarea id="ex2_q3" data-note="s2_ex3" placeholder="Your reflections and surprising takeaways..."></textarea>
+              <div class="saved-flag" data-flag="s2_ex3"></div>
+            </div>
+          </div>
+        </div>
+
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
           <textarea data-note="s2" placeholder="What did your model learn? What was your favorite takeaway?"></textarea>
           <div class="saved-flag" data-flag="s2"></div>
@@ -1333,7 +1624,7 @@
     });
   });
 
-  // Marble Simulation Setup: Organized initially by color
+  // Marble Simulation Setup: Session 1
   var jarContainer = document.getElementById('jarMarbles');
   var drawZone = document.getElementById('drawResults');
   var simStats = document.getElementById('simStats');
@@ -1343,153 +1634,184 @@
   var mixJarBtn = document.getElementById('mixJarBtn');
   var historyList = document.getElementById('simHistoryList');
 
-  var masterJarDeck = [];
-  for(var i=1; i<=60; i++){
-    var color = (i <= 42) ? 'magenta' : 'turquoise';
-    masterJarDeck.push({ id: i, color: color });
-  }
+  if(jarContainer){
+    var masterJarDeck = [];
+    for(var i=1; i<=60; i++){
+      var color = (i <= 42) ? 'magenta' : 'turquoise';
+      masterJarDeck.push({ id: i, color: color });
+    }
+    var visualJarDeck = masterJarDeck.slice();
 
-  var visualJarDeck = masterJarDeck.slice();
-
-  function renderJar(){
-    jarContainer.innerHTML = '';
-    visualJarDeck.forEach(function(m){
-      var el = document.createElement('div');
-      el.className = 'marble mini ' + m.color;
-      jarContainer.appendChild(el);
-    });
-  }
-  renderJar();
-
-  mixJarBtn.addEventListener('click', function(){
-    visualJarDeck.sort(function(){ return 0.5 - Math.random(); });
+    function renderJar(){
+      jarContainer.innerHTML = '';
+      visualJarDeck.forEach(function(m){
+        var el = document.createElement('div');
+        el.className = 'marble mini ' + m.color;
+        jarContainer.appendChild(el);
+      });
+    }
     renderJar();
-    mixJarBtn.textContent = 'Mixed!';
-    setTimeout(function(){ mixJarBtn.textContent = 'Mix Jar'; }, 1500);
-  });
 
-  var totalDrawRuns = 0;
-  var allRuns = [];
-  var historicalPickedIds = new Set();
+    mixJarBtn.addEventListener('click', function(){
+      visualJarDeck.sort(function(){ return 0.5 - Math.random(); });
+      renderJar();
+      mixJarBtn.textContent = 'Mixed!';
+      setTimeout(function(){ mixJarBtn.textContent = 'Mix Jar'; }, 1500);
+    });
 
-  drawBtn.addEventListener('click', function(){
-    drawZone.innerHTML = '';
-    var drawCount = 10;
-    var mCount = 0;
-    var tCount = 0;
-    var currentSample = [];
-    totalDrawRuns++;
+    var totalDrawRuns = 0;
+    var allRuns = [];
+    var historicalPickedIds = new Set();
 
-    var forceTurqWin = (totalDrawRuns % 5 === 0);
-    var workingDeck = masterJarDeck.slice();
+    drawBtn.addEventListener('click', function(){
+      drawZone.innerHTML = '';
+      var drawCount = 10;
+      var mCount = 0;
+      var tCount = 0;
+      var currentSample = [];
+      totalDrawRuns++;
 
-    if(forceTurqWin){
-      var turqPool = workingDeck.filter(function(m){ return m.color === 'turquoise'; });
-      var magPool = workingDeck.filter(function(m){ return m.color === 'magenta'; });
-
-      for(var t=0; t<7; t++){
-        var rT = Math.floor(Math.random() * turqPool.length);
-        currentSample.push(turqPool.splice(rT, 1)[0]);
-      }
-      for(var mG=0; mG<3; mG++){
-        var rM = Math.floor(Math.random() * magPool.length);
-        currentSample.push(magPool.splice(rM, 1)[0]);
-      }
-      currentSample.sort(function(){ return 0.5 - Math.random(); });
-    } else {
+      var workingDeck = masterJarDeck.slice();
       for(var k=0; k<drawCount; k++){
         var randIdx = Math.floor(Math.random() * workingDeck.length);
         var chosenMarble = workingDeck.splice(randIdx, 1)[0];
         currentSample.push(chosenMarble);
       }
-    }
 
-    currentSample.forEach(function(picked){
-      var isRepeatFromPastRuns = historicalPickedIds.has(picked.id);
+      currentSample.forEach(function(picked){
+        var isRepeatFromPastRuns = historicalPickedIds.has(picked.id);
+        var mEl = document.createElement('div');
+        mEl.className = 'marble face-down ' + picked.color + (isRepeatFromPastRuns ? ' repeat-picked' : '');
+        mEl.textContent = picked.id;
+        drawZone.appendChild(mEl);
+        if(picked.color === 'magenta') mCount++; else tCount++;
+      });
 
-      var mEl = document.createElement('div');
-      mEl.className = 'marble face-down ' + picked.color + (isRepeatFromPastRuns ? ' repeat-picked' : '');
-      mEl.textContent = picked.id;
-      drawZone.appendChild(mEl);
+      var winnerBadge = '';
+      if(mCount > tCount){
+        winnerBadge = '<span class="win-badge magenta-win">Magenta Wins (' + mCount + '-' + tCount + ')</span>';
+      } else if(tCount > mCount){
+        winnerBadge = '<span class="win-badge turquoise-win">Turquoise Wins (' + tCount + '-' + mCount + ')</span>';
+      } else {
+        winnerBadge = '<span class="win-badge tie-win">Tie Handful (5-5)</span>';
+      }
 
-      if(picked.color === 'magenta') mCount++; else tCount++;
+      simStats.innerHTML = 'Handful #' + totalDrawRuns + ': ' + winnerBadge;
+      flipBtn.disabled = false;
+      flipBtn.textContent = 'Flip Marbles';
+      
+      if(totalDrawRuns === 1) historyList.innerHTML = '';
+      var li = document.createElement('li');
+      li.innerHTML = 'Handful ' + totalDrawRuns + ': ' + winnerBadge + '<span class="history-nums">#s: [Click Flip Marbles to reveal]</span>';
+      historyList.insertBefore(li, historyList.firstChild);
+
+      allRuns.push({ runNumber: totalDrawRuns, sample: currentSample, element: li });
+      currentSample.forEach(function(item){ historicalPickedIds.add(item.id); });
     });
-
-    var winnerBadge = '';
-    if(mCount > tCount){
-      winnerBadge = '<span class="win-badge magenta-win">Magenta Wins (' + mCount + '-' + tCount + ')</span>';
-    } else if(tCount > mCount){
-      winnerBadge = '<span class="win-badge turquoise-win">Turquoise Wins (' + tCount + '-' + mCount + ')</span>';
-    } else {
-      winnerBadge = '<span class="win-badge tie-win">Tie Handful (5-5)</span>';
-    }
-
-    simStats.innerHTML = 'Handful #' + totalDrawRuns + ': ' + winnerBadge;
     
-    flipBtn.disabled = false;
-    flipBtn.textContent = 'Flip Marbles';
-    
-    if(totalDrawRuns === 1) historyList.innerHTML = '';
-    
-    var li = document.createElement('li');
-    li.setAttribute('data-run-index', totalDrawRuns);
-    li.innerHTML = 'Handful ' + totalDrawRuns + ': ' + winnerBadge +
-                   '<span class="history-nums">#s: [Click Flip Marbles to reveal]</span>';
-    historyList.insertBefore(li, historyList.firstChild);
-
-    allRuns.push({
-      runNumber: totalDrawRuns,
-      sample: currentSample,
-      element: li
-    });
-
-    currentSample.forEach(function(item){
-      historicalPickedIds.add(item.id);
-    });
-  });
-  
-  flipBtn.addEventListener('click', function(){
-    var currentMarbles = drawZone.querySelectorAll('.marble');
-    currentMarbles.forEach(function(m) {
-      m.classList.remove('face-down');
-    });
-    flipBtn.disabled = true;
-    flipBtn.textContent = 'Flipped!';
-
-    var globalCounts = {};
-    allRuns.forEach(function(runData){
-      runData.sample.forEach(function(item){
-        globalCounts[item.id] = (globalCounts[item.id] || 0) + 1;
+    flipBtn.addEventListener('click', function(){
+      drawZone.querySelectorAll('.marble').forEach(function(m) { m.classList.remove('face-down'); });
+      flipBtn.disabled = true;
+      flipBtn.textContent = 'Flipped!';
+      var globalCounts = {};
+      allRuns.forEach(function(rd){ rd.sample.forEach(function(item){ globalCounts[item.id] = (globalCounts[item.id] || 0) + 1; }); });
+      allRuns.forEach(function(rd){
+        var targetSpan = rd.element.querySelector('.history-nums');
+        if(targetSpan){
+          var numsHtml = rd.sample.map(function(item){
+            var isRep = globalCounts[item.id] > 1;
+            return '<span class="' + (item.color === 'magenta' ? 'm-txt' : 't-txt') + (isRep ? ' repeat-id' : '') + '">#' + item.id + (isRep ? '★' : '') + '</span>';
+          }).join('  ');
+          targetSpan.innerHTML = '#s: ' + numsHtml;
+        }
       });
     });
 
-    allRuns.forEach(function(runData){
-      var targetSpan = runData.element.querySelector('.history-nums');
-      if(targetSpan){
-        var numsHtml = runData.sample.map(function(item){
-          var isRepeatedAcrossRuns = globalCounts[item.id] > 1;
-          var baseClass = (item.color === 'magenta' ? 'm-txt' : 't-txt');
-          var repeatClass = isRepeatedAcrossRuns ? ' repeat-id' : '';
-          return '<span class="' + baseClass + repeatClass + '">#' + item.id + (isRepeatedAcrossRuns ? '★' : '') + '</span>';
-        }).join('  ');
-        targetSpan.innerHTML = '#s: ' + numsHtml;
-      }
+    resetSimBtn.addEventListener('click', function(){
+      drawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Jar reset. Press "Draw Handful of 10" to sample</span>';
+      simStats.textContent = '';
+      historyList.innerHTML = '<li>No draws yet.</li>';
+      totalDrawRuns = 0; allRuns = []; historicalPickedIds.clear();
+      flipBtn.disabled = true; flipBtn.textContent = 'Flip Marbles';
+      visualJarDeck = masterJarDeck.slice(); renderJar();
     });
-  });
+  }
 
-  resetSimBtn.addEventListener('click', function(){
-    drawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Jar reset. Press "Draw Handful of 10" to sample</span>';
-    simStats.textContent = '';
-    historyList.innerHTML = '<li>No draws yet.</li>';
-    totalDrawRuns = 0;
-    allRuns = [];
-    historicalPickedIds.clear();
-    flipBtn.disabled = true;
-    flipBtn.textContent = 'Flip Marbles';
-    
-    visualJarDeck = masterJarDeck.slice();
-    renderJar();
-  });
+  // Session 2 Sample Size Simulation Setup
+  var ssJarContainer = document.getElementById('ssJarMarbles');
+  var ssDrawZone = document.getElementById('ssDrawResults');
+  var ssSimStats = document.getElementById('ssSimStats');
+  var ssDrawBtn = document.getElementById('ssDrawBtn');
+  var ssResetSimBtn = document.getElementById('ssResetSimBtn');
+  var ssMixJarBtn = document.getElementById('ssMixJarBtn');
+  var ssHistoryList = document.getElementById('ssSimHistoryList');
+  var ssSampleSizeSelect = document.getElementById('ssSampleSizeSelect');
+
+  if(ssJarContainer){
+    var ssMasterDeck = [];
+    for(var i=1; i<=60; i++){
+      ssMasterDeck.push({ id: i, color: (i <= 42) ? 'magenta' : 'turquoise' });
+    }
+    var ssVisualDeck = ssMasterDeck.slice();
+
+    function renderSsJar(){
+      ssJarContainer.innerHTML = '';
+      ssVisualDeck.forEach(function(m){
+        var el = document.createElement('div');
+        el.className = 'marble mini ' + m.color;
+        ssJarContainer.appendChild(el);
+      });
+    }
+    renderSsJar();
+
+    ssMixJarBtn.addEventListener('click', function(){
+      ssVisualDeck.sort(function(){ return 0.5 - Math.random(); });
+      renderSsJar();
+      ssMixJarBtn.textContent = 'Mixed!';
+      setTimeout(function(){ ssMixJarBtn.textContent = 'Mix Jar'; }, 1500);
+    });
+
+    var ssRunCount = 0;
+    ssDrawBtn.addEventListener('click', function(){
+      ssDrawZone.innerHTML = '';
+      ssRunCount++;
+      var nSize = parseInt(ssSampleSizeSelect.value, 10);
+      var working = ssMasterDeck.slice();
+      var sample = [];
+      var mCount = 0, tCount = 0;
+
+      for(var k=0; k<nSize; k++){
+        var idx = Math.floor(Math.random() * working.length);
+        sample.push(working.splice(idx, 1)[0]);
+      }
+
+      sample.forEach(function(item){
+        var el = document.createElement('div');
+        el.className = 'marble ' + item.color;
+        el.textContent = item.id;
+        ssDrawZone.appendChild(el);
+        if(item.color === 'magenta') mCount++; else tCount++;
+      });
+
+      var mPct = Math.round((mCount / nSize) * 100);
+      var tPct = Math.round((tCount / nSize) * 100);
+      ssSimStats.innerHTML = 'Sample (n=' + nSize + '): ' + mCount + ' Magenta (' + mPct + '%), ' + tCount + ' Turquoise (' + tPct + '%) [True: 70% M / 30% T]';
+
+      if(ssRunCount === 1) ssHistoryList.innerHTML = '';
+      var li = document.createElement('li');
+      li.innerHTML = '<b>Draw #' + ssRunCount + ' (n=' + nSize + ')</b>: ' + mPct + '% Magenta, ' + tPct + '% Turquoise <span class="history-nums">Error from 70% true: ' + Math.abs(mPct - 70) + '%</span>';
+      ssHistoryList.insertBefore(li, ssHistoryList.firstChild);
+    });
+
+    ssResetSimBtn.addEventListener('click', function(){
+      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Select sample size &amp; press Draw</span>';
+      ssSimStats.textContent = '';
+      ssHistoryList.innerHTML = '<li>No samples drawn yet.</li>';
+      ssRunCount = 0;
+      ssVisualDeck = ssMasterDeck.slice();
+      renderSsJar();
+    });
+  }
 
   // Local Storage for Notes and Exercises
   document.querySelectorAll('textarea[data-note]').forEach(function(ta){
@@ -1555,6 +1877,394 @@
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   });
+})();
+
+/* ---------- Feather ID simulator script ---------- */
+(function () {
+  var root = document.getElementById('feather-lab'); if (!root) return;
+
+  var BIRDS = [
+    {name:'Blue Jay', regions:['durham'], habitats:['backyard'], social:'either', size:['small','medium'], parts:['tail','wing','body'],
+      colors:{blue:.6,black:.2,white:.2}, pattern:['barred','patched','solid'], note:'Blue with black bars or a white tip. Eastern North America only.'},
+    {name:'Eastern Bluebird', regions:['durham'], habitats:['backyard'], social:'either', size:['tiny','small'], parts:['body','wing'],
+      colors:{blue:.7,rust:.15,white:.15}, pattern:['solid'], note:'Soft sky-blue, no bars, small.'},
+    {name:'Indian Peafowl (peacock)', regions:['himalayas','captive'], habitats:['backyard'], social:'group', size:['tiny','small','large'], parts:['body','tail'],
+      colors:{blue:.6,green:.25,iridescent:.15}, pattern:['solid'], note:'Iridescent blue-green with a fluffy base. Native to South Asia; kept on farms almost everywhere.'},
+    {name:'Northern Cardinal', regions:['durham'], habitats:['backyard'], social:'either', size:['small'], parts:['tail','wing','body'],
+      colors:{red:.4,rust:.5,brown:.1}, pattern:['solid'], note:'Red to rusty-red, no pattern. The red comes from pigment in its food.'},
+    {name:'Brown Thrasher', regions:['durham'], habitats:['backyard'], social:'solo', size:['small','medium'], parts:['tail','wing'],
+      colors:{rust:.5,brown:.35,tan:.15}, pattern:['solid'], note:'Rufous-brown, long tail feathers, pale underneath.'},
+    {name:'Red-tailed Hawk', regions:['durham','utah'], habitats:['backyard','any'], social:'solo', size:['medium','large'], parts:['tail','wing','body'],
+      colors:{rust:.5,brown:.2,white:.15,black:.1,tan:.05}, pattern:['solid','patched','mottled'], note:'Rusty tail with a single dark band near the tip. Big.'},
+    {name:'Barred Owl', regions:['durham'], habitats:['river','backyard'], social:'solo', size:['small','medium','large'], parts:['wing','body','tail'],
+      colors:{tan:.35,brown:.25,white:.25,black:.15}, pattern:['barred','patched','mottled'], note:'Tan-and-brown bars, soft fringed edges, very fluffy body feathers. Loves wooded creeks.'},
+    {name:'Great Horned Owl', regions:['durham','utah'], habitats:['any'], social:'solo', size:['medium','large'], parts:['wing','body','tail'],
+      colors:{brown:.4,tan:.3,white:.2,black:.1}, pattern:['barred','mottled'], note:'Mottled brown with bars; larger than Barred Owl.'},
+    {name:'American Crow', regions:['durham','utah'], habitats:['backyard','any'], social:'group', size:['medium','large'], parts:['wing','tail','body'],
+      colors:{black:.95,gray:.05}, pattern:['solid'], note:'Solid glossy black. Almost always in noisy groups.'},
+    {name:'Black Vulture', regions:['durham'], habitats:['any'], social:'group', size:['large'], parts:['wing','tail'],
+      colors:{black:.9,gray:.1}, pattern:['solid'], note:'Solid black, big and broad. Circles in groups.'},
+    {name:'Common Raven', regions:['utah','europe','himalayas'], habitats:['any'], social:'either', size:['large'], parts:['wing','tail'],
+      colors:{black:.95,gray:.05}, pattern:['solid'], note:'Like a crow but bigger; wedge-shaped tail feathers.'},
+    {name:'Pileated Woodpecker', regions:['durham'], habitats:['backyard','river'], social:'solo', size:['small','medium'], parts:['wing','body'],
+      colors:{black:.6,white:.4}, pattern:['patched'], note:'Black with a big white base — half-and-half feathers.'},
+    {name:'Yellow-bellied Sapsucker', regions:['durham'], habitats:['backyard'], social:'solo', size:['tiny','small'], parts:['wing','body','tail'],
+      colors:{black:.6,white:.35,yellow:.05}, pattern:['patched','barred'], note:'Small woodpecker; black with white patches and bars. Winters in NC.'},
+    {name:'Northern Flicker', regions:['durham','utah'], habitats:['backyard'], social:'solo', size:['small','medium'], parts:['wing','tail'],
+      colors:{brown:.4,tan:.2,black:.2,yellow:.2}, pattern:['patched','barred'], note:'Brown with black bars and a bright yellow (east) or red (west) shaft.'},
+    {name:'Mourning Dove', regions:['durham','utah'], habitats:['backyard'], social:'group', size:['tiny','small'], parts:['body','wing','tail'],
+      colors:{tan:.6,gray:.3,white:.1}, pattern:['solid'], note:'Soft tan-gray, plain. Common in flocks under feeders.'},
+    {name:'Wild Turkey', regions:['durham','utah'], habitats:['backyard','any'], social:'group', size:['medium','large'], parts:['wing','tail','body'],
+      colors:{black:.4,white:.3,brown:.2,iridescent:.1}, pattern:['barred'], note:'Crisp black-and-white bars on big wing feathers; bronze body feathers.'},
+    {name:'Canada Goose', regions:['durham','utah','europe'], habitats:['river'], social:'group', size:['medium','large'], parts:['wing','body','down'],
+      colors:{gray:.4,brown:.3,white:.2,black:.1}, pattern:['solid'], note:'Gray-brown, plain, lots of down. Always near water, always in a gaggle.'},
+    {name:'Mallard', regions:['durham','utah','europe'], habitats:['river'], social:'group', size:['tiny','small','medium'], parts:['wing','body','down'],
+      colors:{brown:.5,tan:.2,blue:.1,white:.1,gray:.1}, pattern:['mottled','solid'], note:'Mottled brown; wing has a blue-purple patch with white borders.'},
+    {name:'Great Blue Heron', regions:['durham','utah'], habitats:['river'], social:'solo', size:['medium','large'], parts:['wing','body'],
+      colors:{gray:.8,white:.1,black:.1}, pattern:['solid'], note:'Blue-gray, long, plain. Stands alone at the water’s edge.'},
+    {name:'Belted Kingfisher', regions:['durham','utah'], habitats:['river'], social:'solo', size:['tiny','small'], parts:['wing','body','tail'],
+      colors:{blue:.5,gray:.2,white:.3}, pattern:['patched','barred'], note:'Slate blue-gray with white spots and bars. Rivers only.'},
+    {name:'Carolina Wren', regions:['durham'], habitats:['backyard'], social:'either', size:['tiny'], parts:['wing','tail','body'],
+      colors:{brown:.6,tan:.3,black:.1}, pattern:['barred'], note:'Tiny, warm brown with fine bars.'},
+    {name:'Steller’s Jay', regions:['utah'], habitats:['backyard','any'], social:'either', size:['small','medium'], parts:['tail','wing','body'],
+      colors:{blue:.6,black:.4}, pattern:['barred','solid'], note:'Deep blue with a black head; wing and tail feathers barred. Western mountains.'},
+    {name:'Black-billed Magpie', regions:['utah'], habitats:['backyard','any'], social:'group', size:['small','medium','large'], parts:['tail','wing'],
+      colors:{black:.5,white:.3,iridescent:.2}, pattern:['patched','solid'], note:'Black-and-white with green-blue shimmer; very long tail feathers. West.'},
+    {name:'Mountain Bluebird', regions:['utah'], habitats:['any'], social:'either', size:['tiny','small'], parts:['body','wing'],
+      colors:{blue:.8,white:.2}, pattern:['solid'], note:'Bright sky blue, no rust. West.'},
+    {name:'Golden Eagle', regions:['utah','europe','himalayas'], habitats:['any'], social:'solo', size:['large'], parts:['wing','tail'],
+      colors:{brown:.7,black:.2,white:.1}, pattern:['solid','mottled'], note:'Dark brown, huge. Open country and mountains.'},
+    {name:'American Dipper', regions:['utah'], habitats:['river'], social:'solo', size:['tiny'], parts:['body','wing'],
+      colors:{gray:.9,black:.1}, pattern:['solid'], note:'Plain slate gray; walks underwater in mountain streams.'},
+    {name:'Eurasian Jay', regions:['europe'], habitats:['backyard'], social:'either', size:['tiny','small'], parts:['wing','body'],
+      colors:{blue:.4,black:.3,tan:.2,white:.1}, pattern:['barred'], note:'Pinkish-brown body but a bright blue wing patch with fine black bars — easy to confuse with a Blue Jay.'},
+    {name:'Eurasian Magpie', regions:['europe'], habitats:['backyard'], social:'group', size:['small','medium','large'], parts:['tail','wing'],
+      colors:{black:.5,white:.3,iridescent:.2}, pattern:['patched','solid'], note:'Black-and-white with a green sheen; long tail.'},
+    {name:'Carrion Crow / Rook', regions:['europe'], habitats:['backyard','any'], social:'group', size:['medium','large'], parts:['wing','tail'],
+      colors:{black:.95,gray:.05}, pattern:['solid'], note:'Europe’s all-black crows.'},
+    {name:'Tawny Owl', regions:['europe'], habitats:['backyard','any'], social:'solo', size:['small','medium'], parts:['wing','body'],
+      colors:{brown:.4,tan:.4,white:.2}, pattern:['barred','mottled'], note:'Europe’s woodland owl: rusty-tan with brown bars and soft edges.'},
+    {name:'Common Buzzard', regions:['europe'], habitats:['any'], social:'solo', size:['medium','large'], parts:['wing','tail'],
+      colors:{brown:.6,white:.2,tan:.2}, pattern:['barred','mottled'], note:'Brown hawk with finely barred tail.'},
+    {name:'Common Kingfisher', regions:['europe'], habitats:['river'], social:'solo', size:['tiny'], parts:['wing','body'],
+      colors:{blue:.6,green:.1,rust:.3}, pattern:['solid'], note:'Electric blue back, orange belly. Tiny; rivers.'},
+    {name:'Common Pheasant', regions:['europe'], habitats:['any','backyard'], social:'group', size:['small','medium','large'], parts:['tail','body','wing'],
+      colors:{rust:.4,tan:.3,black:.2,iridescent:.1}, pattern:['barred'], note:'Coppery-rust with black bars; very long barred tail feathers.'},
+    {name:'Grey Heron', regions:['europe','africa'], habitats:['river'], social:'solo', size:['medium','large'], parts:['wing','body'],
+      colors:{gray:.7,white:.2,black:.1}, pattern:['solid'], note:'Europe and Africa’s big gray heron.'},
+    {name:'Mute Swan', regions:['europe'], habitats:['river'], social:'either', size:['medium','large'], parts:['wing','body','down'],
+      colors:{white:.98,gray:.02}, pattern:['solid'], note:'Pure white, large, lots of down.'},
+    {name:'Himalayan Monal', regions:['himalayas'], habitats:['any'], social:'either', size:['small','medium'], parts:['body','tail','wing'],
+      colors:{blue:.3,green:.3,iridescent:.3,rust:.1}, pattern:['solid'], note:'Nepal’s national bird: metallic blue, green, copper — like a peacock in a rainbow.'},
+    {name:'Kalij Pheasant', regions:['himalayas'], habitats:['any'], social:'group', size:['small','medium'], parts:['body','tail','wing'],
+      colors:{black:.6,white:.3,blue:.1}, pattern:['barred','patched'], note:'Blue-black with white bars and streaks. Forest floor, in small groups.'},
+    {name:'Yellow-billed Blue Magpie', regions:['himalayas'], habitats:['any'], social:'group', size:['small','medium','large'], parts:['tail','wing'],
+      colors:{blue:.7,white:.2,black:.1}, pattern:['solid','patched'], note:'Long blue tail feathers tipped white. Noisy family groups.'},
+    {name:'Himalayan Griffon', regions:['himalayas'], habitats:['any'], social:'group', size:['large'], parts:['wing','tail','body'],
+      colors:{tan:.5,brown:.3,white:.2}, pattern:['solid'], note:'Huge pale-tan vulture; soars in groups.'},
+    {name:'Lammergeier (Bearded Vulture)', regions:['himalayas','africa','europe'], habitats:['any'], social:'solo', size:['large'], parts:['wing','tail'],
+      colors:{black:.5,rust:.3,white:.2}, pattern:['solid'], note:'Dark wings, rust-stained body (it dyes itself in iron-rich mud). Mountains.'},
+    {name:'Plumbeous Water Redstart', regions:['himalayas'], habitats:['river'], social:'solo', size:['tiny'], parts:['body','tail'],
+      colors:{blue:.5,gray:.2,rust:.3}, pattern:['solid'], note:'Tiny slate-blue bird with a rusty tail; Himalayan streams.'},
+    {name:'Lilac-breasted Roller', regions:['africa'], habitats:['any','backyard'], social:'solo', size:['tiny','small'], parts:['wing','tail','body'],
+      colors:{blue:.6,green:.1,rust:.2,white:.1}, pattern:['solid'], note:'Turquoise and violet wings; Africa’s most photographed bird.'},
+    {name:'Superb Starling', regions:['africa'], habitats:['backyard','any'], social:'group', size:['tiny','small'], parts:['body','wing'],
+      colors:{blue:.5,iridescent:.3,rust:.2}, pattern:['solid'], note:'Metallic blue-green with rust belly; always in chattering flocks.'},
+    {name:'Helmeted Guineafowl', regions:['africa','captive'], habitats:['backyard','any'], social:'group', size:['small','medium'], parts:['body','wing','tail'],
+      colors:{black:.5,gray:.3,white:.2}, pattern:['patched','mottled'], note:'Dark gray covered in tiny white spots. Big noisy flocks; also kept on farms.'},
+    {name:'Ostrich', regions:['africa','captive'], habitats:['any'], social:'group', size:['large'], parts:['wing','tail','body'],
+      colors:{black:.6,white:.3,tan:.1}, pattern:['solid'], note:'Giant, loose, fluffy plumes — black (male) or brown-gray (female), white tips.'},
+    {name:'African Fish Eagle', regions:['africa'], habitats:['river'], social:'either', size:['large'], parts:['wing','tail','body'],
+      colors:{brown:.4,white:.3,black:.3}, pattern:['solid','patched'], note:'White head and tail, chestnut body, black wings. Lakes and rivers.'},
+    {name:'Pied Kingfisher', regions:['africa'], habitats:['river'], social:'either', size:['tiny','small'], parts:['wing','tail','body'],
+      colors:{black:.5,white:.5}, pattern:['barred','patched'], note:'Black-and-white barred; hovers over rivers.'},
+    {name:'Hoopoe', regions:['africa','europe','himalayas'], habitats:['backyard'], social:'solo', size:['tiny','small'], parts:['wing','tail','body'],
+      colors:{black:.4,white:.3,rust:.3}, pattern:['barred'], note:'Bold black-and-white bars on wings and tail; peachy-rust crest and body.'},
+    {name:'Marabou Stork', regions:['africa'], habitats:['river'], social:'group', size:['large'], parts:['wing','body','down'],
+      colors:{black:.5,white:.4,gray:.1}, pattern:['solid'], note:'Huge; black wings, white down.'},
+    {name:'Grey Crowned Crane', regions:['africa'], habitats:['river'], social:'group', size:['medium','large'], parts:['wing','body'],
+      colors:{gray:.5,white:.3,black:.1,tan:.1}, pattern:['solid'], note:'Gray body, white wing feathers, golden crown.'},
+    {name:'Unknown down / fragment', regions:['durham','utah','europe','himalayas','africa','captive'], habitats:['any'], social:'either', size:['tiny','small'], parts:['down','body'],
+      colors:{white:.6,gray:.2,tan:.2}, pattern:['solid'], note:'Down feathers from most birds look alike. Sometimes the honest answer is “not enough evidence.”', isUnknown:true}
+  ];
+
+  var LABELS = {
+    location:{unknown:'Unknown',durham:'Durham, NC',himalayas:'Himalayas',europe:'Europe',africa:'Africa',utah:'Utah'},
+    social:{unknown:'Unknown',solo:'solo',group:'in a group'},
+    habitat:{unknown:'Unknown',backyard:'backyard',river:'river / water'},
+    size:{unknown:'Unknown',tiny:'under 2 in',small:'2–5 in',medium:'5–9 in',large:'over 9 in'},
+    part:{unknown:'Unknown',wing:'wing',tail:'tail',body:'body',down:'down'}
+  };
+  var COLOR_SWATCH = {blue:'#3b82f6',green:'#22a06b',iridescent:'#7dd3c0',red:'#e0313d',rust:'#c2643a',tan:'#d9b27c',brown:'#6b4a2b',black:'#1f2230',white:'#f4f4f8',gray:'#8a8f9e',yellow:'#f2c14e'};
+
+  var canvas = document.getElementById('fd-canvas'), ctx = canvas.getContext('2d', {willReadFrequently:true});
+  var previewEmpty = document.getElementById('fd-preview-empty');
+  var userMask = null, paintMode = null, brush = 10, painting = false;
+  var currentImg = null, features = null, lastResult = null, lastFactors = null, lastTop = null;
+
+  function rgb2hsl(r,g,b){ r/=255; g/=255; b/=255; var mx=Math.max(r,g,b), mn=Math.min(r,g,b), l=(mx+mn)/2, h=0, s=0;
+    if(mx!==mn){ var d=mx-mn; s=l>.5? d/(2-mx-mn): d/(mx+mn);
+      if(mx===r) h=(g-b)/d+(g<b?6:0); else if(mx===g) h=(b-r)/d+2; else h=(r-g)/d+4; h*=60; }
+    return [h,s,l]; }
+
+  function analyze(img, override){
+    var W=160, H=Math.max(40, Math.round(img.height*W/img.width)); if (img.height>img.width){ H=160; W=Math.max(40,Math.round(img.width*H/img.height)); }
+    var c=document.createElement('canvas'); c.width=W; c.height=H; var x=c.getContext('2d',{willReadFrequently:true}); var mgx=img.width*0.04, mgy=img.height*0.04; x.drawImage(img,mgx,mgy,img.width-2*mgx,img.height-2*mgy,0,0,W,H);
+    var d=x.getImageData(0,0,W,H).data, N=W*H;
+    var med=function(a){ a.sort(function(p,q){return p-q;}); return a[a.length>>1]; };
+    function edgeStats(){ var top=[],bot=[],lef=[],rig=[];
+      for(var px=0;px<W;px++){ var t=[[],[],[]], bo=[[],[],[]]; for(var k=0;k<4;k++){ for(var ch=0;ch<3;ch++){ t[ch].push(d[(k*W+px)*4+ch]); bo[ch].push(d[((H-1-k)*W+px)*4+ch]); } } top.push([med(t[0]),med(t[1]),med(t[2])]); bot.push([med(bo[0]),med(bo[1]),med(bo[2])]); }
+      for(var py=0;py<H;py++){ var l=[[],[],[]], r=[[],[],[]]; for(k=0;k<4;k++){ for(ch=0;ch<3;ch++){ l[ch].push(d[(py*W+k)*4+ch]); r[ch].push(d[(py*W+W-1-k)*4+ch]); } } lef.push([med(l[0]),med(l[1]),med(l[2])]); rig.push([med(r[0]),med(r[1]),med(r[2])]); }
+      function sideMed(arr){ return [med(arr.map(function(c){return c[0];})), med(arr.map(function(c){return c[1];})), med(arr.map(function(c){return c[2];}))]; }
+      var sides={top:top,bot:bot,lef:lef,rig:rig};
+      for(var sname in sides){ var arr=sides[sname], m=sideMed(arr.slice());
+        for(var q=0;q<arr.length;q++){ var c=arr[q]; if(Math.abs(c[0]-m[0])+Math.abs(c[1]-m[1])+Math.abs(c[2]-m[2])>75) arr[q]=m; } }
+      var meds={}, opp={top:'bot',bot:'top',lef:'rig',rig:'lef'}; for(sname in sides) meds[sname]=sideMed(sides[sname].slice());
+      for(sname in sides){ var others=Object.keys(sides).filter(function(k){return k!==sname;}).map(function(k){return meds[k];}); var om=sideMed(others);
+        if(Math.abs(meds[sname][0]-om[0])+Math.abs(meds[sname][1]-om[1])+Math.abs(meds[sname][2]-om[2])>220){ var src=sides[opp[sname]]; sides[sname]=sides[sname].map(function(_,q){ return src[Math.min(src.length-1, Math.round(q*(src.length-1)/Math.max(1,sides[sname].length-1)))]; }); } }
+      return sides; }
+    var E=edgeStats();
+    function bgAt(px,py,ch){ var wt=1/(py+1), wb=1/(H-py), wl=1/(px+1), wr=1/(W-px); return (E.top[px][ch]*wt+E.bot[px][ch]*wb+E.lef[py][ch]*wl+E.rig[py][ch]*wr)/(wt+wb+wl+wr); }
+    var mask=new Uint8Array(N), count=0, i;
+    function build(t){ count=0; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; var dr=d[i*4]-bgAt(px,py,0),dg=d[i*4+1]-bgAt(px,py,1),db=d[i*4+2]-bgAt(px,py,2); var dist=Math.sqrt(dr*dr+dg*dg+db*db); mask[i]=dist>t?1:0; count+=mask[i]; } }
+    build(48); if(count<N*0.02) build(30);
+    (function refine(){ var BS=16, BW=Math.ceil(W/BS), BH=Math.ceil(H/BS), blk=new Array(BW*BH).fill(null);
+      for(var by=0;by<BH;by++) for(var bx=0;bx<BW;bx++){ var rs=[],gs=[],bs=[],tot=0;
+        for(var y=by*BS;y<Math.min(H,(by+1)*BS);y++) for(var x=bx*BS;x<Math.min(W,(bx+1)*BS);x++){ var i=y*W+x; tot++; if(!mask[i]){ rs.push(d[i*4]); gs.push(d[i*4+1]); bs.push(d[i*4+2]); } }
+        if(rs.length>=tot*0.3) blk[by*BW+bx]=[med(rs),med(gs),med(bs)]; }
+      for(var pass=0;pass<8;pass++){ var changed=false; for(by=0;by<BH;by++) for(bx=0;bx<BW;bx++){ if(blk[by*BW+bx]) continue; var acc=[0,0,0],c=0;
+        for(var oy=-1;oy<=1;oy++) for(var ox=-1;ox<=1;ox++){ var nb=blk[(by+oy)*BW+(bx+ox)]; if(by+oy<0||by+oy>=BH||bx+ox<0||bx+ox>=BW||!nb) continue; acc[0]+=nb[0];acc[1]+=nb[1];acc[2]+=nb[2];c++; }
+        if(c){ blk[by*BW+bx]=[acc[0]/c,acc[1]/c,acc[2]/c]; changed=true; } } if(!changed) break; }
+      if(blk.some(function(b){return !b;})) return;
+      function bg2(px,py,ch){ var fx=px/BS-0.5, fy=py/BS-0.5, x0=Math.max(0,Math.min(BW-1,Math.floor(fx))), y0=Math.max(0,Math.min(BH-1,Math.floor(fy))), x1=Math.min(BW-1,x0+1), y1=Math.min(BH-1,y1+1>BH-1?BH-1:y0+1), tx=Math.max(0,Math.min(1,fx-x0)), ty=Math.max(0,Math.min(1,fy-y0));
+        var a=blk[y0*BW+x0][ch], b=blk[y0*BW+x1][ch], c=blk[y1*BW+x0][ch], e=blk[y1*BW+x1][ch]; return (a*(1-tx)+b*tx)*(1-ty)+(c*(1-tx)+e*tx)*ty; }
+      count=0; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; var dr=d[i*4]-bg2(px,py,0),dg=d[i*4+1]-bg2(px,py,1),db=d[i*4+2]-bg2(px,py,2); mask[i]=Math.sqrt(dr*dr+dg*dg+db*db)>42?1:0; count+=mask[i]; }
+    })();
+    function components(){ var lab=new Int32Array(N), sizes=[], cur=0, stack=[];
+      for(var i=0;i<N;i++){ if(!mask[i]||lab[i]) continue; cur++; var sz=0; stack.push(i); lab[i]=cur;
+        while(stack.length){ var j=stack.pop(); sz++; var px=j%W, py=(j/W)|0; var nb=[j-1,j+1,j-W,j+W];
+          if(px===0) nb[0]=-1; if(px===W-1) nb[1]=-1; if(py===0) nb[2]=-1; if(py===H-1) nb[3]=-1;
+          for(var q=0;q<4;q++){ var k=nb[q]; if(k>=0&&mask[k]&&!lab[k]){ lab[k]=cur; stack.push(k); } } }
+        sizes[cur]=sz; }
+      return {lab:lab,sizes:sizes}; }
+    if(count>0){ var C=components();
+      var edgeTouch=[]; for(i=0;i<N;i++){ if(!mask[i]) continue; var ex=i%W, ey=(i/W)|0; if(ex===0||ey===0||ex===W-1||ey===H-1) edgeTouch[C.lab[i]]=(edgeTouch[C.lab[i]]||0)+1; }
+      var big=0; for(i=1;i<C.sizes.length;i++){ if((edgeTouch[i]||0)>Math.min(W,H)*0.6) C.sizes[i]=0; if(C.sizes[i]>big) big=C.sizes[i]; }
+      count=0; for(i=0;i<N;i++){ if(mask[i] && C.sizes[C.lab[i]]<Math.max(1,big*0.25)) mask[i]=0; count+=mask[i]; } }
+    (function fillHoles(){ var reach=new Uint8Array(N), st=[]; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; if((px===0||py===0||px===W-1||py===H-1)&&!mask[i]){ reach[i]=1; st.push(i); } }
+      while(st.length){ var j=st.pop(); var px=j%W, py=(j/W)|0; var nb=[px>0?j-1:-1, px<W-1?j+1:-1, py>0?j-W:-1, py<H-1?j+W:-1];
+        for(var q=0;q<4;q++){ var k=nb[q]; if(k>=0&&!mask[k]&&!reach[k]){ reach[k]=1; st.push(k); } } }
+      count=0; for(i=0;i<N;i++){ if(!mask[i]&&!reach[i]) mask[i]=1; count+=mask[i]; } })();
+    if(count<N*0.01){ for(i=0;i<N;i++){ var px=i%W, py=(i/W)|0; mask[i]=(px>W*.2&&px<W*.8&&py>H*.2&&py<H*.8)?1:0; } count=0; for(i=0;i<N;i++) count+=mask[i]; }
+    if(override && override.length===N){ mask=override; count=0; for(i=0;i<N;i++) count+=mask[i]; }
+    var col={blue:0,green:0,iridescent:0,red:0,rust:0,tan:0,brown:0,black:0,white:0,gray:0,yellow:0}, lum=[], xs=[], ys=[], n=0;
+    var hueSpread={};
+    for(i=0;i<N;i++){ if(!mask[i]) continue; var r=d[i*4],g=d[i*4+1],b=d[i*4+2]; var hsl=rgb2hsl(r,g,b), h=hsl[0],s=hsl[1],l=hsl[2];
+      n++; lum.push(l); xs.push(i%W); ys.push((i/W)|0);
+      var k;
+      if(l<0.3) k='black';
+      else if(l>0.82&&s<0.25) k='white';
+      else if(h>=185&&h<270&&s>0.08) k='blue';
+      else if(s<0.13) k=(l<0.55?'gray':'white');
+      else if(h>=75&&h<185) k='green';
+      else if(h<12||h>=340) k= (s<0.55||l>0.7)?'rust':'red';
+      else if(h>=12&&h<42) k= (l<0.3)?'brown':((l<0.68&&s>0.35)?'rust':(s>0.25&&l>0.55?'tan':'brown'));
+      else if(h>=42&&h<75) k= (l>0.5&&s>0.4)?'yellow':'tan';
+      else k='gray';
+      col[k]++; if(s>0.3&&l>0.2&&l<0.8){ var hb=Math.round(h/30); hueSpread[hb]=(hueSpread[hb]||0)+1; }
+    }
+    for(var key in col) col[key]/=Math.max(1,n);
+    var spreadBins=Object.keys(hueSpread).filter(function(k){return hueSpread[k]>n*0.04;}).length;
+    if(spreadBins>=3 && (col.blue+col.green)>0.25){ col.iridescent=Math.min(0.3,(col.blue+col.green)/2); }
+    var mean=0; for(i=0;i<lum.length;i++) mean+=lum[i]; mean/=Math.max(1,lum.length);
+    var sd=0; for(i=0;i<lum.length;i++) sd+=(lum[i]-mean)*(lum[i]-mean); sd=Math.sqrt(sd/Math.max(1,lum.length));
+    var darkFrac=col.black, lightFrac=col.white;
+    var mx=0,my=0; for(i=0;i<n;i++){mx+=xs[i];my+=ys[i];} mx/=Math.max(1,n); my/=Math.max(1,n);
+    var sxx=0,syy=0,sxy=0; for(i=0;i<n;i++){var dx=xs[i]-mx,dy=ys[i]-my; sxx+=dx*dx;syy+=dy*dy;sxy+=dx*dy;} sxx/=n;syy/=n;sxy/=n;
+    var tr=sxx+syy, det=sxx*syy-sxy*sxy, disc=Math.sqrt(Math.max(0,tr*tr/4-det)), l1=tr/2+disc, l2=Math.max(1e-6,tr/2-disc);
+    var elong=Math.sqrt(l1/l2); var ang=0.5*Math.atan2(2*sxy,sxx-syy); var ux=Math.cos(ang),uy=Math.sin(ang);
+    var bins=64, sum=new Array(bins).fill(0), cnt=new Array(bins).fill(0), pmin=1e9,pmax=-1e9, proj=new Array(n);
+    for(i=0;i<n;i++){ proj[i]=(xs[i]-mx)*ux+(ys[i]-my)*uy; if(proj[i]<pmin)pmin=proj[i]; if(proj[i]>pmax)pmax=proj[i]; }
+    for(i=0;i<n;i++){ var bi=Math.min(bins-1,Math.floor((proj[i]-pmin)/(pmax-pmin+1e-6)*bins)); sum[bi]+=lum[i]; cnt[bi]++; }
+    var prof=[]; for(i=0;i<bins;i++) if(cnt[i]>2) prof.push(sum[i]/cnt[i]);
+    var bars=0, state=0; for(i=0;i<prof.length;i++){ var lo=Math.max(0,i-5), hi=Math.min(prof.length-1,i+5), m2=0; for(var j=lo;j<=hi;j++) m2+=prof[j]; m2/=(hi-lo+1);
+      var v=prof[i]-m2; if(state<=0&&v>0.035){ if(state<0) bars++; state=1; } else if(state>=0&&v<-0.035){ if(state>0) bars++; state=-1; } }
+    bars=Math.floor(bars/2);
+    var edges=0, interior=0;
+    for(i=0;i<N;i++){ var px=i%W, py=(i/W)|0; if(!mask[i]||px<2||py<2||px>=W-2||py>=H-2) continue;
+      if(!(mask[i-1]&&mask[i+1]&&mask[i-W]&&mask[i+W]&&mask[i-2]&&mask[i+2]&&mask[i-2*W]&&mask[i+2*W])) continue; interior++;
+      var L0=(d[i*4]*.299+d[i*4+1]*.587+d[i*4+2]*.114)/255, L1=(d[(i+2)*4]*.299+d[(i+2)*4+1]*.587+d[(i+2)*4+2]*.114)/255, L2=(d[(i+2*W)*4]*.299+d[(i+2*W)*4+1]*.587+d[(i+2*W)*4+2]*.114)/255;
+      if(Math.abs(L0-L1)>0.18||Math.abs(L0-L2)>0.18) edges++; }
+    var edgeFrac=edges/Math.max(1,interior);
+    var solid=0; for(i=0;i<N;i++){ if(!mask[i]) continue; var px=i%W, py=(i/W)|0; if(px<1||py<1||px>=W-1||py>=H-1) continue; var ok=1;
+      for(var oy=-1;oy<=1&&ok;oy++) for(var ox=-1;ox<=1;ox++) if(!mask[i+oy*W+ox]){ok=0;break;} solid+=ok; }
+    var compact=solid/Math.max(1,n);
+    var pattern; var bimodal = darkFrac>0.12 && lightFrac>0.12;
+    if(edgeFrac>0.10 && bars>=3) pattern='barred';
+    else if(edgeFrac>0.16) pattern='barred';
+    else if(bimodal) pattern='patched';
+    else if(edgeFrac<0.08) pattern='solid';
+    else if(bars>=4) pattern='mottled';
+    else pattern='solid';
+    var shape = elong>3.2?'long':(elong>1.9?'medium':'round');
+    return {mask:mask,W:W,H:H,colors:col,sd:sd,bars:bars,edgeFrac:edgeFrac,elong:elong,compact:compact,pattern:pattern,shape:shape,coverage:n/N};
+  }
+
+  function drawPreview(){
+    if(!currentImg) return;
+    var cw=canvas.width, ch=canvas.height; ctx.fillStyle='#1a1f38'; ctx.fillRect(0,0,cw,ch);
+    var s=Math.min(cw/currentImg.width, ch/currentImg.height), w=currentImg.width*s, h=currentImg.height*s, ox=(cw-w)/2, oy=(ch-h)/2;
+    ctx.drawImage(currentImg,ox,oy,w,h);
+    if((document.getElementById('fd-showmask').checked || paintMode) && features){
+      var m=features.mask, W=features.W, H=features.H, iw=w*0.92, ih=h*0.92, cell=iw/W, cellh=ih/H; ox+=w*0.04; oy+=h*0.04; ctx.fillStyle='rgba(111,177,255,0.45)';
+      for(var i=0;i<m.length;i++){ if(m[i]) ctx.fillRect(ox+(i%W)*cell, oy+((i/W)|0)*cellh, cell+0.5, cellh+0.5); }
+    }
+  }
+
+  function describeFeatures(f){
+    var bars=document.getElementById('fd-colorbars'); bars.innerHTML='';
+    var keys=Object.keys(f.colors).sort(function(a,b){return f.colors[b]-f.colors[a];});
+    keys.forEach(function(k){ if(f.colors[k]<0.03) return; var row=document.createElement('div'); row.className='fd-cbar';
+      row.innerHTML='<span class="fd-cname"><i style="background:'+COLOR_SWATCH[k]+'"></i>'+k+'</span><span class="fd-ctrack"><b style="width:'+Math.round(f.colors[k]*100)+'%;background:'+COLOR_SWATCH[k]+'"></b></span><span class="fd-cpct">'+Math.round(f.colors[k]*100)+'%</span>'; bars.appendChild(row); });
+    var txt='Pattern read: <strong>'+f.pattern+'</strong> (about '+f.bars+' dark bands along the feather; '+Math.round(f.edgeFrac*100)+'% of the surface is a sharp light/dark edge). Shape: <strong>'+f.shape+'</strong> (length ≈ '+f.elong.toFixed(1)+'× width). '+
+      (f.compact<0.62?'Edges look <strong>fluffy/downy</strong>.':'Edges look <strong>firm</strong> (a stiff vane).')+' The model has no idea how big this is — it only sees pixels.';
+    document.getElementById('fd-seen-text').innerHTML=txt; document.getElementById('fd-seen').hidden=false;
+  }
+
+  function loadImage(src){ var im=new Image(); im.onload=function(){ currentImg=im; userMask=null; setPaintMode(null); features=analyze(im); previewEmpty.style.display='none'; drawPreview(); describeFeatures(features); run(true); }; im.src=src; }
+
+  document.getElementById('fd-file').addEventListener('change', function(e){ var f=e.target.files&&e.target.files[0]; if(!f) return; var rd=new FileReader(); rd.onload=function(){ loadImage(rd.result); }; rd.readAsDataURL(f); });
+  document.getElementById('fd-showmask').addEventListener('change', drawPreview);
+
+  function getFactors(){ return {location:val('fd-f-location'),social:val('fd-f-social'),habitat:val('fd-f-habitat'),size:val('fd-f-size'),part:val('fd-f-part')}; }
+  function val(id){ return document.getElementById(id).value; }
+
+  function score(bird, f, fac){
+    var w=[]; var s=0;
+    function add(label, pts){ if(Math.abs(pts)<0.05) return; s+=pts; w.push({label:label,pts:pts}); }
+    var chroma=(f.colors.blue||0)+(f.colors.green||0)+(f.colors.red||0)+(f.colors.rust||0)+(f.colors.yellow||0)+(f.colors.iridescent||0);
+    var DISC = chroma>0.1 ? {gray:.25,white:.4,black:.4,tan:.6,brown:.6} : {gray:.7};
+    var sig=0, missing=0, k; for(k in bird.colors){ var have=(f.colors[k]||0)*(DISC[k]||1); sig+=bird.colors[k]*Math.min(1, Math.sqrt(have/(0.5*bird.colors[k]))); if(bird.colors[k]>=0.5 && (f.colors[k]||0)<0.05) missing=1; }
+    add('Color match', +(sig*4).toFixed(2)); if(missing) add('Its main color is missing from the photo', -1.5);
+    var extra=0, STRONG={blue:1,green:1,red:1,rust:1,yellow:1,iridescent:1}, MID={black:1,white:1,tan:.6,brown:.6};
+    for(k in f.colors){ var fr=f.colors[k]; if(!(bird.colors[k]>0)){ if(STRONG[k]&&fr>0.08) extra+=fr*4; else if(MID[k]&&fr>0.15) extra+=fr*MID[k]*1.5; } }
+    if(extra>0.1) add('Photo has colors this bird lacks', -(+extra.toFixed(2)));
+    if(bird.pattern.indexOf(f.pattern)>=0) add('Pattern ('+f.pattern+') fits', 2);
+    else if(f.pattern==='mottled' && bird.pattern.indexOf('barred')>=0) add('Pattern roughly fits', 0.8);
+    else add('Pattern ('+f.pattern+') doesn’t fit', -1.2);
+    if(f.shape==='long' && bird.parts.indexOf('tail')<0 && bird.parts.indexOf('wing')<0) add('Long feather, but this bird’s feathers are all short', -0.6);
+    if(f.compact<0.62 && bird.parts.indexOf('down')>=0) add('Fluffy edges fit a downy bird', 0.6);
+    if(f.compact<0.62 && bird.isUnknown) add('Fluffy, low-detail photo', 1.2);
+    if(bird.isUnknown && f.shape==='round' && f.edgeFrac<0.06 && chroma<0.1) add('Round, plain, colorless — looks like down', 1.5);
+    if(fac.location!=='unknown'){ if(bird.regions.indexOf(fac.location)>=0) add('Lives in '+LABELS.location[fac.location], 2); else if(bird.regions.indexOf('captive')>=0) add('Not native to '+LABELS.location[fac.location]+', but kept on farms', 0.4); else add('Not found in '+LABELS.location[fac.location], -3.5); }
+    else add('Location unknown — every region stays possible', 0);
+    if(fac.habitat!=='unknown'){ if(bird.habitats.indexOf(fac.habitat)>=0) add('Uses '+LABELS.habitat[fac.habitat]+' habitat', 1); else if(bird.habitats.indexOf('any')>=0) add('Habitat neutral', 0.2); else add('Rarely in '+LABELS.habitat[fac.habitat], -0.8); }
+    if(fac.social!=='unknown'){ if(bird.social===fac.social) add('Usually seen '+LABELS.social[fac.social], 1); else if(bird.social==='either') add('Seen solo or in groups', 0.2); else add('Usually not seen '+LABELS.social[fac.social], -1); }
+    if(fac.size!=='unknown'){ if(bird.size.indexOf(fac.size)>=0) add('Length '+LABELS.size[fac.size]+' fits', 1.5); else add('Length '+LABELS.size[fac.size]+' is wrong for this bird', -2); }
+    if(fac.part!=='unknown'){ if(bird.parts.indexOf(fac.part)>=0) add('Has distinctive '+LABELS.part[fac.part]+' feathers', 0.5); else add('Its '+LABELS.part[fac.part]+' feathers look different', -0.5); }
+    if(bird.isUnknown) add('Fallback option', -0.8);
+    return {bird:bird, score:s, work:w};
+  }
+
+  function run(silent){
+    if(!features){ if(!silent) alert('Add a photo first (or tap a specimen).'); return; }
+    var fac=getFactors();
+    var res=BIRDS.map(function(b){return score(b,features,fac);}).sort(function(a,b){return b.score-a.score;});
+    var top=res.slice(0,4); var mx=top[0].score;
+    var exps=top.map(function(r){return Math.exp((r.score-mx)/1.1);}); var Z=exps.reduce(function(a,b){return a+b;},0);
+    top.forEach(function(r,i){ r.p=exps[i]/Z; });
+    var sure = top[0].p>=0.6 && top[0].score>=3.5 ? 'high' : (top[0].p>=0.4 && top[0].score>=2 ? 'medium' : 'low');
+    var out=document.getElementById('fd-result'); out.hidden=false;
+    var v=document.getElementById('fd-verdict');
+    var lead = top[0].bird.isUnknown || sure==='low' ? '🤷 <strong>I can’t tell yet.</strong> My best lead is ' : (sure==='medium' ? '🤔 <strong>Probably</strong> ' : '✅ <strong>Fairly sure:</strong> ');
+    v.innerHTML = lead + '<em>'+top[0].bird.name+'</em> <span class="fd-tag fd-tag-conf">confidence: '+sure+'</span>';
+    var ol=document.getElementById('fd-ranked'); ol.innerHTML='';
+    top.slice(0,3).forEach(function(r){ var li=document.createElement('li'); li.innerHTML='<div class="fd-rank-row"><span class="fd-rank-name">'+r.bird.name+'</span><span class="fd-rank-pct">'+Math.round(r.p*100)+'%</span></div><div class="fd-rank-track"><b style="width:'+Math.round(r.p*100)+'%"></b></div><div class="fd-rank-note">'+r.bird.note+'</div>'; ol.appendChild(li); });
+    var work=document.getElementById('fd-work'); work.innerHTML='';
+    top[0].work.sort(function(a,b){return Math.abs(b.pts)-Math.abs(a.pts);}).forEach(function(x){ var li=document.createElement('li'); li.className=x.pts>0?'plus':(x.pts<0?'minus':'zero'); li.innerHTML='<b>'+(x.pts>0?'+':'')+x.pts+'</b> '+x.label; work.appendChild(li); });
+    var ch=document.getElementById('fd-changed');
+    if(lastResult && lastFactors && !silent){ var changedKeys=Object.keys(fac).filter(function(k){return fac[k]!==lastFactors[k];});
+      if(changedKeys.length){ var prevTop=lastResult[0].bird.name, nowTop=top[0].bird.name; var moved=[];
+        top.slice(0,3).forEach(function(r,i){ var pi=lastResult.findIndex(function(q){return q.bird.name===r.bird.name;}); if(pi<0||pi>2) moved.push(r.bird.name+' entered the top 3'); else if(pi>i) moved.push(r.bird.name+' moved up'); });
+        lastResult.slice(0,3).forEach(function(r){ if(top.slice(0,3).findIndex(function(q){return q.bird.name===r.bird.name;})<0) moved.push(r.bird.name+' dropped out'); });
+        ch.hidden=false; ch.innerHTML='<strong>You changed '+changedKeys.map(function(k){return k+' → '+(LABELS[k][fac[k]]||fac[k]);}).join(', ')+'.</strong> '+(prevTop===nowTop?'Top pick stayed <em>'+nowTop+'</em>':'Top pick changed from <em>'+prevTop+'</em> to <em>'+nowTop+'</em>')+(moved.length?'. '+moved.join('; ')+'.':'.');
+      } else ch.hidden=true; } else ch.hidden=true;
+    var help=[]; if(fac.location==='unknown') help.push('Tell it <strong>where</strong> the feather was found — location rules out more birds than any other clue.');
+    if(fac.size==='unknown') help.push('Add the <strong>length</strong> (put a coin in the photo next time).');
+    if(features.coverage<0.05) help.push('The feather is tiny in the frame — get closer.');
+    if(features.pattern==='mottled') help.push('The pattern read is fuzzy — try a sharper photo in daylight.');
+    if(fac.habitat==='unknown'&&fac.social==='unknown') help.push('Was the bird seen? Near water? Alone or in a flock?');
+    document.getElementById('fd-help').innerHTML = help.length? '<strong>What would help me most:</strong> '+help.join(' ') : '<strong>You’ve given me every clue I can use.</strong>';
+    lastResult=res; lastFactors=fac; lastTop={top:top.slice(0,3), sure:sure, fac:fac};
+  }
+
+  document.getElementById('fd-run').addEventListener('click', function(){ run(false); });
+  ['fd-f-location','fd-f-social','fd-f-habitat','fd-f-size','fd-f-part'].forEach(function(id){ document.getElementById(id).addEventListener('change', function(){ if(features) run(false); }); });
+  document.getElementById('fd-reset-factors').addEventListener('click', function(){ ['fd-f-location','fd-f-social','fd-f-habitat','fd-f-size','fd-f-part'].forEach(function(id){ document.getElementById(id).value='unknown'; }); if(features) run(false); });
+
+  function geom(){ var cw=canvas.width, ch=canvas.height, s=Math.min(cw/currentImg.width, ch/currentImg.height), w=currentImg.width*s, h=currentImg.height*s; return {ox:(cw-w)/2+w*0.04, oy:(ch-h)/2+h*0.04, iw:w*0.92, ih:h*0.92}; }
+  function setPaintMode(m){ paintMode=m; ['fd-paint','fd-erase'].forEach(function(id){ document.getElementById(id).classList.toggle('active', (id==='fd-paint'&&m==='paint')||(id==='fd-erase'&&m==='erase')); }); canvas.style.cursor=m?'crosshair':'default'; canvas.style.touchAction=m?'none':''; var hint=document.getElementById('fd-paint-hint'); if(hint) hint.textContent = m==='paint'?'Drag over the feather to mark it.':(m==='erase'?'Drag over anything that is not feather.':''); if(currentImg) drawPreview(); }
+  function ensureUserMask(){ if(!userMask){ userMask=new Uint8Array(features.mask.length); userMask.set(features.mask); } }
+  var lastPt=null;
+  function paintAt(clientX, clientY){ var r=canvas.getBoundingClientRect(); var x=(clientX-r.left)*canvas.width/r.width, y=(clientY-r.top)*canvas.height/r.height;
+    if(lastPt){ var dx=x-lastPt[0], dy=y-lastPt[1], dist=Math.sqrt(dx*dx+dy*dy), steps=Math.ceil(dist/Math.max(1,brush/2)); for(var s=1;s<steps;s++) stamp(lastPt[0]+dx*s/steps, lastPt[1]+dy*s/steps); }
+    stamp(x,y); lastPt=[x,y]; drawPreview(); }
+  function stamp(x,y){ var g=geom();
+    var W=features.W, H=features.H, gx=(x-g.ox)/g.iw*W, gy=(y-g.oy)/g.ih*H, rad=brush/g.iw*W, v=paintMode==='paint'?1:0;
+    for(var yy=Math.max(0,Math.floor(gy-rad)); yy<=Math.min(H-1,Math.ceil(gy+rad)); yy++) for(var xx=Math.max(0,Math.floor(gx-rad)); xx<=Math.min(W-1,Math.ceil(gx+rad)); xx++){ if((xx-gx)*(xx-gx)+(yy-gy)*(yy-gy)<=rad*rad) userMask[yy*W+xx]=v; }
+    features.mask=userMask; }
+  var reanalyzeT=null; function reanalyze(){ clearTimeout(reanalyzeT); reanalyzeT=setTimeout(function(){ features=analyze(currentImg, userMask); drawPreview(); describeFeatures(features); run(true); document.getElementById('fd-seen-text').innerHTML += ' <strong>(using the area you painted)</strong>'; },150); }
+  function ptr(e){ var t=e.touches?e.touches[0]:e; return [t.clientX,t.clientY]; }
+  function down(e){ if(!paintMode||!currentImg) return; e.preventDefault(); painting=true; lastPt=null; ensureUserMask(); var p=ptr(e); paintAt(p[0],p[1]); }
+  function move(e){ if(!painting) return; e.preventDefault(); var p=ptr(e); paintAt(p[0],p[1]); }
+  function up(){ if(!painting) return; painting=false; lastPt=null; reanalyze(); }
+  canvas.addEventListener('mousedown',down); canvas.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+  canvas.addEventListener('touchstart',down,{passive:false}); canvas.addEventListener('touchmove',move,{passive:false}); canvas.addEventListener('touchend',up);
+  document.getElementById('fd-paint').addEventListener('click', function(){ setPaintMode(paintMode==='paint'?null:'paint'); });
+  document.getElementById('fd-erase').addEventListener('click', function(){ setPaintMode(paintMode==='erase'?null:'erase'); });
+  document.getElementById('fd-brush').addEventListener('input', function(e){ brush=+e.target.value; });
+  document.getElementById('fd-paint-reset').addEventListener('click', function(){ if(!currentImg) return; userMask=null; setPaintMode(null); features=analyze(currentImg); drawPreview(); describeFeatures(features); run(true); });
+
+  var LOGKEY='fd-log-v2';
+  function loadLog(){ try{ return JSON.parse(localStorage.getItem(LOGKEY)||'[]'); }catch(e){ return []; } }
+  function saveLog(list, statusEl){ try{ localStorage.setItem(LOGKEY, JSON.stringify(list)); flash(statusEl,'Saved'); }catch(e){ flash(statusEl,'Could not save (storage full or blocked)'); } }
+  function flash(el,msg){ if(!el) return; el.textContent=msg; clearTimeout(el._t); el._t=setTimeout(function(){ el.textContent=''; },1500); }
+  function thumb(){ var c=document.createElement('canvas'), s=140/Math.max(currentImg.width,currentImg.height); c.width=Math.round(currentImg.width*s); c.height=Math.round(currentImg.height*s); c.getContext('2d').drawImage(currentImg,0,0,c.width,c.height); return c.toDataURL('image/jpeg',0.7); }
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]; }); }
+  function cluesText(fac){ return ['location','social','habitat','size','part'].map(function(k){ return k+': '+(LABELS[k][fac[k]]||fac[k]); }).join(' · '); }
+  function renderLog(){ var list=loadLog(), box=document.getElementById('fd-loglist'); box.innerHTML='';
+    document.getElementById('fd-log-empty').hidden=list.length>0;
+    list.forEach(function(e,idx){ var row=document.createElement('article'); row.className='fd-logrow';
+      row.innerHTML='<div class="fd-logthumb"><img src="'+e.thumb+'" alt="Feather '+e.n+'"><span class="fd-num">#'+e.n+'</span></div>'+
+        '<div class="fd-logbody">'+
+        '<p class="fd-logmeta">'+esc(e.date)+' · '+esc(cluesText(e.fac))+'</p>'+
+        '<p class="fd-logmodel"><span class="fd-tag fd-tag-factor">Model said</span> '+e.top.map(function(t){return esc(t.name)+' '+t.p+'%';}).join(' · ')+' <span class="fd-tag fd-tag-conf">'+esc(e.sure)+'</span></p>'+
+        '<p class="fd-logseen">'+esc(e.seen)+'</p>'+
+        '<label class="fd-guesslabel">Final call<input type="text" data-field="call" value="'+esc(e.call)+'" placeholder="What bird do YOU say it is?"></label>'+
+        '<label class="fd-guesslabel">Notes<textarea data-field="notes" placeholder="Which clue mattered most? What would you check next?">'+esc(e.notes)+'</textarea></label>'+
+        '<button class="fd-reveal fd-logdel" type="button">Remove</button>'+
+        '</div>';
+      row.querySelectorAll('[data-field]').forEach(function(inp){ inp.addEventListener('input', function(){ var l=loadLog(); l[idx][inp.dataset.field]=inp.value; saveLog(l, document.getElementById('fd-log-status2')); }); });
+      row.querySelector('.fd-logdel').addEventListener('click', function(){ var l=loadLog(); l.splice(idx,1); saveLog(l, document.getElementById('fd-log-status2')); renderLog(); });
+      box.appendChild(row); }); }
+  document.getElementById('fd-log-add').addEventListener('click', function(){
+    if(!currentImg||!lastTop){ flash(document.getElementById('fd-log-status'),'Identify a feather first'); return; }
+    var list=loadLog(), n=list.length?Math.max.apply(null,list.map(function(e){return e.n;}))+1:1;
+    var f=features; var seen='Saw: '+Object.keys(f.colors).filter(function(k){return f.colors[k]>=0.05;}).sort(function(a,b){return f.colors[b]-f.colors[a];}).map(function(k){return k+' '+Math.round(f.colors[k]*100)+'%';}).join(', ')+' · pattern '+f.pattern+' · shape '+f.shape+(f.compact<0.62?' · fluffy edges':'');
+    list.push({n:n, date:new Date().toLocaleDateString(), thumb:thumb(), fac:lastTop.fac, top:lastTop.top.map(function(r){return {name:r.bird.name, p:Math.round(r.p*100)};}), sure:lastTop.sure, seen:seen, call:'', notes:''});
+    saveLog(list, document.getElementById('fd-log-status')); flash(document.getElementById('fd-log-status'),'Logged as #'+n); renderLog();
+    document.getElementById('fd-loglist').lastElementChild.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  function logText(){ return loadLog().map(function(e){ return '#'+e.n+' ('+e.date+')\n  clues: '+cluesText(e.fac)+'\n  model: '+e.top.map(function(t){return t.name+' '+t.p+'%';}).join(', ')+' [confidence '+e.sure+']\n  '+e.seen+'\n  final call: '+(e.call||'—')+'\n  notes: '+(e.notes||'—'); }).join('\n\n'); }
+  document.getElementById('fd-log-copy').addEventListener('click', function(){ var t='FEATHER LOG\n\n'+logText(); var st=document.getElementById('fd-log-status2');
+    function ok(){ flash(st,'Copied!'); } function fb(){ var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok,fb); else fb(); });
+  document.getElementById('fd-log-csv').addEventListener('click', function(){ var q=function(v){ return '"'+String(v==null?'':v).replace(/"/g,'""')+'"'; };
+    var rows=[['#','date','location','seen','habitat','length','part','model pick 1','%','model pick 2','%','model pick 3','%','confidence','model saw','final call','notes']];
+    loadLog().forEach(function(e){ var t=e.top; rows.push([e.n,e.date,LABELS.location[e.fac.location],LABELS.social[e.fac.social],LABELS.habitat[e.fac.habitat],LABELS.size[e.fac.size],LABELS.part[e.fac.part],t[0]&&t[0].name,t[0]&&t[0].p,t[1]&&t[1].name,t[1]&&t[1].p,t[2]&&t[2].name,t[2]&&t[2].p,e.sure,e.seen,e.call,e.notes]); });
+    var csv=rows.map(function(r){return r.map(q).join(',');}).join('\n'); var a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('﻿'+csv); a.download='feather-log.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); });
+  document.getElementById('fd-log-clear').addEventListener('click', function(){ if(!loadLog().length) return; if(!confirm('Clear the whole feather log on this device?')) return; saveLog([], document.getElementById('fd-log-status2')); renderLog(); });
+  renderLog();
 })();
 </script>
 </body>
