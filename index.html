@@ -960,8 +960,8 @@
               <p>How do computers learn to recognize patterns? Just like humans, they need training examples—lots of them. But what happens when your sample size is too small or biased?</p>
             </div>
             <div class="agenda-step">
-              <span class="agenda-tag">02 // The Power of Sample Size</span>
-              <p>Explore how drawing different sample sizes changes statistical reliability. Jump to the <b>Sample Size</b> tab to test out different numbers of draws from our population jar!</p>
+              <span class="agenda-tag">02 // The Power of Population &amp; Sample Size</span>
+              <p>Explore how changing the total jar population size alters statistical reliability. Jump to the <b>Sample Size</b> tab to test out different jar scales!</p>
             </div>
             <div class="agenda-step">
               <span class="agenda-tag">03 // Feather Detective Lab</span>
@@ -970,55 +970,54 @@
           </div>
         </div>
 
-        <!-- Sample Size Pane (Marble Game with Adjustable Sample Size) -->
+        <!-- Sample Size Pane (Marble Game with Adjustable Jar Population Size) -->
         <div class="spane" data-pane="sample-size">
           <div class="sim-container">
-            <div class="sim-title">Sample Size Impact Simulator</div>
-            <p class="sim-desc">The jar holds 60 marbles total: <b>42 Magenta</b> (70%) and <b>18 Turquoise</b> (30%). Select a sample size below and draw to see how larger sample sizes stabilize your results and approach the true population ratio!</p>
+            <div class="sim-title">Jar Population Size Simulator</div>
+            <p class="sim-desc">Select a <b>Jar Population Size</b> below (maintaining a ~70% Magenta / 30% Turquoise ratio). Mix the jar and draw a handful of 10 to see how changing population scale impacts your sample reliability!</p>
             
             <div class="jar-stage">
               <div class="jar-container">
                 <div class="marble-jar" id="ssJarMarbles"></div>
-                <span class="jar-counts-label">
-                  <span class="m-tag">42 Magenta (70%)</span> &amp; <span class="t-tag">18 Turquoise (30%)</span>
+                <span class="jar-counts-label" id="ssJarCountsLabel">
+                  <span class="m-tag">Magenta</span> &amp; <span class="t-tag">Turquoise</span>
                 </span>
                 <button class="mix-btn" id="ssMixJarBtn">Mix Jar</button>
               </div>
               
               <div class="draw-zone-wrapper">
                 <div class="draw-zone">
-                  <span style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Sample Draw Results</span>
+                  <span style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Handful of 10 Marbles</span>
                   <div class="drawn-marbles" id="ssDrawResults">
-                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Select sample size &amp; press Draw</span>
+                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Select jar size &amp; press Draw</span>
                   </div>
                   <div class="sim-stats" id="ssSimStats"></div>
                 </div>
 
                 <div class="sim-controls" style="margin-top:16px;">
                   <label style="font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--cyan); font-weight:700; text-transform:uppercase;">
-                    Sample Size:
-                    <select id="ssSampleSizeSelect" style="background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
-                      <option value="3">3 Marbles (Tiny)</option>
-                      <option value="5">5 Marbles (Small)</option>
-                      <option value="10" selected>10 Marbles (Standard)</option>
-                      <option value="20">20 Marbles (Large)</option>
-                      <option value="30">30 Marbles (Very Large)</option>
+                    Jar Population Size:
+                    <select id="ssJarSizeSelect" style="background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
+                      <option value="20">Small Jar (20 Marbles)</option>
+                      <option value="60" selected>Standard Jar (60 Marbles)</option>
+                      <option value="120">Large Jar (120 Marbles)</option>
+                      <option value="240">Massive Jar (240 Marbles)</option>
                     </select>
                   </label>
-                  <button class="sim-btn" id="ssDrawBtn">Draw Sample</button>
+                  <button class="sim-btn" id="ssDrawBtn">Draw Handful of 10</button>
                   <button class="sim-btn" id="ssResetSimBtn" style="border-color:var(--whisper);">Reset</button>
                 </div>
                 
                 <div class="sim-history-box">
-                  <h5>Sample Size Comparison Log</h5>
+                  <h5>Jar Scale Comparison Log</h5>
                   <ul class="sim-history-list" id="ssSimHistoryList">
-                    <li>No samples drawn yet.</li>
+                    <li>No draws yet.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <p style="font-size:16.5px; color:#D5DBEE;"><b>Key Insight:</b> With a tiny sample size (like 3), you will frequently get wild errors (e.g., 100% turquoise or 100% magenta). As you increase your sample size to 20 or 30, your estimated percentage consistently hovers near the true 70/30 population split.</p>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Key Insight:</b> Changing the jar population size alters the diversity of available items. Drawing from a tiny jar (20 marbles) means each individual marble represents 5% of the total population, leading to higher volatility than drawing from a massive jar (240 marbles).</p>
         </div>
 
         <!-- Feather Detective Pane -->
@@ -1737,7 +1736,7 @@
     });
   }
 
-  // Session 2 Sample Size Simulation Setup
+  // Session 2 Jar Population Size Simulation Setup
   var ssJarContainer = document.getElementById('ssJarMarbles');
   var ssDrawZone = document.getElementById('ssDrawResults');
   var ssSimStats = document.getElementById('ssSimStats');
@@ -1745,14 +1744,31 @@
   var ssResetSimBtn = document.getElementById('ssResetSimBtn');
   var ssMixJarBtn = document.getElementById('ssMixJarBtn');
   var ssHistoryList = document.getElementById('ssSimHistoryList');
-  var ssSampleSizeSelect = document.getElementById('ssSampleSizeSelect');
+  var ssJarSizeSelect = document.getElementById('ssJarSizeSelect');
+  var ssJarCountsLabel = document.getElementById('ssJarCountsLabel');
 
   if(ssJarContainer){
-    var ssMasterDeck = [];
-    for(var i=1; i<=60; i++){
-      ssMasterDeck.push({ id: i, color: (i <= 42) ? 'magenta' : 'turquoise' });
+    function createJarDeck(size){
+      var deck = [];
+      var magCount = Math.round(size * 0.7);
+      for(var i=1; i<=size; i++){
+        var color = (i <= magCount) ? 'magenta' : 'turquoise';
+        deck.push({ id: i, color: color });
+      }
+      return deck;
     }
+
+    var currentJarSize = parseInt(ssJarSizeSelect.value, 10);
+    var ssMasterDeck = createJarDeck(currentJarSize);
     var ssVisualDeck = ssMasterDeck.slice();
+
+    function updateJarCountsLabel(){
+      var mCount = ssMasterDeck.filter(function(m){ return m.color === 'magenta'; }).length;
+      var tCount = ssMasterDeck.filter(function(m){ return m.color === 'turquoise'; }).length;
+      if(ssJarCountsLabel){
+        ssJarCountsLabel.innerHTML = '<span class="m-tag">' + mCount + ' Magenta</span> &amp; <span class="t-tag">' + tCount + ' Turquoise</span>';
+      }
+    }
 
     function renderSsJar(){
       ssJarContainer.innerHTML = '';
@@ -1761,8 +1777,18 @@
         el.className = 'marble mini ' + m.color;
         ssJarContainer.appendChild(el);
       });
+      updateJarCountsLabel();
     }
     renderSsJar();
+
+    ssJarSizeSelect.addEventListener('change', function(){
+      currentJarSize = parseInt(ssJarSizeSelect.value, 10);
+      ssMasterDeck = createJarDeck(currentJarSize);
+      ssVisualDeck = ssMasterDeck.slice();
+      renderSsJar();
+      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Jar size changed to ' + currentJarSize + '. Press Draw Handful of 10</span>';
+      ssSimStats.textContent = '';
+    });
 
     ssMixJarBtn.addEventListener('click', function(){
       ssVisualDeck.sort(function(){ return 0.5 - Math.random(); });
@@ -1775,12 +1801,13 @@
     ssDrawBtn.addEventListener('click', function(){
       ssDrawZone.innerHTML = '';
       ssRunCount++;
-      var nSize = parseInt(ssSampleSizeSelect.value, 10);
+      var drawCount = 10;
+      if(drawCount > currentJarSize) drawCount = currentJarSize;
       var working = ssMasterDeck.slice();
       var sample = [];
       var mCount = 0, tCount = 0;
 
-      for(var k=0; k<nSize; k++){
+      for(var k=0; k<drawCount; k++){
         var idx = Math.floor(Math.random() * working.length);
         sample.push(working.splice(idx, 1)[0]);
       }
@@ -1793,20 +1820,23 @@
         if(item.color === 'magenta') mCount++; else tCount++;
       });
 
-      var mPct = Math.round((mCount / nSize) * 100);
-      var tPct = Math.round((tCount / nSize) * 100);
-      ssSimStats.innerHTML = 'Sample (n=' + nSize + '): ' + mCount + ' Magenta (' + mPct + '%), ' + tCount + ' Turquoise (' + tPct + '%) [True: 70% M / 30% T]';
+      var mPct = Math.round((mCount / drawCount) * 100);
+      var tPct = Math.round((tCount / drawCount) * 100);
+      var trueMagCount = ssMasterDeck.filter(function(m){return m.color==='magenta';}).length;
+      var trueMagPct = Math.round((trueMagCount / currentJarSize) * 100);
+
+      ssSimStats.innerHTML = 'Jar Size: ' + currentJarSize + ' | Handful of ' + drawCount + ': ' + mCount + ' Magenta (' + mPct + '%), ' + tCount + ' Turquoise (' + tPct + '%) [True: ' + trueMagPct + '% M]';
 
       if(ssRunCount === 1) ssHistoryList.innerHTML = '';
       var li = document.createElement('li');
-      li.innerHTML = '<b>Draw #' + ssRunCount + ' (n=' + nSize + ')</b>: ' + mPct + '% Magenta, ' + tPct + '% Turquoise <span class="history-nums">Error from 70% true: ' + Math.abs(mPct - 70) + '%</span>';
+      li.innerHTML = '<b>Draw #' + ssRunCount + ' (Jar Size: ' + currentJarSize + ')</b>: ' + mPct + '% Magenta <span class="history-nums">Drawn from ' + currentJarSize + ' total marbles</span>';
       ssHistoryList.insertBefore(li, ssHistoryList.firstChild);
     });
 
     ssResetSimBtn.addEventListener('click', function(){
-      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Select sample size &amp; press Draw</span>';
+      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Select jar size &amp; press Draw Handful of 10</span>';
       ssSimStats.textContent = '';
-      ssHistoryList.innerHTML = '<li>No samples drawn yet.</li>';
+      ssHistoryList.innerHTML = '<li>No draws yet.</li>';
       ssRunCount = 0;
       ssVisualDeck = ssMasterDeck.slice();
       renderSsJar();
@@ -2036,7 +2066,7 @@
         for(var oy=-1;oy<=1;oy++) for(var ox=-1;ox<=1;ox++){ var nb=blk[(by+oy)*BW+(bx+ox)]; if(by+oy<0||by+oy>=BH||bx+ox<0||bx+ox>=BW||!nb) continue; acc[0]+=nb[0];acc[1]+=nb[1];acc[2]+=nb[2];c++; }
         if(c){ blk[by*BW+bx]=[acc[0]/c,acc[1]/c,acc[2]/c]; changed=true; } } if(!changed) break; }
       if(blk.some(function(b){return !b;})) return;
-      function bg2(px,py,ch){ var fx=px/BS-0.5, fy=py/BS-0.5, x0=Math.max(0,Math.min(BW-1,Math.floor(fx))), y0=Math.max(0,Math.min(BH-1,Math.floor(fy))), x1=Math.min(BW-1,x0+1), y1=Math.min(BH-1,y1+1>BH-1?BH-1:y0+1), tx=Math.max(0,Math.min(1,fx-x0)), ty=Math.max(0,Math.min(1,fy-y0));
+      function bg2(px,py,ch){ var fx=px/BS-0.5, fy=py/BS-0.5, x0=Math.max(0,Math.min(BW-1,Math.floor(fx))), y0=Math.max(0,Math.min(BH-1,Math.floor(fy))), x1=Math.min(BW-1,x0+1), y1=Math.min(BH-1,y0+1), tx=Math.max(0,Math.min(1,fx-x0)), ty=Math.max(0,Math.min(1,fy-y0));
         var a=blk[y0*BW+x0][ch], b=blk[y0*BW+x1][ch], c=blk[y1*BW+x0][ch], e=blk[y1*BW+x1][ch]; return (a*(1-tx)+b*tx)*(1-ty)+(c*(1-tx)+e*tx)*ty; }
       count=0; for(var i=0;i<N;i++){ var px=i%W, py=(i/W)|0; var dr=d[i*4]-bg2(px,py,0),dg=d[i*4+1]-bg2(px,py,1),db=d[i*4+2]-bg2(px,py,2); mask[i]=Math.sqrt(dr*dr+dg*dg+db*db)>42?1:0; count+=mask[i]; }
     })();
