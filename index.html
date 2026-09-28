@@ -230,11 +230,13 @@
     box-shadow:0 0 10px rgba(255,230,0,0.3);
   }
   .stab[data-pane="simulation"].active,
-  .stab[data-pane="sample-size"].active{
+  .stab[data-pane="sample-size"].active,
+  .stab[data-pane="spec-mixer"].active{
     color:var(--magenta); border-color:var(--magenta); background:#1F0D20;
     box-shadow:0 0 10px rgba(255,42,133,0.3);
   }
-  .stab[data-pane="exercise"].active{
+  .stab[data-pane="exercise"].active,
+  .stab[data-pane="reverse-engineer"].active{
     color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
     box-shadow:0 0 10px rgba(0,229,255,0.3);
   }
@@ -250,7 +252,7 @@
     background:var(--card-inner); border:2px solid var(--card-edge); border-radius:10px;
     padding:28px; margin:16px 0 20px;
   }
-  .agenda-step{margin-bottom:26px;}
+  .agenda-step{margin-bottom:28px;}
   .agenda-step:last-child{margin-bottom:0;}
   .agenda-tag{
     font-family:'Chakra Petch',sans-serif; font-size:17px; font-weight:700; letter-spacing:.12em;
@@ -342,7 +344,7 @@
   }
   .cost-card li::before{content:"▸"; position:absolute; left:0; color:var(--yellow); font-size:14px;}
 
-  /* Visual Infrastructure Gallery - Scaled */
+  /* Visual Evidence Gallery - Scaled */
   .infra-gallery{
     margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;
   }
@@ -536,7 +538,7 @@
     margin-bottom:6px;
   }
   textarea{
-    width:100%; min-height:120px; margin-top:10px; padding:14px;
+    width:100%; min-height:110px; margin-top:10px; padding:14px;
     border:2px solid var(--whisper); border-radius:6px; resize:vertical;
     font-family:'Space Grotesk',sans-serif; font-size:16.5px; line-height:1.7;
     background:#080C1E; color:var(--ink);
@@ -653,6 +655,148 @@
   .fd-logbody textarea { min-height: 56px; resize: vertical; width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); color: var(--fd-ink); border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92rem; }
   .fd-logbody input[type=text] { width: 100%; box-sizing: border-box; background: rgba(0,0,0,.35); color: var(--fd-ink); border: 1px solid var(--fd-line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92rem; }
   .fd-logdel { align-self: flex-end; border-color: var(--fd-line); color: var(--fd-muted); }
+
+  /* Spec Mixer styles */
+  .spec-builder {
+    background: var(--card-inner); border: 2px solid var(--card-edge); border-radius: 10px; padding: 24px; margin-top: 16px;
+  }
+  .spec-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px;
+  }
+  .spec-field label {
+    display: block; font-family: 'Chakra Petch', sans-serif; font-size: 14px; font-weight: 700; color: var(--cyan); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .spec-field select {
+    width: 100%; background: #070913; color: #fff; border: 2px solid var(--whisper); border-radius: 6px; padding: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 14px;
+  }
+  .spec-preview-box {
+    background: #070913; border: 2px dashed var(--cyan); border-radius: 8px; padding: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: var(--yellow); margin-bottom: 14px; white-space: pre-wrap; word-break: break-all;
+  }
+
+  /* ============================================================
+     SESSION 3 PIPELINE & TOOL ANATOMY GRAPHIC
+     ============================================================ */
+  .pipeline-diagram {
+    background: #070A17; border: 2px solid var(--card-edge); border-radius: 12px;
+    padding: 24px 20px; margin: 18px 0 24px;
+  }
+  .pipeline-track {
+    margin-bottom: 24px;
+  }
+  .pipeline-track:last-child { margin-bottom: 0; }
+  .track-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px; flex-wrap: wrap; gap: 8px;
+  }
+  .track-badge {
+    font-family: 'Chakra Petch', sans-serif; font-size: 16px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 6px;
+  }
+  .track-badge.web { background: rgba(0, 229, 255, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
+  .track-badge.ios { background: rgba(255, 42, 133, 0.15); color: var(--magenta); border: 1px solid var(--magenta); }
+  .track-cost {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; font-weight: 700;
+  }
+  .pipeline-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; position: relative;
+  }
+  @media (max-width: 760px) { .pipeline-steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .pipeline-steps { grid-template-columns: 1fr; } }
+  .pipe-node {
+    background: #0D132A; border: 1.5px solid var(--whisper); border-radius: 10px;
+    padding: 14px 12px; text-align: center; position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .pipe-node.web-node { border-color: rgba(0, 229, 255, 0.4); }
+  .pipe-node.ios-node { border-color: rgba(255, 42, 133, 0.35); }
+  .pipe-icon {
+    width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center;
+    font-size: 20px; margin-bottom: 2px;
+  }
+  .web-node .pipe-icon { background: rgba(0, 229, 255, 0.12); color: var(--cyan); }
+  .ios-node .pipe-icon { background: rgba(255, 42, 133, 0.12); color: var(--magenta); }
+  .pipe-step-title {
+    font-family: 'Chakra Petch', sans-serif; font-size: 15px; font-weight: 700;
+    color: #fff; text-transform: uppercase;
+  }
+  .pipe-step-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.4; font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Deep-Dive Tool Cards */
+  .tool-anatomy-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px;
+  }
+  .tool-anatomy-card {
+    background: #080B1A; border: 1.5px solid var(--card-edge); border-radius: 10px;
+    padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .tool-anatomy-card h5 {
+    font-family: 'Chakra Petch', sans-serif; font-size: 18px; font-weight: 700;
+    color: var(--cyan); text-transform: uppercase; display: flex; align-items: center; gap: 8px;
+  }
+  .tool-anatomy-card p {
+    font-size: 15.5px; color: #D5DBEE; line-height: 1.6; margin: 0;
+  }
+  .tool-vs-pill {
+    background: #111836; border-left: 3px solid var(--yellow); padding: 8px 12px;
+    border-radius: 4px; font-size: 14px; color: var(--muted); font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Reverse Engineer Challenge Cards */
+  .re-card {
+    background: #080B1A; border: 2px solid var(--card-edge); border-radius: 10px;
+    padding: 22px; margin-bottom: 22px;
+  }
+  .re-card:last-child { margin-bottom: 0; }
+  .re-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+  }
+  .re-badge {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700;
+    color: var(--magenta); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .re-target-box {
+    background: #050711; border: 1.5px solid var(--whisper); border-left: 4px solid var(--cyan);
+    border-radius: 6px; padding: 16px; margin-bottom: 12px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 14.5px; color: var(--ink); line-height: 1.65;
+  }
+  .re-clues {
+    font-size: 14px; color: var(--yellow); font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 12px; display: block;
+  }
+  /* Reverse-Engineer image scenes */
+  .re-level{font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; color:var(--yellow); border:1px solid var(--yellow); border-radius:4px; padding:2px 8px; text-transform:uppercase; letter-spacing:.08em;}
+  .re-levers{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:16px 0;}
+  .re-lever{background:#0D132A; border:1.5px solid var(--whisper); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; gap:4px;}
+  .re-lever b{font-family:'Chakra Petch',sans-serif; color:var(--cyan); font-size:16px; text-transform:uppercase;}
+  .re-lever span{font-size:14px; color:#D5DBEE; line-height:1.5;}
+  .re-howto{background:#080B1A; border:1.5px dashed var(--magenta); border-radius:10px; padding:16px 18px; margin:0 0 22px;}
+  .re-howto ol{margin:10px 0 0 20px; color:#D5DBEE; line-height:1.65; font-size:15px;}
+  .re-compare{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  @media (max-width:640px){ .re-compare{grid-template-columns:1fr;} }
+  .re-frame{margin:0; display:flex; flex-direction:column; gap:8px;}
+  .re-frame figcaption{font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .re-img-box{position:relative; background:#050711; border:1.5px solid var(--whisper); border-radius:8px; overflow:hidden; display:grid; place-items:center;}
+  .re-img-box.re-wide{aspect-ratio:16/9;} .re-img-box.re-square{aspect-ratio:1/1;} .re-img-box.re-tall{aspect-ratio:3/4;}
+  .re-img{width:100%; height:100%; object-fit:contain; display:none; cursor:zoom-in;}
+  .re-img-box.has-img .re-img{display:block;}
+  .re-img-box.has-img .re-empty{display:none;}
+  .re-empty{display:flex; flex-direction:column; align-items:center; gap:4px; text-align:center; padding:16px; color:var(--muted); font-size:14px;}
+  .re-empty span{font-size:28px;} .re-empty b{color:var(--ink);} .re-empty small{font-size:12.5px; line-height:1.4;}
+  .re-upload{align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--cyan); border:1px solid rgba(0,229,255,.4); border-radius:6px; padding:5px 10px; cursor:pointer;}
+  .re-upload input{display:none;}
+  .re-frame.baked .re-upload{display:none;}
+  .re-score{display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; margin-bottom:12px; font-size:14.5px; color:#D5DBEE;}
+  .re-score-label{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--green); font-weight:700;}
+  .re-score label{display:flex; align-items:center; gap:6px; cursor:pointer;}
+  .re-reveal{margin-top:12px;}
+  .re-reveal summary{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--magenta); font-weight:700;}
+  .re-recipe{margin-top:10px;}
+  .re-lightbox{position:fixed; inset:0; background:rgba(3,5,12,.92); display:none; place-items:center; z-index:9999; padding:16px; cursor:zoom-out;}
+  .re-lightbox.open{display:grid;}
+  .re-lightbox img{max-width:100%; max-height:100%; border-radius:8px;}
 </style>
 </head>
 <body>
@@ -989,7 +1133,7 @@
           </div>
         </div>
 
-        <!-- Sample Size Pane (Marble Game with Adjustable Jar Population Size) -->
+        <!-- Sample Size Pane -->
         <div class="spane" data-pane="sample-size">
           <div class="sim-container">
             <div class="sim-title">Jar Population Size Simulator</div>
@@ -1036,7 +1180,6 @@
               </div>
             </div>
           </div>
-          <p style="font-size:16.5px; color:#D5DBEE;"><b>Key Insight:</b> Changing the jar population size alters the diversity of available items. Drawing from a tiny jar (20 marbles) means each individual marble represents 5% of the total population, leading to higher volatility than drawing from a massive jar (240 marbles).</p>
         </div>
 
         <!-- Feather Detective Pane -->
@@ -1044,10 +1187,7 @@
           <section id="feather-lab">
             <p class="fd-kicker">Hands-on lab · Can the AI see what you see?</p>
             <h2>🪶 Feather ID Simulator</h2>
-            <p class="fd-intro">Photograph a feather, tell the model what you know, and watch which clue changes its answer. Log each one and make your own final call.</p>
-
-            <h3>On-demand ID simulator</h3>
-            <p class="fd-intro">Take or upload a feather photo. A tiny bird-ID model built right into this page will look at the photo, combine it with the clues you give it, and show its work. It is a see-through version of a real AI, so you can watch which clue changes the answer.</p>
+            <p class="fd-intro">Photograph a feather, tell the model what you know, and watch which clue changes its answer.</p>
 
             <div class="fd-sim">
               <div class="fd-sim-left">
@@ -1131,7 +1271,6 @@
             </div>
 
             <h3>Feather log</h3>
-            <p class="fd-intro">Every feather you log gets a line here with the photo, the clues you gave, and what the model said. Add your own final call and notes. Saved on this device.</p>
             <div id="fd-loglist" class="fd-loglist"></div>
             <p class="fd-notice" id="fd-log-empty">Nothing logged yet — identify a feather, then tap “Log this feather.”</p>
             <div class="fd-actions">
@@ -1147,7 +1286,7 @@
         <div class="spane" data-pane="exercise">
           <div class="exercise-box">
             <span class="exercise-due">Session 2 Exercise // Train a Machine Learning Model</span>
-            <p style="margin-bottom:20px; font-size:17px; color:#D5DBEE;">Open <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> in a new tab to complete this hands-on machine learning exercise.</p>
+            <p style="margin-bottom:20px; font-size:17px; color:#D5DBEE;">Open <a href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener">Teachable Machine</a> in a new tab to complete this exercise.</p>
             
             <div class="exercise-q">
               <label for="ex2_q1">1. Choose to train on tree vs flower vs grass; soccer poses, or rock vs plant vs water. Which category did you pick and why?</label>
@@ -1176,7 +1315,7 @@
       </article>
     </div>
 
-    <!-- Session 3 -->
+    <!-- Session 3: The Art of the Prompt & Specifications -->
     <div class="session-view" id="view-sess-3" data-sessid="sess-3" data-classdate="2026-09-30">
       <div class="gate-box">
         <h4>Session 3 Locked</h4>
@@ -1190,14 +1329,488 @@
       </div>
       <article id="sess-3" class="session wed" style="display:none;">
         <div class="session-top">
-          <span class="lv-badge">Session Three</span>
+          <span class="lv-badge">Session Three // Prompt Engineering</span>
           <span class="when">Wed Sep 30 · 1:45–3:15</span>
           <button class="bm-btn" data-bm="sess-3" aria-pressed="false">☆</button>
         </div>
-        <h3>The Art of the Prompt</h3>
-        <p>Prompting strategies: guiding tone, constraints, and structured output formats.</p>
+        <h3>The Art of the Prompt &amp; Specifications</h3>
+        
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="spec-mixer">Spec Mixer</button>
+          <button class="stab" data-pane="reverse-engineer">Reverse-Engineer It</button>
+          <button class="stab" data-pane="exercise">Session 3 Exercise</button>
+        </div>
+
+        <!-- Agenda Pane -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">01 // What Do You Remember?</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Human Engagement</b></li>
+                <li><b>Environmental Impact</b></li>
+                <li><b>Stochastic / Dynamic</b></li>
+                <li><b>Sample Size</b></li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // Specifications</span>
+              <p>Because an AI predicts the most likely words based on your exact instructions, vague prompts produce generic guesses—so we use 4 core specification levers to steer it:</p>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Role:</b> Who is the AI acting as? (e.g., Detective, Soccer Player, Statistician)</li>
+                <li><b>Task:</b> What specific action or problem must it solve?</li>
+                <li><b>Constraints:</b> What are the strict boundaries, limits, or rules? (e.g., word count limits, forbidden letters)</li>
+                <li><b>Format:</b> How should the output be structured? (e.g., poem, bulleted list, data table, HTML code)</li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // Tools to Build: Web App vs. Apple App Store</span>
+              <p>How do you actually turn an idea into a real app people can play? Let's look at the two different pipelines and what every tool actually does under the hood:</p>
+
+              <!-- Visual Pipeline Diagram -->
+              <div class="pipeline-diagram">
+                <div class="pipeline-track">
+                  <div class="track-header">
+                    <span class="track-badge web">Path A // HTML Web App (Our Quest)</span>
+                    <span class="track-cost" style="color:var(--green);">Cost: $0 · Instant Sharing · Works on Any Device</span>
+                  </div>
+                  <div class="pipeline-steps">
+                    <div class="pipe-node web-node">
+                      <div class="pipe-icon">📝</div>
+                      <div class="pipe-step-title">1. Code Editor</div>
+                      <div class="pipe-step-desc">Write raw HTML/CSS/JS in <b>Working Copy</b>'s built-in editor on your iPad.</div>
+                    </div>
+                    <div class="pipe-node web-node">
+                      <div class="pipe-icon">🌐</div>
+                      <div class="pipe-step-title">2. Web Browser</div>
+                      <div class="pipe-step-desc"><b>Chrome / Safari</b> reads the code &amp; draws the game live.</div>
+                    </div>
+                    <div class="pipe-node web-node">
+                      <div class="pipe-icon">🚀</div>
+                      <div class="pipe-step-title">3. Working Copy / GitHub</div>
+                      <div class="pipe-step-desc"><b>Commit &amp; push</b> from Working Copy to <b>GitHub</b>; <b>GitHub Pages</b> gives it a public link.</div>
+                    </div>
+                    <div class="pipe-node web-node">
+                      <div class="pipe-icon">🎮</div>
+                      <div class="pipe-step-title">4. Play Everywhere</div>
+                      <div class="pipe-step-desc">Runs on iPads, phones, &amp; laptops with zero install!</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pipeline-track">
+                  <div class="track-header">
+                    <span class="track-badge ios">Path B // Apple App Store App</span>
+                    <span class="track-cost" style="color:var(--magenta);">Cost: $99/Year + Mac Computer · 1–7 Day Review Wait</span>
+                  </div>
+                  <div class="pipeline-steps">
+                    <div class="pipe-node ios-node">
+                      <div class="pipe-icon">💻</div>
+                      <div class="pipe-step-title">1. Mac + Xcode</div>
+                      <div class="pipe-step-desc">Requires a Mac computer running heavy <b>Xcode</b> software.</div>
+                    </div>
+                    <div class="pipe-node ios-node">
+                      <div class="pipe-icon">⚙️</div>
+                      <div class="pipe-step-title">2. Swift Compiler</div>
+                      <div class="pipe-step-desc">Translates <b>Swift</b> code into locked iOS binary files.</div>
+                    </div>
+                    <div class="pipe-node ios-node">
+                      <div class="pipe-icon">🛡️</div>
+                      <div class="pipe-step-title">3. Apple Gatekeeper</div>
+                      <div class="pipe-step-desc">Pay <b>$99/yr</b> &amp; wait for human reviewers to approve.</div>
+                    </div>
+                    <div class="pipe-node ios-node">
+                      <div class="pipe-icon">📱</div>
+                      <div class="pipe-step-title">4. App Store Only</div>
+                      <div class="pipe-step-desc">Users must download from App Store (Apple devices only).</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Detailed Tool Explanations -->
+              <span class="agenda-tag" style="margin-top:24px;">Why Do We Need Each Tool? (Under the Hood)</span>
+              <div class="tool-anatomy-grid">
+                <div class="tool-anatomy-card">
+                  <h5>📝 1. Why a Code Editor (Working Copy)?</h5>
+                  <p>Code is just text, so why can't we write it in Apple Notes or Google Docs? Word processors secretly inject invisible formatting—like turning straight quotes (<code>"</code>) into "curly quotes" (<code>“ ”</code>)—which instantly crashes computer code!</p>
+                  <div class="tool-vs-pill"><b>What Working Copy Does:</b> Keeps text 100% pure, color-codes your HTML tags (syntax highlighting) so you spot typos fast, saves files with the <code>.html</code> extension, and can preview your page right inside the app.</div>
+                </div>
+
+                <div class="tool-anatomy-card">
+                  <h5>🌐 2. Why a Web Browser (Chrome / Safari)?</h5>
+                  <p>Most people think a browser is just for searching Google, but it is actually a powerful <b>game engine</b> built into every device on Earth. It doesn't need to "compile" code ahead of time.</p>
+                  <div class="tool-vs-pill"><b>What the Browser Does:</b> Reads your <b>HTML</b> (skeleton), paints your <b>CSS</b> (colors &amp; layout), and runs your <b>JavaScript</b> (game rules &amp; clicks) at 60 frames per second.</div>
+                </div>
+
+                <div class="tool-anatomy-card">
+                  <h5>📡 3. Why Working Copy + GitHub?</h5>
+                  <p>When you save a file in Working Copy, it lives only on your iPad's storage chip. For a friend to play it on their own phone, the file needs a home on the internet.</p>
+                  <div class="tool-vs-pill"><b>How It Travels:</b> A <b>commit</b> is a save point with a short note (&ldquo;added goalie&rdquo;). A <b>push</b> uploads your save points to <b>GitHub</b>. <b>GitHub Pages</b> then serves your <code>.html</code> file 24/7 at a public web link anyone can open. Bonus: every commit is a time machine&mdash;if you break the game, you can roll back.</div>
+                </div>
+
+                <div class="tool-anatomy-card">
+                  <h5>🔐 4. Why Does the App Store Need Xcode &amp; $99?</h5>
+                  <p>Native iOS apps have deep access to a phone's sensors, contacts, and hardware. Because of that, Apple locks down the system tightly to block malware.</p>
+                  <div class="tool-vs-pill"><b>The Trade-Off:</b> You must use a Mac with <b>Xcode</b> to digitally sign your app, pay <b>$99/year</b> for a developer license, and pass Apple's security inspection before anyone can download it.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Spec Mixer Tool Pane -->
+        <div class="spane" data-pane="spec-mixer">
+          <div class="sim-container">
+            <div class="sim-title">Interactive Spec Mixer</div>
+            <p class="sim-desc">Build your custom prompt by selecting a Role, Task, Constraint, and Format below. Copy the generated prompt into Gemini and see how precise specs steer the output!</p>
+            
+            <div class="spec-builder">
+              <div class="spec-grid">
+                <div class="spec-field">
+                  <label for="specRole">1. Role</label>
+                  <select id="specRole">
+                    <option value="You are a sharp, observant detective who treats every question like a mystery case.">Detective</option>
+                    <option value="You are a pro soccer player who relates everything back to training, matches, and the pitch.">Soccer Player</option>
+                    <option value="You are a calm, wise Meditation Master who speaks with mindfulness and peaceful metaphors.">Meditation Master</option>
+                    <option value="You are a Curious Alien visiting Earth for the very first time, fascinated by humanand animal habits.">Curious Alien</option>
+                    <option value="You are a precise Statistician who loves probabilities, sample sizes, percentages, and data patterns.">Statistician</option>
+                  </select>
+                </div>
+                <div class="spec-field">
+                  <label for="specTask">2. Task</label>
+                  <select id="specTask">
+                    <option value="Describe why cats sit in a sunny window.">Describe why cats sit in a sunny window</option>
+                    <option value="Describe the difference between summer and autumn.">Describe difference between summer and autumn</option>
+                    <option value="Describe a soccer penalty shootout.">Describe a soccer penalty shootout</option>
+                    <option value="Explain how to feel happy.">How to feel happy</option>
+                  </select>
+                </div>
+                <div class="spec-field">
+                  <label for="specConstraint">3. Constraint</label>
+                  <select id="specConstraint">
+                    <option value="Keep it under 45 words and do NOT use the letter 'E' anywhere.">Under 45 words, NO letter 'E'</option>
+                    <option value="Include at least 3 specific numbers or percentages in your explanation.">Include at least 3 numbers/percentages</option>
+                    <option value="Write the entire response using only questions.">Write entirely in questions</option>
+                    <option value="Every sentence must start with the exact same letter.">Every sentence starts with same letter</option>
+                  </select>
+                </div>
+                <div class="spec-field">
+                  <label for="specFormat">4. Format</label>
+                  <select id="specFormat">
+                    <option value="Format the output as a 4-line rhyming poem.">4-Line Rhyming Poem</option>
+                    <option value="Format the output as a 3-point bulleted list.">3-Point Bulleted List</option>
+                    <option value="Format the output as a Markdown data table with 2 columns.">2-Column Data Table</option>
+                    <option value="Format the output as an official top-secret field report.">Top-Secret Field Report</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="spec-preview-box" id="specPreviewText">Loading prompt preview...</div>
+              <button class="sim-btn" id="copySpecBtn">Copy Prompt to Clipboard</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reverse-Engineer It Pane (6 Image Scenes, recreated by voice in Gemini Live) -->
+        <div class="spane" data-pane="reverse-engineer">
+          <div class="agenda-block">
+            <span class="agenda-tag">Reverse-Engineer the Scene // 6 Image Challenges</span>
+            <p>Every picture below was built from a secret spec. Your mission: study each scene like a detective, then open <b>Gemini Live</b> and <b>say</b> the spec out loud until Gemini's image builder (<b>Nano Banana</b>) paints a matching twin. No typing, no peeking at the answer key!</p>
+
+            <div class="re-levers">
+              <div class="re-lever"><b>🎨 Style</b><span>The image version of <em>Role</em>. Who's the artist? Photo, cartoon, pixel art, watercolor&hellip; (Hint: all 6 targets are simple flat cartoons.)</span></div>
+              <div class="re-lever"><b>🏟️ Scene</b><span>The image version of <em>Task</em>. Who or what, doing what, and where?</span></div>
+              <div class="re-lever"><b>📌 Must-Haves</b><span>The image version of <em>Constraints</em>. Exact colors, counts, words on signs, weather.</span></div>
+              <div class="re-lever"><b>📷 Camera &amp; Shape</b><span>The image version of <em>Format</em>. Low or high angle, close or far, lighting, wide / square / tall.</span></div>
+            </div>
+
+            <div class="re-howto">
+              <span class="checklist-title">How to Play in Gemini Live</span>
+              <ol>
+                <li>Study the target. Answer the detective questions in your head first.</li>
+                <li>Open the Gemini app and tap <b>Live</b>. Describe the scene out loud using all 4 levers, then ask: <em>&ldquo;Make an image of that.&rdquo;</em></li>
+                <li>Compare. Say what's off (&ldquo;make it nighttime,&rdquo; &ldquo;move the goal to the right&rdquo;) and let Gemini fix it. Count your tries.</li>
+                <li>Save your best version, add it next to the target, and tick the levers you nailed.</li>
+                <li>Only then, open the Answer Key. What did you miss? What did you add that wasn't there?</li>
+              </ol>
+            </div>
+
+            <!-- Scene 1 -->
+            <div class="re-card re-scene" data-scene="1">
+              <div class="re-header">
+                <span class="re-badge">Scene #01 // Sunny Kickoff</span>
+                <span class="re-level">Warm-Up</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="t1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIj4KPHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjN0VDOEYyIi8+CjxjaXJjbGUgY3g9IjIyMCIgY3k9IjE5MCIgcj0iMTAwIiBmaWxsPSIjRkZEMjNGIi8+CjxnIGZpbGw9IiNmZmYiPjxlbGxpcHNlIGN4PSI3NjAiIGN5PSIxNzAiIHJ4PSIxMjAiIHJ5PSI0NSIvPjxlbGxpcHNlIGN4PSI4MzAiIGN5PSIxNDAiIHJ4PSI4MCIgcnk9IjUwIi8+CjxlbGxpcHNlIGN4PSIxMjUwIiBjeT0iMjQwIiByeD0iMTEwIiByeT0iNDAiLz48ZWxsaXBzZSBjeD0iMTMxMCIgY3k9IjIxMiIgcng9IjcwIiByeT0iNDUiLz48L2c+CjxyZWN0IHk9IjU2MCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iMzQwIiBmaWxsPSIjNENBRjUwIi8+CjxyZWN0IHk9IjU2MCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iMTIiIGZpbGw9IiMzRTlBNDMiLz4KPGxpbmUgeDE9IjExMjgiIHkxPSIzMzAiIHgyPSIxMTI4IiB5Mj0iNTcwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMTc1IiB5MT0iMzMwIiB4Mj0iMTE3NSIgeTI9IjU3MCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTIyMiIgeTE9IjMzMCIgeDI9IjEyMjIiIHkyPSI1NzAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEyNzAiIHkxPSIzMzAiIHgyPSIxMjcwIiB5Mj0iNTcwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMzE4IiB5MT0iMzMwIiB4Mj0iMTMxOCIgeTI9IjU3MCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTM2NSIgeTE9IjMzMCIgeDI9IjEzNjUiIHkyPSI1NzAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE0MTIiIHkxPSIzMzAiIHgyPSIxNDEyIiB5Mj0iNTcwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMDgwIiB5MT0iMzc4IiB4Mj0iMTQ2MCIgeTI9IjM3OCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTA4MCIgeTE9IjQyNiIgeDI9IjE0NjAiIHkyPSI0MjYiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwODAiIHkxPSI0NzQiIHgyPSIxNDYwIiB5Mj0iNDc0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMDgwIiB5MT0iNTIyIiB4Mj0iMTQ2MCIgeTI9IjUyMiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTA4MCA1NzAgVjMzMCBIMTQ2MCBWNTcwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSI1NjAiIGN5PSI3MjAiIHI9IjcwIiBmaWxsPSIjZmZmIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNS42Ii8+PHBvbHlnb24gcG9pbnRzPSI1NjAuMCw2OTQuOCA1ODQuMCw3MTIuMiA1NzQuOCw3NDAuNCA1NDUuMiw3NDAuNCA1MzYuMCw3MTIuMiIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNTg1LjUsNjg0LjkgNTgwLjQsNjY5LjIgNTkzLjcsNjU5LjYgNjA3LjEsNjY5LjIgNjAyLjAsNjg0LjkiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjYwMS4zLDczMy40IDYxNC42LDcyMy43IDYyNy45LDczMy40IDYyMi44LDc0OS4xIDYwNi40LDc0OS4xIiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI1NjAuMCw3NjMuNCA1NzMuMyw3NzMuMSA1NjguMiw3ODguNyA1NTEuOCw3ODguNyA1NDYuNyw3NzMuMSIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNTE4LjcsNzMzLjQgNTEzLjYsNzQ5LjEgNDk3LjIsNzQ5LjEgNDkyLjEsNzMzLjQgNTA1LjQsNzIzLjciIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjUzNC41LDY4NC45IDUxOC4wLDY4NC45IDUxMi45LDY2OS4yIDUyNi4zLDY1OS42IDUzOS42LDY2OS4yIiBmaWxsPSIjMWExYTFhIi8+PGNsaXBQYXRoIGlkPSJjNTYwNzIwIj48Y2lyY2xlIGN4PSI1NjAiIGN5PSI3MjAiIHI9IjcwIi8+PC9jbGlwUGF0aD4KPC9zdmc+" alt="Target scene 1: Sunny Kickoff">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t1"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="e1" src="" alt="Eliot's recreation of scene 1">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e1"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: Where is the sun? How many clouds? Which side is the goal on, and which side is the ball on?</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img1_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img1_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img1_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img1_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_1" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_1"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon illustration of an empty soccer field on a sunny day. Light blue sky with a yellow sun in the top-left corner and 2 small white clouds. Bright green grass fills the bottom third. A white goal with a net sits on the right side, and a black-and-white soccer ball is on the grass on the left. No people. Wide 16:9 format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+            <!-- Scene 2 -->
+            <div class="re-card re-scene" data-scene="2">
+              <div class="re-header">
+                <span class="re-badge">Scene #02 // Night Match</span>
+                <span class="re-level">Warm-Up</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-square">
+                    <img class="re-img" data-slot="t2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjEyMDAiPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSIjMTQyMTNEIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEyMCIgcj0iNyIgZmlsbD0iI0ZGRjZDOCIvPjxjaXJjbGUgY3g9IjMzMCIgY3k9IjIxMCIgcj0iNyIgZmlsbD0iI0ZGRjZDOCIvPjxjaXJjbGUgY3g9IjUyMCIgY3k9IjkwIiByPSI3IiBmaWxsPSIjRkZGNkM4Ii8+PGNpcmNsZSBjeD0iNzAwIiBjeT0iMjUwIiByPSI3IiBmaWxsPSIjRkZGNkM4Ii8+PGNpcmNsZSBjeD0iMjYwIiBjeT0iMzMwIiByPSI3IiBmaWxsPSIjRkZGNkM4Ii8+CjxjaXJjbGUgY3g9IjEwMDAiIGN5PSIxNzAiIHI9IjkwIiBmaWxsPSIjRkZGNkM4Ii8+PGNpcmNsZSBjeD0iMTA0NSIgY3k9IjE0MCIgcj0iODUiIGZpbGw9IiMxNDIxM0QiLz4KPHJlY3QgeD0iMzMwIiB5PSI0MjAiIHdpZHRoPSI1NDAiIGhlaWdodD0iMjAwIiByeD0iMTgiIGZpbGw9IiMxMTEiIHN0cm9rZT0iI0ZDQTMxMSIgc3Ryb2tlLXdpZHRoPSIxMCIvPgo8dGV4dCB4PSI0NjUiIHk9IjQ5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iNTQiIGZpbGw9IiNGQ0EzMTEiPkhPTUU8L3RleHQ+PHRleHQgeD0iNzM1IiB5PSI0OTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjU0IiBmaWxsPSIjRkNBMzExIj5BV0FZPC90ZXh0Pgo8dGV4dCB4PSI2MDAiIHk9IjU4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc2l6ZT0iODAiIGZpbGw9IiNGRjNCM0IiPjIgLSAxPC90ZXh0Pgo8cmVjdCB4PSI1OTIiIHk9IjYyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE0MCIgZmlsbD0iIzU1NSIvPgo8cmVjdCB5PSI3NjAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjQ0MCIgZmlsbD0iIzJFN0QzMiIvPgo8Zz48cmVjdCB4PSIxMjAiIHk9IjMwMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQ2MCIgZmlsbD0iIzlBQTBBNiIvPjxyZWN0IHg9IjcwIiB5PSIyNzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIHJ4PSI4IiBmaWxsPSIjRkZGQkUwIi8+PC9nPgo8Zz48cmVjdCB4PSIxMDYwIiB5PSIzMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0NjAiIGZpbGw9IiM5QUEwQTYiLz48cmVjdCB4PSIxMDEwIiB5PSIyNzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIHJ4PSI4IiBmaWxsPSIjRkZGQkUwIi8+PC9nPgo8bGluZSB4MT0iNjAwIiB5MT0iNzYwIiB4Mj0iNjAwIiB5Mj0iMTIwMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjciIHN0cm9rZS13aWR0aD0iOCIvPgo8Y2lyY2xlIGN4PSI0MjAiIGN5PSIxMDAwIiByPSI2NSIgZmlsbD0iI0U1MzkzNSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjUuMiIvPjxwb2x5Z29uIHBvaW50cz0iNDIwLjAsOTc2LjYgNDQyLjMsOTkyLjggNDMzLjgsMTAxOC45IDQwNi4yLDEwMTguOSAzOTcuNyw5OTIuOCIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNDQzLjcsOTY3LjQgNDM5LjAsOTUyLjkgNDUxLjMsOTQzLjkgNDYzLjcsOTUyLjkgNDU5LjAsOTY3LjQiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjQ1OC4zLDEwMTIuNSA0NzAuNywxMDAzLjUgNDgzLjEsMTAxMi41IDQ3OC4zLDEwMjcuMCA0NjMuMSwxMDI3LjAiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjQyMC4wLDEwNDAuMyA0MzIuNCwxMDQ5LjMgNDI3LjYsMTA2My44IDQxMi40LDEwNjMuOCA0MDcuNiwxMDQ5LjMiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjM4MS43LDEwMTIuNSAzNzYuOSwxMDI3LjAgMzYxLjcsMTAyNy4wIDM1Ni45LDEwMTIuNSAzNjkuMywxMDAzLjUiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjM5Ni4zLDk2Ny40IDM4MS4wLDk2Ny40IDM3Ni4zLDk1Mi45IDM4OC43LDk0My45IDQwMS4wLDk1Mi45IiBmaWxsPSIjMWExYTFhIi8+PGNsaXBQYXRoIGlkPSJjNDIwMTAwMCI+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMTAwMCIgcj0iNjUiLz48L2NsaXBQYXRoPgo8L3N2Zz4=" alt="Target scene 2: Night Match">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t2"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-square">
+                    <img class="re-img" data-slot="e2" src="" alt="Eliot's recreation of scene 2">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e2"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: Read every word and number. Count the stars. What shape is the moon? What color is the ball?</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img2_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img2_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img2_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img2_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_2" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_2"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon illustration of a soccer stadium at night. Dark navy sky with a pale yellow crescent moon in the top-right corner and 5 small stars. Two tall floodlight towers, one on each side. In the middle, a black scoreboard with an orange border reads &quot;HOME AWAY&quot; in orange with &quot;2 - 1&quot; in red underneath. Dark green grass with a white halfway line down the center, and a red soccer ball on the grass to the left of the line. Square 1:1 format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+            <!-- Scene 3 -->
+            <div class="re-card re-scene" data-scene="3">
+              <div class="re-header">
+                <span class="re-badge">Scene #03 // Cat Goalie</span>
+                <span class="re-level">Medium</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-square">
+                    <img class="re-img" data-slot="t3" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjEyMDAiPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSIjQjM5RERCIi8+CjxyZWN0IHk9IjgyMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iMzgwIiBmaWxsPSIjNjZCQjZBIi8+CjxsaW5lIHgxPSIzMDgiIHkxPSIzODAiIHgyPSIzMDgiIHkyPSI4NDAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjQwNSIgeTE9IjM4MCIgeDI9IjQwNSIgeTI9Ijg0MCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNTAyIiB5MT0iMzgwIiB4Mj0iNTAyIiB5Mj0iODQwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI2MDAiIHkxPSIzODAiIHgyPSI2MDAiIHkyPSI4NDAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjY5OCIgeTE9IjM4MCIgeDI9IjY5OCIgeTI9Ijg0MCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNzk1IiB5MT0iMzgwIiB4Mj0iNzk1IiB5Mj0iODQwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI4OTIiIHkxPSIzODAiIHgyPSI4OTIiIHkyPSI4NDAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIxMCIgeTE9IjQ3MiIgeDI9Ijk5MCIgeTI9IjQ3MiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjEwIiB5MT0iNTY0IiB4Mj0iOTkwIiB5Mj0iNTY0IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNDUiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyMTAiIHkxPSI2NTYiIHgyPSI5OTAiIHkyPSI2NTYiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii40NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIxMCIgeTE9Ijc0OCIgeDI9Ijk5MCIgeTI9Ijc0OCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iLjQ1IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMjEwIDg0MCBWMzgwIEg5OTAgVjg0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxnPgo8ZWxsaXBzZSBjeD0iNjAwIiBjeT0iNzQwIiByeD0iMTUwIiByeT0iMTMwIiBmaWxsPSIjRjI4QzI4Ii8+Cjxwb2x5Z29uIHBvaW50cz0iNDgwLDUyMCA1MDUsNDEwIDU2MCw0ODAiIGZpbGw9IiNGMjhDMjgiLz48cG9seWdvbiBwb2ludHM9IjcyMCw1MjAgNjk1LDQxMCA2NDAsNDgwIiBmaWxsPSIjRjI4QzI4Ii8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjU2MCIgcj0iMTMwIiBmaWxsPSIjRjI4QzI4Ii8+CjxjaXJjbGUgY3g9IjU1NSIgY3k9IjU0NSIgcj0iMTYiIGZpbGw9IiMxYTFhMWEiLz48Y2lyY2xlIGN4PSI2NDUiIGN5PSI1NDUiIHI9IjE2IiBmaWxsPSIjMWExYTFhIi8+Cjxwb2x5Z29uIHBvaW50cz0iNTg4LDU5MCA2MTIsNTkwIDYwMCw2MDUiIGZpbGw9IiNFOTFFNjMiLz4KPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiPjxsaW5lIHgxPSI1MjAiIHkxPSI2MDAiIHgyPSI0NDAiIHkyPSI1OTAiLz48bGluZSB4MT0iNTIwIiB5MT0iNjE1IiB4Mj0iNDQwIiB5Mj0iNjI1Ii8+PGxpbmUgeDE9IjY4MCIgeTE9IjYwMCIgeDI9Ijc2MCIgeTI9IjU5MCIvPjxsaW5lIHgxPSI2ODAiIHkxPSI2MTUiIHgyPSI3NjAiIHkyPSI2MjUiLz48L2c+CjxwYXRoIGQ9Ik03MjAgODIwIFE4NjAgODAwIDg0MCA3MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0YyOEMyOCIgc3Ryb2tlLXdpZHRoPSIzNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjwvZz4KPGNpcmNsZSBjeD0iMzAwIiBjeT0iMTAxMCIgcj0iNzAiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI1LjYiLz48cG9seWdvbiBwb2ludHM9IjMwMC4wLDk4NC44IDMyNC4wLDEwMDIuMiAzMTQuOCwxMDMwLjQgMjg1LjIsMTAzMC40IDI3Ni4wLDEwMDIuMiIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iMzI1LjUsOTc0LjkgMzIwLjQsOTU5LjIgMzMzLjcsOTQ5LjYgMzQ3LjEsOTU5LjIgMzQyLjAsOTc0LjkiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjM0MS4zLDEwMjMuNCAzNTQuNiwxMDEzLjcgMzY3LjksMTAyMy40IDM2Mi44LDEwMzkuMSAzNDYuNCwxMDM5LjEiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjMwMC4wLDEwNTMuNCAzMTMuMywxMDYzLjEgMzA4LjIsMTA3OC43IDI5MS44LDEwNzguNyAyODYuNywxMDYzLjEiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjI1OC43LDEwMjMuNCAyNTMuNiwxMDM5LjEgMjM3LjIsMTAzOS4xIDIzMi4xLDEwMjMuNCAyNDUuNCwxMDEzLjciIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjI3NC41LDk3NC45IDI1OC4wLDk3NC45IDI1Mi45LDk1OS4yIDI2Ni4zLDk0OS42IDI3OS42LDk1OS4yIiBmaWxsPSIjMWExYTFhIi8+PGNsaXBQYXRoIGlkPSJjMzAwMTAxMCI+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTAxMCIgcj0iNzAiLz48L2NsaXBQYXRoPgo8L3N2Zz4=" alt="Target scene 3: Cat Goalie">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t3"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-square">
+                    <img class="re-img" data-slot="e3" src="" alt="Eliot's recreation of scene 3">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e3"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: What&#x27;s the background color? Where is the cat&#x27;s tail? Where exactly is the ball?</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img3_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img3_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img3_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img3_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_3" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_3"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon of a chubby orange cat sitting in the middle of a white soccer goal, facing forward like a goalkeeper. Big black eyes, a small pink nose, black whiskers, and a curled tail on the right side. Plain lavender purple background, green grass, and a black-and-white soccer ball on the grass in the bottom-left corner. Square 1:1 format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+            <!-- Scene 4 -->
+            <div class="re-card re-scene" data-scene="4">
+              <div class="re-header">
+                <span class="re-badge">Scene #04 // Autumn Park</span>
+                <span class="re-level">Medium</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="t4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIj4KPHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSIjRkZFMEIyIi8+CjxyZWN0IHk9IjY0MCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iMjYwIiBmaWxsPSIjOEJDMzRBIi8+CjxyZWN0IHg9IjUyMCIgeT0iMzMwIiB3aWR0aD0iNzAiIGhlaWdodD0iMzMwIiBmaWxsPSIjNkQ0QzQxIi8+CjxjaXJjbGUgY3g9IjU1NSIgY3k9IjI2MCIgcj0iMjEwIiBmaWxsPSIjRjU3QzAwIi8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMzMwIiByPSIxMzAiIGZpbGw9IiNFRjZDMDAiLz48Y2lyY2xlIGN4PSI2OTAiIGN5PSIzMzAiIHI9IjEzMCIgZmlsbD0iI0ZCOEMwMCIvPgo8ZWxsaXBzZSBjeD0iMTAwMCIgY3k9IjQzMCIgcng9IjIyIiByeT0iMTIiIGZpbGw9IiNFNjUxMDAiIHRyYW5zZm9ybT0icm90YXRlKDMwIDEwMDAgNDMwKSIvPjxlbGxpcHNlIGN4PSIxMTMwIiBjeT0iNTYwIiByeD0iMjIiIHJ5PSIxMiIgZmlsbD0iI0ZGQjMwMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDExMzAgNTYwKSIvPjxlbGxpcHNlIGN4PSI4ODAiIGN5PSI2MjAiIHJ4PSIyMiIgcnk9IjEyIiBmaWxsPSIjRDg0MzE1IiB0cmFuc2Zvcm09InJvdGF0ZSg1MCA4ODAgNjIwKSIvPgo8ZyBmaWxsPSIjNzk1NTQ4Ij48cmVjdCB4PSIxMDUwIiB5PSI2NDAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMjYiIHJ4PSI2Ii8+PHJlY3QgeD0iMTA1MCIgeT0iNTkwIiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjIyIiByeD0iNiIvPjxyZWN0IHg9IjEwODAiIHk9IjY2NiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjcwIi8+PHJlY3QgeD0iMTM2MCIgeT0iNjY2IiB3aWR0aD0iMjAiIGhlaWdodD0iNzAiLz48L2c+CjxjaXJjbGUgY3g9Ijc2MCIgY3k9Ijc0MCIgcj0iNjAiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0LjgiLz48cG9seWdvbiBwb2ludHM9Ijc2MC4wLDcxOC40IDc4MC41LDczMy4zIDc3Mi43LDc1Ny41IDc0Ny4zLDc1Ny41IDczOS41LDczMy4zIiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI3ODEuOSw3MDkuOSA3NzcuNSw2OTYuNSA3ODguOSw2ODguMiA4MDAuMyw2OTYuNSA3OTYuMCw3MDkuOSIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNzk1LjQsNzUxLjUgODA2LjgsNzQzLjIgODE4LjIsNzUxLjUgODEzLjgsNzY0LjkgNzk5LjcsNzY0LjkiIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9Ijc2MC4wLDc3Ny4yIDc3MS40LDc4NS41IDc2Ny4xLDc5OC45IDc1Mi45LDc5OC45IDc0OC42LDc4NS41IiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI3MjQuNiw3NTEuNSA3MjAuMyw3NjQuOSA3MDYuMiw3NjQuOSA3MDEuOCw3NTEuNSA3MTMuMiw3NDMuMiIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNzM4LjEsNzA5LjkgNzI0LjAsNzA5LjkgNzE5LjcsNjk2LjUgNzMxLjEsNjg4LjIgNzQyLjUsNjk2LjUiIGZpbGw9IiMxYTFhMWEiLz48Y2xpcFBhdGggaWQ9ImM3NjA3NDAiPjxjaXJjbGUgY3g9Ijc2MCIgY3k9Ijc0MCIgcj0iNjAiLz48L2NsaXBQYXRoPgo8L3N2Zz4=" alt="Target scene 4: Autumn Park">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t4"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="e4" src="" alt="Eliot's recreation of scene 4">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e4"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: What season is it? Count the falling leaves. What&#x27;s on the right side of the picture?</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img4_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img4_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img4_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img4_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_4" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_4"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon of a park in autumn. A round orange tree with a brown trunk on the left side, 3 leaves falling through the air, a brown wooden bench on the right, and a black-and-white soccer ball resting on light green grass near the tree. Pale peach sky. Wide 16:9 format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+            <!-- Scene 5 -->
+            <div class="re-card re-scene" data-scene="5">
+              <div class="re-header">
+                <span class="re-badge">Scene #05 // Beach at Sunset</span>
+                <span class="re-level">Hard</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="t5" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCIgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJza3kiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRjhBNjUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGRkQxODAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI3NreSkiLz4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iNDcwIiByPSIxMjAiIGZpbGw9IiNGRkVCM0IiLz4KPHJlY3QgeT0iNDcwIiB3aWR0aD0iMTYwMCIgaGVpZ2h0PSIxNjAiIGZpbGw9IiMxRTg4RTUiLz4KPHJlY3QgeT0iNjMwIiB3aWR0aD0iMTYwMCIgaGVpZ2h0PSIyNzAiIGZpbGw9IiNGNEQ1OEQiLz4KPHBhdGggZD0iTTg3MCAxNTAgUTg4NSAxMzAgOTAwIDE1MCBROTE1IDEzMCA5MzAgMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTk3MCAyMTAgUTk4NSAxOTAgMTAwMCAyMTAgUTEwMTUgMTkwIDEwMzAgMjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwNzAgMTMwIFExMDg1IDExMCAxMTAwIDEzMCBRMTExNSAxMTAgMTEzMCAxMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHJlY3QgeD0iMTE5MiIgeT0iNDQwIiB3aWR0aD0iMTYiIGhlaWdodD0iMzIwIiBmaWxsPSIjNUQ0MDM3Ii8+CjxwYXRoIGQ9Ik0xMjAwIDM2MCBMMTAwMCA0NzAgTDEwODAgNDcwIFoiIGZpbGw9IiNFNTM5MzUiLz48cGF0aCBkPSJNMTIwMCAzNjAgTDEwODAgNDcwIEwxMTYwIDQ3MCBaIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTEyMDAgMzYwIEwxMTYwIDQ3MCBMMTI0MCA0NzAgWiIgZmlsbD0iI0U1MzkzNSIvPjxwYXRoIGQ9Ik0xMjAwIDM2MCBMMTI0MCA0NzAgTDEzMjAgNDcwIFoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTIwMCAzNjAgTDEzMjAgNDcwIEwxNDAwIDQ3MCBaIiBmaWxsPSIjRTUzOTM1Ii8+CjxjaXJjbGUgY3g9IjY0MCIgY3k9Ijc2MCIgcj0iNjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI1LjAiLz48cG9seWdvbiBwb2ludHM9IjY0MC4wLDczNy43IDY2MS4yLDc1My4xIDY1My4xLDc3OC4xIDYyNi45LDc3OC4xIDYxOC44LDc1My4xIiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI2NjIuNiw3MjguOSA2NTguMSw3MTUuMCA2NjkuOSw3MDYuNSA2ODEuNyw3MTUuMCA2NzcuMiw3MjguOSIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNjc2LjYsNzcxLjkgNjg4LjQsNzYzLjMgNzAwLjEsNzcxLjkgNjk1LjYsNzg1LjcgNjgxLjEsNzg1LjciIGZpbGw9IiMxYTFhMWEiLz48cG9seWdvbiBwb2ludHM9IjY0MC4wLDc5OC40IDY1MS44LDgwNy4wIDY0Ny4zLDgyMC45IDYzMi43LDgyMC45IDYyOC4yLDgwNy4wIiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI2MDMuNCw3NzEuOSA1OTguOSw3ODUuNyA1ODQuNCw3ODUuNyA1NzkuOSw3NzEuOSA1OTEuNiw3NjMuMyIgZmlsbD0iIzFhMWExYSIvPjxwb2x5Z29uIHBvaW50cz0iNjE3LjQsNzI4LjkgNjAyLjgsNzI4LjkgNTk4LjMsNzE1LjAgNjEwLjEsNzA2LjUgNjIxLjksNzE1LjAiIGZpbGw9IiMxYTFhMWEiLz48Y2xpcFBhdGggaWQ9ImM2NDA3NjAiPjxjaXJjbGUgY3g9IjY0MCIgY3k9Ijc2MCIgcj0iNjIiLz48L2NsaXBQYXRoPgo8L3N2Zz4=" alt="Target scene 5: Beach at Sunset">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t5"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-wide">
+                    <img class="re-img" data-slot="e5" src="" alt="Eliot's recreation of scene 5">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e5"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: What time of day is it, and how can you tell? Count the birds. What colors are on the umbrella?</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img5_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img5_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img5_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img5_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_5" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_5"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon of a beach at sunset. Orange-to-yellow sky, a yellow sun half-sunk into a blue sea on the left, 3 seagulls drawn as small curvy lines in the sky, a red-and-white striped beach umbrella on the right, and a black-and-white soccer ball on the sand in the center. Wide 16:9 format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+            <!-- Scene 6 -->
+            <div class="re-card re-scene" data-scene="6">
+              <div class="re-header">
+                <span class="re-badge">Scene #06 // Moon Ball</span>
+                <span class="re-level">Boss Level</span>
+              </div>
+              <div class="re-compare">
+                <figure class="re-frame">
+                  <figcaption>🎯 Target scene</figcaption>
+                  <div class="re-img-box re-tall">
+                    <img class="re-img" data-slot="t6" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDE2MDAiIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjE2MDAiPgo8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIxNjAwIiBmaWxsPSIjMEIwQjEyIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjIwMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjEyMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9Ijk4MCIgY3k9IjMwMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjYwMCIgcj0iNSIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEwNTAiIGN5PSI3MjAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI3MDAiIGN5PSI0ODAiIHI9IjUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSI5MCIgY3k9Ijg4MCIgcj0iNSIgZmlsbD0iI2ZmZiIvPgo8Y2lyY2xlIGN4PSI4MDAiIGN5PSI0MjAiIHI9IjE5MCIgZmlsbD0iIzFFODhFNSIvPgo8cGF0aCBkPSJNNzAwIDMzMCBxNjAgLTYwIDEyMCAtMTAgcTQwIDUwIC0yMCA5MCBxLTYwIDMwIC0xMDAgLTIweiBNODIwIDUwMCBxNjAgLTIwIDkwIDQwIHEtMzAgNjAgLTkwIDIweiIgZmlsbD0iIzQzQTA0NyIvPgo8cGF0aCBkPSJNMCAxMDUwIFEzMDAgOTgwIDYwMCAxMDMwIFQxMjAwIDEwMDAgVjE2MDAgSDBaIiBmaWxsPSIjQjBCMEI4Ii8+CjxlbGxpcHNlIGN4PSIyNjAiIGN5PSIxMjUwIiByeD0iMTEwIiByeT0iMzYiIGZpbGw9IiM4RThFOTgiLz48ZWxsaXBzZSBjeD0iODgwIiBjeT0iMTQyMCIgcng9IjE0MCIgcnk9IjQyIiBmaWxsPSIjOEU4RTk4Ii8+PGVsbGlwc2UgY3g9Ijk4MCIgY3k9IjExNTAiIHJ4PSI3MCIgcnk9IjI0IiBmaWxsPSIjOEU4RTk4Ii8+CjxyZWN0IHg9IjI5NiIgeT0iNzYwIiB3aWR0aD0iMTIiIGhlaWdodD0iMzIwIiBmaWxsPSIjZGRkIi8+PHJlY3QgeD0iMzA4IiB5PSI3NzAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkZFQjNCIi8+CjxjaXJjbGUgY3g9IjYyMCIgY3k9IjExODAiIHI9Ijg1IiBmaWxsPSIjZmZmIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNi44Ii8+PHBvbHlnb24gcG9pbnRzPSI2MjAuMCwxMTQ5LjQgNjQ5LjEsMTE3MC41IDYzOC4wLDEyMDQuOCA2MDIuMCwxMjA0LjggNTkwLjksMTE3MC41IiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI2NTEuMCwxMTM3LjQgNjQ0LjgsMTExOC40IDY2MS4wLDExMDYuNiA2NzcuMSwxMTE4LjQgNjcxLjAsMTEzNy40IiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI2NzAuMSwxMTk2LjMgNjg2LjMsMTE4NC41IDcwMi41LDExOTYuMyA2OTYuMywxMjE1LjMgNjc2LjMsMTIxNS4zIiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI2MjAuMCwxMjMyLjcgNjM2LjIsMTI0NC40IDYzMC4wLDEyNjMuNSA2MTAuMCwxMjYzLjUgNjAzLjgsMTI0NC40IiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI1NjkuOSwxMTk2LjMgNTYzLjcsMTIxNS4zIDU0My43LDEyMTUuMyA1MzcuNSwxMTk2LjMgNTUzLjcsMTE4NC41IiBmaWxsPSIjMWExYTFhIi8+PHBvbHlnb24gcG9pbnRzPSI1ODkuMCwxMTM3LjQgNTY5LjAsMTEzNy40IDU2Mi45LDExMTguNCA1NzkuMCwxMTA2LjYgNTk1LjIsMTExOC40IiBmaWxsPSIjMWExYTFhIi8+PGNsaXBQYXRoIGlkPSJjNjIwMTE4MCI+PGNpcmNsZSBjeD0iNjIwIiBjeT0iMTE4MCIgcj0iODUiLz48L2NsaXBQYXRoPgo8L3N2Zz4=" alt="Target scene 6: Moon Ball">
+                    <div class="re-empty"><span>🖼️</span><b>Target image goes here</b><small>Coming soon.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add target image<input type="file" accept="image/*" data-upload="t6"></label>
+                </figure>
+                <figure class="re-frame">
+                  <figcaption>🎙️ Your Gemini Live version</figcaption>
+                  <div class="re-img-box re-tall">
+                    <img class="re-img" data-slot="e6" src="" alt="Eliot's recreation of scene 6">
+                    <div class="re-empty"><span>✨</span><b>Your version goes here</b><small>Save your Gemini image, then add it to compare side by side.</small></div>
+                  </div>
+                  <label class="re-upload">＋ Add my version<input type="file" accept="image/*" data-upload="e6"></label>
+                </figure>
+              </div>
+              <span class="re-clues">🔍 Detective questions: Is the picture wide or tall? What planet is in the sky? What&#x27;s stuck in the ground, and what color is it? Count the craters.</span>
+              <div class="re-score">
+                <span class="re-score-label">Did your version nail it?</span>
+                <label><input type="checkbox" data-check="s3_img6_style"> Style</label>
+                <label><input type="checkbox" data-check="s3_img6_scene"> Scene</label>
+                <label><input type="checkbox" data-check="s3_img6_must"> Must-Haves</label>
+                <label><input type="checkbox" data-check="s3_img6_cam"> Camera &amp; Shape</label>
+              </div>
+              <textarea data-note="s3_img_6" placeholder="What did you say to Gemini Live? Write your best spec here, plus how many tries it took..."></textarea>
+              <div class="saved-flag" data-flag="s3_img_6"></div>
+              <details class="re-reveal">
+                <summary>🔑 Answer Key: the prompt that built it (open only after you've tried!)</summary>
+                <div class="re-target-box re-recipe">A simple flat cartoon of a black-and-white soccer ball resting on the grey surface of the Moon. Black sky with a few small white stars and a blue-and-green planet Earth in the upper right. A yellow flag on a pole stuck in the moon ground on the left, and 3 grey craters. Tall 3:4 portrait format.</div>
+                <button type="button" class="sim-btn re-copy">Copy spec</button>
+              </details>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Exercise Pane -->
+        <div class="spane" data-pane="exercise">
+          <div class="exercise-box">
+            <span class="exercise-due">Session 3 Exercise // Due by Next Session</span>
+            
+            <div class="exercise-q">
+              <label for="ex3_q1">1. What happened when you tested your prompt from the Spec Mixer in Gemini? Did it follow all your constraints (like forbidden letters or only questions) on the first try?</label>
+              <textarea id="ex3_q1" data-note="s3_ex1" placeholder="Describe what Gemini got right and where it slipped up..."></textarea>
+              <div class="saved-flag" data-flag="s3_ex1"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex3_q2">2. Which of the 6 Reverse-Engineer scenes was the hardest to recreate in Gemini Live, and which spec lever (Style, Scene, Must-Haves, or Camera &amp; Shape) made the biggest difference?</label>
+              <textarea id="ex3_q2" data-note="s3_ex2" placeholder="Your thoughts on reverse-engineering prompts..."></textarea>
+              <div class="saved-flag" data-flag="s3_ex2"></div>
+            </div>
+
+            <div class="exercise-q">
+              <label for="ex3_q3">3. Mini-Code Spec Challenge: Write a 4-lever specification asking Gemini to build a 1-button HTML game (e.g., a Penalty Kick predictor or a Reaction Timer) that you can paste into Working Copy:</label>
+              <textarea id="ex3_q3" data-note="s3_ex3" placeholder="Role:&#10;Task:&#10;Constraints:&#10;Format:"></textarea>
+              <div class="saved-flag" data-flag="s3_ex3"></div>
+            </div>
+          </div>
+        </div>
+
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
-          <textarea data-note="s3" placeholder="Best prompt trick discovered? What was your favorite takeaway?"></textarea>
+          <textarea data-note="s3" placeholder="Best prompt spec trick discovered? Favorite takeaway?"></textarea>
           <div class="saved-flag" data-flag="s3"></div>
         </details>
       </article>
@@ -1861,6 +2474,90 @@
       renderSsJar();
     });
   }
+
+  // Session 3 Spec Mixer Script
+  var specRole = document.getElementById('specRole');
+  var specTask = document.getElementById('specTask');
+  var specConstraint = document.getElementById('specConstraint');
+  var specFormat = document.getElementById('specFormat');
+  var specPreviewText = document.getElementById('specPreviewText');
+  var copySpecBtn = document.getElementById('copySpecBtn');
+
+  function updateSpecPreview(){
+    if(!specRole) return;
+    var prompt = "Role: " + specRole.value + "\nTask: " + specTask.value + "\nConstraints: " + specConstraint.value + "\nFormat: " + specFormat.value;
+    specPreviewText.textContent = prompt;
+  }
+
+  if(specRole){
+    [specRole, specTask, specConstraint, specFormat].forEach(function(el){
+      el.addEventListener('change', updateSpecPreview);
+    });
+    updateSpecPreview();
+
+    copySpecBtn.addEventListener('click', function(){
+      navigator.clipboard.writeText(specPreviewText.textContent).then(function(){
+        copySpecBtn.textContent = "Copied!";
+        setTimeout(function(){ copySpecBtn.textContent = "Copy Prompt to Clipboard"; }, 1500);
+      });
+    });
+  }
+
+  // ===== Reverse-Engineer image scenes =====
+  (function(){
+    var lb = document.createElement('div');
+    lb.className = 're-lightbox';
+    lb.innerHTML = '<img alt="">';
+    document.body.appendChild(lb);
+    lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+
+    function show(img, src){
+      img.src = src;
+      img.closest('.re-img-box').classList.add('has-img');
+    }
+    document.querySelectorAll('.re-img').forEach(function(img){
+      var slot = img.getAttribute('data-slot');
+      var baked = img.getAttribute('src');
+      if(baked){ show(img, baked); img.closest('.re-frame').classList.add('baked'); }
+      else {
+        try { var saved = localStorage.getItem('eliot_reimg_' + slot); if(saved) show(img, saved); } catch(e){}
+      }
+      img.addEventListener('click', function(){ if(img.src){ lb.querySelector('img').src = img.src; lb.classList.add('open'); } });
+    });
+
+    document.querySelectorAll('input[data-upload]').forEach(function(inp){
+      inp.addEventListener('change', function(){
+        var file = inp.files && inp.files[0];
+        if(!file) return;
+        var slot = inp.getAttribute('data-upload');
+        var img = document.querySelector('.re-img[data-slot="' + slot + '"]');
+        var reader = new FileReader();
+        reader.onload = function(){
+          var raw = new Image();
+          raw.onload = function(){
+            var max = 1000, w = raw.width, h = raw.height, k = Math.min(1, max / Math.max(w, h));
+            var c = document.createElement('canvas');
+            c.width = Math.round(w * k); c.height = Math.round(h * k);
+            c.getContext('2d').drawImage(raw, 0, 0, c.width, c.height);
+            var data = c.toDataURL('image/jpeg', 0.82);
+            show(img, data);
+            try { localStorage.setItem('eliot_reimg_' + slot, data); } catch(e){ alert('Image shown, but this browser could not save it for next time.'); }
+          };
+          raw.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        inp.value = '';
+      });
+    });
+
+    document.querySelectorAll('.re-copy').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var txt = btn.parentNode.querySelector('.re-recipe').textContent.trim();
+        var done = function(){ btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy spec'; }, 1500); };
+        if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(done, done); } else { done(); }
+      });
+    });
+  })();
 
   // Local Storage for Notes and Exercises
   document.querySelectorAll('textarea[data-note]').forEach(function(ta){
