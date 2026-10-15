@@ -231,7 +231,8 @@
   }
   .stab[data-pane="simulation"].active,
   .stab[data-pane="sample-size"].active,
-  .stab[data-pane="spec-mixer"].active{
+  .stab[data-pane="spec-mixer"].active,
+  .stab[data-pane="challenges"].active{
     color:var(--magenta); border-color:var(--magenta); background:#1F0D20;
     box-shadow:0 0 10px rgba(255,42,133,0.3);
   }
@@ -240,6 +241,7 @@
     color:var(--cyan); border-color:var(--cyan); background:#0D1C28;
     box-shadow:0 0 10px rgba(0,229,255,0.3);
   }
+  .stab[data-pane="kick-lab"].active,
   .stab[data-pane="feather-lab"].active{
     color:var(--green); border-color:var(--green); background:#0D211B;
     box-shadow:0 0 10px rgba(0,255,136,0.3);
@@ -797,6 +799,123 @@
   .re-lightbox{position:fixed; inset:0; background:rgba(3,5,12,.92); display:none; place-items:center; z-index:9999; padding:16px; cursor:zoom-out;}
   .re-lightbox.open{display:grid;}
   .re-lightbox img{max-width:100%; max-height:100%; border-radius:8px;}
+
+  /* ============ SESSION 4 KICK PREDICTOR LAB ============ */
+  .kp-step{
+    background:#0B1028; border:2px solid var(--whisper); border-radius:10px;
+    padding:22px 20px; margin:0 0 20px; text-align:left;
+  }
+  .kp-step-tag{
+    font-family:'Chakra Petch',sans-serif; font-size:16px; font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--green); display:block; margin-bottom:6px;
+  }
+  .kp-step p{font-size:16.5px; color:#D5DBEE; margin-bottom:14px; max-width:72ch;}
+  .kp-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:start;}
+  @media (max-width: 820px){ .kp-grid{grid-template-columns:1fr;} }
+  .kp-dial{margin-bottom:18px;}
+  .kp-dial-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .kp-dial-name{font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:16px; letter-spacing:.06em; text-transform:uppercase; color:#fff;}
+  .kp-dial-val{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:16px; color:var(--yellow); font-variant-numeric:tabular-nums;}
+  .kp-dial input[type=range], .kp-try input[type=range]{width:100%; height:34px; accent-color:var(--cyan); cursor:pointer; margin:2px 0;}
+  .kp-dial-ends{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted);}
+  .kp-dial-say{font-size:14.5px; color:var(--cyan); min-height:22px; margin-top:2px;}
+  .kp-net{width:100%; height:auto; display:block; background:#070915; border:1px solid var(--whisper); border-radius:10px;}
+  .kp-net text{font-family:'Chakra Petch',sans-serif; font-weight:700; fill:#F1F4FD;}
+  .kp-net-key{font-size:13.5px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .kp-score{
+    display:flex; flex-wrap:wrap; gap:12px; margin:4px 0 16px;
+  }
+  .kp-stat{
+    flex:1 1 150px; background:#070915; border:2px solid var(--card-edge); border-radius:10px; padding:12px 14px; text-align:center;
+  }
+  .kp-stat b{display:block; font-family:'Chakra Petch',sans-serif; font-size:28px; line-height:1.2; color:var(--yellow); font-variant-numeric:tabular-nums;}
+  .kp-stat span{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .kp-table-wrap{max-height:560px; overflow:auto; border:2px solid var(--whisper); border-radius:10px; background:#070915;}
+  .kp-table{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:14px; font-variant-numeric:tabular-nums;}
+  .kp-table th{
+    position:sticky; top:0; background:#141B36; color:var(--yellow); font-family:'Chakra Petch',sans-serif;
+    font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:10px 8px; text-align:center; white-space:nowrap;
+  }
+  .kp-table td{padding:8px; text-align:center; border-top:1px solid var(--whisper); color:#D5DBEE; white-space:nowrap;}
+  .kp-goal{color:var(--green); font-weight:700;}
+  .kp-miss{color:var(--magenta); font-weight:700;}
+  .kp-right{color:var(--green); font-weight:700;}
+  .kp-wrong{color:var(--magenta); font-weight:700;}
+  .kp-table tr.kp-row-wrong td{background:rgba(255,42,133,.22);}
+  .kp-table tr.kp-row-wrong td:first-child{box-shadow:inset 4px 0 0 var(--magenta);}
+  .kp-table tr:not(.kp-row-wrong) td:first-child{box-shadow:inset 4px 0 0 rgba(0,255,136,.55);}
+  .kp-curve{width:100%; height:auto; display:block; background:#070915; border:1px solid var(--whisper); border-radius:10px; margin-top:12px;}
+  .kp-curve text{font-family:'IBM Plex Mono',monospace; font-size:11px; fill:#9DA8C9;}
+  .kp-select{background:#070913; color:#fff; border:2px solid var(--cyan); padding:8px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; margin-left:8px;}
+  .kp-label{font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--cyan); font-weight:700; text-transform:uppercase;}
+  .kp-testlog{list-style:none; margin:12px 0 0; padding:0; font-family:'IBM Plex Mono',monospace; font-size:14.5px; color:#D5DBEE;}
+  .kp-testlog li{border-top:1px solid var(--whisper); padding:9px 0;}
+  .kp-testlog li b{color:var(--yellow);}
+  .kp-try{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;}
+  @media (max-width: 640px){ .kp-try{grid-template-columns:1fr;} }
+  .kp-try label{font-family:'Chakra Petch',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#fff; display:block;}
+  .kp-try output{font-family:'IBM Plex Mono',monospace; color:var(--yellow); font-weight:700;}
+  .kp-verdict{font-family:'Chakra Petch',sans-serif; font-size:24px; font-weight:700; text-align:center; margin-top:14px; min-height:36px;}
+  .kp-bar{height:14px; border-radius:7px; background:#141B36; border:1px solid var(--card-edge); overflow:hidden; margin-top:8px;}
+  .kp-bar i{display:block; height:100%; width:50%; background:var(--green); transition:width .15s;}
+  .kp-grid-pitch{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);}
+  .kp-pitch{width:100%; height:auto; display:block; background:#0B2A1A; border:1px solid #1E4D33; border-radius:10px;}
+  .kp-grid-pitch2{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);}
+  .kp-big{background:#070915; border:2px solid var(--green); border-radius:10px; padding:14px 16px; margin:0 0 18px; text-align:center;}
+  .kp-big>span{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;}
+  .kp-big-row{display:flex; justify-content:center; align-items:baseline; gap:6px; margin:4px 0;}
+  .kp-big-row input{width:120px; font-family:'Chakra Petch',sans-serif; font-size:40px; font-weight:700; color:var(--green); background:transparent; border:none; border-bottom:2px dashed var(--green); text-align:center; outline:none;}
+  .kp-big-row b{font-family:'Chakra Petch',sans-serif; font-size:28px; color:var(--green);}
+  .kp-clues{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:20px;}
+  @media (max-width: 900px){ .kp-clues{grid-template-columns:1fr;} }
+  .kp-clue{background:#070915; border:2px solid var(--card-edge); border-radius:10px; padding:16px;}
+  .kp-clue-title{font-family:'Chakra Petch',sans-serif; font-size:18px; font-weight:700; color:var(--yellow); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;}
+  .kp-clue input[type=range]{width:100%; height:34px; accent-color:var(--cyan); cursor:pointer;}
+  .kp-clue .kp-big{margin:12px 0;}
+  .kp-clue .kp-big-row input{font-size:34px; width:100px;}
+  .kp-clue-rule{font-size:13.5px; color:var(--muted); margin-bottom:14px; line-height:1.5;}
+  .kp-mix{background:#141B36; border:2px solid var(--card-edge); border-radius:10px; padding:16px 18px; font-family:'IBM Plex Mono',monospace;}
+  .kp-mix-title{font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px;}
+  .kp-mix-row{display:grid; grid-template-columns:1fr auto auto auto; gap:12px; font-size:15px; color:#D5DBEE; padding:5px 0; border-bottom:1px solid var(--whisper);}
+  .kp-mix-row span:nth-child(2){color:var(--cyan); font-weight:700;}
+  .kp-mix-row span:nth-child(4){color:var(--yellow); font-weight:700;}
+  .kp-mix-sum{font-size:14px; color:#D5DBEE; margin-top:12px; line-height:1.6;}
+  .kp-mix-call{font-family:'Chakra Petch',sans-serif; font-size:26px; font-weight:700; margin-top:6px;}
+  .kp-mine{margin-top:16px; background:#070915; border:2px dashed var(--green); border-radius:10px; padding:12px 16px;}
+  .kp-mine summary{cursor:pointer; font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--green); letter-spacing:.06em; text-transform:uppercase;}
+  .kp-mine p{font-size:15px; color:#D5DBEE; margin:10px 0;}
+  .kp-mine-form{display:flex; flex-wrap:wrap; gap:12px 18px; align-items:center; margin-bottom:8px;}
+  .kp-mine-form label{font-family:'Chakra Petch',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; color:#fff;}
+  .kp-mine-form input, .kp-mine-form select{background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 8px; border-radius:6px; font-family:'IBM Plex Mono',monospace; font-size:15px; width:70px; margin:0 4px;}
+  .kp-mine-form select{width:auto;}
+  .kp-x{background:none; border:1px solid var(--whisper); color:var(--muted); border-radius:4px; cursor:pointer; margin-left:8px; font-size:12px; padding:1px 6px;}
+  .kp-x:hover{color:var(--magenta); border-color:var(--magenta);}
+  .kp-step textarea{width:100%; min-height:90px; background:#070913; color:var(--ink); border:2px solid var(--card-edge); border-radius:8px; padding:12px; font-family:'Space Grotesk',sans-serif; font-size:16px; line-height:1.5; resize:vertical;}
+  details.kp-fold>summary{cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px;}
+  details.kp-fold>summary::-webkit-details-marker{display:none;}
+  details.kp-fold>summary::before{content:'▸'; color:var(--green); font-size:18px; transition:transform .2s;}
+  details.kp-fold[open]>summary::before{transform:rotate(90deg);}
+  details.kp-fold[open]>summary{margin-bottom:10px;}
+  .loop4{display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; gap:10px; align-items:stretch; margin:18px 0 6px; position:relative;}
+  .loop4-card{background:#070915; border:2px solid var(--card-edge); border-radius:12px; padding:16px 14px 14px; text-align:center; position:relative;}
+  .loop4-card.c1{border-color:var(--yellow);} .loop4-card.c2{border-color:var(--cyan);} .loop4-card.c3{border-color:var(--green);} .loop4-card.c4{border-color:var(--magenta);}
+  .loop4-num{position:absolute; top:-12px; left:12px; width:24px; height:24px; border-radius:50%; background:var(--card); border:2px solid currentColor; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px; line-height:20px;}
+  .c1 .loop4-num{color:var(--yellow);} .c2 .loop4-num{color:var(--cyan);} .c3 .loop4-num{color:var(--green);} .c4 .loop4-num{color:var(--magenta);}
+  .loop4-icon{font-size:34px; line-height:1.2; margin-bottom:4px;}
+  .loop4-name{font-family:'Chakra Petch',sans-serif; font-size:19px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:6px;}
+  .c1 .loop4-name{color:var(--yellow);} .c2 .loop4-name{color:var(--cyan);} .c3 .loop4-name{color:var(--green);} .c4 .loop4-name{color:var(--magenta);}
+  .loop4-desc{font-size:14.5px; color:#D5DBEE; line-height:1.5;}
+  .loop4-arrow{align-self:center; color:var(--muted); font-size:22px;}
+  .loop4-back{grid-column:1 / -1; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--green); border-top:2px dashed var(--green); padding-top:8px; margin-top:4px;}
+  @media (max-width: 760px){ .loop4{grid-template-columns:1fr;} .loop4-arrow{transform:rotate(90deg); justify-self:center;} }
+  .kp-rule{background:#141B36; border:2px solid var(--card-edge); border-radius:10px; padding:14px 18px; margin:0 0 18px; font-size:16.5px; color:#D5DBEE; line-height:1.6;}
+  .kp-rule b{color:var(--yellow);}
+  .kp-pitch text{font-family:'IBM Plex Mono',monospace; font-weight:700; fill:#F1F4FD;}
+  .kp-verdict-note{font-size:14.5px; color:var(--muted); text-align:center; margin-top:8px; min-height:22px;}
+  .kp-table tr{cursor:pointer;}
+  .kp-table tr:hover td{background:rgba(0,229,255,.08);}
+  .kp-table tr.kp-row-sel td{box-shadow:inset 0 2px 0 var(--cyan), inset 0 -2px 0 var(--cyan);}
+  .kp-table tr.kp-row-sel td:first-child{color:var(--cyan);}
 </style>
 </head>
 <body>
@@ -847,7 +966,6 @@
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-1">Session 1</button>
       <button class="sess-tab" data-sess="sess-2">Session 2</button>
-      <button class="sess-tab" data-sess="sess-3">Session 3</button>
     </div>
 
     <!-- Session 1: ALWAYS UNLOCKED -->
@@ -979,7 +1097,7 @@
                 </label>
                 <label class="check-item">
                   <input type="checkbox" data-check="s1_c6">
-                  <span>6. Koder installed</span>
+                  <span>6. Working Copy installed</span>
                 </label>
                 <label class="check-item">
                   <input type="checkbox" data-check="s1_c7">
@@ -1035,7 +1153,7 @@
               </div>
             </div>
           </div>
-          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> When you prompt an AI, it samples a sequence of tokens from its probability distribution. Like grabbing a handful, each token in the response is distinct in that spot, but across multiple prompts, previously chosen tokens reappear—encircled with a glowing halo!</p>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> When an AI writes, it picks one next word (a "token") at a time, a bit like pulling one marble out of a mixed jar. Likely words are the color there is more of, so they come out more often, but not every time. That is why the same prompt can give you a different answer on a different day, and why some marbles show up again across handfuls—encircled with a glowing halo!</p>
         </div>
 
         <!-- Exercise Pane -->
@@ -1136,8 +1254,8 @@
         <!-- Sample Size Pane -->
         <div class="spane" data-pane="sample-size">
           <div class="sim-container">
-            <div class="sim-title">Jar Population Size Simulator</div>
-            <p class="sim-desc">Select a <b>Jar Population Size</b> below (maintaining a ~70% Magenta / 30% Turquoise ratio). Mix the jar and draw a handful of 10 to see how changing population scale impacts your sample reliability!</p>
+            <div class="sim-title">Sample Size Simulator</div>
+            <p class="sim-desc">The jar is always about <b>70% Magenta / 30% Turquoise</b>. Your <b>handful is the sample</b>. Pick a <b>Handful Size</b>, draw a few times, and watch how close each handful gets to the true 70%. Small handfuls bounce around; big handfuls settle down. Then change the <b>Jar Size</b> and see whether it matters nearly as much.</p>
             
             <div class="jar-stage">
               <div class="jar-container">
@@ -1150,29 +1268,39 @@
               
               <div class="draw-zone-wrapper">
                 <div class="draw-zone">
-                  <span style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Handful of 10 Marbles</span>
+                  <span id="ssHandfulTitle" style="font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; color:var(--yellow); text-transform:uppercase;">Handful of 10 Marbles</span>
                   <div class="drawn-marbles" id="ssDrawResults">
-                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Select jar size &amp; press Draw</span>
+                    <span style="color:var(--muted); font-size:15px; line-height:56px;">Pick a handful size &amp; press Draw</span>
                   </div>
                   <div class="sim-stats" id="ssSimStats"></div>
                 </div>
 
                 <div class="sim-controls" style="margin-top:16px;">
-                  <label style="font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--cyan); font-weight:700; text-transform:uppercase;">
-                    Jar Population Size:
-                    <select id="ssJarSizeSelect" style="background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
-                      <option value="20">Small Jar (20 Marbles)</option>
-                      <option value="60" selected>Standard Jar (60 Marbles)</option>
-                      <option value="120">Large Jar (120 Marbles)</option>
-                      <option value="240">Massive Jar (240 Marbles)</option>
+                  <label style="font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--yellow); font-weight:700; text-transform:uppercase;">
+                    Handful Size (the sample):
+                    <select id="ssHandfulSelect" style="background:#070913; color:#fff; border:2px solid var(--yellow); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
+                      <option value="5">Tiny (5 Marbles)</option>
+                      <option value="10" selected>Small (10 Marbles)</option>
+                      <option value="30">Medium (30 Marbles)</option>
+                      <option value="60">Big (60 Marbles)</option>
                     </select>
                   </label>
+                  <label style="font-family:'Chakra Petch',sans-serif; font-size:14px; color:var(--cyan); font-weight:700; text-transform:uppercase;">
+                    Jar Size:
+                    <select id="ssJarSizeSelect" style="background:#070913; color:#fff; border:2px solid var(--cyan); padding:6px 12px; border-radius:6px; font-family:'IBM Plex Mono',monospace; margin-left:8px;">
+                      <option value="60">Standard Jar (60 Marbles)</option>
+                      <option value="120">Large Jar (120 Marbles)</option>
+                      <option value="240" selected>Massive Jar (240 Marbles)</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="sim-controls">
                   <button class="sim-btn" id="ssDrawBtn">Draw Handful of 10</button>
                   <button class="sim-btn" id="ssResetSimBtn" style="border-color:var(--whisper);">Reset</button>
                 </div>
                 
                 <div class="sim-history-box">
-                  <h5>Jar Scale Comparison Log</h5>
+                  <h5>Handful Comparison Log</h5>
                   <ul class="sim-history-list" id="ssSimHistoryList">
                     <li>No draws yet.</li>
                   </ul>
@@ -1180,6 +1308,7 @@
               </div>
             </div>
           </div>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>What to notice:</b> The handful size is what makes a sample trustworthy, not the size of the jar. Five marbles can easily say "100% Magenta!" Sixty marbles almost never do. AI models are the same: the more examples they learn from, the steadier their guesses get.</p>
         </div>
 
         <!-- Feather Detective Pane -->
@@ -1315,12 +1444,23 @@
       </article>
     </div>
 
+  </section>
+
+  <!-- OCTOBER -->
+  <section class="panel" id="panel-oct" role="tabpanel" aria-labelledby="tab-oct">
+    <p class="month-note">Stage 02 // Under the Hood & Creative Engines</p>
+    <div class="session-subnav">
+      <button class="sess-tab active" data-sess="sess-3">Session 3</button>
+      <button class="sess-tab" data-sess="sess-4">Session 4</button>
+      <button class="sess-tab" data-sess="sess-5">Session 5</button>
+      <button class="sess-tab" data-sess="sess-6">Session 6</button>
+    </div>
     <!-- Session 3: The Art of the Prompt & Specifications -->
-    <div class="session-view" id="view-sess-3" data-sessid="sess-3" data-classdate="2026-09-30">
+    <div class="session-view active" id="view-sess-3" data-sessid="sess-3" data-classdate="2026-10-07">
       <div class="gate-box">
         <h4>Session 3 Locked</h4>
         <p>Auto-unlocks the day before class, or enter passcode.</p>
-        <span class="gate-unlock-date">Class: Wed Sep 30 · Unlocks Sep 29</span>
+        <span class="gate-unlock-date">Class: Wed Oct 7 · Unlocks Oct 6</span>
         <div class="gate-form">
           <input type="password" class="gate-input" placeholder="Passcode">
           <button class="gate-btn">Unlock</button>
@@ -1330,7 +1470,7 @@
       <article id="sess-3" class="session wed" style="display:none;">
         <div class="session-top">
           <span class="lv-badge">Session Three // Prompt Engineering</span>
-          <span class="when">Wed Sep 30 · 1:45–3:15</span>
+          <span class="when">Wed Oct 7 · 1:45–3:15</span>
           <button class="bm-btn" data-bm="sess-3" aria-pressed="false">☆</button>
         </div>
         <h3>The Art of the Prompt &amp; Specifications</h3>
@@ -1477,7 +1617,7 @@
                     <option value="You are a sharp, observant detective who treats every question like a mystery case.">Detective</option>
                     <option value="You are a pro soccer player who relates everything back to training, matches, and the pitch.">Soccer Player</option>
                     <option value="You are a calm, wise Meditation Master who speaks with mindfulness and peaceful metaphors.">Meditation Master</option>
-                    <option value="You are a Curious Alien visiting Earth for the very first time, fascinated by humanand animal habits.">Curious Alien</option>
+                    <option value="You are a Curious Alien visiting Earth for the very first time, fascinated by human and animal habits.">Curious Alien</option>
                     <option value="You are a precise Statistician who loves probabilities, sample sizes, percentages, and data patterns.">Statistician</option>
                   </select>
                 </div>
@@ -1815,28 +1955,248 @@
         </details>
       </article>
     </div>
-  </section>
-
-  <!-- OCTOBER -->
-  <section class="panel" id="panel-oct" role="tabpanel" aria-labelledby="tab-oct">
-    <p class="month-note">Stage 02 // Under the Hood & Creative Engines</p>
-    <div class="session-subnav">
-      <button class="sess-tab active" data-sess="sess-4">Session 4</button>
-      <button class="sess-tab" data-sess="sess-5">Session 5</button>
-      <button class="sess-tab" data-sess="sess-6">Session 6</button>
-    </div>
-    <!-- Session 4 -->
-    <div class="session-view active" id="view-sess-4" data-sessid="sess-4" data-classdate="2026-10-02">
+    <!-- Session 4: Neural Networks Without the Math (Kick Predictor Lab) -->
+    <div class="session-view" id="view-sess-4" data-sessid="sess-4" data-classdate="2026-10-16">
       <div class="gate-box">
         <h4>Session 4 Locked</h4>
-        <span class="gate-unlock-date">Class: Fri Oct 2 · Unlocks Oct 1</span>
-        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
+        <p>Auto-unlocks the day before class, or enter passcode.</p>
+        <span class="gate-unlock-date">Class: Fri Oct 16 · Unlocks Oct 15</span>
+        <div class="gate-form">
+          <input type="password" class="gate-input" placeholder="Passcode">
+          <button class="gate-btn">Unlock</button>
+        </div>
         <div class="gate-err"></div>
       </div>
       <article id="sess-4" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Four</span><span class="when">Fri Oct 2 · 1:30–3:00</span></div>
+        <div class="session-top">
+          <span class="lv-badge">Session Four // Training Lab</span>
+          <span class="when">Fri Oct 16 · 1:30–3:00</span>
+          <button class="bm-btn" data-bm="sess-4" aria-pressed="false">☆</button>
+        </div>
         <h3>Neural Networks Without the Math</h3>
-        <p>Neurons, weights, and layers explored on <a href="https://playground.tensorflow.org" target="_blank" rel="noopener">TensorFlow Playground</a>.</p>
+
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="kick-lab">Kick Predictor</button>
+          <button class="stab" data-pane="challenges">Challenges</button>
+        </div>
+
+        <!-- Agenda Pane -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">01 // What Do You Remember?</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Human Engagement</b></li>
+                <li><b>Environmental Impact</b></li>
+                <li><b>Stochastic / Dynamic</b></li>
+                <li><b>Sample Size</b></li>
+                <li><b>Specifications</b> (Role, Task, Constraints, Format)</li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // Be the Data (10 min, no screen)</span>
+              <p>Take a ball and a wastebasket (or two shoes for posts). Kick 8 to 10 times from different distances and angles, sometimes with a "goalie" in the way. Write each one down: distance, angle, goalie, goal or miss. Those kicks are today's data. Later you can type them into the Kick Predictor and the machine will learn from <b>your</b> kicks.</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // How Does a Machine Learn?</span>
+              <p>In Feather Detective, a person typed the rules in. Today's machine starts out knowing nothing and finds its own rule from examples. It only has four moves, and it runs them in a loop:</p>
+              <div class="loop4">
+                <div class="loop4-card c1"><div class="loop4-num">1</div><div class="loop4-icon">🎚️</div><div class="loop4-name">Dials</div><div class="loop4-desc">A goal chance for each clue, and how much that clue counts. The dials <i>are</i> the rule.</div></div>
+                <div class="loop4-arrow">➜</div>
+                <div class="loop4-card c2"><div class="loop4-num">2</div><div class="loop4-icon">🔮</div><div class="loop4-name">Guess</div><div class="loop4-desc">Use the dials to call a kick: GOAL or MISS.</div></div>
+                <div class="loop4-arrow">➜</div>
+                <div class="loop4-card c3"><div class="loop4-num">3</div><div class="loop4-icon">⚽</div><div class="loop4-name">Check</div><div class="loop4-desc">Compare the guess with what really happened.</div></div>
+                <div class="loop4-arrow">➜</div>
+                <div class="loop4-card c4"><div class="loop4-num">4</div><div class="loop4-icon">🔧</div><div class="loop4-name">Nudge</div><div class="loop4-desc">Turn each dial a tiny bit toward "less wrong."</div></div>
+                <div class="loop4-back">↺ repeat, hundreds of times</div>
+              </div>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">04 // Kick Predictor Lab (about 40 min)</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Set each clue:</b> move the kicker (distance, angle) and change the goalie, and say how likely a goal is for each clue on its own.</li>
+                <li><b>Check it:</b> see which of 8 past kicks the rule calls wrong, and fix it by hand.</li>
+                <li><b>Let it learn:</b> press one button and watch the dials fix themselves.</li>
+                <li><b>The real test:</b> try it on 200 kicks it has never seen. Does it learn better from 4 kicks, 8, or 40?</li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">05 // Challenges</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Human vs machine:</b> best of five on kicks nobody has seen.</li>
+                <li><b>Ask Gemini:</b> give Gemini the same kicks and compare its rule with the machine's.</li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">06 // Show &amp; Tell: Your 1-Button Game Spec</span>
+              <p>Read out the 4-lever spec you wrote for last session's exercise. Which lever did the most work?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kick Predictor Pane -->
+        <div class="spane" data-pane="kick-lab">
+          <div class="sim-container">
+            <div class="sim-title">Kick Predictor</div>
+            <p class="sim-desc">Three clues about a penalty kick: <b>distance</b>, <b>angle</b>, and <b>goalie</b>. For each clue you say how likely a goal is, and how much that clue matters. The machine mixes the three into one answer. Then it learns the whole thing by itself.</p>
+
+            <details class="kp-step kp-fold" open>
+              <summary class="kp-step-tag">Step 1 // Set Each Clue</summary>
+              <p>Move the kicker with the sliders. For each clue, type the chance of a goal <b>looking at that clue only</b>, and set how much it should count.</p>
+              <div class="kp-grid kp-grid-pitch">
+                <div>
+                  <svg class="kp-pitch" id="kpPitch" viewBox="0 0 400 300" role="img" aria-label="Kicker and goalie on the pitch"></svg>
+                </div>
+                <div class="kp-mix" id="kpMix"></div>
+              </div>
+              <div class="kp-clues">
+                <div class="kp-clue" data-clue="d">
+                  <div class="kp-clue-title">① Distance</div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpIn_d">Yards from goal</label><span class="kp-dial-val" id="kpInV_d">12 yd</span></div>
+                  <input type="range" id="kpIn_d" min="6" max="40" step="1" value="12">
+                  <div class="kp-big"><span>Goal chance, distance only</span><div class="kp-big-row"><input type="number" id="kpC_d" min="0" max="100" step="1" value="50"><b>%</b></div></div>
+                  <div class="kp-clue-rule" id="kpR_d"></div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpWt_d">How much it counts</label><span class="kp-dial-val" id="kpWtV_d">5</span></div>
+                  <input type="range" id="kpWt_d" min="0" max="10" step="1" value="5">
+                  <div class="kp-dial-ends"><span>ignore it</span><span>huge deal</span></div>
+                </div>
+                <div class="kp-clue" data-clue="a">
+                  <div class="kp-clue-title">② Angle</div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpIn_a">Degrees off centre</label><span class="kp-dial-val" id="kpInV_a">0°</span></div>
+                  <input type="range" id="kpIn_a" min="0" max="60" step="5" value="0">
+                  <div class="kp-big"><span>Goal chance, angle only</span><div class="kp-big-row"><input type="number" id="kpC_a" min="0" max="100" step="1" value="50"><b>%</b></div></div>
+                  <div class="kp-clue-rule" id="kpR_a"></div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpWt_a">How much it counts</label><span class="kp-dial-val" id="kpWtV_a">5</span></div>
+                  <input type="range" id="kpWt_a" min="0" max="10" step="1" value="5">
+                  <div class="kp-dial-ends"><span>ignore it</span><span>huge deal</span></div>
+                </div>
+                <div class="kp-clue" data-clue="g">
+                  <div class="kp-clue-title">③ Goalie</div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpIn_g">Goalie skill</label><span class="kp-dial-val" id="kpInV_g">5 / 10</span></div>
+                  <input type="range" id="kpIn_g" min="1" max="10" step="1" value="5">
+                  <div class="kp-big"><span>Goal chance, goalie only</span><div class="kp-big-row"><input type="number" id="kpC_g" min="0" max="100" step="1" value="50"><b>%</b></div></div>
+                  <div class="kp-clue-rule" id="kpR_g"></div>
+                  <div class="kp-dial-head"><label class="kp-dial-name" for="kpWt_g">How much it counts</label><span class="kp-dial-val" id="kpWtV_g">5</span></div>
+                  <input type="range" id="kpWt_g" min="0" max="10" step="1" value="5">
+                  <div class="kp-dial-ends"><span>ignore it</span><span>huge deal</span></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="kp-step kp-fold">
+              <summary class="kp-step-tag">Step 2 // Check It Against Real Kicks</summary>
+              <p>These kicks already happened. Rows light up <span class="kp-wrong">pink</span> when the mix calls them wrong; a <span class="kp-right">green</span> edge means it got them right. Tap a kick to put the kicker there, then fix your clues and look again.</p>
+              <div class="kp-score">
+                <div class="kp-stat"><b id="kpRight">0 / 8</b><span>Called right</span></div>
+                <div class="kp-stat"><b id="kpRounds">0</b><span>Practice rounds</span></div>
+              </div>
+              <div class="kp-table-wrap">
+                <table class="kp-table">
+                  <thead><tr><th>Kick</th><th>Distance</th><th>Angle</th><th>Goalie</th><th>Really happened</th><th>Mix says</th><th>Right?</th></tr></thead>
+                  <tbody id="kpRows"></tbody>
+                </table>
+              </div>
+              <p style="font-size:14.5px; color:var(--muted); margin:10px 0 0;">The machine calls GOAL whenever the mixed chance is 50% or more.</p>
+              <details class="kp-mine" id="kpMineBox">
+                <summary>⚽ Use my own kicks instead</summary>
+                <p>Kicked some real balls today? Log them here. Once you have 3 or more, the machine checks and learns from <b>your</b> kicks instead of the sample ones.</p>
+                <div class="kp-mine-form">
+                  <label>Distance <input type="number" id="kpM_d" min="3" max="40" value="10"> yd</label>
+                  <label>Angle <input type="number" id="kpM_a" min="0" max="60" step="5" value="0"> °</label>
+                  <label>Goalie
+                    <select id="kpM_g"><option value="1">Nobody in goal (1)</option><option value="5" selected>Someone trying (5)</option><option value="9">Someone good (9)</option></select>
+                  </label>
+                  <button class="sim-btn" id="kpM_goal" style="border-color:var(--green);">⚽ Goal</button>
+                  <button class="sim-btn" id="kpM_miss" style="border-color:var(--magenta);">✗ Miss</button>
+                </div>
+                <ul class="kp-testlog" id="kpMineList"><li>No kicks logged yet.</li></ul>
+                <div class="sim-controls" style="justify-content:flex-start; margin-top:10px;">
+                  <label class="kp-label">Which kicks to use:
+                    <select id="kpSource" class="kp-select"><option value="sample" selected>Sample kicks</option><option value="mine">My kicks</option></select>
+                  </label>
+                  <button class="sim-btn" id="kpMineClear" style="border-color:var(--whisper);">Clear My Kicks</button>
+                </div>
+              </details>
+            </details>
+
+            <details class="kp-step kp-fold">
+              <summary class="kp-step-tag">Step 3 // Let It Learn</summary>
+              <p>Now the machine sets all three clues and all three weights by itself: guess, check, nudge, repeat, 1,500 times in a few seconds. Watch the sliders in Step 1 move.</p>
+              <div class="sim-controls" style="margin-top:0;">
+                <label class="kp-label">Kicks to learn from:
+                  <select id="kpTrainSize" class="kp-select">
+                    <option value="4">4 kicks</option>
+                    <option value="8" selected>8 kicks</option>
+                    <option value="40">40 kicks</option>
+                  </select>
+                </label>
+                <button class="sim-btn" id="kpLearnBtn" style="border-color:var(--green);">Let It Learn</button>
+                <button class="sim-btn" id="kpZeroBtn" style="border-color:var(--whisper);">Reset Everything</button>
+              </div>
+            </details>
+
+            <details class="kp-step kp-fold" style="margin-bottom:0;">
+              <summary class="kp-step-tag">Step 4 // The Real Test: New Kicks</summary>
+              <p>Does the machine work on kicks it has <b>never seen</b>? Test it. Then learn from 4 kicks, 8, and 40 (Reset each time) and see which tests best.</p>
+              <div class="sim-controls" style="margin-top:0;">
+                <button class="sim-btn" id="kpTestBtn" style="border-color:var(--yellow);">Test on 200 New Kicks</button>
+                <button class="sim-btn" id="kpTestClear" style="border-color:var(--whisper);">Clear Results</button>
+              </div>
+              <ul class="kp-testlog" id="kpTestLog"><li>No tests yet.</li></ul>
+            </details>
+          </div>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> Nobody told the machine that far-away kicks are harder or that the goalie matters more than the angle. It found that out from examples, by nudging sliders until its calls stopped being wrong. That is all "training" means. It still gets some kicks wrong even with good settings, because real kicks have luck in them. Stochastic, just like the marbles.</p>
+        </div>
+
+        <!-- Challenges Pane -->
+        <div class="spane" data-pane="challenges">
+          <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">Challenges</div>
+            <p class="sim-desc" style="text-align:center;">Do these after the machine has learned (Kick Predictor, Step 3).</p>
+
+            <div class="kp-step">
+              <span class="kp-step-tag">Challenge 1 // Human vs Machine</span>
+              <p>Five kicks the machine has never seen. You call GOAL or MISS by gut. The machine calls by its rule. Best of five. (The machine uses whatever its sliders say right now, so let it learn first.)</p>
+              <div class="kp-grid kp-grid-pitch">
+                <div><svg class="kp-pitch" id="kpRacePitch" viewBox="0 0 400 300" role="img" aria-label="The race kick on the pitch"></svg></div>
+                <div>
+                  <div class="kp-score" style="margin-top:0;">
+                    <div class="kp-stat"><b id="kpRaceYou">0</b><span>You</span></div>
+                    <div class="kp-stat"><b id="kpRaceBot">0</b><span>Machine</span></div>
+                    <div class="kp-stat"><b id="kpRaceN">0 / 5</b><span>Kick</span></div>
+                  </div>
+                  <div class="kp-net-key" id="kpRaceSay" style="font-size:15px; margin-bottom:12px;">Press "Next Kick" to start.</div>
+                  <div class="sim-controls" style="margin-top:0; justify-content:flex-start;">
+                    <button class="sim-btn" id="kpRaceNext">Next Kick</button>
+                    <button class="sim-btn" id="kpRaceGoal" style="border-color:var(--green);" disabled>⚽ GOAL</button>
+                    <button class="sim-btn" id="kpRaceMiss" style="border-color:var(--magenta);" disabled>✗ MISS</button>
+                    <button class="sim-btn" id="kpRaceReset" style="border-color:var(--whisper);">Restart</button>
+                  </div>
+                </div>
+              </div>
+              <textarea data-note="s4_ch4" style="margin-top:14px;" placeholder="Final score: me __, machine __. What do I know about soccer that the machine doesn't?"></textarea>
+              <div class="saved-flag" data-flag="s4_ch4"></div>
+            </div>
+
+            <div class="kp-step" style="margin-bottom:0;">
+              <span class="kp-step-tag">Challenge 2 // Ask Gemini to Find the Rule</span>
+              <p>Copy the practice kicks and paste them into Gemini. Ask it to work out a rule for when a kick goes in. Then compare its rule with what the machine learned. Two different AIs, two different methods, same kicks.</p>
+              <div class="sim-controls" style="margin-top:0; justify-content:flex-start;">
+                <button class="sim-btn" id="kpGeminiBtn" style="border-color:var(--cyan);">Copy Kicks for Gemini</button>
+                <span class="kp-net-key" id="kpGeminiSay"></span>
+              </div>
+              <textarea data-note="s4_ch5" style="margin-top:14px;" placeholder="Gemini's rule:&#10;&#10;The machine's rule:&#10;&#10;Which one do I trust more, and why?"></textarea>
+              <div class="saved-flag" data-flag="s4_ch5"></div>
+            </div>
+          </div>
+        </div>
+
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
           <textarea data-note="s4" placeholder="What clicked about neural nets?"></textarea>
           <div class="saved-flag" data-flag="s4"></div>
@@ -1844,15 +2204,15 @@
       </article>
     </div>
     <!-- Session 5 -->
-    <div class="session-view" id="view-sess-5" data-sessid="sess-5" data-classdate="2026-10-16">
+    <div class="session-view" id="view-sess-5" data-sessid="sess-5">
       <div class="gate-box">
         <h4>Session 5 Locked</h4>
-        <span class="gate-unlock-date">Class: Fri Oct 16 · Unlocks Oct 15</span>
+        <span class="gate-unlock-date">Date to be rescheduled · Passcode only for now</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
         <div class="gate-err"></div>
       </div>
       <article id="sess-5" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Five</span><span class="when">Fri Oct 16 · 1:30–3:00</span></div>
+        <div class="session-top"><span class="lv-badge">Session Five</span><span class="when">Date TBD</span></div>
         <h3>When AI Gets It Wrong</h3>
         <p>Hallucinations, bias, and verification strategies.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -1899,7 +2259,7 @@
       <article id="sess-7" class="session fri" style="display:none;">
         <div class="session-top"><span class="lv-badge">Session Seven</span></div>
         <h3>First Webpage</h3>
-        <p>HTML basics in CodePen or Koder: headings, paragraphs, and buttons.</p>
+        <p>HTML basics in CodePen or Working Copy: headings, paragraphs, and buttons.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
           <textarea data-note="s7" placeholder="Tags and structures mastered?"></textarea>
           <div class="saved-flag" data-flag="s7"></div>
@@ -2368,7 +2728,7 @@
     });
   }
 
-  // Session 2 Jar Population Size Simulation Setup
+  // Session 2 Sample Size Simulation Setup (handful size is the sample)
   var ssJarContainer = document.getElementById('ssJarMarbles');
   var ssDrawZone = document.getElementById('ssDrawResults');
   var ssSimStats = document.getElementById('ssSimStats');
@@ -2377,6 +2737,8 @@
   var ssMixJarBtn = document.getElementById('ssMixJarBtn');
   var ssHistoryList = document.getElementById('ssSimHistoryList');
   var ssJarSizeSelect = document.getElementById('ssJarSizeSelect');
+  var ssHandfulSelect = document.getElementById('ssHandfulSelect');
+  var ssHandfulTitle = document.getElementById('ssHandfulTitle');
   var ssJarCountsLabel = document.getElementById('ssJarCountsLabel');
 
   if(ssJarContainer){
@@ -2391,8 +2753,20 @@
     }
 
     var currentJarSize = parseInt(ssJarSizeSelect.value, 10);
+    var currentHandful = parseInt(ssHandfulSelect.value, 10);
     var ssMasterDeck = createJarDeck(currentJarSize);
     var ssVisualDeck = ssMasterDeck.slice();
+
+    function ssHandfulSize(){ return Math.min(currentHandful, currentJarSize); }
+    function ssPrompt(msg){
+      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">' + msg + '</span>';
+      ssSimStats.textContent = '';
+    }
+    function updateHandfulLabels(){
+      var n = ssHandfulSize();
+      ssDrawBtn.textContent = 'Draw Handful of ' + n;
+      if(ssHandfulTitle) ssHandfulTitle.textContent = 'Handful of ' + n + ' Marbles';
+    }
 
     function updateJarCountsLabel(){
       var mCount = ssMasterDeck.filter(function(m){ return m.color === 'magenta'; }).length;
@@ -2407,19 +2781,27 @@
       ssVisualDeck.forEach(function(m){
         var el = document.createElement('div');
         el.className = 'marble mini ' + m.color;
+        if(currentJarSize > 120){ el.style.width = '13px'; el.style.height = '13px'; }
         ssJarContainer.appendChild(el);
       });
       updateJarCountsLabel();
     }
     renderSsJar();
+    updateHandfulLabels();
 
     ssJarSizeSelect.addEventListener('change', function(){
       currentJarSize = parseInt(ssJarSizeSelect.value, 10);
       ssMasterDeck = createJarDeck(currentJarSize);
       ssVisualDeck = ssMasterDeck.slice();
       renderSsJar();
-      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Jar size changed to ' + currentJarSize + '. Press Draw Handful of 10</span>';
-      ssSimStats.textContent = '';
+      updateHandfulLabels();
+      ssPrompt('Jar size changed to ' + currentJarSize + '. Press Draw Handful of ' + ssHandfulSize());
+    });
+
+    ssHandfulSelect.addEventListener('change', function(){
+      currentHandful = parseInt(ssHandfulSelect.value, 10);
+      updateHandfulLabels();
+      ssPrompt('Handful size changed to ' + ssHandfulSize() + '. Press Draw');
     });
 
     ssMixJarBtn.addEventListener('click', function(){
@@ -2433,8 +2815,7 @@
     ssDrawBtn.addEventListener('click', function(){
       ssDrawZone.innerHTML = '';
       ssRunCount++;
-      var drawCount = 10;
-      if(drawCount > currentJarSize) drawCount = currentJarSize;
+      var drawCount = ssHandfulSize();
       var working = ssMasterDeck.slice();
       var sample = [];
       var mCount = 0, tCount = 0;
@@ -2446,7 +2827,7 @@
 
       sample.forEach(function(item){
         var el = document.createElement('div');
-        el.className = 'marble ' + item.color;
+        el.className = 'marble ' + item.color + (drawCount > 10 ? ' mini' : '');
         el.textContent = item.id;
         ssDrawZone.appendChild(el);
         if(item.color === 'magenta') mCount++; else tCount++;
@@ -2456,18 +2837,18 @@
       var tPct = Math.round((tCount / drawCount) * 100);
       var trueMagCount = ssMasterDeck.filter(function(m){return m.color==='magenta';}).length;
       var trueMagPct = Math.round((trueMagCount / currentJarSize) * 100);
+      var offBy = Math.abs(mPct - trueMagPct);
 
-      ssSimStats.innerHTML = 'Jar Size: ' + currentJarSize + ' | Handful of ' + drawCount + ': ' + mCount + ' Magenta (' + mPct + '%), ' + tCount + ' Turquoise (' + tPct + '%) [True: ' + trueMagPct + '% M]';
+      ssSimStats.innerHTML = 'Handful of ' + drawCount + ': ' + mCount + ' Magenta (' + mPct + '%), ' + tCount + ' Turquoise (' + tPct + '%) [True jar: ' + trueMagPct + '% M]';
 
       if(ssRunCount === 1) ssHistoryList.innerHTML = '';
       var li = document.createElement('li');
-      li.innerHTML = '<b>Draw #' + ssRunCount + ' (Jar Size: ' + currentJarSize + ')</b>: ' + mPct + '% Magenta <span class="history-nums">Drawn from ' + currentJarSize + ' total marbles</span>';
+      li.innerHTML = '<b>Draw #' + ssRunCount + ' (Handful of ' + drawCount + ')</b>: ' + mPct + '% Magenta <span class="history-nums">Off by ' + offBy + ' points from the true ' + trueMagPct + '% · jar of ' + currentJarSize + '</span>';
       ssHistoryList.insertBefore(li, ssHistoryList.firstChild);
     });
 
     ssResetSimBtn.addEventListener('click', function(){
-      ssDrawZone.innerHTML = '<span style="color:var(--muted); font-size:15px; line-height:56px;">Select jar size &amp; press Draw Handful of 10</span>';
-      ssSimStats.textContent = '';
+      ssPrompt('Pick a handful size &amp; press Draw');
       ssHistoryList.innerHTML = '<li>No draws yet.</li>';
       ssRunCount = 0;
       ssVisualDeck = ssMasterDeck.slice();
@@ -3015,6 +3396,283 @@
     var csv=rows.map(function(r){return r.map(q).join(',');}).join('\n'); var a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('﻿'+csv); a.download='feather-log.csv'; document.body.appendChild(a); a.click(); document.body.removeChild(a); });
   document.getElementById('fd-log-clear').addEventListener('click', function(){ if(!loadLog().length) return; if(!confirm('Clear the whole feather log on this device?')) return; saveLog([], document.getElementById('fd-log-status2')); renderLog(); });
   renderLog();
+})();
+</script>
+<script>
+/* Session 4: Kick Predictor (three clues, each a simple rule, mixed by weights, learned from examples) */
+(function(){
+  var rowsEl = document.getElementById('kpRows');
+  if(!rowsEl) return;
+  function $(id){ return document.getElementById(id); }
+  function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+  // Hidden real world (plus luck). The machine never sees this.
+  function realProb(k){ return 1/(1+Math.exp(-(3.4 - 3.4*(k.dist-6)/34 - 2.0*k.angle/60 - 2.8*(k.goalie-1)/9))); }
+  function makeKicks(n,seed){
+    var r=rng(seed), out=[];
+    for(var i=0;i<n;i++){ var k={dist:6+Math.round(r()*34), angle:Math.round(r()*12)*5, goalie:1+Math.round(r()*9)}; k.goal = r()<realProb(k)?1:0; out.push(k); }
+    return out;
+  }
+  var POOL = makeKicks(40, 23), NEWKICKS = makeKicks(200, 777);
+
+  // per-clue rules: start% at the easiest value, minus "lose" per unit; plus a weight 0-10
+  var CL = {
+    d:{ base:6, unit:1, span:34, max:5, label:'yd', name:'Distance' },
+    a:{ base:0, unit:10, span:6, max:16, label:'°', name:'Angle' },
+    g:{ base:1, unit:1, span:9, max:11, name:'Goalie' }
+  };
+  var w = {d:{s:50,r:0,wt:5}, a:{s:50,r:0,wt:5}, g:{s:50,r:0,wt:5}};
+  var here = {d:12, a:0, g:5};
+  var trainN = 8, rounds = 0, learnedBy = 'hand', timer = null, picked = -1;
+  function train(){ return usingMine() ? mine.slice() : POOL.slice(0, trainN); }
+  function units(c, v){ return (v - CL[c].base)/CL[c].unit; }
+  function clueChance(c, v, W){ W = W || w; return Math.max(0, Math.min(100, Math.round(W[c].s - W[c].r*units(c,v)))); }
+  function mixChance(k, W){
+    W = W || w;
+    var tot = W.d.wt + W.a.wt + W.g.wt;
+    if(tot <= 0) return 50;
+    return Math.round((W.d.wt*clueChance('d',k.dist,W) + W.a.wt*clueChance('a',k.angle,W) + W.g.wt*clueChance('g',k.goalie,W))/tot);
+  }
+  function call(k){ return mixChance(k) >= 50 ? 1 : 0; }
+  function countRight(data, W){ var c=0; data.forEach(function(k){ if((mixChance(k,W)>=50?1:0)===k.goal) c++; }); return c; }
+  function kickHere(){ return {dist:here.d, angle:here.a, goalie:here.g}; }
+
+  /* ---------- pitch ---------- */
+  var S = 6, GX = 200, GY = 40;
+  function drawPitch(){ drawPitchTo('kpPitch', kickHere(), null); }
+  function drawPitchTo(svgId, k, box){
+    var ang = k.angle*Math.PI/180;
+    var bx = GX + k.dist*S*Math.sin(ang), by = GY + k.dist*S*Math.cos(ang);
+    var gw = 8*S, gh = 2*S, sk = (k.goalie-1)/9, gr = 7 + sk*9;
+    var gcol = sk < 0.34 ? '#00FF88' : (sk < 0.67 ? '#FFE600' : '#FF2A85');
+    var h = '<rect x="0" y="0" width="400" height="300" fill="#0B2A1A"/>';
+    for(var i=0;i<7;i++){ h += '<rect x="0" y="'+(GY+i*40)+'" width="400" height="20" fill="#0E3220"/>'; }
+    h += '<line x1="0" y1="'+GY+'" x2="400" y2="'+GY+'" stroke="#DDE6E0" stroke-width="2"/>';
+    h += '<rect x="'+(GX-22*S)+'" y="'+GY+'" width="'+(44*S)+'" height="'+(18*S)+'" fill="none" stroke="#DDE6E0" stroke-width="1.5"/>';
+    h += '<rect x="'+(GX-10*S)+'" y="'+GY+'" width="'+(20*S)+'" height="'+(6*S)+'" fill="none" stroke="#DDE6E0" stroke-width="1.5"/>';
+    h += '<circle cx="'+GX+'" cy="'+(GY+12*S)+'" r="2.5" fill="#DDE6E0"/>';
+    h += '<rect x="'+(GX-gw/2)+'" y="'+(GY-gh)+'" width="'+gw+'" height="'+gh+'" fill="rgba(255,255,255,.12)" stroke="#FFFFFF" stroke-width="2.5"/>';
+    h += '<line x1="'+GX+'" y1="'+GY+'" x2="'+GX+'" y2="'+(GY+40*S)+'" stroke="rgba(255,255,255,.18)" stroke-width="1" stroke-dasharray="4 6"/>';
+    if(k.angle > 0){
+      var r0 = 5*S, ax = GX + r0*Math.sin(ang), ay = GY + r0*Math.cos(ang);
+      h += '<path d="M'+GX+' '+(GY+r0)+' A'+r0+' '+r0+' 0 0 0 '+ax.toFixed(1)+' '+ay.toFixed(1)+'" fill="none" stroke="#00E5FF" stroke-width="2"/>';
+      h += '<text x="'+(GX+8)+'" y="'+(GY+r0+16)+'" font-size="12" fill="#00E5FF">'+k.angle+'°</text>';
+    }
+    h += '<line x1="'+bx.toFixed(1)+'" y1="'+by.toFixed(1)+'" x2="'+GX+'" y2="'+GY+'" stroke="#FFE600" stroke-width="2" stroke-dasharray="6 5"/>';
+    var gxo = GX + Math.max(-gw/2+gr, Math.min(gw/2-gr, (bx-GX)*0.25));
+    h += '<line x1="'+(gxo-gr-3)+'" y1="'+(GY-2)+'" x2="'+(gxo+gr+3)+'" y2="'+(GY-2)+'" stroke="'+gcol+'" stroke-width="5" stroke-linecap="round"/>';
+    h += '<circle cx="'+gxo+'" cy="'+(GY-2)+'" r="'+gr+'" fill="'+gcol+'" stroke="#070913" stroke-width="2"/>';
+    h += '<text x="'+gxo+'" y="'+(GY-gh-9)+'" text-anchor="middle" font-size="12" fill="'+gcol+'">GOALIE '+k.goalie+'/10</text>';
+    h += '<circle cx="'+(bx+10).toFixed(1)+'" cy="'+(by+9).toFixed(1)+'" r="11" fill="#00E5FF" stroke="#070913" stroke-width="2"/>';
+    h += '<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="6" fill="#FFFFFF" stroke="#070913" stroke-width="1.5"/>';
+    h += '<text x="'+(bx+32).toFixed(1)+'" y="'+(by+5).toFixed(1)+'" font-size="13" fill="#00E5FF">'+k.dist+' yd</text>';
+    if(box){
+      var bh = 14 + box.length*17;
+      h += '<rect x="110" y="'+(292-bh)+'" width="284" height="'+bh+'" rx="6" fill="#070913" stroke="#26325D" stroke-width="1.5"/>';
+      box.forEach(function(line, i){ h += '<text x="120" y="'+(292-bh+16+i*17)+'" font-size="11.5" fill="'+(line.col||'#F1F4FD')+'">'+line.text+'</text>'; });
+    } else if(svgId === 'kpPitch'){
+      var c = mixChance(k), col = c>=50 ? '#00FF88' : '#FF2A85';
+      h += '<rect x="250" y="250" width="142" height="40" rx="6" fill="#070913" stroke="'+col+'" stroke-width="2"/>';
+      h += '<text x="321" y="266" text-anchor="middle" font-size="11" fill="#9DA8C9">THE MIX SAYS</text>';
+      h += '<text x="321" y="283" text-anchor="middle" font-size="14" fill="'+col+'">'+c+'% · '+(c>=50?'GOAL':'MISS')+'</text>';
+    }
+    $(svgId).innerHTML = h;
+  }
+
+  function ruleText(c){
+    var W = w[c];
+    if(c==='d') return W.s + '% at 6 yd, minus ' + W.r + '% per yard back. 40 yd: ' + clueChance('d',40) + '%.';
+    if(c==='a') return W.s + '% straight on, minus ' + W.r + '% per 10° wider. 60°: ' + clueChance('a',60) + '%.';
+    return W.s + '% vs a beginner (1), minus ' + W.r + '% per skill point. Pro (10): ' + clueChance('g',10) + '%.';
+  }
+  function renderMix(){
+    var k = kickHere(), cd = clueChance('d',k.dist), ca = clueChance('a',k.angle), cg = clueChance('g',k.goalie);
+    var tot = w.d.wt + w.a.wt + w.g.wt, c = mixChance(k), col = c>=50?'var(--green)':'var(--magenta)';
+    var row = function(name, ch, wt){ return '<div class="kp-mix-row"><span>' + name + '</span><span>' + ch + '%</span><span>×</span><span>' + wt + '</span></div>'; };
+    $('kpMix').innerHTML = '<div class="kp-mix-title">How the machine mixes it</div>' +
+      row('Distance', cd, w.d.wt) + row('Angle', ca, w.a.wt) + row('Goalie', cg, w.g.wt) +
+      '<div class="kp-mix-sum">(' + cd + '×' + w.d.wt + ' + ' + ca + '×' + w.a.wt + ' + ' + cg + '×' + w.g.wt + ') ÷ ' + tot + ' = <b style="color:' + col + '">' + c + '%</b></div>' +
+      '<div class="kp-mix-call" style="color:' + col + '">' + (c>=50?'⚽ GOAL':'✗ MISS') + '</div>' +
+      (tot===0 ? '<div class="kp-dial-say">Every clue is set to "ignore it", so the machine shrugs: 50%.</div>' : '');
+  }
+  function renderClues(){
+    ['d','a','g'].forEach(function(c){
+      $('kpIn_'+c).value = here[c];
+      $('kpInV_'+c).textContent = c==='d' ? here.d + ' yd' : (c==='a' ? here.a + '°' : here.g + ' / 10');
+      if(document.activeElement !== $('kpC_'+c)) $('kpC_'+c).value = clueChance(c, here[c]);
+      $('kpR_'+c).textContent = ruleText(c);
+      $('kpWt_'+c).value = w[c].wt; $('kpWtV_'+c).textContent = w[c].wt;
+    });
+    drawPitch(); renderMix();
+  }
+  function renderTable(){
+    var data = train(), html = '';
+    data.forEach(function(k,i){
+      var c = mixChance(k), g = c>=50?1:0, ok = g===k.goal;
+      var cls = (ok?'':'kp-row-wrong') + (i===picked?' kp-row-sel':'');
+      html += '<tr data-i="'+i+'"' + (cls.trim()?' class="'+cls.trim()+'"':'') + '><td>#' + (i+1) + '</td><td>' + k.dist + ' yd</td><td>' + k.angle + '°</td><td>' + k.goalie + '/10</td>' +
+        '<td class="' + (k.goal?'kp-goal">⚽ GOAL':'kp-miss">✗ MISS') + '</td>' +
+        '<td>' + c + '% → <span class="' + (g?'kp-goal">GOAL':'kp-miss">MISS') + '</span></td>' +
+        '<td class="' + (ok?'kp-right">✓ right':'kp-wrong">✗ wrong') + '</td></tr>';
+    });
+    rowsEl.innerHTML = html;
+    $('kpRight').textContent = countRight(data) + ' / ' + data.length;
+    $('kpRounds').textContent = rounds;
+  }
+  function renderAll(){ renderClues(); renderTable(); }
+  function resetProgress(){ rounds = 0; learnedBy = 'hand'; }
+
+  ['d','a','g'].forEach(function(c){
+    $('kpIn_'+c).addEventListener('input', function(){ here[c] = parseInt(this.value,10); picked = -1; renderClues(); });
+    $('kpWt_'+c).addEventListener('input', function(){ w[c].wt = parseInt(this.value,10); resetProgress(); renderAll(); });
+    // typing a chance for this clue at the current position rewrites that clue's rule
+    $('kpC_'+c).addEventListener('input', function(){
+      var v = parseInt(this.value,10); if(isNaN(v)) return; v = Math.max(0, Math.min(100, v));
+      var u = units(c, here[c]);
+      if(u === 0){ w[c].s = v; }
+      else {
+        var need = (w[c].s - v)/u;
+        if(need < 0){ w[c].s = v; w[c].r = 0; }
+        else { w[c].r = Math.min(CL[c].max, Math.round(need*4)/4); if(w[c].s - w[c].r*u > v + 2) w[c].s = Math.round(v + w[c].r*u); }
+      }
+      resetProgress(); renderAll();
+    });
+  });
+  rowsEl.addEventListener('click', function(e){
+    var tr = e.target.closest('tr[data-i]'); if(!tr) return;
+    picked = parseInt(tr.getAttribute('data-i'),10); var k = train()[picked];
+    here = {d:k.dist, a:k.angle, g:k.goalie}; renderAll();
+  });
+  $('kpTrainSize').addEventListener('change', function(){ trainN = parseInt(this.value,10); picked = -1; resetProgress(); renderAll(); });
+
+  /* ---------- learning: nudge all nine numbers downhill on the error ---------- */
+  function errorOf(W, data){
+    var e = 0;
+    data.forEach(function(k){
+      var tot = W.d.wt + W.a.wt + W.g.wt;
+      var p = tot<=0 ? 0.5 : (W.d.wt*(W.d.s - W.d.r*units('d',k.dist)) + W.a.wt*(W.a.s - W.a.r*units('a',k.angle)) + W.g.wt*(W.g.s - W.g.r*units('g',k.goalie)))/tot/100;
+      e += (p - k.goal)*(p - k.goal);
+    });
+    return e/data.length;
+  }
+  var fine;
+  function clampParam(c, p, v){
+    if(p==='s') return Math.max(0, Math.min(100, v));
+    if(p==='wt') return Math.max(0.5, Math.min(10, v));
+    return Math.max(0, Math.min(CL[c].max, v));
+  }
+  function nudgeOnce(data){
+    var grad = {}, base = errorOf(fine, data), h = 0.01;
+    ['d','a','g'].forEach(function(c){ grad[c] = {}; ['s','r','wt'].forEach(function(p){
+      var keep = fine[c][p]; fine[c][p] = keep + h; grad[c][p] = (errorOf(fine, data) - base)/h; fine[c][p] = keep;
+    }); });
+    var step = {s:600, r:800, wt:300};
+    ['d','a','g'].forEach(function(c){ ['s','r','wt'].forEach(function(p){
+      var scale = step[p];
+      if(p==='r') scale = step.r / (CL[c].span*CL[c].span) * 25;
+      fine[c][p] = clampParam(c, p, fine[c][p] - scale*grad[c][p]);
+    }); });
+    rounds++;
+  }
+  function showFine(){
+    ['d','a','g'].forEach(function(c){ w[c].s = Math.round(fine[c].s); w[c].r = Math.round(fine[c].r*4)/4; w[c].wt = Math.round(fine[c].wt); });
+  }
+  function setBusy(on){
+    var ids = ['kpLearnBtn','kpZeroBtn','kpTestBtn','kpTrainSize'];
+    ['d','a','g'].forEach(function(c){ ids.push('kpC_'+c, 'kpWt_'+c); });
+    ids.forEach(function(id){ $(id).disabled = on; });
+    $('kpLearnBtn').textContent = on ? 'Learning…' : 'Let It Learn';
+  }
+  $('kpLearnBtn').addEventListener('click', function(){
+    if(timer) return;
+    fine = JSON.parse(JSON.stringify(w)); ['d','a','g'].forEach(function(c){ if(fine[c].wt < 0.5) fine[c].wt = 0.5; });
+    var data = train(), TOTAL = 1500, PER = 15, done = 0; setBusy(true);
+    timer = setInterval(function(){
+      for(var i=0;i<PER;i++) nudgeOnce(data);
+      done += PER; showFine(); learnedBy = 'machine'; renderAll();
+      if(done >= TOTAL){ clearInterval(timer); timer = null; setBusy(false); }
+    }, 30);
+  });
+  $('kpZeroBtn').addEventListener('click', function(){ w = {d:{s:50,r:0,wt:5}, a:{s:50,r:0,wt:5}, g:{s:50,r:0,wt:5}}; resetProgress(); renderAll(); });
+
+  var testCount = 0;
+  $('kpTestBtn').addEventListener('click', function(){
+    var log = $('kpTestLog'), right = countRight(NEWKICKS), data = train();
+    if(testCount === 0) log.innerHTML = '';
+    testCount++;
+    var li = document.createElement('li');
+    li.innerHTML = 'Test #' + testCount + ': <b>' + right + ' of 200 new kicks right (' + Math.round(right/2) + '%)</b><br>Weights: distance ' + w.d.wt + ', angle ' + w.a.wt + ', goalie ' + w.g.wt + ' · ' + (learnedBy==='machine' ? 'learned by the machine from ' + data.length + (usingMine()?' of my own kicks':' kicks') : 'set by hand') + ' · ' + countRight(data) + ' of ' + data.length + ' practice kicks right';
+    log.insertBefore(li, log.firstChild);
+  });
+  $('kpTestClear').addEventListener('click', function(){ testCount = 0; $('kpTestLog').innerHTML = '<li>No tests yet.</li>'; });
+
+  renderAll();
+
+  /* ---------- my own kicks ---------- */
+  var MINEKEY = 'eliot_kicks_s4', mine = [], source = 'sample';
+  try { mine = JSON.parse(localStorage.getItem(MINEKEY) || '[]'); } catch(e){ mine = []; }
+  function saveMine(){ try { localStorage.setItem(MINEKEY, JSON.stringify(mine)); } catch(e){} }
+  function renderMine(){
+    var ul = $('kpMineList');
+    if(!mine.length){ ul.innerHTML = '<li>No kicks logged yet.</li>'; }
+    else ul.innerHTML = mine.map(function(k,i){ return '<li>#' + (i+1) + ': ' + k.dist + ' yd, ' + k.angle + '°, goalie ' + k.goalie + ' → <b style="color:' + (k.goal?'var(--green)':'var(--magenta)') + '">' + (k.goal?'GOAL':'MISS') + '</b> <button class="kp-x" data-del="' + i + '" aria-label="Remove">✕</button></li>'; }).join('');
+    $('kpSource').value = source;
+    $('kpTrainSize').disabled = (source === 'mine');
+  }
+  function usingMine(){ return source === 'mine' && mine.length >= 3; }
+  function addMine(goal){
+    var k = {dist: Math.max(3, Math.min(40, parseInt($('kpM_d').value,10) || 10)), angle: Math.max(0, Math.min(60, parseInt($('kpM_a').value,10) || 0)), goalie: parseInt($('kpM_g').value,10), goal: goal};
+    mine.push(k); saveMine(); renderMine(); resetProgress(); renderAll();
+  }
+  $('kpM_goal').addEventListener('click', function(){ addMine(1); });
+  $('kpM_miss').addEventListener('click', function(){ addMine(0); });
+  $('kpMineList').addEventListener('click', function(e){ var b = e.target.closest('[data-del]'); if(!b) return; mine.splice(parseInt(b.getAttribute('data-del'),10),1); saveMine(); renderMine(); resetProgress(); renderAll(); });
+  $('kpMineClear').addEventListener('click', function(){ if(mine.length && !confirm('Clear all your logged kicks?')) return; mine = []; saveMine(); renderMine(); resetProgress(); renderAll(); });
+  $('kpSource').addEventListener('change', function(){
+    source = this.value;
+    if(source === 'mine' && mine.length < 3){ $('kpMineBox').open = true; }
+    picked = -1; resetProgress(); renderMine(); renderAll();
+  });
+  renderMine();
+
+  /* ---------- challenge 1: human vs machine ---------- */
+  var RACE = NEWKICKS.slice(120, 125), raceI = -1, raceYou = 0, raceBot = 0, raceOpen = false;
+  function raceDraw(k, box){ drawPitchTo('kpRacePitch', k, box); }
+  function raceRender(){
+    $('kpRaceYou').textContent = raceYou; $('kpRaceBot').textContent = raceBot; $('kpRaceN').textContent = Math.max(0, raceI+1) + ' / 5';
+    $('kpRaceGoal').disabled = !raceOpen; $('kpRaceMiss').disabled = !raceOpen;
+    $('kpRaceNext').disabled = raceOpen || raceI >= 4;
+  }
+  $('kpRaceNext').addEventListener('click', function(){
+    raceI++; raceOpen = true; var k = RACE[raceI];
+    raceDraw(k, null);
+    $('kpRaceSay').innerHTML = '<b>Kick ' + (raceI+1) + ':</b> ' + k.dist + ' yd out, ' + k.angle + '°, goalie ' + k.goalie + '/10. Your call?';
+    raceRender();
+  });
+  function raceCall(you){
+    var k = RACE[raceI], c = mixChance(k), bot = c>=50?1:0; raceOpen = false;
+    if(you === k.goal) raceYou++; if(bot === k.goal) raceBot++;
+    raceDraw(k, [{text:'Really was: ' + (k.goal?'⚽ GOAL':'✗ MISS'), col:k.goal?'#00FF88':'#FF2A85'}, {text:'You: ' + (you?'GOAL':'MISS') + (you===k.goal?' ✓':' ✗') + '   Machine: ' + (bot?'GOAL':'MISS') + (bot===k.goal?' ✓':' ✗'), col:'#F1F4FD'}]);
+    $('kpRaceSay').innerHTML = 'It was a <b>' + (k.goal?'GOAL':'MISS') + '</b>. You said ' + (you?'GOAL':'MISS') + (you===k.goal?' ✓':' ✗') + '. The machine said ' + (bot?'GOAL':'MISS') + ' (' + c + '%)' + (bot===k.goal?' ✓':' ✗') + '.' +
+      (raceI >= 4 ? ' <b>Final: you ' + raceYou + ', machine ' + raceBot + '.</b>' : '');
+    raceRender();
+  }
+  $('kpRaceGoal').addEventListener('click', function(){ raceCall(1); });
+  $('kpRaceMiss').addEventListener('click', function(){ raceCall(0); });
+  $('kpRaceReset').addEventListener('click', function(){ raceI = -1; raceYou = 0; raceBot = 0; raceOpen = false; $('kpRaceSay').textContent = 'Press "Next Kick" to start.'; raceDraw({dist:12,angle:0,goalie:5}, null); raceRender(); });
+  raceDraw({dist:12,angle:0,goalie:5}, null); raceRender();
+
+  /* ---------- challenge 2: copy kicks for Gemini ---------- */
+  $('kpGeminiBtn').addEventListener('click', function(){
+    var data = train();
+    var t = 'Here are ' + data.length + ' penalty kicks. For each one I give the distance from goal in yards, the angle off centre in degrees (0 = straight in front), the goalie\'s skill from 1 (beginner) to 10 (pro), and whether it was a GOAL or a MISS.\n\n';
+    data.forEach(function(k,i){ t += 'Kick ' + (i+1) + ': ' + k.dist + ' yards, ' + k.angle + ' degrees, goalie ' + k.goalie + '/10 -> ' + (k.goal?'GOAL':'MISS') + '\n'; });
+    t += '\nWork out a simple rule for when a kick goes in. Say which clue matters most, which matters least, and how sure you are. Keep it short enough for a 12-year-old.';
+    var st = $('kpGeminiSay');
+    function ok(){ st.textContent = 'Copied! Paste it into Gemini.'; setTimeout(function(){ st.textContent=''; }, 3000); }
+    function fb(){ var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){ st.textContent='Could not copy.'; } document.body.removeChild(ta); }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+  });
+  renderAll();
 })();
 </script>
 </body>
