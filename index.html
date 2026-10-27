@@ -916,6 +916,113 @@
   .kp-table tr:hover td{background:rgba(0,229,255,.08);}
   .kp-table tr.kp-row-sel td{box-shadow:inset 0 2px 0 var(--cyan), inset 0 -2px 0 var(--cyan);}
   .kp-table tr.kp-row-sel td:first-child{color:var(--cyan);}
+
+  /* ============ SESSION 5: LEARNING LAB ============ */
+  .g{color:var(--green); font-weight:700;} .m{color:var(--magenta); font-weight:700;}
+  .stab[data-pane="cups"].active, .stab[data-pane="table-guide"].active{color:var(--green); border-color:var(--green); background:#0D211B; box-shadow:0 0 10px rgba(0,255,136,0.3);}
+  .stab[data-pane="line"].active{color:var(--magenta); border-color:var(--magenta); background:#1F0D20; box-shadow:0 0 10px rgba(255,42,133,0.3);}
+  .s5-idea{background:linear-gradient(135deg, #141B36, #0B1028); border:2px solid var(--card-edge); border-radius:14px; padding:26px 28px; text-align:center;}
+  .s5-idea-big{font-family:'Chakra Petch',sans-serif; font-size:34px; font-weight:700; color:var(--yellow); line-height:1.2; letter-spacing:.02em;}
+  .s5-idea-sub{font-size:16.5px; color:#D5DBEE; max-width:62ch; margin:14px auto 0; line-height:1.6;}
+  /* table guide */
+  .s5-guide{background:#0B1028; border:2px solid var(--card-edge); border-radius:14px; padding:28px;}
+  .s5-guide-head{text-align:center; margin-bottom:24px;}
+  .s5-guide-title{font-family:'Chakra Petch',sans-serif; font-size:30px; font-weight:700; color:var(--green); letter-spacing:.12em; text-transform:uppercase;}
+  .s5-guide-sub{color:var(--muted); font-size:16px; max-width:60ch; margin:6px auto 0;}
+  .s5-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  @media (max-width:760px){ .s5-cols{grid-template-columns:1fr;} }
+  .s5-card{background:#070915; border:2px solid var(--whisper); border-radius:12px; padding:20px 22px;}
+  .s5-wide{margin-bottom:18px;}
+  .s5-card-title{font-family:'Chakra Petch',sans-serif; font-size:16px; font-weight:700; color:var(--yellow); letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px;}
+  .s5-list{list-style:disc; margin-left:20px; color:#D5DBEE; font-size:16px; line-height:1.65;}
+  .s5-list li{margin-bottom:6px;}
+  .s5-cupgrid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;}
+  .s5-cuptag{background:#141B36; border:2px solid var(--cyan); border-radius:8px; padding:10px; text-align:center; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:14px; color:#fff;}
+  .s5-moves{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:760px){ .s5-moves{grid-template-columns:1fr;} }
+  .s5-move{display:flex; gap:12px; align-items:flex-start; background:#0B1028; border:1px solid var(--card-edge); border-radius:10px; padding:14px; font-size:15.5px; color:#D5DBEE; line-height:1.55;}
+  .s5-move-n{flex:0 0 32px; width:32px; height:32px; border-radius:50%; background:var(--green); color:#000; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:17px; display:flex; align-items:center; justify-content:center;}
+  .s5-note{font-size:15.5px; color:var(--green); margin-top:14px;}
+  .s5-deck{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:14.5px;}
+  .s5-deck th{color:var(--yellow); font-family:'Chakra Petch',sans-serif; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; text-align:left; padding:6px 8px; border-bottom:2px solid var(--whisper);}
+  .s5-deck td{padding:6px 8px; border-bottom:1px solid var(--whisper); color:#D5DBEE;}
+  .s5-score td{height:34px;}
+  /* cups on screen */
+  .cb-cups{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; margin:10px 0 18px;}
+  @media (max-width:760px){ .cb-cups{grid-template-columns:1fr 1fr;} }
+  .cb-cup{background:#070915; border:2px solid var(--whisper); border-radius:12px; padding:12px 10px 10px; transition:border-color .25s, box-shadow .25s;}
+  .cb-cup.active{border-color:var(--yellow); box-shadow:0 0 18px rgba(255,230,0,.35);}
+  .cb-cup-title{font-family:'Chakra Petch',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff; text-align:center; margin-bottom:8px; min-height:34px;}
+  .cb-cup svg{width:100%; height:auto; display:block;}
+  .cb-cup-counts{font-family:'IBM Plex Mono',monospace; font-size:13.5px; text-align:center; margin-top:8px; color:var(--muted);}
+  .cb-stage{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:16px; align-items:stretch; margin-bottom:6px;}
+  @media (max-width:760px){ .cb-stage{grid-template-columns:1fr;} }
+  .cb-kick{background:#0B2A1A; border:2px solid #1E4D33; border-radius:12px; min-height:120px; display:flex; align-items:center; justify-content:center; padding:16px; text-align:center;}
+  .cb-kick-hint{color:var(--muted); font-size:15px;}
+  .cb-kick-sit{font-family:'Chakra Petch',sans-serif; font-size:22px; font-weight:700; color:#fff; line-height:1.3;}
+  .cb-kick-sit small{display:block; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); font-weight:400; letter-spacing:.06em; margin-bottom:6px;}
+  .cb-story{background:#0B1028; border:2px solid var(--card-edge); border-radius:12px; padding:16px 18px; text-align:left; font-size:16px; color:#D5DBEE; line-height:1.6; min-height:120px;}
+  .cb-story .step{display:block; padding:4px 0;}
+  .cb-story .step b{font-family:'Chakra Petch',sans-serif; letter-spacing:.06em; text-transform:uppercase; font-size:13px; margin-right:8px;}
+  .cb-story .s1 b{color:var(--yellow);} .cb-story .s2 b{color:var(--cyan);} .cb-story .s3 b{color:#fff;} .cb-story .s4 b{color:var(--green);}
+  .cb-answer{margin-top:12px; font-size:17px; color:#D5DBEE; line-height:1.6; min-height:28px;}
+  .cb-answer b.big{font-family:'Chakra Petch',sans-serif; font-size:26px;}
+  .cb-table{position:relative; height:300px; background:linear-gradient(180deg, #0B1028 0%, #1A2A1C 55%, #24391F 100%); border:2px solid var(--card-edge); border-radius:14px; margin:6px 0 14px; overflow:hidden;}
+  .cb-card{position:absolute; left:16px; top:16px; width:210px; min-height:84px; background:#070915; border:2px solid var(--yellow); border-radius:10px; padding:10px 12px; text-align:left;}
+  .cb-card .cb-kick-hint{color:var(--muted); font-size:14px;}
+  .cb-card .cb-kick-sit{font-size:18px;}
+  .cb-card .cb-kick-sit small{margin-bottom:2px;}
+  .cb-bigcup{position:absolute; left:50%; bottom:14px; width:150px; margin-left:-75px;}
+  .cb-bigcup svg{width:100%; height:auto; display:block; filter:drop-shadow(0 8px 14px rgba(0,0,0,.5));}
+  .cb-tray{position:absolute; right:16px; bottom:16px; width:120px; height:70px; background:rgba(7,9,19,.7); border:2px dashed var(--muted); border-radius:10px; display:flex; flex-wrap:wrap; gap:4px; align-content:flex-start; padding:20px 6px 6px;}
+  .cb-tray-label{position:absolute; top:3px; left:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.1em;}
+  .cb-tray i{display:block; width:14px; height:14px; border-radius:50%;}
+  .cb-tray i.g{background:#00FF88;} .cb-tray i.m{background:#FF2A85;}
+  .cb-hand{position:absolute; font-size:54px; line-height:1; transition:transform .7s cubic-bezier(.4,0,.2,1); transform-origin:center; left:50%; top:10px; margin-left:-27px; z-index:3; filter:drop-shadow(0 6px 8px rgba(0,0,0,.5));}
+  .cb-hand.home{transform:translate(110px, 0);}
+  .cb-hand.over{transform:translate(0, 20px);}
+  .cb-hand.in{transform:translate(0, 118px) scale(.9);}
+  .cb-hand.up{transform:translate(0, 20px);}
+  .cb-hand.tray{transform:translate(200px, 150px);}
+  .cb-bead{position:absolute; left:50%; top:50%; width:24px; height:24px; margin:-6px 0 0 -12px; border-radius:50%; border:2px solid #070913; opacity:0; transition:opacity .25s;}
+  .cb-bead.show{opacity:1;} .cb-bead.g{background:#00FF88; box-shadow:0 0 12px rgba(0,255,136,.8);} .cb-bead.m{background:#FF2A85; box-shadow:0 0 12px rgba(255,42,133,.8);}
+  .cb-drop{position:absolute; left:50%; top:-30px; width:22px; height:22px; margin-left:-11px; border-radius:50%; border:2px solid #070913; opacity:0; z-index:2; transition:transform .6s cubic-bezier(.3,.7,.4,1), opacity .2s;}
+  .cb-drop.g{background:#00FF88;} .cb-drop.m{background:#FF2A85;}
+  .cb-drop.fall{opacity:1; transform:translateY(190px);}
+  .cb-puppy{position:absolute; left:34px; bottom:22px; font-size:64px; line-height:1; transition:transform .8s cubic-bezier(.4,0,.2,1), opacity .3s; opacity:.35; transform:translate(0,0) scaleX(-1);}
+  .cb-puppy.came{opacity:1; transform:translate(150px,-10px) scaleX(-1);}
+  .cb-puppy.ignored{opacity:1; transform:translate(-10px,0) rotate(-8deg) scaleX(-1);}
+  .cb-puppy.far{left:auto; right:36px; bottom:200px; font-size:36px; opacity:.6;}
+  .cb-puppy.far.came{transform:translate(-120px,120px) scaleX(-1) scale(1.6);}
+  .cb-puppy.far.ignored{transform:translate(20px,-6px) rotate(10deg) scaleX(-1);}
+  .cb-say{position:absolute; left:16px; top:116px; background:#070915; border:2px solid var(--card-edge); border-radius:10px; padding:8px 14px; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:18px; white-space:nowrap; z-index:4; opacity:0; transition:opacity .3s;}
+  .cb-say.show{opacity:1;}
+  @media (max-width:760px){ .cb-table{height:340px;} .cb-card{width:160px;} .cb-hand.home{transform:translate(120px,0);} .cb-hand.tray{transform:translate(120px,190px);} .cb-tray{width:100px;} }
+  .ts-table td{white-space:normal;}
+  .kp-table tr.ts-blank td:first-child{box-shadow:none;}
+  .ts-btn{font-family:'Chakra Petch',sans-serif; font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; border-radius:6px; padding:6px 10px; cursor:pointer; background:#080C1E; color:var(--muted); border:2px solid var(--card-edge); margin:2px;}
+  .ts-btn.g.on{color:#000; background:var(--green); border-color:var(--green);} .ts-btn.m.on{color:#000; background:var(--magenta); border-color:var(--magenta);}
+  .ts-cups{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:14px;}
+  @media (max-width:760px){ .ts-cups{grid-template-columns:1fr 1fr;} }
+  .ts-cup{background:#070915; border:2px solid var(--whisper); border-radius:10px; padding:10px; text-align:center;}
+  .ts-cup-name{font-family:'Chakra Petch',sans-serif; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#fff; margin-bottom:4px;}
+  .ts-cup-n{font-family:'IBM Plex Mono',monospace; font-size:18px; font-weight:700;}
+  .ts-cup-sub{font-size:12.5px; color:var(--muted);}
+  /* draw the line */
+  .dl-wrap{background:#070915; border:2px solid var(--whisper); border-radius:12px; padding:8px; margin-bottom:14px;}
+  .dl-field{width:100%; height:auto; display:block; touch-action:none;}
+  .dl-dot{cursor:pointer;}
+  .dl-field text{font-family:'IBM Plex Mono',monospace; fill:#9DA8C9; font-size:12px;}
+  .dl-handle{cursor:grab;}
+  .dl-handle:active{cursor:grabbing;}
+  .dl-tabs{display:flex; gap:10px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;}
+  .dl-tab{font-family:'Chakra Petch',sans-serif; font-size:15px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:#080C1E; border:2px solid var(--card-edge); color:var(--muted); border-radius:6px; padding:10px 20px; cursor:pointer;}
+  .dl-tab.active{color:var(--magenta); border-color:var(--magenta); background:#1F0D20;}
+  .dl-tab.small{font-size:13px; padding:7px 14px;}
+  .dl-tab.small.active{color:var(--green); border-color:var(--green); background:#0D211B;}
+  .dl-tab:disabled{opacity:.4; cursor:not-allowed;}
+  .dl-src{display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; margin-bottom:8px;}
+  .dl-text{font-size:16px; color:#D5DBEE; max-width:70ch; margin:0 auto 14px;}
 </style>
 </head>
 <body>
@@ -934,7 +1041,7 @@
       <button class="st fri" data-target="sess-2" aria-label="Session 2"></button>
       <button class="st wed" data-target="sess-3" aria-label="Session 3"></button>
       <button class="st fri" data-target="sess-4" aria-label="Session 4"></button>
-      <button class="st fri" data-target="sess-5" aria-label="Session 5"></button>
+      <button class="st wed" data-target="sess-5" aria-label="Session 5"></button>
       <button class="st wed" data-target="sess-6" aria-label="Session 6"></button>
       <button class="st fri" data-target="sess-7" aria-label="Session 7"></button>
       <button class="st wed" data-target="sess-8" aria-label="Session 8"></button>
@@ -2203,34 +2310,200 @@
         </details>
       </article>
     </div>
-    <!-- Session 5 -->
-    <div class="session-view" id="view-sess-5" data-sessid="sess-5">
+    <!-- Session 5: How Machines Learn, Take Two -->
+    <div class="session-view" id="view-sess-5" data-sessid="sess-5" data-classdate="2026-10-28">
       <div class="gate-box">
         <h4>Session 5 Locked</h4>
-        <span class="gate-unlock-date">Date to be rescheduled · Passcode only for now</span>
+        <p>Auto-unlocks the day before class, or enter passcode.</p>
+        <span class="gate-unlock-date">Class: Wed Oct 28 · Unlocks Oct 27</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
         <div class="gate-err"></div>
       </div>
-      <article id="sess-5" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Five</span><span class="when">Date TBD</span></div>
-        <h3>When AI Gets It Wrong</h3>
-        <p>Hallucinations, bias, and verification strategies.</p>
+      <article id="sess-5" class="session wed" style="display:none;">
+        <div class="session-top">
+          <span class="lv-badge">Session Five // Learning Lab</span>
+          <span class="when">Wed Oct 28 · 1:45–3:15</span>
+          <button class="bm-btn" data-bm="sess-5" aria-pressed="false">☆</button>
+        </div>
+        <h3>How Machines Learn, Take Two</h3>
+
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="cups">Cups &amp; Beads</button>
+          <button class="stab" data-pane="line">Draw the Line</button>
+        </div>
+
+        <!-- Agenda -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">01 // What Do You Remember?</span>
+              <ul style="list-style: disc; margin-left: 20px; margin-top: 8px; color: #D5DBEE;">
+                <li><b>Stochastic / Dynamic</b></li>
+                <li><b>Sample Size</b></li>
+                <li><b>Specifications</b> (Role, Task, Constraints, Format)</li>
+                <li><b>Guess → Check → Nudge</b> (we'll do this one properly today)</li>
+              </ul>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // One Idea, Said Slowly</span>
+              <div class="s5-idea">
+                <div class="s5-idea-big">A machine learns by being wrong.</div>
+                <div class="s5-idea-sub">Guess. Find out. Change a tiny bit. Again. That's it. Last time we let the computer do 1,500 of those in three seconds, which is like watching a whole season on fast-forward. Today we do it one round at a time, with our hands.</div>
+              </div>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // Cups &amp; Beads at the Table (20 min)</span>
+              <p>Meet <b>Biscuit the puppy</b>. Sometimes she comes when you call, sometimes she doesn't. Four cups, two colours of beads: the cups <b>are</b> the machine's memory. You draw a bead to make it guess, then reward it or correct it. After 15 calls you can see it getting smarter, because the cups look different. Same four moves as on screen: read the call, draw a bead, call Biscuit, nudge the cup.</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">04 // Cups &amp; Beads on Screen (15 min)</span>
+              <p>Same machine, same rules, acted out on screen one move at a time, then fast-forwarded through 200 rounds. Then ask it a question: "Biscuit's far away and the yard is noisy. Will she come?"</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">05 // Draw the Line (20 min)</span>
+              <p>Every round from the cups becomes a dot on a map. First <b>you</b> drag a line to separate the times she came from the times she didn't. Then the machine does it, one wrong dot at a time, and you watch the line find its place. This is the real picture of what's inside a neural network.</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">06 // Challenges (if time)</span>
+              <p>Back in <b>Session 4 → Challenges</b>: Human vs Machine (best of five) and Ask Gemini to find the rule.</p>
+            </div>
+
+            <div class="agenda-step">
+              <span class="agenda-tag">07 // Say It Back</span>
+              <p>Eliot explains to Joolay, in his own words, how the cups learned. If he can do that, today worked.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cups & Beads on screen -->
+        <div class="spane" data-pane="cups">
+          <div class="sim-container">
+            <div class="sim-title">Cups &amp; Beads</div>
+            <p class="sim-desc">Same four cups as on the table, played one move at a time. <b>Biscuit the puppy</b> is somewhere in the yard. Will she come when you call? The cups are the only memory the machine has.</p>
+
+            <div class="cb-cups" id="cbCups"></div>
+
+            <div class="cb-table" id="cbTable">
+              <div class="cb-card" id="cbCard"><span class="cb-kick-hint">Press the button to start a round.</span></div>
+              <div class="cb-bigcup" id="cbBigCup"></div>
+              <div class="cb-tray" id="cbTray"><div class="cb-tray-label">OUT</div></div>
+              <div class="cb-hand home" id="cbHand">🖐️<div class="cb-bead" id="cbBead"></div></div>
+              <div class="cb-drop" id="cbDrop"></div>
+              <div class="cb-puppy" id="cbPuppy">🐶</div>
+            </div>
+
+            <div class="cb-story" id="cbStory">Four cups, three green and three pink beads in each. The machine knows nothing yet.</div>
+
+            <div class="sim-controls">
+              <button class="sim-btn" id="cbGo" style="border-color:var(--green); min-width:260px;">Read the Call</button>
+              <button class="sim-btn" id="cbRun">Fast-Forward 50 Rounds</button>
+              <button class="sim-btn" id="cbReset" style="border-color:var(--whisper);">Reset Cups</button>
+            </div>
+
+            <div class="kp-score" style="justify-content:center; margin-top:18px;">
+              <div class="kp-stat"><b id="cbCount">0</b><span>Rounds played</span></div>
+              <div class="kp-stat"><b id="cbRecent">–</b><span>Right, last 20</span></div>
+              <div class="kp-stat"><b id="cbTotal">–</b><span>Right, all time</span></div>
+            </div>
+
+            <div class="kp-step" style="margin-top:22px; text-align:left;">
+              <span class="kp-step-tag">Ask the Machine</span>
+              <p>Pick a situation. The machine answers from its cup, nothing else.</p>
+              <div class="sim-controls" style="margin-top:0; justify-content:flex-start;">
+                <label class="kp-label">Biscuit is: <select id="cbAskD" class="kp-select"><option value="0">Near</option><option value="1">Far away</option></select></label>
+                <label class="kp-label">The yard is: <select id="cbAskG" class="kp-select"><option value="0">Quiet</option><option value="1">Noisy</option></select></label>
+              </div>
+              <div class="cb-answer" id="cbAnswer"></div>
+            </div>
+          </div>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> A real AI has billions of "cups" instead of four, and it adds or removes a tiny fraction of a bead instead of a whole one. But the loop is the same: guess, check, nudge. Nobody wrote the rule. The rule grew out of being wrong a lot of times.</p>
+        </div>
+
+        <!-- Draw the Line -->
+        <div class="spane" data-pane="line">
+          <div class="sim-container">
+            <div class="sim-title">Draw the Line</div>
+            <p class="sim-desc">Every round you played in Cups &amp; Beads was a real call: Biscuit at some exact distance, the yard at some exact noise level. The cups could only remember <b>near or far</b>, <b>quiet or noisy</b>. Now we put every one of those calls on a map and let a smarter machine draw <b>one line</b> through them.</p>
+
+            <div class="dl-src">
+              <span class="kp-label">Calls on this map:</span>
+              <button class="dl-tab small" id="dlSrcMine">My cup rounds</button>
+              <button class="dl-tab small" id="dlSrcSample">Sample calls</button>
+            </div>
+            <div class="kp-net-key" id="dlSourceNote" style="text-align:center; margin-bottom:12px;"></div>
+
+            <div class="dl-tabs">
+              <button class="dl-tab active" data-mode="cups">1 · The map</button>
+              <button class="dl-tab" data-mode="you">2 · You draw the line</button>
+              <button class="dl-tab" data-mode="machine">3 · The machine draws it</button>
+            </div>
+
+            <div class="dl-wrap">
+              <svg class="dl-field" id="dlField" viewBox="0 0 640 440" role="img" aria-label="Every call plotted by distance and noise, with a dividing line"></svg>
+            </div>
+            <div class="cb-story" id="dlTap" style="min-height:0; margin-bottom:12px;">Tap any dot to see that call.</div>
+
+            <div class="dl-pane" data-mode="cups">
+              <p class="dl-text">Every dot is one time you called Biscuit. <b>Left to right:</b> how far away she was. <b>Bottom to top:</b> how noisy the yard was. <span class="g">Green</span> = she came. <span class="m">Pink</span> = she ignored you. The dashed boxes are the four cups from before, with their counts. A <b>yellow ring</b> marks a call the cups get wrong. See the problem? Cups are blunt: a call at 22 feet and one at 24 feet land in different cups even though they're nearly the same.</p>
+            </div>
+
+            <div class="dl-pane" data-mode="you" style="display:none;">
+              <p class="dl-text"><b>Your job:</b> drag the two yellow handles so the line puts every green dot on the COMES side and every pink dot on the IGNORES side. You won't get all 30. Nobody can, because Biscuit is a puppy. Get as many as you can.</p>
+              <div class="kp-score" style="justify-content:center;">
+                <div class="kp-stat"><b id="dlYouScore">0 / 30</b><span>Dots on the right side</span></div>
+              </div>
+            </div>
+
+            <div class="dl-pane" data-mode="machine" style="display:none;">
+              <p class="dl-text"><b>Same four moves as the cups.</b> Read one call. Guess: which side of the line is it on? Check: did she really come? Nudge: if the dot is on the wrong side, swing the line a little toward fixing it. If it's right, leave the line alone. Repeat.</p>
+              <div class="sim-controls" style="margin-top:0;">
+                <button class="sim-btn" id="dlNext" style="border-color:var(--green);">Next Call</button>
+                <button class="sim-btn" id="dlRun">Run Through All</button>
+                <button class="sim-btn" id="dlReset" style="border-color:var(--whisper);">Random Line</button>
+              </div>
+              <div class="cb-story" id="dlStory" style="margin-top:14px;"></div>
+              <div class="kp-score" style="justify-content:center;">
+                <div class="kp-stat"><b id="dlBotScore">0 / 30</b><span>Dots on the right side</span></div>
+                <div class="kp-stat"><b id="dlBotSteps">0</b><span>Calls looked at</span></div>
+                <div class="kp-stat"><b id="dlBotMoves">0</b><span>Times the line moved</span></div>
+              </div>
+            </div>
+
+            <div class="kp-step" style="margin-top:18px; text-align:left;" id="dlAskBox">
+              <span class="kp-step-tag">What's the line for? Ask it.</span>
+              <p>A brand-new call becomes a new dot (the ⭐). Whichever side it lands on is the machine's answer. That's the whole point of the line: it answers calls it has never seen.</p>
+              <div class="kp-try" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+                <div><label for="dlAskD">Biscuit is <output id="dlAskDo">20 ft</output> away</label><input type="range" id="dlAskD" min="6" max="40" step="1" value="20"></div>
+                <div><label for="dlAskN">Yard noise: <output id="dlAskNo">5</output> / 10</label><input type="range" id="dlAskN" min="1" max="10" step="1" value="5"></div>
+              </div>
+              <div class="kp-verdict" id="dlAskSay"></div>
+            </div>
+          </div>
+          <p style="font-size:16.5px; color:#D5DBEE;"><b>Why this is like AI:</b> A single neuron is exactly this: a line (or, with more clues, a wall in more dimensions) that nudges every time it's wrong. A neural network is thousands of these lines stacked up, so together they can draw curves and corners instead of one straight cut. But each one learned the way you just watched.</p>
+        </div>
+
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
-          <textarea data-note="s5" placeholder="Crazy hallucinations caught?"></textarea>
+          <textarea data-note="s5" placeholder="How did the cups learn about Biscuit? Say it in your own words."></textarea>
           <div class="saved-flag" data-flag="s5"></div>
         </details>
       </article>
     </div>
     <!-- Session 6 -->
-    <div class="session-view" id="view-sess-6" data-sessid="sess-6" data-classdate="2026-10-28">
+    <div class="session-view" id="view-sess-6" data-sessid="sess-6">
       <div class="gate-box">
         <h4>Session 6 Locked</h4>
-        <span class="gate-unlock-date">Class: Wed Oct 28 · Unlocks Oct 27</span>
+        <span class="gate-unlock-date">Date to be rescheduled · Passcode only for now</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
         <div class="gate-err"></div>
       </div>
       <article id="sess-6" class="session wed" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Six</span><span class="when">Wed Oct 28 · 1:45–3:15</span></div>
+        <div class="session-top"><span class="lv-badge">Session Six</span><span class="when">Date TBD</span></div>
         <h3>AI and Creativity</h3>
         <p>Generative models, image prompts, and game lore.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -3673,6 +3946,300 @@
     if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
   });
   renderAll();
+})();
+</script>
+<script>
+/* ============ SESSION 5: Cups & Beads + Draw the Line ============ */
+(function(){
+  if(!document.getElementById('cbCups')) return;
+  function $(id){ return document.getElementById(id); }
+  function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+  /* ---------- Cups & Beads: a staged re-enactment ---------- */
+  var SIT = [
+    {d:0,g:0, name:'Near · Quiet yard',  p:0.85},
+    {d:0,g:1, name:'Near · Noisy yard',  p:0.58},
+    {d:1,g:0, name:'Far · Quiet yard',   p:0.42},
+    {d:1,g:1, name:'Far · Noisy yard',   p:0.15}
+  ];
+  var CAME = 'CAME', NOPE = 'IGNORED YOU';
+  function sitIndex(d,g){ return d*2+g; }
+  // ONE hidden truth about Biscuit, shared by the cups and the line
+  function truthProb(dist, gk){ return 1/(1+Math.exp(-2.5*(3.2 - 3.6*(dist-6)/34 - 3.0*(gk-1)/9))); }
+  var CALLKEY = 'eliot_s5_calls', calls = [];
+  try { calls = JSON.parse(localStorage.getItem(CALLKEY) || '[]'); } catch(e){ calls = []; }
+  function saveCalls(){ try { localStorage.setItem(CALLKEY, JSON.stringify(calls.slice(-200))); } catch(e){} }
+  var cups, seen, hist, cbTimer = null, cbRand = rng(4242), round = null, phase = 0, busy = false;
+  function cbReset(){ cups = SIT.map(function(){ return {goal:3, miss:3}; }); seen = 0; hist = []; cbRand = rng(4242); round = null; phase = 0; }
+  cbReset();
+
+  function cupSVG(c, i, big){
+    var total = c.goal + c.miss, beads = [];
+    for(var k=0;k<c.goal;k++) beads.push('g'); for(k=0;k<c.miss;k++) beads.push('m');
+    var r = rng(100+i*7+total); for(k=beads.length-1;k>0;k--){ var j=Math.floor(r()*(k+1)); var t=beads[k]; beads[k]=beads[j]; beads[j]=t; }
+    var cols = 5, rad = 9, gap = 22, x0 = 29, y0 = 164;
+    var h = '<svg viewBox="0 0 150 180">';
+    h += '<path d="M18 30 L26 170 Q27 176 33 176 L117 176 Q123 176 124 170 L132 30 Z" fill="rgba(0,229,255,.06)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>';
+    h += '<ellipse cx="75" cy="30" rx="57" ry="9" fill="#070915" stroke="rgba(255,255,255,.55)" stroke-width="3"/>';
+    beads.slice(0, 30).forEach(function(b, n){
+      var row = Math.floor(n/cols), col = n%cols, cx = x0 + col*gap + (row%2?11:0), cy = y0 - row*gap*0.82;
+      h += '<circle cx="'+cx+'" cy="'+cy+'" r="'+rad+'" fill="'+(b==='g'?'#00FF88':'#FF2A85')+'" stroke="#070913" stroke-width="1.5"/>';
+    });
+    if(beads.length > 30) h += '<text x="75" y="13" text-anchor="middle" font-size="11" fill="#9DA8C9" font-family="IBM Plex Mono">+'+(beads.length-30)+' more inside</text>';
+    if(big) h += '<text x="75" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#FFE600" font-family="Chakra Petch">CUP '+(i+1)+'</text>';
+    return h + '</svg>';
+  }
+  function renderCups(activeI){
+    $('cbCups').innerHTML = SIT.map(function(s,i){
+      var c = cups[i], pct = Math.round(100*c.goal/(c.goal+c.miss));
+      return '<div class="cb-cup'+(i===activeI?' active':'')+'" id="cbCup'+i+'"><div class="cb-cup-title">'+(i+1)+' · '+s.name+'</div>'+cupSVG(c,i,false)+
+        '<div class="cb-cup-counts"><span class="g">'+c.goal+'</span> / <span class="m">'+c.miss+'</span> · '+pct+'% comes</div></div>';
+    }).join('');
+    $('cbBigCup').innerHTML = activeI >= 0 ? cupSVG(cups[activeI], activeI, true) : '';
+    $('cbCount').textContent = seen;
+    var last = hist.slice(-20), rt = last.filter(Boolean).length;
+    $('cbRecent').textContent = hist.length ? rt + ' / ' + last.length : '–';
+    $('cbTotal').textContent = hist.length ? Math.round(100*hist.filter(Boolean).length/hist.length) + '%' : '–';
+    renderAsk();
+  }
+  function renderAsk(){
+    var i = sitIndex(+$('cbAskD').value, +$('cbAskG').value), c = cups[i], pct = Math.round(100*c.goal/(c.goal+c.miss));
+    $('cbAnswer').innerHTML = 'Cup ' + (i+1) + ' has <span class="g">' + c.goal + ' green</span> and <span class="m">' + c.miss + ' pink</span> beads, so the machine would say <b class="big" style="color:' + (pct>=50?'var(--green)':'var(--magenta)') + '">' + (pct>=50?'SHE\'LL COME':'SHE WON\'T') + '</b>, because it thinks there\'s a <b>' + pct + '% chance</b> she comes.' + (seen===0 ? ' (It hasn\'t played a round yet, so every cup is 50/50.)' : '');
+  }
+  // decide a whole round up front; the stage plays it back
+  function newRound(){
+    var i = Math.floor(cbRand()*4), c = cups[i], total = c.goal + c.miss, st = SIT[i];
+    // the exact call: a real distance and noise level inside that cup's box
+    var dist = st.d ? 23 + cbRand()*17 : 6 + cbRand()*16, gk = st.g ? 5.5 + cbRand()*4.5 : 1 + cbRand()*4.4;
+    return { i:i, s:st, dist:dist, gk:gk, draw: cbRand()*total < c.goal ? 1 : 0, truth: cbRand() < truthProb(dist, gk) ? 1 : 0, beforeG:c.goal, beforeM:c.miss };
+  }
+  function applyRound(r){
+    var c = cups[r.i], right = r.draw === r.truth;
+    if(right){ if(r.draw) c.goal++; else c.miss++; }
+    else { if(r.draw){ if(c.goal > 1) c.goal--; c.miss += 2; } else { if(c.miss > 1) c.miss--; c.goal += 2; } }
+    seen++; hist.push(right);
+    calls.push({dist:r.dist, gk:r.gk, goal:r.truth}); saveCalls();
+  }
+  function say(txt, col){ var el = $('cbSay'); if(!el){ el = document.createElement('div'); el.className = 'cb-say'; el.id = 'cbSay'; $('cbTable').appendChild(el); } el.innerHTML = txt; el.style.color = col || '#fff'; el.classList.add('show'); }
+  function unsay(){ var el = $('cbSay'); if(el) el.classList.remove('show'); }
+  function hand(cls){ $('cbHand').className = 'cb-hand ' + cls; }
+  function setPuppy(far, state){ var p = $('cbPuppy'); p.className = 'cb-puppy' + (far?' far':'') + (state?' '+state:''); }
+  function wait(ms){ return new Promise(function(res){ setTimeout(res, ms); }); }
+  var LABELS = ['Read the Call', 'Reach In &amp; Draw a Bead', 'Call Biscuit!', 'Nudge the Cup', 'Next Round'];
+  function setGo(){ $('cbGo').innerHTML = LABELS[phase]; $('cbGo').disabled = busy; }
+
+  async function step(){
+    if(busy) return; busy = true; setGo();
+    if(phase === 0){
+      round = newRound(); unsay(); $('cbTray').innerHTML = '<div class="cb-tray-label">OUT</div>'; $('cbBead').className = 'cb-bead';
+      setPuppy(round.s.d===1, ''); hand('home'); renderCups(round.i);
+      $('cbCard').innerHTML = '<div class="cb-kick-sit"><small>ROUND ' + (seen+1) + '</small>' + round.s.name.replace(' · ', '<br>') + '</div>';
+      $('cbStory').innerHTML = '<span class="step s1"><b>1 · Read</b> Biscuit is <b>' + Math.round(round.dist) + ' ft away</b> (' + (round.s.d?'far':'near') + ') and the yard noise is <b>' + round.gk.toFixed(1) + ' / 10</b> (' + (round.s.g?'noisy':'quiet') + '). That\'s <b>cup ' + (round.i+1) + '</b>: ' + round.beforeG + ' green, ' + round.beforeM + ' pink.</span>';
+      phase = 1;
+    } else if(phase === 1){
+      hand('over'); await wait(750); hand('in'); await wait(800);
+      $('cbBead').className = 'cb-bead show ' + (round.draw?'g':'m'); await wait(150);
+      hand('up'); await wait(800);
+      say('The machine guesses: ' + (round.draw ? CAME : NOPE), round.draw ? '#00FF88' : '#FF2A85');
+      $('cbStory').innerHTML += '<span class="step s2"><b>2 · Guess</b> Eyes closed, it pulls one bead: <span class="' + (round.draw?'g':'m') + '">' + (round.draw ? 'green, so it guesses she COMES' : 'pink, so it guesses she IGNORES you') + '</span>.</span>';
+      phase = 2;
+    } else if(phase === 2){
+      unsay(); await wait(200);
+      setPuppy(round.s.d===1, round.truth ? 'came' : 'ignored'); await wait(900);
+      var right = round.draw === round.truth;
+      say(round.truth ? '🐶 She came!' : '🐶 She ignored you.', round.truth ? '#00FF88' : '#FF2A85');
+      $('cbStory').innerHTML += '<span class="step s3"><b>3 · Check</b> "Biscuit, come!" She <span class="' + (round.truth?'g':'m') + '">' + (round.truth ? 'came running' : 'ignored you') + '</span>. The machine was <b style="color:' + (right?'var(--green)':'var(--yellow)') + '">' + (right ? 'RIGHT' : 'WRONG') + '</b>.</span>';
+      phase = 3;
+    } else if(phase === 3){
+      unsay(); var right = round.draw === round.truth;
+      if(right){
+        hand('in'); await wait(750); $('cbBead').className = 'cb-bead'; hand('home'); await wait(300);
+        var d = $('cbDrop'); d.className = 'cb-drop ' + (round.draw?'g':'m'); await wait(50); d.classList.add('fall'); await wait(650); d.className = 'cb-drop';
+        applyRound(round); var cc = cups[round.i];
+        $('cbStory').innerHTML += '<span class="step s4"><b>4 · Nudge</b> Right guess: the bead goes back <b>plus one more ' + (round.draw?'green':'pink') + '</b>. Cup ' + (round.i+1) + ': <b>' + round.beforeG + ' green / ' + round.beforeM + ' pink → ' + cc.goal + ' green / ' + cc.miss + ' pink</b>. More likely to say ' + (round.draw ? 'COMES' : 'IGNORES') + ' next time.</span>';
+      } else {
+        hand('tray'); await wait(800); $('cbBead').className = 'cb-bead'; var tb = document.createElement('i'); tb.className = round.draw?'g':'m'; $('cbTray').appendChild(tb); hand('home'); await wait(300);
+        var d2 = $('cbDrop');
+        for(var dn=0; dn<2; dn++){ d2.className = 'cb-drop ' + (round.truth?'g':'m'); await wait(50); d2.classList.add('fall'); await wait(650); d2.className = 'cb-drop'; await wait(80); }
+        applyRound(round); var cc2 = cups[round.i];
+        $('cbStory').innerHTML += '<span class="step s4"><b>4 · Nudge</b> Wrong guess: the ' + (round.draw?'green':'pink') + ' bead <b>stays out</b>, and <b>two ' + (round.truth?'green':'pink') + ' go in</b> for what really happened. Cup ' + (round.i+1) + ': <b>' + round.beforeG + ' green / ' + round.beforeM + ' pink → ' + cc2.goal + ' green / ' + cc2.miss + ' pink</b>. More likely to say ' + (round.truth ? 'COMES' : 'IGNORES') + ' next time.</span>';
+      }
+      renderCups(round.i);
+      phase = 4;
+    } else {
+      setPuppy(false, ''); unsay(); phase = 0; busy = false; setGo(); return step();
+    }
+    busy = false; setGo();
+  }
+  $('cbGo').addEventListener('click', step);
+  $('cbRun').addEventListener('click', function(){
+    if(cbTimer || busy) return; var n = 0; $('cbRun').textContent = 'Running…'; phase = 0; unsay(); hand('home'); setPuppy(false,''); $('cbBead').className = 'cb-bead'; setGo();
+    cbTimer = setInterval(function(){
+      var r = newRound(); applyRound(r); renderCups(r.i);
+      $('cbCard').innerHTML = '<div class="cb-kick-sit"><small>ROUND ' + seen + '</small>' + r.s.name.replace(' · ', '<br>') + '</div>';
+      $('cbStory').innerHTML = 'Fast-forward: cup ' + (r.i+1) + ' guessed <span class="' + (r.draw?'g':'m') + '">' + (r.draw?CAME:NOPE) + '</span>, she really <span class="' + (r.truth?'g':'m') + '">' + (r.truth?'came':'ignored you') + '</span>. ' + (r.draw===r.truth ? 'Right: one more bead in.' : 'Wrong: bead out, two of the true colour in.');
+      if(++n >= 50){ clearInterval(cbTimer); cbTimer = null; $('cbRun').textContent = 'Fast-Forward 50 Rounds'; }
+    }, 90);
+  });
+  $('cbReset').addEventListener('click', function(){ if(calls.length && !confirm('Reset the cups and forget all ' + calls.length + ' calls? (The Draw the Line map uses them.)')) return; calls = []; saveCalls(); if(cbTimer){ clearInterval(cbTimer); cbTimer = null; $('cbRun').textContent = 'Fast-Forward 50 Rounds'; } cbReset(); busy = false; unsay(); hand('home'); setPuppy(false,''); $('cbBead').className = 'cb-bead'; $('cbTray').innerHTML = '<div class="cb-tray-label">OUT</div>'; $('cbCard').innerHTML = '<span class="cb-kick-hint">Press the button to start a round.</span>'; $('cbStory').innerHTML = 'Four cups, three green and three pink beads in each. The machine knows nothing yet.'; renderCups(-1); setGo(); });
+  $('cbAskD').addEventListener('change', renderAsk); $('cbAskG').addEventListener('change', renderAsk);
+  renderCups(-1); setGo();
+
+  /* ---------- Draw the Line ---------- */
+  var W = 640, H = 440, PL = 70, PR = 20, PT = 20, PB = 50;
+  function px(dist){ return PL + (dist-6)/34 * (W-PL-PR); }
+  function py(gk){ return H-PB - (gk-1)/9 * (H-PT-PB); }
+  var dr = rng(49), SAMPLE = [];
+  for(var n=0;n<30;n++){
+    var dist = 6 + dr()*34, gk = 1 + dr()*9;
+    SAMPLE.push({dist:dist, gk:gk, goal: dr() < truthProb(dist, gk) ? 1 : 0});
+  }
+  var DOTS = SAMPLE, dotSource = 'auto';
+  function refreshDots(){
+    var mine = calls.slice(-60);
+    var useMine = (dotSource === 'mine') || (dotSource === 'auto' && mine.length >= 10);
+    DOTS = (useMine && mine.length >= 3) ? mine : SAMPLE;
+    var note = $('dlSourceNote');
+    if(DOTS === SAMPLE){
+      note.innerHTML = mine.length < 3 ? 'Showing <b>30 sample calls</b>. Play some rounds in Cups &amp; Beads and they\'ll appear here as dots.' : 'Showing <b>30 sample calls</b>. You also have ' + mine.length + ' calls from Cups &amp; Beads.';
+    } else {
+      note.innerHTML = 'These are <b>your last ' + DOTS.length + ' calls from Cups &amp; Beads</b>. The cups only kept a tally. The line gets to see every single one.';
+    }
+    $('dlSrcMine').classList.toggle('active', DOTS !== SAMPLE); $('dlSrcSample').classList.toggle('active', DOTS === SAMPLE);
+    $('dlSrcMine').disabled = mine.length < 3;
+    botRandom(); tapped = -1;
+  }
+  var svg = $('dlField');
+  var mode = 'cups', tapped = -1;
+  var you = {yl: py(7.5), yr: py(2.5)};
+  var bot = {w1:0, w2:0, b:0}, botI = 0, botSteps = 0, botMoves = 0, dlTimer = null;
+  function f(k){ return [(k.dist-6)/34, (k.gk-1)/9]; }
+  function botSide(k){ var x = f(k); return (bot.w1*x[0] + bot.w2*x[1] + bot.b) >= 0 ? 1 : 0; }
+  function youSide(k){ var X = px(k.dist), Y = py(k.gk), t = (X-PL)/(W-PR-PL), ly = you.yl + t*(you.yr-you.yl); return Y >= ly ? 1 : 0; }
+  function cupSide(k){ var i = (k.dist >= 23 ? 2 : 0) + (k.gk >= 5.5 ? 1 : 0); var c = cupCounts()[i]; return c.g >= c.m ? 1 : 0; }
+  function cupCounts(){ var cc = [{g:0,m:0},{g:0,m:0},{g:0,m:0},{g:0,m:0}]; DOTS.forEach(function(k){ var i = (k.dist >= 23 ? 2 : 0) + (k.gk >= 5.5 ? 1 : 0); if(k.goal) cc[i].g++; else cc[i].m++; }); return cc; }
+  function score(fn){ var c=0; DOTS.forEach(function(k){ if(fn(k)===k.goal) c++; }); return c; }
+  function sideFn(){ return mode==='you' ? youSide : (mode==='machine' ? botSide : cupSide); }
+  function botLinePts(){
+    var pts = [];
+    function add(x1,x2){ if(x1>=-0.001&&x1<=1.001&&x2>=-0.001&&x2<=1.001) pts.push([px(6+x1*34), py(1+x2*9)]); }
+    if(Math.abs(bot.w2) > 1e-9){ add(0, -bot.b/bot.w2); add(1, -(bot.w1+bot.b)/bot.w2); }
+    if(Math.abs(bot.w1) > 1e-9){ add(-bot.b/bot.w1, 0); add(-(bot.w2+bot.b)/bot.w1, 1); }
+    return pts.length >= 2 ? [pts[0], pts[1]] : null;
+  }
+  function goalPolygon(sideAt){
+    var corners = [[PL,PT],[W-PR,PT],[W-PR,H-PB],[PL,H-PB]], pts = [];
+    for(var ci=0; ci<4; ci++){
+      var A = corners[ci], B = corners[(ci+1)%4], sA = sideAt(A[0],A[1]), sB = sideAt(B[0],B[1]);
+      if(sA) pts.push(A);
+      if(sA !== sB){ var lo=0, hi=1; for(var it=0; it<30; it++){ var mid=(lo+hi)/2, P=[A[0]+(B[0]-A[0])*mid, A[1]+(B[1]-A[1])*mid]; if(sideAt(P[0],P[1])===sA) lo=mid; else hi=mid; } pts.push([A[0]+(B[0]-A[0])*lo, A[1]+(B[1]-A[1])*lo]); }
+    }
+    return pts.length >= 3 ? pts.map(function(q){ return q[0].toFixed(1)+','+q[1].toFixed(1); }).join(' ') : '';
+  }
+  function drawField(highlight){
+    var h = '', labels = '';
+    h += '<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#0B2A1A" rx="8"/>';
+    for(var i=0;i<8;i++) h += '<rect x="'+PL+'" y="'+(PT+i*((H-PT-PB)/8))+'" width="'+(W-PL-PR)+'" height="'+((H-PT-PB)/16)+'" fill="#0E3220"/>';
+    h += '<rect x="'+PL+'" y="'+PT+'" width="'+(W-PL-PR)+'" height="'+(H-PT-PB)+'" fill="none" stroke="#DDE6E0" stroke-width="1.5"/>';
+    // shaded sides
+    if(mode==='you'){
+      h += '<polygon points="'+PL+','+(H-PB)+' '+PL+','+you.yl+' '+(W-PR)+','+you.yr+' '+(W-PR)+','+(H-PB)+'" fill="rgba(0,255,136,.12)"/>';
+      h += '<polygon points="'+PL+','+PT+' '+PL+','+you.yl+' '+(W-PR)+','+you.yr+' '+(W-PR)+','+PT+'" fill="rgba(255,42,133,.12)"/>';
+    } else if(mode==='machine'){
+      var sideAt = function(X,Y){ var x1=(X-PL)/(W-PL-PR), x2=(H-PB-Y)/(H-PT-PB); return bot.w1*x1 + bot.w2*x2 + bot.b >= 0; };
+      h += '<rect x="'+PL+'" y="'+PT+'" width="'+(W-PL-PR)+'" height="'+(H-PT-PB)+'" fill="rgba(255,42,133,.12)"/>';
+      var gp = goalPolygon(sideAt); if(gp) h += '<polygon points="'+gp+'" fill="rgba(0,255,136,.18)"/>';
+    } else {
+      var cc = cupCounts(), mx = px(23), my = py(5.5);
+      var boxes = [[PL,my,mx,H-PB],[PL,PT,mx,my],[mx,my,W-PR,H-PB],[mx,PT,W-PR,my]];
+      boxes.forEach(function(bx,i){ var c = cc[i], goal = c.g >= c.m; h += '<rect x="'+bx[0]+'" y="'+bx[1]+'" width="'+(bx[2]-bx[0])+'" height="'+(bx[3]-bx[1])+'" fill="'+(goal?'rgba(0,255,136,.10)':'rgba(255,42,133,.10)')+'" stroke="rgba(255,230,0,.55)" stroke-width="2" stroke-dasharray="6 6"/>';
+        var lx = bx[2]-8, ly = bx[3]-8;
+        labels += '<rect x="'+(lx-150)+'" y="'+(ly-36)+'" width="150" height="36" rx="5" fill="rgba(7,9,19,.85)"/><text x="'+(lx-8)+'" y="'+(ly-21)+'" text-anchor="end" fill="#FFE600" font-size="13" font-weight="700">CUP '+(i+1)+' · '+(goal?'says COMES':'says IGNORES')+'</text><text x="'+(lx-8)+'" y="'+(ly-6)+'" text-anchor="end" font-size="12"><tspan fill="#00FF88" font-weight="700">'+c.g+' came</tspan> · <tspan fill="#FF2A85" font-weight="700">'+c.m+' ignored</tspan></text>'; });
+    }
+    // axes
+    h += '<text x="'+((PL+W-PR)/2)+'" y="'+(H-14)+'" text-anchor="middle">◀ near · HOW FAR AWAY BISCUIT IS · far ▶</text>';
+    h += '<text x="'+PL+'" y="'+(H-PB+16)+'" text-anchor="start">6 ft</text><text x="'+(W-PR)+'" y="'+(H-PB+16)+'" text-anchor="end">40 ft</text>';
+    h += '<text transform="translate(22,'+((PT+H-PB)/2)+') rotate(-90)" text-anchor="middle">◀ quiet · HOW NOISY THE YARD IS · loud ▶</text>';
+    h += '<text x="'+(PL-6)+'" y="'+(H-PB)+'" text-anchor="end">1</text><text x="'+(PL-6)+'" y="'+(PT+10)+'" text-anchor="end">10</text>';
+    if(mode!=='cups'){ h += '<text x="'+(PL+12)+'" y="'+(H-PB-10)+'" fill="#00FF88" font-size="13" font-weight="700">COMES SIDE</text><text x="'+(W-PR-12)+'" y="'+(PT+18)+'" text-anchor="end" fill="#FF2A85" font-size="13" font-weight="700">IGNORES SIDE</text>'; }
+    // dots
+    var side = sideFn();
+    DOTS.forEach(function(k, n){
+      var ok = side(k) === k.goal, X = px(k.dist), Y = py(k.gk), big = (n===highlight || n===tapped);
+      h += '<circle class="dl-dot" data-n="'+n+'" cx="'+X.toFixed(1)+'" cy="'+Y.toFixed(1)+'" r="'+(big?13:9)+'" fill="'+(k.goal?'#00FF88':'#FF2A85')+'" stroke="'+(ok?'#070913':'#FFE600')+'" stroke-width="'+(ok?1.5:3.5)+'"'+(big?' style="filter:drop-shadow(0 0 8px #FFE600)"':'')+'/>';
+    });
+    h += labels;
+    // line + handles
+    var l = mode==='you' ? [[PL,you.yl],[W-PR,you.yr]] : (mode==='machine' ? botLinePts() : null);
+    if(l) h += '<line x1="'+l[0][0].toFixed(1)+'" y1="'+l[0][1].toFixed(1)+'" x2="'+l[1][0].toFixed(1)+'" y2="'+l[1][1].toFixed(1)+'" stroke="#FFE600" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 6px rgba(255,230,0,.8))"/>';
+    if(mode==='you'){
+      h += '<circle class="dl-handle" data-h="l" cx="'+PL+'" cy="'+you.yl+'" r="16" fill="#FFE600" stroke="#070913" stroke-width="3"/>';
+      h += '<circle class="dl-handle" data-h="r" cx="'+(W-PR)+'" cy="'+you.yr+'" r="16" fill="#FFE600" stroke="#070913" stroke-width="3"/>';
+      h += '<text x="'+PL+'" y="'+(you.yl+4)+'" text-anchor="middle" fill="#000" font-size="12" font-weight="700" pointer-events="none">⇕</text><text x="'+(W-PR)+'" y="'+(you.yr+4)+'" text-anchor="middle" fill="#000" font-size="12" font-weight="700" pointer-events="none">⇕</text>';
+    }
+    // the "ask" star
+    if(mode!=='cups'){ var ak = askKick(); h += '<text x="'+px(ak.dist).toFixed(1)+'" y="'+(py(ak.gk)+7).toFixed(1)+'" text-anchor="middle" font-size="22" style="filter:drop-shadow(0 0 6px #fff)">⭐</text>'; }
+    svg.innerHTML = h;
+    $('dlYouScore').textContent = score(youSide) + ' / ' + DOTS.length;
+    $('dlBotScore').textContent = score(botSide) + ' / ' + DOTS.length;
+    $('dlBotSteps').textContent = botSteps; $('dlBotMoves').textContent = botMoves;
+    renderAskLine();
+  }
+  function askKick(){ return {dist:+$('dlAskD').value, gk:+$('dlAskN').value}; }
+  function renderAskLine(){
+    var k = askKick(); $('dlAskDo').textContent = k.dist + ' ft'; $('dlAskNo').textContent = k.gk;
+    var el = $('dlAskSay');
+    if(mode==='cups'){ el.textContent = 'Go to step 2 or 3 to draw a line first.'; el.style.color = 'var(--muted)'; return; }
+    var sd = sideFn()(k);
+    el.textContent = (mode==='you' ? 'Your line' : 'The machine\'s line') + ' says: ' + (sd ? 'SHE\'LL COME' : 'SHE\'LL IGNORE YOU');
+    el.style.color = sd ? 'var(--green)' : 'var(--magenta)';
+  }
+  ['dlAskD','dlAskN'].forEach(function(id){ $(id).addEventListener('input', function(){ drawField(-1); }); });
+  // tap a dot
+  svg.addEventListener('click', function(e){
+    var t = e.target.closest('.dl-dot'); if(!t) return;
+    tapped = +t.getAttribute('data-n'); var k = DOTS[tapped];
+    $('dlTap').innerHTML = '<b>Call #' + (tapped+1) + ':</b> Biscuit was <b>' + Math.round(k.dist) + ' ft</b> away, the yard was <b>' + k.gk.toFixed(1) + ' / 10</b> noisy, and she <span class="' + (k.goal?'g':'m') + '">' + (k.goal ? 'CAME' : 'IGNORED you') + '</span>.' + (mode!=='cups' ? ' The line puts it on the <b>' + (sideFn()(k) ? 'COMES' : 'IGNORES') + '</b> side, so the line is <b>' + (sideFn()(k)===k.goal ? 'right' : 'wrong') + '</b> about this one.' : '');
+    drawField(-1);
+  });
+  // dragging handles (pointer events, works with touch)
+  var dragging = null;
+  function svgY(evt){ var r = svg.getBoundingClientRect(); return (evt.clientY - r.top) * H / r.height; }
+  svg.addEventListener('pointerdown', function(e){ var t = e.target.closest('.dl-handle'); if(!t) return; dragging = t.getAttribute('data-h'); svg.setPointerCapture(e.pointerId); e.preventDefault(); });
+  svg.addEventListener('pointermove', function(e){ if(!dragging) return; var y = Math.max(PT, Math.min(H-PB, svgY(e))); if(dragging==='l') you.yl = y; else you.yr = y; drawField(-1); });
+  svg.addEventListener('pointerup', function(){ dragging = null; }); svg.addEventListener('pointercancel', function(){ dragging = null; });
+  // machine
+  var botR = rng(9);
+  var botBest = null;
+  function botRandom(){ bot = {w1: (botR()-0.5)*2, w2: (botR()-0.5)*2, b: (botR()-0.5)*0.6}; botI = 0; botSteps = 0; botMoves = 0; botBest = null; $('dlStory').innerHTML = 'A random line to start. It knows nothing. Press Next Call.'; }
+  function botStep(){
+    var k = DOTS[botI % DOTS.length], x = f(k), guess = botSide(k), lr = 0.25 / (1 + botSteps/40);
+    botSteps++;
+    var callNo = (botI%DOTS.length)+1, where = Math.round(k.dist) + ' ft away, noise ' + k.gk.toFixed(1);
+    if(guess !== k.goal){
+      var dir = k.goal ? 1 : -1;
+      bot.w1 += dir*lr*x[0]; bot.w2 += dir*lr*x[1]; bot.b += dir*lr; botMoves++;
+      $('dlStory').innerHTML = '<span class="step s1"><b>Read</b> Call ' + callNo + ': ' + where + '.</span><span class="step s2"><b>Guess</b> The dot is on the ' + (guess?'COMES':'IGNORES') + ' side.</span><span class="step s3"><b>Check</b> She really <span class="' + (k.goal?'g':'m') + '">' + (k.goal?'CAME':'IGNORED you') + '</span>. <b style="color:var(--yellow)">Wrong.</b></span><span class="step s4"><b>Nudge</b> The line swings a little, to move that dot toward the ' + (k.goal?'COMES':'IGNORES') + ' side.</span>';
+    } else {
+      $('dlStory').innerHTML = '<span class="step s1"><b>Read</b> Call ' + callNo + ': ' + where + '.</span><span class="step s2"><b>Guess</b> The dot is on the ' + (guess?'COMES':'IGNORES') + ' side.</span><span class="step s3"><b>Check</b> She really <span class="' + (k.goal?'g':'m') + '">' + (k.goal?'CAME':'IGNORED you') + '</span>. <b style="color:var(--green)">Right.</b></span><span class="step s4"><b>Nudge</b> Nothing to fix. The line stays.</span>';
+    }
+    var hi = botI % DOTS.length; botI++;
+    var sc = score(botSide); if(!botBest || sc > botBest.sc) botBest = {sc:sc, w:{w1:bot.w1, w2:bot.w2, b:bot.b}};
+    drawField(hi);
+  }
+  $('dlNext').addEventListener('click', function(){ if(dlTimer) return; botStep(); });
+  $('dlRun').addEventListener('click', function(){ if(dlTimer) return; var n = 0; $('dlRun').textContent = 'Running…'; dlTimer = setInterval(function(){ botStep(); if(++n >= 2*DOTS.length){ clearInterval(dlTimer); dlTimer = null; $('dlRun').textContent = 'Run Through All'; if(botBest){ bot = botBest.w; } drawField(-1); $('dlStory').innerHTML = '<span class="step s4"><b>Done</b> It looked at every call twice and kept the <b>best line it found</b>: ' + score(botSide) + ' of ' + DOTS.length + ' dots on the right side. The rest are Biscuit being a puppy.</span>'; } }, 220); });
+  $('dlReset').addEventListener('click', function(){ if(dlTimer){ clearInterval(dlTimer); dlTimer = null; $('dlRun').textContent = 'Run Through All'; } botRandom(); drawField(-1); });
+  document.querySelectorAll('.dl-tab').forEach(function(b){ b.addEventListener('click', function(){
+    mode = b.getAttribute('data-mode'); tapped = -1; $('dlTap').textContent = 'Tap any dot to see that call.';
+    document.querySelectorAll('.dl-tab').forEach(function(x){ x.classList.toggle('active', x===b); });
+    document.querySelectorAll('.dl-pane').forEach(function(p){ p.style.display = p.getAttribute('data-mode')===mode ? 'block' : 'none'; });
+    drawField(-1);
+  }); });
+  $('dlSrcMine').addEventListener('click', function(){ dotSource = 'mine'; refreshDots(); drawField(-1); });
+  $('dlSrcSample').addEventListener('click', function(){ dotSource = 'sample'; refreshDots(); drawField(-1); });
+  document.querySelector('#sess-5 .stab[data-pane="line"]').addEventListener('click', function(){ if(dotSource === 'auto' || DOTS !== SAMPLE){ refreshDots(); drawField(-1); } });
+  refreshDots(); drawField(-1);
 })();
 </script>
 </body>
