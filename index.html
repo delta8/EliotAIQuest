@@ -1044,7 +1044,7 @@
   .lab-bar .sim-btn{padding:8px 14px; font-size:13px;}
   .lab-code{width:100%; min-height:340px; background:#05070F; color:#E6ECFF; border:2px solid var(--whisper); border-radius:8px; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; resize:vertical; white-space:pre; overflow:auto; tab-size:2; -webkit-appearance:none; outline:none;}
   .lab-code:focus{border-color:var(--cyan);}
-  .lab-tall .lab-code{min-height:460px;}
+  .lab-tall .hl-area > textarea{min-height:460px;}
   .lab-edit{display:block; position:relative; border:2px solid var(--whisper); border-radius:8px; background:#05070F; overflow:hidden;}
   .lab-edit:focus-within{border-color:var(--cyan);}
   .lab-edit .lab-code{border:none; border-radius:0; flex:1; min-width:0; margin:0;}
@@ -1052,13 +1052,17 @@
   .lab-edit .hl-area{margin-left:46px;}
   .hl-area > textarea{position:relative; z-index:2; background:transparent !important; color:transparent !important; caret-color:#fff; width:100%; display:block;}
   .hl-area > textarea::selection{background:rgba(0,229,255,.35);}
-  .hl-layer{position:absolute; inset:0; margin:0; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; white-space:pre; overflow:hidden; color:#E6ECFF; pointer-events:none; z-index:1; tab-size:2;}
-  .mini .hl-layer{padding:10px 12px; border-left:3px solid transparent;}
+  .hl-layer{position:absolute; inset:0; overflow:hidden; color:#E6ECFF; pointer-events:none; z-index:1;}
+  .hl-area > textarea, .hl-layer{font-family:'IBM Plex Mono', Menlo, Consolas, monospace !important; font-size:16px !important; line-height:24px !important; font-weight:400 !important; font-style:normal; letter-spacing:0 !important; word-spacing:0; padding:12px !important; margin:0 !important; border:0 !important; box-sizing:border-box; white-space:pre !important; overflow-wrap:normal; word-break:normal; tab-size:2; font-kerning:none; font-variant-ligatures:none; font-feature-settings:normal; text-rendering:auto; -webkit-text-size-adjust:100%; text-transform:none; text-indent:0; text-align:left;}
+  .hl-area > textarea{min-height:340px; overflow:auto; resize:vertical;}
+  .mini .hl-area > textarea, .mini .hl-layer{padding:10px 12px 10px 15px !important; min-height:0;}
+  .hl-area.hl-off .hl-layer{display:none;} .hl-area.hl-off > textarea{color:#E6ECFF !important;}
+  .hl-toggle{margin-left:auto; cursor:pointer; border:1px solid var(--card-edge); border-radius:5px; padding:2px 8px; color:var(--cyan); background:#141B36;}
   .hl-tag{color:#FFC178;} .hl-attr{color:#FFE2B8;} .hl-css{color:#C7B5FF;} .hl-js{color:#7CF5C2;} .hl-str{color:#FFF3A3;} .hl-cm{color:#6F7BA3; font-style:italic;} .hl-kw{color:#5ED3FF;}
   .hl-key{display:flex; gap:12px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-left:auto;}
   .hl-key i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:middle;}
   .lab-bar .hl-key{margin-left:0; flex:1 1 100%;}
-  .lab-gutter{position:absolute; left:0; top:0; bottom:0; width:46px; box-sizing:border-box; margin:0; padding:12px 8px 12px 10px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; color:#4A5680; text-align:right; background:#080C1E; border-right:1px solid var(--whisper); user-select:none; overflow:hidden; white-space:pre; min-width:44px;}
+  .lab-gutter{position:absolute; left:0; top:0; bottom:0; width:46px; box-sizing:border-box; margin:0; padding:12px 8px 12px 10px; font-family:'IBM Plex Mono', Menlo, Consolas, monospace; font-size:16px; line-height:24px; color:#4A5680; text-align:right; background:#080C1E; border-right:1px solid var(--whisper); user-select:none; overflow:hidden; white-space:pre; min-width:44px;}
   .lad-wrap{position:relative;}
   .lad-tools{position:absolute; top:6px; right:6px; display:flex; gap:6px;}
   .lad-tools button{font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#141B36; color:var(--cyan); border:1px solid var(--card-edge); border-radius:5px; padding:4px 9px; cursor:pointer;}
@@ -4969,10 +4973,13 @@ setInterval(countdown, 500);</pre>
     function paint(){ layer.innerHTML = (mode === 'js' ? hlJS(ta.value) : hlDoc(ta.value)) + '\n '; }
     function sync(){ layer.scrollTop = ta.scrollTop; layer.scrollLeft = ta.scrollLeft; }
     ta.addEventListener('input', paint); ta.addEventListener('scroll', sync);
-    paint();
+    paint(); if(hlOff) area.classList.add('hl-off');
     return paint;
   }
-  var KEY_HTML = '<span class="hl-key"><span><i style="background:#FFC178"></i>HTML</span><span><i style="background:#C7B5FF"></i>CSS</span><span><i style="background:#7CF5C2"></i>JavaScript</span></span>';
+  var KEY_HTML = '<span class="hl-key"><span><i style="background:#FFC178"></i>HTML</span><span><i style="background:#C7B5FF"></i>CSS</span><span><i style="background:#7CF5C2"></i>JavaScript</span><button type="button" class="hl-toggle">Colour: on</button></span>';
+  var hlOff = false; try { hlOff = localStorage.getItem('eliot_hl_off') === '1'; } catch(e){}
+  function applyHl(){ document.querySelectorAll('#sess-7 .hl-area').forEach(function(a){ a.classList.toggle('hl-off', hlOff); }); document.querySelectorAll('#sess-7 .hl-toggle').forEach(function(b){ b.textContent = 'Colour: ' + (hlOff ? 'off' : 'on'); }); }
+  document.addEventListener('click', function(e){ var b = e.target.closest('.hl-toggle'); if(!b) return; hlOff = !hlOff; try { localStorage.setItem('eliot_hl_off', hlOff ? '1' : '0'); } catch(e2){} applyHl(); });
 
   /* ---------- code labs ---------- */
   var HOOK = '<script>window.onerror=function(m,s,l){parent.postMessage({labErr:String(m),line:(l||0)-1},"*");};<\/script>';
