@@ -1023,6 +1023,82 @@
   .dl-tab:disabled{opacity:.4; cursor:not-allowed;}
   .dl-src{display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; margin-bottom:8px;}
   .dl-text{font-size:16px; color:#D5DBEE; max-width:70ch; margin:0 auto 14px;}
+
+  /* ============ SESSION 8: CODE LAB ============ */
+  .rv-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;}
+  @media (max-width:700px){ .rv-grid{grid-template-columns:1fr;} }
+  .rv-col{background:#070915; border:2px solid var(--whisper); border-radius:10px; padding:12px 14px;}
+  .rv-head{font-family:'Chakra Petch',sans-serif; font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px;}
+  details.rv{border-top:1px solid var(--whisper); padding:7px 0;}
+  details.rv summary{cursor:pointer; font-weight:700; color:#fff; font-size:15.5px; list-style:none; display:flex; align-items:center; gap:8px;}
+  details.rv summary::-webkit-details-marker{display:none;}
+  details.rv summary::before{content:'▸'; color:var(--cyan); transition:transform .2s;}
+  details.rv[open] summary::before{transform:rotate(90deg);}
+  details.rv p{color:#D5DBEE; font-size:14.5px; margin:6px 0 2px 18px; line-height:1.5;}
+  .stab[data-pane="ladder"].active, .stab[data-pane="numbers"].active{color:var(--cyan); border-color:var(--cyan); background:#0B1F24; box-shadow:0 0 10px rgba(0,229,255,0.3);}
+  .stab[data-pane="bugs"].active{color:var(--magenta); border-color:var(--magenta); background:#1F0D20; box-shadow:0 0 10px rgba(255,42,133,0.3);}
+  .stab[data-pane="spec"].active{color:#B39DFF; border-color:#7C5CFF; background:#15102B; box-shadow:0 0 10px rgba(124,92,255,0.3);}
+  .lab{background:#070915; border:2px solid var(--card-edge); border-radius:12px; padding:12px; margin-top:16px;}
+  .lab-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:4px 0 8px;}
+  .lab-title{font-family:'Chakra Petch',sans-serif; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-right:auto;}
+  .lab-bar .sim-btn{padding:8px 14px; font-size:13px;}
+  .lab-code{width:100%; min-height:340px; background:#05070F; color:#E6ECFF; border:2px solid var(--whisper); border-radius:8px; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; resize:vertical; white-space:pre; overflow:auto; tab-size:2; -webkit-appearance:none; outline:none;}
+  .lab-code:focus{border-color:var(--cyan);}
+  .lab-tall .lab-code{min-height:460px;}
+  .lab-edit{display:flex; border:2px solid var(--whisper); border-radius:8px; background:#05070F; overflow:hidden;}
+  .lab-edit:focus-within{border-color:var(--cyan);}
+  .lab-edit .lab-code{border:none; border-radius:0; flex:1; min-width:0; margin:0;}
+  .lab-gutter{margin:0; padding:12px 8px 12px 10px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; color:#4A5680; text-align:right; background:#080C1E; border-right:1px solid var(--whisper); user-select:none; overflow:hidden; white-space:pre; min-width:44px;}
+  .lad-wrap{position:relative;}
+  .lad-tools{position:absolute; top:6px; right:6px; display:flex; gap:6px;}
+  .lad-tools button{font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#141B36; color:var(--cyan); border:1px solid var(--card-edge); border-radius:5px; padding:4px 9px; cursor:pointer;}
+  .lad-tools button.try{color:var(--green);}
+  .lad-wrap .lad-code{padding-right:150px;}
+  .mini{background:#070915; border:2px solid var(--whisper); border-radius:8px; margin:8px 0 14px; overflow:hidden;}
+  .mini-bar{display:flex; gap:6px; align-items:center; padding:6px 8px; background:#080C1E; border-bottom:1px solid var(--whisper);}
+  .mini-bar .lab-title{font-size:12px;}
+  .mini-bar button{font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#141B36; color:var(--cyan); border:1px solid var(--card-edge); border-radius:5px; padding:5px 10px; cursor:pointer;}
+  .mini-bar button.run{color:#000; background:var(--green); border-color:var(--green);}
+  .mini-code{width:100%; display:block; background:#05070F; color:#E6ECFF; border:none; padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; resize:vertical; white-space:pre; overflow:auto; outline:none; -webkit-appearance:none; border-left:3px solid var(--cyan);}
+  .mini-out{display:none; border-top:1px solid var(--whisper);}
+  .mini.ran .mini-out{display:block;}
+  .mini-frame{width:100%; height:150px; border:none; display:block; background:#0B1028;}
+  .mini-err{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--magenta); font-weight:700; padding:6px 10px; min-height:18px;}
+  .mini-err.ok{color:var(--green);}
+  .stab[data-pane="js101"].active{color:var(--yellow); border-color:var(--yellow); background:#1C1A0F; box-shadow:0 0 10px rgba(255,230,0,0.3);}
+  .lab-frame{width:100%; border:2px solid var(--whisper); border-radius:8px; background:#0B1028; display:block;}
+  .lab-err{font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--magenta); font-weight:700; flex:1 1 100%;}
+  .lab-err.ok{color:var(--green);}
+  .lad-code{background:#05070F; border:1px solid var(--whisper); border-left:3px solid var(--cyan); border-radius:6px; padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:#E6ECFF; white-space:pre; overflow-x:auto; margin:8px 0 12px;}
+  .lad-learn{background:rgba(0,255,136,.07); border-left:3px solid var(--green); padding:8px 12px; border-radius:0 6px 6px 0; color:#D5DBEE; font-size:15px;}
+  .lad-list{margin:8px 0 0 22px; color:#D5DBEE; font-size:15.5px; line-height:1.7;}
+  .lad-more{margin:6px 0;} .lad-more summary{cursor:pointer; color:var(--yellow); font-family:'Chakra Petch',sans-serif; font-size:13px; letter-spacing:.08em; text-transform:uppercase;}
+  .lad-more p{margin:6px 0 0 14px;}
+  code{font-family:'IBM Plex Mono',monospace; font-size:.92em; background:#05070F; padding:1px 6px; border-radius:4px; color:var(--cyan);}
+  /* game spec */
+  .gs-progress{position:sticky; top:0; z-index:5; background:rgba(7,9,21,.92); backdrop-filter:blur(6px); border:2px solid var(--card-edge); border-radius:12px; padding:10px 14px; margin:14px 0 20px; display:flex; align-items:center; gap:14px;}
+  .gs-bar{flex:1; height:12px; border-radius:6px; background:var(--whisper); overflow:hidden;} .gs-bar i{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--cyan), var(--green)); transition:width .3s;}
+  .gs-progress span{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); white-space:nowrap;}
+  .gs-lever{background:#0B1028; border:2px solid var(--card-edge); border-radius:14px; padding:20px 20px 16px; margin-bottom:18px; position:relative;}
+  .gs-lever.done{border-color:rgba(0,255,136,.55);}
+  .gs-num{position:absolute; top:-14px; left:16px; background:var(--card); border:2px solid currentColor; border-radius:999px; padding:2px 12px; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:13px; letter-spacing:.1em; text-transform:uppercase;}
+  .c-y{color:var(--yellow);} .c-c{color:var(--cyan);} .c-g{color:var(--green);} .c-m{color:var(--magenta);} .c-v{color:#B39DFF;}
+  .gs-lever h4, .gs-final h4{font-family:'Chakra Petch',sans-serif; font-size:21px; letter-spacing:.03em; margin:6px 0 4px; color:#fff;}
+  .gs-why{color:var(--muted); font-size:15px; margin-bottom:12px;}
+  .gs-eg{background:#070915; border-left:3px solid var(--whisper); padding:8px 12px; font-size:14.5px; color:#C9D1EA; margin-bottom:12px; border-radius:0 8px 8px 0;}
+  .gs-eg b{color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:2px;}
+  .gs-label{display:block; font-family:'Chakra Petch',sans-serif; font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff; margin:12px 0 6px;}
+  textarea.gs-in, input.gs-in{width:100%; background:#070913; color:var(--ink); border:2px solid var(--card-edge); border-radius:10px; padding:12px 14px; font-family:'Space Grotesk',sans-serif; font-size:17px; line-height:1.5; resize:vertical; outline:none; -webkit-appearance:none;}
+  textarea.gs-in{min-height:84px;} .gs-in:focus{border-color:var(--cyan);}
+  .gs-row{display:grid; grid-template-columns:1fr 1fr; gap:12px;} @media (max-width:600px){ .gs-row{grid-template-columns:1fr;} }
+  .gs-chips{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 8px;}
+  .gs-chip{font-family:'Chakra Petch',sans-serif; font-size:13px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; border:2px solid var(--card-edge); background:#080C1E; color:var(--muted); border-radius:999px; padding:7px 14px; cursor:pointer;}
+  .gs-chip.on{color:#000; background:var(--cyan); border-color:var(--cyan);}
+  .gs-list{list-style:none; margin:0; padding:0;} .gs-list li{display:flex; gap:8px; align-items:center; margin-bottom:8px;} .gs-list .n{font-family:'IBM Plex Mono',monospace; color:var(--muted); width:22px; text-align:right;}
+  .gs-warn{font-size:14px; color:var(--yellow); margin-top:6px; min-height:20px;}
+  .gs-final{background:linear-gradient(135deg, #141B36, #0B1028); border:2px solid #7C5CFF; border-radius:14px; padding:20px; margin:26px 0 0;}
+  .gs-final h4{color:#B39DFF; text-align:center;} .gs-final p{color:var(--muted); font-size:15px; text-align:center; margin-bottom:12px;}
+  .gs-out{background:#070913; border:2px dashed var(--card-edge); border-radius:12px; padding:16px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; white-space:pre-wrap; color:#C9D1EA; min-height:60px; margin-top:12px; text-align:left;}
 </style>
 </head>
 <body>
@@ -1043,12 +1119,11 @@
       <button class="st fri" data-target="sess-4" aria-label="Session 4"></button>
       <button class="st wed" data-target="sess-5" aria-label="Session 5"></button>
       <button class="st wed" data-target="sess-6" aria-label="Session 6"></button>
-      <button class="st fri" data-target="sess-7" aria-label="Session 7"></button>
-      <button class="st wed" data-target="sess-8" aria-label="Session 8"></button>
+      <button class="st wed" data-target="sess-7" aria-label="Session 7"></button>
+      <button class="st fri" data-target="sess-8" aria-label="Session 8"></button>
       <button class="st fri" data-target="sess-9" aria-label="Session 9"></button>
-      <button class="st fri" data-target="sess-10" aria-label="Session 10"></button>
-      <button class="st wed" data-target="sess-11" aria-label="Session 11"></button>
-      <button class="st fri last" data-target="sess-12" aria-label="Session 12"></button>
+      <button class="st wed" data-target="sess-10" aria-label="Session 10"></button>
+      <button class="st fri last" data-target="sess-11" aria-label="Session 11"></button>
     </div>
 
     <!-- Arrival Meditation -->
@@ -2520,51 +2595,655 @@
     <div class="session-subnav">
       <button class="sess-tab active" data-sess="sess-7">Session 7</button>
       <button class="sess-tab" data-sess="sess-8">Session 8</button>
-      <button class="sess-tab" data-sess="sess-9">Session 9</button>
     </div>
-    <!-- Session 7 -->
-    <div class="session-view active" id="view-sess-7" data-sessid="sess-7" data-classdate="2026-11-06">
+    <!-- Session 7: Making It Do Things -->
+    <div class="session-view active" id="view-sess-7" data-sessid="sess-7" data-classdate="2026-11-11">
       <div class="gate-box">
         <h4>Session 7 Locked</h4>
-        <span class="gate-unlock-date">Class: Fri Nov 6 · Unlocks Nov 5</span>
-        <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
-      </div>
-      <article id="sess-7" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Seven</span></div>
-        <h3>First Webpage</h3>
-        <p>HTML basics in CodePen or Working Copy: headings, paragraphs, and buttons.</p>
-        <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
-          <textarea data-note="s7" placeholder="Tags and structures mastered?"></textarea>
-          <div class="saved-flag" data-flag="s7"></div>
-        </details>
-      </article>
-    </div>
-    <!-- Session 8 -->
-    <div class="session-view" id="view-sess-8" data-sessid="sess-8" data-classdate="2026-11-11">
-      <div class="gate-box">
-        <h4>Session 8 Locked</h4>
         <span class="gate-unlock-date">Class: Wed Nov 11 · Unlocks Nov 10</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
       </div>
-      <article id="sess-8" class="session wed" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Eight</span></div>
+      <article id="sess-7" class="session wed" style="display:none;">
+        <div class="session-top">
+          <span class="lv-badge">Session Seven // Code Lab</span>
+          <span class="when">Wed Nov 11 · 1:45–3:15</span>
+          <button class="bm-btn" data-bm="sess-7" aria-pressed="false">☆</button>
+        </div>
         <h3>Making It Do Things</h3>
-        <p>JavaScript fundamentals: click events, variables, and game logic.</p>
+
+        <div class="stabs">
+          <button class="stab active" data-pane="agenda">Today's Agenda</button>
+          <button class="stab" data-pane="js101">JS 101</button>
+          <button class="stab" data-pane="ladder">1 · Button Ladder</button>
+          <button class="stab" data-pane="numbers">2 · Change the Numbers</button>
+          <button class="stab" data-pane="bugs">3 · Bug Hunt</button>
+          <button class="stab" data-pane="spec">4 · Game Spec</button>
+        </div>
+
+        <!-- Agenda -->
+        <div class="spane active" data-pane="agenda">
+          <div class="agenda-block">
+            <div class="agenda-step">
+              <span class="agenda-tag">01 // What Do You Remember? (the whole quest so far)</span>
+              <p style="color:var(--muted); font-size:15px; margin-bottom:6px;">Go down the list. Eliot says what each one means in his own words. Tap a term to see the answer.</p>
+              <div class="rv-grid">
+                <div class="rv-col"><div class="rv-head c-y">Session 1 · What is AI?</div>
+                  <details class="rv"><summary>Artificial + Intelligence</summary><p>Made by people, not nature; the ability to take in information, learn, adapt and solve problems. And humans are still required: AI has no common sense, empathy or gut feeling.</p></details>
+                  <details class="rv"><summary>Human Engagement</summary><p>AI needs human directors, coders and judges. It's a tool you steer, not a brain you obey.</p></details>
+                  <details class="rv"><summary>Predicting from the past</summary><p>Like guessing who wins a match: you look at past games, weather, injuries. AI predicts from mountains of past examples.</p></details>
+                  <details class="rv"><summary>Environmental Impact</summary><p>Every AI answer costs electricity and water somewhere. Use it on purpose, not for everything.</p></details>
+                </div>
+                <div class="rv-col"><div class="rv-head c-c">Session 2 · How Machines Learn</div>
+                  <details class="rv"><summary>Stochastic / Dynamic</summary><p>Same question, different answer. AI picks one likely word at a time like pulling marbles from a jar, so it's never exactly the same twice.</p></details>
+                  <details class="rv"><summary>Sample Size</summary><p>A handful of 5 marbles lies; a handful of 60 almost never does. More examples = steadier guesses. (Remember 4 kicks vs 40.)</p></details>
+                  <details class="rv"><summary>Feather Detective</summary><p>A machine that shows its clues, changes its answer when a clue changes, and says "I can't tell yet." Good AI should do all three.</p></details>
+                </div>
+                <div class="rv-col"><div class="rv-head c-g">Session 3 · The Art of the Prompt</div>
+                  <details class="rv"><summary>Specifications: 4 levers</summary><p><b>Role</b> (who is the AI being?), <b>Task</b> (what exactly?), <b>Constraints</b> (the rules and limits), <b>Format</b> (what shape should the answer be?). Vague in, generic out.</p></details>
+                  <details class="rv"><summary>Web app vs. App Store</summary><p>Our path: one HTML file, free, shareable instantly, runs on any device. The App Store path costs money and takes months.</p></details>
+                </div>
+                <div class="rv-col"><div class="rv-head c-m">Sessions 4 &amp; 5 · Training</div>
+                  <details class="rv"><summary>Guess → Check → Nudge</summary><p>A machine learns by being wrong. Guess, find out, change a tiny bit, repeat hundreds of times. Nobody types the rule in.</p></details>
+                  <details class="rv"><summary>Clues &amp; how much they count</summary><p>Distance, angle, goalie (or distance and noise for Biscuit). Each clue gets a weight: how much it matters. The weights <i>are</i> the rule.</p></details>
+                  <details class="rv"><summary>Cups &amp; Beads</summary><p>Four cups = the machine's memory. Right guess: add a bead. Wrong: bead out, two of the true colour in. The cups fill up with the truth.</p></details>
+                  <details class="rv"><summary>Draw the Line</summary><p>Every past call is a dot. One line splits COMES from IGNORES and can answer calls it's never seen. A neuron is a line that nudges when it's wrong; a network is thousands of them.</p></details>
+                  <details class="rv"><summary>Luck is in the data</summary><p>Even a good rule gets some wrong, because Biscuit is a puppy. Stochastic, again.</p></details>
+                </div>
+              </div>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">02 // One Idea + JS 101 (15 min)</span>
+              <div class="s5-idea">
+                <div class="s5-idea-big">HTML is the body. CSS is the clothes. JavaScript is the muscles.</div>
+                <div class="s5-idea-sub" style="margin-top:8px;"><b>HTML in one breath:</b> a page is made of tags in angle brackets. <code>&lt;h1&gt;</code> is a big heading, <code>&lt;p&gt;</code> is a paragraph, <code>&lt;button&gt;</code> is a button. Open the tag, put stuff in, close it with a slash: <code>&lt;p&gt;hello&lt;/p&gt;</code>. Give a tag an <code>id</code> so JavaScript can find it. That's all the HTML you need today; the Button Ladder has a whole page ready to go.</div>
+                <div class="s5-idea-sub">A button in HTML is just a shape. JavaScript is what makes it <i>do</i> something when you press it. Today you write the muscles. The <b>JS 101</b> tab has the ten pieces of syntax we'll use, each with a Try It button. Skim it now, come back to it whenever a lab gets confusing.</div>
+              </div>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">03 // Button Ladder (20 min)</span>
+              <p>One button, five rungs. Each rung is one line of code you type yourself. By rung three you've used a variable, a function and an <code>if</code> without anyone making a big deal of it.</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">04 // Change the Numbers (20 min)</span>
+              <p>A working game: Biscuit's Treat Dash. Six numbers at the top of the file. Your only job is to change them and see what happens. This is the habit that carries the whole capstone: <b>read the top of the file, make it yours.</b></p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">05 // Bug Hunt (20 min)</span>
+              <p>The same game with three bugs planted in it. Find them. Gemini can help you look, but <b>you</b> make the fix. This is a preview of Session 9: Gemini is a good mechanic, you're the driver.</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">06 // Game Spec (20 min)</span>
+              <p>Now that you've touched real code, write the plan for <b>your</b> game. Nine boxes. Build the Gemini prompt at the end, but <b>don't send it yet</b>. That's how Session 9 starts.</p>
+            </div>
+            <div class="agenda-step">
+              <span class="agenda-tag">07 // Say It Back</span>
+              <p>Eliot explains to Joolay: what's a variable, and what does <code>addEventListener</code> do? In his own words.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 0 JavaScript 101 -->
+        <div class="spane" data-pane="js101">
+          <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">JavaScript 101: The Syntax</div>
+            <p class="sim-desc" style="text-align:center;">Ten things, and that's most of what Treat Dash is made of. Every example is live: press <b>▶ Run</b> and it runs right there, underneath. Then change one thing in the box and run it again. (Each one runs inside a little page that already has a button called <code>go</code> and a paragraph called <code>out</code>.)</p>
+
+            <details class="kp-step kp-fold" open><summary class="kp-step-tag">1 // Where JavaScript lives</summary>
+              <p>HTML is the page. JavaScript goes inside a <code>&lt;script&gt;</code> tag, usually at the bottom, so the page exists before the code tries to touch it.</p>
+              <pre class="lad-code" data-try="no">&lt;button id="go"&gt;Go&lt;/button&gt;
+&lt;p id="out"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  // everything in here is JavaScript
+&lt;/script&gt;</pre>
+              <p class="lad-learn">Lines that start with <code>//</code> are <b>comments</b>: notes for humans. The computer skips them. Treat Dash is full of them. Read them first.</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">2 // Variables: boxes with names</summary>
+              <p>A variable is a box. <code>var</code> makes the box, the name is the label, <code>=</code> puts something in it.</p>
+              <pre class="lad-code">var lives = 3;
+var dogName = "Biscuit";
+out.textContent = dogName + " has " + lives + " lives";</pre>
+              <p>Change what's in a box with <code>=</code> again. The right side happens first, then it gets stored.</p>
+              <pre class="lad-code">var score = 0;
+score = score + 10;
+score = score + 10;
+out.textContent = "Score: " + score;</pre>
+              <p class="lad-learn"><b>Rules:</b> names can't have spaces (<code>dogName</code>, not <code>dog name</code>). Capital letters matter: <code>Score</code> and <code>score</code> are two different boxes. That's the Bug Hunt's <code>scor</code> bug.</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">3 // Two kinds of stuff: numbers and strings</summary>
+              <p>Numbers are bare: <code>10</code>, <code>2.5</code>. Strings (text) wear quotes: <code>"Yum!"</code>. The computer does math on numbers and glues strings.</p>
+              <pre class="lad-code">var a = 5 + 5;        // 10, math
+var b = "5" + "5";    // "55", glued!
+out.textContent = a + " and " + b;</pre>
+              <p class="lad-learn">If something is adding up wrong, check whether a number accidentally has quotes around it.</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">4 // Math</summary>
+              <pre class="lad-code">var x = 7 + 3;   // 10   add
+var y = 7 - 3;   // 4    subtract
+var z = 7 * 3;   // 21   multiply (star, not x)
+var w = 7 / 2;   // 3.5  divide
+var r = Math.random();        // a random number between 0 and 1
+var d = Math.round(r * 10);   // random 0 to 10
+out.textContent = x + " " + y + " " + z + " " + w + " random: " + d;</pre>
+              <p class="lad-learn">Treat Dash uses <code>Math.random()</code> to decide where each treat falls. Press Try It a few times and watch the random number change. Stochastic!</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">5 // Finding things on the page</summary>
+              <p>Give an HTML tag an <code>id</code>, then grab it by name. Once you have it, you can change its words or its style.</p>
+              <pre class="lad-code">var p = document.getElementById("out");
+p.textContent = "Hello Eliot";
+p.style.color = "#00FF88";
+p.style.fontSize = "40px";</pre>
+              <p class="lad-learn"><code>textContent</code> = the words. <code>style.something</code> = the look. In Treat Dash, <code>biscuit.style.left</code> is how she moves: change the number, she jumps.</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">6 // Functions: a recipe you can run again</summary>
+              <p>A function is a block of code with a name. Writing it does nothing. <b>Calling</b> it (name + parentheses) runs it.</p>
+              <pre class="lad-code">function cheer() {
+  out.textContent = out.textContent + " 🎉";
+}
+cheer();
+cheer();
+cheer();</pre>
+              <p class="lad-learn">Everything between <code>{</code> and <code>}</code> belongs to the function. Every open brace needs a close brace. Missing one = the whole page goes dead. (Bug Hunt, bug 1.)</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">7 // Events: when the player does something</summary>
+              <p>A listener is a function that waits. "When this button gets a <code>click</code>, run this."</p>
+              <pre class="lad-code">var taps = 0;
+go.addEventListener("click", function () {
+  taps = taps + 1;
+  out.textContent = "Tapped " + taps + " times";
+});</pre>
+              <p class="lad-learn">The function inside has no name; it's handed straight to the listener. Games are mostly listeners: tap, swipe, press. On an iPad, <code>pointerdown</code> fires the instant a finger touches, which feels snappier than <code>click</code>.</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">8 // If: asking a question</summary>
+              <p><code>if</code> asks a yes/no question. The code in its braces runs only on yes. <code>else</code> is what happens on no.</p>
+              <pre class="lad-code">var lives = 0;
+if (lives == 0) {
+  out.textContent = "Game over!";
+} else {
+  out.textContent = "Keep going, " + lives + " left";
+}</pre>
+              <p>The questions you can ask:</p>
+              <pre class="lad-code" data-try="no">a == b    is a equal to b?
+a != b    is a NOT equal to b?
+a &gt; b     bigger?       a &gt;= b   bigger or equal?
+a &lt; b     smaller?      a &lt;= b   smaller or equal?</pre>
+              <p class="lad-learn"><b>The classic trap:</b> one <code>=</code> <i>puts</i> something in a box. Two <code>==</code> <i>asks</i> if they match. <code>if (lives = 0)</code> sets lives to zero and never asks anything. (Bug Hunt, bug 3.)</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">9 // Doing something over and over</summary>
+              <p><code>setInterval</code> runs a function again and again, every so many milliseconds (1000 = one second). That's how a treat "falls": it moves a tiny bit, 50 times a second.</p>
+              <pre class="lad-code">var n = 10;
+function countdown() {
+  out.textContent = n;
+  n = n - 1;
+  if (n &lt; 0) { out.textContent = "Liftoff! 🚀"; }
+}
+setInterval(countdown, 500);</pre>
+              <p class="lad-learn">Treat Dash has two of these: <code>fall</code> every 20 ms, <code>tick</code> every 1000 ms. The game is just a clock that keeps asking "what now?"</p>
+            </details>
+
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">10 // Reading an error</summary>
+              <p>When something's wrong, the red line under the preview says <b>what</b> and roughly <b>where</b>. Translations:</p>
+              <ul class="lad-list">
+                <li><b>"x is not defined"</b>: a name is spelled differently from where it was made, or you used it before making it.</li>
+                <li><b>"Unexpected end of input"</b>: a <code>{</code> or <code>(</code> never got closed.</li>
+                <li><b>"Unexpected token"</b>: a stray or missing character right about there. Check quotes and commas.</li>
+                <li><b>"Cannot read properties of null"</b>: <code>getElementById</code> couldn't find that id. Check the spelling in the HTML.</li>
+                <li><b>No error but nothing happens</b>: the code ran, but it's not doing what you think. Add <code>out.textContent = "got here";</code> to see how far it gets.</li>
+              </ul>
+              <p class="lad-learn">An error is the computer being honest, not mean. Read it, fix one thing, run again.</p>
+            </details>
+
+            <div class="kp-rule" style="margin-top:18px;"><b>Free scratchpad.</b> The whole little page the examples run in. Write anything here. There's a button called <code>go</code> and a paragraph called <code>out</code> already waiting.</div>
+            <div class="lab" data-lab="scratch">
+              <div class="lab-bar"><span class="lab-title">Code</span><button class="sim-btn lab-run" style="border-color:var(--green);">▶ Run</button><button class="sim-btn lab-copy">Copy Code</button><button class="sim-btn lab-reset" style="border-color:var(--whisper);">Reset</button></div>
+              <div class="lab-edit"><pre class="lab-gutter" aria-hidden="true">1</pre><textarea class="lab-code" spellcheck="false" autocapitalize="off" autocorrect="off">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;style&gt;
+  body { font-family: sans-serif; background: #0B1028; color: white; text-align: center; padding: 24px; }
+  button { font-size: 22px; padding: 12px 28px; border-radius: 10px; border: none; background: #00E5FF; }
+  #out { font-size: 28px; margin-top: 20px; min-height: 40px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button id="go"&gt;Go&lt;/button&gt;
+&lt;p id="out"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  var go = document.getElementById("go");
+  var out = document.getElementById("out");
+
+  // ▼ your code goes here ▼
+  out.textContent = "Ready.";
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</textarea></div>
+              <div class="lab-bar"><span class="lab-title">What it does</span><span class="lab-err"></span></div>
+              <iframe class="lab-frame" sandbox="allow-scripts" style="height:260px" title="Preview"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1 Button Ladder -->
+        <div class="spane" data-pane="ladder">
+          <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">Button Ladder</div>
+            <p class="sim-desc" style="text-align:center;">Start at the bottom. Add one line, press <b>Run</b>, press the button. Then the next rung. Tap a rung to open it.</p>
+            <details class="kp-step kp-fold" open><summary class="kp-step-tag">Rung 1 // Change what it says</summary>
+              <p>Find <code>answer.textContent = "You pressed it!";</code> (line 22) and change the words inside the quotes to anything you like. Run it. Press the button.</p>
+              <p class="lad-learn">You just learned: the words inside quotes are a <b>string</b>. The computer doesn't care what they say; it just shows them.</p>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Rung 2 // Count the presses</summary>
+              <p>Above the <code>button.addEventListener</code> line (around line 21), add:</p>
+              <pre class="lad-code">var presses = 0;</pre>
+              <p>Inside the function, add a line <b>before</b> the <code>answer.textContent</code> line (around line 23):</p>
+              <pre class="lad-code">presses = presses + 1;</pre>
+              <p>Run it. Nothing looks different yet. That's okay. The counting is happening in secret.</p>
+              <p class="lad-learn">You just learned: <code>presses</code> is a <b>variable</b>, a box with a number in it. <code>presses = presses + 1</code> means "put back whatever was in the box, plus one."</p>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Rung 3 // Show the count</summary>
+              <p>Change the <code>answer.textContent</code> line (around line 24) to:</p>
+              <pre class="lad-code">answer.textContent = "Pressed " + presses + " times";</pre>
+              <p>Run it. Press the button a bunch.</p>
+              <p class="lad-learn">You just learned: <code>+</code> glues strings and numbers together. The number comes out of the box every time.</p>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Rung 4 // Make something happen at 10</summary>
+              <p>Right after the <code>answer.textContent</code> line, still inside the function, add:</p>
+              <pre class="lad-code">if (presses >= 10) {
+  document.body.style.background = "#FF2A85";
+  answer.textContent = "TEN! 🎉";
+}</pre>
+              <p>Run it. Press ten times.</p>
+              <p class="lad-learn">You just learned: <code>if</code> is a question. The code inside the curly braces only runs when the answer is yes. <code>&gt;=</code> means "10 or more."</p>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Rung 5 // A reset button</summary>
+              <p>In the HTML part, under the first button (line 14), add:</p>
+              <pre class="lad-code">&lt;button id="resetButton"&gt;Reset&lt;/button&gt;</pre>
+              <p>At the bottom of the script, after the <code>});</code> that closes the first listener, add:</p>
+              <pre class="lad-code">document.getElementById("resetButton").addEventListener("click", function () {
+  presses = 0;
+  document.body.style.background = "#0B1028";
+  answer.textContent = "";
+});</pre>
+              <p class="lad-learn">You just learned: every button gets its own listener. A listener is a function that waits for a click. You've now written two of them, and a game is just a lot of these.</p>
+              <p><b>Bonus:</b> make the background turn green at 5 and pink at 10. What has to change?</p>
+            </details>
+
+              <div class="lab" data-lab="ladder">
+                <div class="lab-bar"><span class="lab-title">Code</span><button class="sim-btn lab-run" style="border-color:var(--green);">▶ Run</button><button class="sim-btn lab-copy">Copy Code</button><button class="sim-btn lab-reset" style="border-color:var(--whisper);">Reset</button></div>
+                <div class="lab-edit"><pre class="lab-gutter" aria-hidden="true">1</pre><textarea class="lab-code" spellcheck="false" autocapitalize="off" autocorrect="off">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;style&gt;
+  body { font-family: sans-serif; background: #0B1028; color: white; text-align: center; padding: 30px; }
+  button { font-size: 24px; padding: 16px 32px; border-radius: 12px; border: none; background: #00E5FF; }
+  #answer { font-size: 32px; margin-top: 24px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button id="myButton"&gt;Press me&lt;/button&gt;
+&lt;p id="answer"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  var button = document.getElementById("myButton");
+  var answer = document.getElementById("answer");
+
+  button.addEventListener("click", function () {
+    answer.textContent = "You pressed it!";
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea></div>
+                <div class="lab-bar"><span class="lab-title">What it does</span><span class="lab-err"></span></div>
+                <iframe class="lab-frame" sandbox="allow-scripts" style="height:300px" title="Preview"></iframe>
+              </div>
+          </div>
+        </div>
+
+        <!-- 2 Change the Numbers -->
+        <div class="spane" data-pane="numbers">
+          <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">Biscuit's Treat Dash</div>
+            <p class="sim-desc" style="text-align:center;">A whole game, about 90 lines. Treats fall; tap left or right of Biscuit to move her under them. You don't have to understand all of it. You only have to find the <b>six numbers at the top</b>.</p>
+            <div class="kp-rule">
+              <b>Missions</b> (change one number, press Run, play for 10 seconds, write down what changed):
+              <ol class="lad-list">
+                <li>Make Biscuit <b>faster</b>. Which number? What happens if it's 300?</li>
+                <li>Make the game <b>easier</b> three different ways. (There are at least three numbers that can do it.)</li>
+                <li>Make a 10-second <b>speed round</b> worth 50 points a treat.</li>
+                <li>Make treats <b>impossible to catch</b>. Then make them impossible to miss.</li>
+                <li><b>Find the line</b> that says "Yum! 🦴" and change it to something funnier.</li>
+                <li>Hard: find where the game decides you've <b>caught</b> a treat. What's the question it asks?</li>
+              </ol>
+            </div>
+
+              <div class="lab lab-tall" data-lab="numbers">
+                <div class="lab-bar"><span class="lab-title">Code</span><button class="sim-btn lab-run" style="border-color:var(--green);">▶ Run</button><button class="sim-btn lab-copy">Copy Code</button><button class="sim-btn lab-reset" style="border-color:var(--whisper);">Reset</button></div>
+                <div class="lab-edit"><pre class="lab-gutter" aria-hidden="true">1</pre><textarea class="lab-code" spellcheck="false" autocapitalize="off" autocorrect="off">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Biscuit's Treat Dash&lt;/title&gt;
+&lt;style&gt;
+  body { margin: 0; font-family: sans-serif; background: #0B1028; color: white; text-align: center; }
+  #arena { position: relative; height: 320px; margin: 10px; background: #0E3220; border: 3px solid #DDE6E0; border-radius: 12px; overflow: hidden; touch-action: none; }
+  #biscuit { position: absolute; bottom: 8px; left: 20px; font-size: 44px; transition: left 0.2s; }
+  #treat { position: absolute; top: -40px; font-size: 32px; }
+  #hud { font-size: 20px; padding: 8px; }
+  #message { font-size: 26px; font-weight: bold; min-height: 36px; color: #FFE600; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- ======= THE NUMBERS (change these!) ======= --&gt;
+&lt;script&gt;
+  var speed = 80;           // how many pixels Biscuit moves per tap
+  var pointsPerTreat = 10;  // points for every treat she catches
+  var lives = 3;            // treats you can miss before game over
+  var timerSeconds = 30;    // how long one game lasts
+  var fallSpeed = 2;        // how fast treats fall (bigger = faster)
+  var treatSize = 50;       // how close Biscuit has to be to catch one (pixels)
+&lt;/script&gt;
+&lt;!-- =========================================== --&gt;
+
+&lt;div id="hud"&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt; &amp;nbsp;|&amp;nbsp; Lives: &lt;span id="livesLeft"&gt;&lt;/span&gt; &amp;nbsp;|&amp;nbsp; Time: &lt;span id="time"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div id="arena"&gt;
+  &lt;div id="treat"&gt;🦴&lt;/div&gt;
+  &lt;div id="biscuit"&gt;🐶&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="message"&gt;Tap left or right of Biscuit to move her!&lt;/div&gt;
+
+&lt;script&gt;
+  var score = 0;
+  var timeLeft = timerSeconds;
+  var gameOver = false;
+  var arena = document.getElementById("arena");
+  var biscuit = document.getElementById("biscuit");
+  var treat = document.getElementById("treat");
+  var treatY = -40;
+  var treatX = 100;
+
+  function show() {
+    document.getElementById("score").textContent = score;
+    document.getElementById("livesLeft").textContent = "❤️".repeat(lives);
+    document.getElementById("time").textContent = timeLeft;
+  }
+
+  function newTreat() {
+    treatY = -40;
+    treatX = 20 + Math.random() * (arena.clientWidth - 60);
+    treat.style.left = treatX + "px";
+  }
+
+  // tap on the left of Biscuit = move left, tap on the right = move right
+  arena.addEventListener("pointerdown", function (event) {
+    if (gameOver) return;
+    var biscuitX = biscuit.offsetLeft + 22;
+    var tapX = event.clientX - arena.getBoundingClientRect().left;
+    var newX = biscuit.offsetLeft;
+    if (tapX &lt; biscuitX) { newX = newX - speed; } else { newX = newX + speed; }
+    newX = Math.max(0, Math.min(arena.clientWidth - 50, newX));
+    biscuit.style.left = newX + "px";
+  });
+
+  // the treat falls a little bit, many times a second
+  function fall() {
+    if (gameOver) return;
+    treatY = treatY + fallSpeed;
+    treat.style.top = treatY + "px";
+    if (treatY &gt; arena.clientHeight - 60) {
+      var distance = Math.abs((treatX + 16) - (biscuit.offsetLeft + 22));
+      if (distance &lt; treatSize) {
+        score = score + pointsPerTreat;
+        document.getElementById("message").textContent = "Yum! 🦴";
+      } else {
+        lives = lives - 1;
+        document.getElementById("message").textContent = "Missed one!";
+      }
+      newTreat();
+      show();
+      if (lives == 0) { endGame("Out of lives! Final score: " + score); }
+    }
+  }
+  setInterval(fall, 20);
+
+  // the clock ticks once a second
+  function tick() {
+    if (gameOver) return;
+    timeLeft = timeLeft - 1;
+    show();
+    if (timeLeft == 0) { endGame("Time's up! Final score: " + score); }
+  }
+  setInterval(tick, 1000);
+
+  function endGame(text) {
+    gameOver = true;
+    document.getElementById("message").textContent = text;
+  }
+
+  newTreat();
+  show();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea></div>
+                <div class="lab-bar"><span class="lab-title">What it does</span><span class="lab-err"></span></div>
+                <iframe class="lab-frame" sandbox="allow-scripts" style="height:440px" title="Preview"></iframe>
+              </div>
+            <p style="font-size:15px; color:var(--muted); margin-top:10px;">Want this on your own iPad? Press <b>Copy Code</b>, make a new file in Working Copy called <code>treat-dash.html</code>, paste, save, and open it in Safari.</p>
+          </div>
+        </div>
+
+        <!-- 3 Bug Hunt -->
+        <div class="spane" data-pane="bugs">
+          <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">Bug Hunt</div>
+            <p class="sim-desc" style="text-align:center;">Same game, but someone broke it in <b>three places</b>. Press Run. Read the red error. Fix one thing. Run again. Repeat. Open hints only when you're stuck.</p>
+            <div class="kp-rule">
+              <b>How to hunt:</b> the red error line under the preview tells you <b>what</b> went wrong and roughly <b>where</b> (the line number). That's a clue, not an insult. Computers are extremely literal: one wrong letter and the whole thing stops.
+              <br><br><b>Using Gemini:</b> allowed, and smart. Paste the code and the error and ask "what's wrong on line 72?" But type the fix yourself, and say out loud why it was wrong before you move on.
+            </div>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Bug 1 // Nothing happens at all</summary>
+              <p><b>Hint 1:</b> When a page is completely dead, the computer usually gave up before it started. Look at the error.</p>
+              <details class="lad-more"><summary>Hint 2</summary><p>Every <code>{</code> needs a <code>}</code>. Count them in the <code>tick</code> function.</p></details>
+              <details class="lad-more"><summary>The fix</summary><p>The <code>tick</code> function is missing its closing <code>}</code> before <code>setInterval(tick, 1000);</code>. Add one.</p></details>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Bug 2 // Catching a treat breaks it</summary>
+              <p><b>Hint 1:</b> Play until you catch one. Then read the error. It's about a name.</p>
+              <details class="lad-more"><summary>Hint 2</summary><p>The computer says something "is not defined." That means a word is spelled differently from where it was created.</p></details>
+              <details class="lad-more"><summary>The fix</summary><p><code>scor = score + pointsPerTreat;</code> should be <code>score = score + pointsPerTreat;</code>. One missing letter.</p></details>
+            </details>
+            <details class="kp-step kp-fold"><summary class="kp-step-tag">Bug 3 // You can't lose</summary>
+              <p><b>Hint 1:</b> Miss three treats on purpose. Watch the lives. Something's off, and there's no red error this time. This one's sneaky.</p>
+              <details class="lad-more"><summary>Hint 2</summary><p>In JavaScript, <code>=</code> means "put this in the box." <code>==</code> means "is it equal?" Find an <code>if</code> that uses the wrong one.</p></details>
+              <details class="lad-more"><summary>The fix</summary><p><code>if (lives = 0)</code> should be <code>if (lives == 0)</code>. The single <code>=</code> was <i>setting</i> lives to 0 instead of <i>asking</i> about it.</p></details>
+            </details>
+
+              <div class="lab lab-tall" data-lab="bugs">
+                <div class="lab-bar"><span class="lab-title">Code</span><button class="sim-btn lab-run" style="border-color:var(--green);">▶ Run</button><button class="sim-btn lab-copy">Copy Code</button><button class="sim-btn lab-reset" style="border-color:var(--whisper);">Reset</button></div>
+                <div class="lab-edit"><pre class="lab-gutter" aria-hidden="true">1</pre><textarea class="lab-code" spellcheck="false" autocapitalize="off" autocorrect="off">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Biscuit's Treat Dash&lt;/title&gt;
+&lt;style&gt;
+  body { margin: 0; font-family: sans-serif; background: #0B1028; color: white; text-align: center; }
+  #arena { position: relative; height: 320px; margin: 10px; background: #0E3220; border: 3px solid #DDE6E0; border-radius: 12px; overflow: hidden; touch-action: none; }
+  #biscuit { position: absolute; bottom: 8px; left: 20px; font-size: 44px; transition: left 0.2s; }
+  #treat { position: absolute; top: -40px; font-size: 32px; }
+  #hud { font-size: 20px; padding: 8px; }
+  #message { font-size: 26px; font-weight: bold; min-height: 36px; color: #FFE600; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- ======= THE NUMBERS (change these!) ======= --&gt;
+&lt;script&gt;
+  var speed = 80;           // how many pixels Biscuit moves per tap
+  var pointsPerTreat = 10;  // points for every treat she catches
+  var lives = 3;            // treats you can miss before game over
+  var timerSeconds = 30;    // how long one game lasts
+  var fallSpeed = 2;        // how fast treats fall (bigger = faster)
+  var treatSize = 50;       // how close Biscuit has to be to catch one (pixels)
+&lt;/script&gt;
+&lt;!-- =========================================== --&gt;
+
+&lt;div id="hud"&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt; &amp;nbsp;|&amp;nbsp; Lives: &lt;span id="livesLeft"&gt;&lt;/span&gt; &amp;nbsp;|&amp;nbsp; Time: &lt;span id="time"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div id="arena"&gt;
+  &lt;div id="treat"&gt;🦴&lt;/div&gt;
+  &lt;div id="biscuit"&gt;🐶&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="message"&gt;Tap left or right of Biscuit to move her!&lt;/div&gt;
+
+&lt;script&gt;
+  var score = 0;
+  var timeLeft = timerSeconds;
+  var gameOver = false;
+  var arena = document.getElementById("arena");
+  var biscuit = document.getElementById("biscuit");
+  var treat = document.getElementById("treat");
+  var treatY = -40;
+  var treatX = 100;
+
+  function show() {
+    document.getElementById("score").textContent = score;
+    document.getElementById("livesLeft").textContent = "❤️".repeat(lives);
+    document.getElementById("time").textContent = timeLeft;
+  }
+
+  function newTreat() {
+    treatY = -40;
+    treatX = 20 + Math.random() * (arena.clientWidth - 60);
+    treat.style.left = treatX + "px";
+  }
+
+  // tap on the left of Biscuit = move left, tap on the right = move right
+  arena.addEventListener("pointerdown", function (event) {
+    if (gameOver) return;
+    var biscuitX = biscuit.offsetLeft + 22;
+    var tapX = event.clientX - arena.getBoundingClientRect().left;
+    var newX = biscuit.offsetLeft;
+    if (tapX &lt; biscuitX) { newX = newX - speed; } else { newX = newX + speed; }
+    newX = Math.max(0, Math.min(arena.clientWidth - 50, newX));
+    biscuit.style.left = newX + "px";
+  });
+
+  // the treat falls a little bit, many times a second
+  function fall() {
+    if (gameOver) return;
+    treatY = treatY + fallSpeed;
+    treat.style.top = treatY + "px";
+    if (treatY &gt; arena.clientHeight - 60) {
+      var distance = Math.abs((treatX + 16) - (biscuit.offsetLeft + 22));
+      if (distance &lt; treatSize) {
+        scor = score + pointsPerTreat;
+        document.getElementById("message").textContent = "Yum! 🦴";
+      } else {
+        lives = lives - 1;
+        document.getElementById("message").textContent = "Missed one!";
+      }
+      newTreat();
+      show();
+      if (lives = 0) { endGame("Out of lives! Final score: " + score); }
+    }
+  }
+  setInterval(fall, 20);
+
+  // the clock ticks once a second
+  function tick() {
+    if (gameOver) return;
+    timeLeft = timeLeft - 1;
+    show();
+    if (timeLeft == 0) { endGame("Time's up! Final score: " + score); }
+  setInterval(tick, 1000);
+
+  function endGame(text) {
+    gameOver = true;
+    document.getElementById("message").textContent = text;
+  }
+
+  newTreat();
+  show();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea></div>
+                <div class="lab-bar"><span class="lab-title">What it does</span><span class="lab-err"></span></div>
+                <iframe class="lab-frame" sandbox="allow-scripts" style="height:440px" title="Preview"></iframe>
+              </div>
+            <div class="sim-controls" style="justify-content:flex-start;"><button class="sim-btn" id="bugsCheck" style="border-color:var(--yellow);">Check My Fixes</button><span class="kp-net-key" id="bugsSay"></span></div>
+          </div>
+        </div>
+
+        <!-- 4 Game Spec -->
+        <div class="spane" data-pane="spec">
+                    <div class="sim-container" style="text-align:left;">
+            <div class="sim-title" style="text-align:center;">My Game Spec</div>
+            <p class="sim-desc" style="text-align:center;">A spec is the plan you hand to a builder, even when the builder is you and Gemini. Same four levers as always, <b>Role, Task, Constraints, Format</b>, grown up into a game plan. Fill every box in your own words. Short is fine. It saves as you type.</p>
+            <div class="gs-progress"><div class="gs-bar"><i id="gsBar"></i></div><span id="gsPct">0 of 9 filled</span></div>
+
+            <section class="gs-lever" data-key="name"><div class="gs-num c-y">1 · The Name</div><h4>What's it called?</h4><p class="gs-why">A name makes it real. You can change it later.</p><input type="text" class="gs-in" data-f="name" placeholder="e.g. Biscuit's Big Escape"></section>
+
+            <section class="gs-lever" data-key="pitch"><div class="gs-num c-y">2 · The Pitch</div><h4>Explain the game in two sentences.</h4><p class="gs-why">If you can't say it in two sentences, it's too big for December. The pitch is the <b>Task</b> lever.</p><div class="gs-eg"><b>Example</b>You are Biscuit the puppy. Dodge the sprinklers, grab the treats, and reach the back door before the timer runs out.</div><textarea class="gs-in" data-f="pitch" placeholder="You are ___. You have to ___ before ___."></textarea></section>
+
+            <section class="gs-lever" data-key="player"><div class="gs-num c-c">3 · The Player</div><h4>Who or what do you control, and what does it want?</h4><p class="gs-why">Every game is a character with a goal. This is the <b>Role</b> lever.</p><div class="gs-row"><div><label class="gs-label">You control…</label><textarea class="gs-in" data-f="player" placeholder="a puppy / a rocket / a striker / a square (squares are fine!)"></textarea></div><div><label class="gs-label">It's trying to…</label><textarea class="gs-in" data-f="goal" placeholder="get home / score 10 / survive 60 seconds / collect all the treats"></textarea></div></div></section>
+
+            <section class="gs-lever" data-key="controls"><div class="gs-num c-c">4 · The Controls</div><h4>How does the player make things happen?</h4><p class="gs-why">It has to work on an iPad, so taps and swipes, not arrow keys. Pick the fewest controls you can.</p><div class="gs-chips" data-chips="controls"><button class="gs-chip">Tap the screen</button><button class="gs-chip">Tap left / right halves</button><button class="gs-chip">Swipe</button><button class="gs-chip">On-screen buttons</button><button class="gs-chip">Drag</button><button class="gs-chip">Tilt the iPad</button></div><textarea class="gs-in" data-f="controls" placeholder="Tap = jump. Hold = charge the kick. That's it."></textarea></section>
+
+            <section class="gs-lever" data-key="rules"><div class="gs-num c-g">5 · The Rules</div><h4>What are the rules? Points, lives, timer, levels.</h4><p class="gs-why">Rules are the <b>Constraints</b> lever. Be exact: numbers help Gemini a lot. (You just changed six of them in Treat Dash.)</p><div class="gs-eg"><b>Example</b>Each treat = 10 points. Touch a sprinkler = lose a life. 3 lives. 60-second timer. Speed goes up every 20 points.</div><textarea class="gs-in" data-f="rules" placeholder="Points: ___  Lives: ___  Timer: ___  What makes it harder: ___"></textarea><div class="gs-row"><div><label class="gs-label">You WIN when…</label><textarea class="gs-in" data-f="win" placeholder="you reach the door / score 100 / the timer runs out and you're still alive"></textarea></div><div><label class="gs-label">You LOSE when…</label><textarea class="gs-in" data-f="lose" placeholder="you run out of lives / the timer hits zero"></textarea></div></div></section>
+
+            <section class="gs-lever" data-key="look"><div class="gs-num c-g">6 · The Look</div><h4>What does it look and sound like?</h4><p class="gs-why">This is the <b>Format</b> lever. Colours, shapes, a background, emoji for characters (emoji are a great cheat: no drawing needed).</p><div class="gs-chips" data-chips="look"><button class="gs-chip">Emoji characters</button><button class="gs-chip">Simple shapes</button><button class="gs-chip">Dark background</button><button class="gs-chip">Bright / cartoon</button><button class="gs-chip">Pixel style</button><button class="gs-chip">Sound effects</button><button class="gs-chip">No sound</button></div><textarea class="gs-in" data-f="look" placeholder="Dark blue background, 🐶 for Biscuit, 🦴 for treats, 💦 for sprinklers. Big score in the corner. A happy 'ding' when you grab a treat."></textarea></section>
+
+            <section class="gs-lever" data-key="must"><div class="gs-num c-m">7 · Must-Haves</div><h4>The three things that make it a game. No more than three.</h4><p class="gs-why">These get built first. If December 18 arrives and only these work, you still have a game to demo.</p><ul class="gs-list"><li><span class="n">1.</span><input type="text" class="gs-in" data-f="must1" placeholder="e.g. Biscuit moves when I tap"></li><li><span class="n">2.</span><input type="text" class="gs-in" data-f="must2" placeholder="e.g. Treats appear and the score goes up"></li><li><span class="n">3.</span><input type="text" class="gs-in" data-f="must3" placeholder="e.g. A win screen and a lose screen"></li></ul><div class="gs-warn" id="gsScopeWarn"></div></section>
+
+            <section class="gs-lever" data-key="nice"><div class="gs-num c-m">8 · Nice-to-Haves</div><h4>Only if there's time. Be honest.</h4><p class="gs-why">Great ideas go here so they don't sneak into the must-haves. Most games ship with zero of these, and that's fine.</p><ul class="gs-list"><li><span class="n">1.</span><input type="text" class="gs-in" data-f="nice1" placeholder="e.g. High score that remembers between games"></li><li><span class="n">2.</span><input type="text" class="gs-in" data-f="nice2" placeholder="e.g. A second level with a cat"></li><li><span class="n">3.</span><input type="text" class="gs-in" data-f="nice3" placeholder="e.g. Music"></li></ul></section>
+
+            <section class="gs-lever" data-key="not"><div class="gs-num c-v">9 · NOT in This Game</div><h4>What are you deliberately leaving out?</h4><p class="gs-why">Pros write this down. It's the sentence that saves you in week three. "No multiplayer. No saving. No story mode."</p><textarea class="gs-in" data-f="not" placeholder="No ___. No ___. No ___."></textarea></section>
+
+            <div class="gs-final">
+              <h4>Turn it into a prompt</h4>
+              <p>This builds a Gemini prompt from your spec, using all four levers. Copy it, paste it into Gemini, and ask for <b>only the must-haves</b> first. One file. Then play it, find what's wrong, and ask for one change at a time. <b>Not today, though.</b> Session 9 starts here.</p>
+              <div class="sim-controls"><button class="sim-btn" id="gsBuildBtn" style="border-color:var(--green);">Build My Gemini Prompt</button><button class="sim-btn" id="gsCopyPromptBtn">Copy Prompt</button><button class="sim-btn" id="gsCopySpecBtn">Copy Spec as Text</button><button class="sim-btn" id="gsClearBtn" style="border-color:var(--whisper);">Start Over</button></div>
+              <div class="kp-net-key" id="gsNote" style="text-align:center; min-height:20px;"></div>
+              <div class="gs-out" id="gsOut">Your prompt will appear here.</div>
+            </div>
+          </div>
+
+        </div>
+
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
           <textarea data-note="s8" placeholder="What mechanic did you bring to life?"></textarea>
           <div class="saved-flag" data-flag="s8"></div>
         </details>
       </article>
     </div>
-    <!-- Session 9 -->
-    <div class="session-view" id="view-sess-9" data-sessid="sess-9" data-classdate="2026-11-20">
+    <!-- Session 8 -->
+    <div class="session-view" id="view-sess-8" data-sessid="sess-8" data-classdate="2026-11-20">
       <div class="gate-box">
-        <h4>Session 9 Locked</h4>
+        <h4>Session 8 Locked</h4>
         <span class="gate-unlock-date">Class: Fri Nov 20 · Unlocks Nov 19</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
       </div>
-      <article id="sess-9" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Nine</span></div>
+      <article id="sess-8" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Eight</span></div>
         <h3>AI as Coding Partner</h3>
         <p>Prompting code, inspecting snippets, and pair debugging errors with Gemini.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -2579,19 +3258,19 @@
   <section class="panel" id="panel-dec" role="tabpanel" aria-labelledby="tab-dec">
     <p class="month-note">Stage 04 // The Final Game Project</p>
     <div class="session-subnav">
-      <button class="sess-tab active" data-sess="sess-10">Session 10</button>
+      <button class="sess-tab active" data-sess="sess-9">Session 9</button>
+      <button class="sess-tab" data-sess="sess-10">Session 10</button>
       <button class="sess-tab" data-sess="sess-11">Session 11</button>
-      <button class="sess-tab" data-sess="sess-12">Session 12</button>
     </div>
-    <!-- Session 10 -->
-    <div class="session-view active" id="view-sess-10" data-sessid="sess-10" data-classdate="2026-12-04">
+    <!-- Session 9 -->
+    <div class="session-view active" id="view-sess-9" data-sessid="sess-9" data-classdate="2026-12-04">
       <div class="gate-box">
-        <h4>Session 10 Locked</h4>
+        <h4>Session 9 Locked</h4>
         <span class="gate-unlock-date">Class: Fri Dec 4 · Unlocks Dec 3</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
       </div>
-      <article id="sess-10" class="session fri" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Ten</span></div>
+      <article id="sess-9" class="session fri" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Nine</span></div>
         <h3>Game Design Day</h3>
         <p>Define rules, core game loop, and paper wireframes.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -2600,15 +3279,15 @@
         </details>
       </article>
     </div>
-    <!-- Session 11 -->
-    <div class="session-view" id="view-sess-11" data-sessid="sess-11" data-classdate="2026-12-09">
+    <!-- Session 10 -->
+    <div class="session-view" id="view-sess-10" data-sessid="sess-10" data-classdate="2026-12-09">
       <div class="gate-box">
-        <h4>Session 11 Locked</h4>
+        <h4>Session 10 Locked</h4>
         <span class="gate-unlock-date">Class: Wed Dec 9 · Unlocks Dec 8</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
       </div>
-      <article id="sess-11" class="session wed" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Eleven</span></div>
+      <article id="sess-10" class="session wed" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Ten</span></div>
         <h3>Build Sprint</h3>
         <p>Coding and testing the playable game on iPad.</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -2617,15 +3296,15 @@
         </details>
       </article>
     </div>
-    <!-- Session 12 -->
-    <div class="session-view" id="view-sess-12" data-sessid="sess-12" data-classdate="2026-12-18">
+    <!-- Session 11 -->
+    <div class="session-view" id="view-sess-11" data-sessid="sess-11" data-classdate="2026-12-18">
       <div class="gate-box">
-        <h4>Session 12 Locked</h4>
+        <h4>Session 11 Locked</h4>
         <span class="gate-unlock-date">Class: Fri Dec 18 · Unlocks Dec 17</span>
         <div class="gate-form"><input type="password" class="gate-input" placeholder="Passcode"><button class="gate-btn">Unlock</button></div>
       </div>
-      <article id="sess-12" class="session fri boss" style="display:none;">
-        <div class="session-top"><span class="lv-badge">Session Twelve · Demo Day</span></div>
+      <article id="sess-11" class="session fri boss" style="display:none;">
+        <div class="session-top"><span class="lv-badge">Session Eleven · Demo Day</span></div>
         <h3>Polish & Demo Day</h3>
         <p>Playtesting, final styling tweaks, and demoing Eliot's completed HTML game!</p>
         <details class="notes" open><summary>Notes & Favorite Take Home from Today</summary>
@@ -4240,6 +4919,177 @@
   $('dlSrcSample').addEventListener('click', function(){ dotSource = 'sample'; refreshDots(); drawField(-1); });
   document.querySelector('#sess-5 .stab[data-pane="line"]').addEventListener('click', function(){ if(dotSource === 'auto' || DOTS !== SAMPLE){ refreshDots(); drawField(-1); } });
   refreshDots(); drawField(-1);
+})();
+</script>
+<script>
+/* ============ SESSION 8: Code labs + Game Spec ============ */
+(function(){
+  if(!document.getElementById('sess-7')) return;
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- code labs ---------- */
+  var HOOK = '<script>window.onerror=function(m,s,l){parent.postMessage({labErr:String(m),line:(l||0)-1},"*");};<\/script>';
+  var labs = {};
+  document.querySelectorAll('#sess-7 .lab').forEach(function(lab){
+    var id = lab.getAttribute('data-lab'), code = lab.querySelector('.lab-code'), frame = lab.querySelector('.lab-frame'), err = lab.querySelector('.lab-err');
+    var KEY = 'eliot_s8_lab_' + id, starter = code.value;
+    try { var saved = localStorage.getItem(KEY); if(saved) code.value = saved; } catch(e){}
+    function run(){
+      err.textContent = ''; err.className = 'lab-err';
+      frame.setAttribute('data-lab', id);
+      frame.srcdoc = HOOK + code.value;
+      setTimeout(function(){ if(!err.textContent){ err.textContent = 'Running. No errors.'; err.className = 'lab-err ok'; } }, 400);
+    }
+    code.addEventListener('input', function(){ try { localStorage.setItem(KEY, code.value); } catch(e){} });
+    code.addEventListener('keydown', function(e){ if(e.key === 'Tab'){ e.preventDefault(); var s = code.selectionStart, en = code.selectionEnd; code.value = code.value.slice(0,s) + '  ' + code.value.slice(en); code.selectionStart = code.selectionEnd = s+2; } });
+    lab.querySelector('.lab-run').addEventListener('click', run);
+    lab.querySelector('.lab-reset').addEventListener('click', function(){ if(code.value !== starter && !confirm('Put the original code back? Your changes will be lost.')) return; code.value = starter; try { localStorage.removeItem(KEY); } catch(e){} run(); });
+    lab.querySelector('.lab-copy').addEventListener('click', function(){
+      var btn = this, t = code.value;
+      function ok(){ btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy Code'; }, 2000); }
+      function fb(){ code.focus(); code.select(); try{ document.execCommand('copy'); ok(); }catch(e){} }
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+    });
+    // line numbers
+    var gutter = lab.querySelector('.lab-gutter');
+    function lines(){ var n = code.value.split('\n').length, t = ''; for(var i=1;i<=n;i++) t += i + '\n'; gutter.textContent = t; }
+    if(gutter){ lines(); code.addEventListener('input', lines); code.addEventListener('scroll', function(){ gutter.scrollTop = code.scrollTop; }); }
+    labs[id] = {run:run, code:code, err:err, frame:frame, starter:starter, lines:lines};
+  });
+  // copy / try buttons on every code snippet
+  document.querySelectorAll('#sess-7 pre.lad-code').forEach(function(pre){
+    var wrap = document.createElement('div'); wrap.className = 'lad-wrap'; pre.parentNode.insertBefore(wrap, pre); wrap.appendChild(pre);
+    var tools = document.createElement('div'); tools.className = 'lad-tools';
+    var cp = document.createElement('button'); cp.textContent = 'Copy'; tools.appendChild(cp);
+    cp.addEventListener('click', function(){
+      var t = pre.textContent;
+      function ok(){ cp.textContent = 'Copied!'; setTimeout(function(){ cp.textContent = 'Copy'; }, 1800); }
+      function fb(){ var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+    });
+    if(pre.getAttribute('data-try') !== 'no' && pre.closest('[data-pane="js101"]') && labs.scratch){
+      // turn the snippet into a mini lab: editable box + Run + its own preview, right here
+      var mini = document.createElement('div'); mini.className = 'mini';
+      var bar = document.createElement('div'); bar.className = 'mini-bar';
+      bar.innerHTML = '<span class="lab-title">Try it</span>';
+      var runB = document.createElement('button'); runB.className = 'run'; runB.textContent = '▶ Run'; bar.appendChild(runB);
+      var cpB = document.createElement('button'); cpB.textContent = 'Copy'; bar.appendChild(cpB);
+      var rsB = document.createElement('button'); rsB.textContent = 'Reset'; bar.appendChild(rsB);
+      var ta = document.createElement('textarea'); ta.className = 'mini-code'; ta.spellcheck = false; ta.setAttribute('autocapitalize','off'); ta.setAttribute('autocorrect','off');
+      var original = pre.textContent; ta.value = original; ta.rows = original.split('\n').length + 1;
+      var outBox = document.createElement('div'); outBox.className = 'mini-out';
+      var fr = document.createElement('iframe'); fr.className = 'mini-frame'; fr.setAttribute('sandbox','allow-scripts'); fr.title = 'Preview';
+      var er = document.createElement('div'); er.className = 'mini-err';
+      outBox.appendChild(er); outBox.appendChild(fr);
+      mini.appendChild(bar); mini.appendChild(ta); mini.appendChild(outBox);
+      wrap.parentNode.replaceChild(mini, wrap);
+      function runMini(){
+        var sc = labs.scratch, marker = '  // ▼ your code goes here ▼';
+        var snippet = ta.value.split('\n').map(function(l){ return '  ' + l; }).join('\n');
+        var base = sc.starter, i = base.indexOf(marker), j = base.indexOf('<\/script>', i);
+        er.textContent = ''; er.className = 'mini-err'; mini.classList.add('ran');
+        fr.srcdoc = HOOK + base.slice(0, i + marker.length) + '\n' + snippet + '\n' + base.slice(j);
+        setTimeout(function(){ if(!er.textContent){ er.textContent = 'Running. No errors.'; er.className = 'mini-err ok'; } }, 400);
+      }
+      runB.addEventListener('click', runMini);
+      rsB.addEventListener('click', function(){ ta.value = original; runMini(); });
+      cpB.addEventListener('click', function(){
+        var t = ta.value;
+        function ok(){ cpB.textContent = 'Copied!'; setTimeout(function(){ cpB.textContent = 'Copy'; }, 1800); }
+        function fb(){ ta.focus(); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} }
+        if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+      });
+      ta.addEventListener('keydown', function(e){ if(e.key === 'Tab'){ e.preventDefault(); var st = ta.selectionStart, en = ta.selectionEnd; ta.value = ta.value.slice(0,st) + '  ' + ta.value.slice(en); ta.selectionStart = ta.selectionEnd = st+2; } });
+      return;
+    }
+    wrap.appendChild(tools);
+  });
+  window.addEventListener('message', function(e){
+    if(!e.data || !e.data.labErr) return;
+    document.querySelectorAll('#sess-7 .lab-frame, #sess-7 .mini-frame').forEach(function(fr){
+      if(fr.contentWindow !== e.source) return;
+      var msg = '⚠ ' + e.data.labErr.replace(/^Uncaught /,'');
+      if(fr.classList.contains('mini-frame')){ var me = fr.parentNode.querySelector('.mini-err'); me.className = 'mini-err'; me.textContent = msg; }
+      else { var err = fr.parentNode.querySelector('.lab-err'); err.className = 'lab-err'; err.textContent = msg + (e.data.line > 0 ? '  (around line ' + e.data.line + ')' : ''); }
+    });
+  });
+  // run each lab the first time its tab is opened
+  document.querySelectorAll('#sess-7 .stab').forEach(function(b){ b.addEventListener('click', function(){
+    var pane = b.getAttribute('data-pane'), lab = {ladder:'ladder', numbers:'numbers', bugs:'bugs', js101:'scratch'}[pane];
+    if(lab && labs[lab] && !labs[lab].ran){ labs[lab].ran = true; setTimeout(labs[lab].run, 50); }
+  }); });
+
+  // bug hunt checker
+  $('bugsCheck').addEventListener('click', function(){
+    var c = labs.bugs.code.value, found = [];
+    if(!/scor\s*=\s*score/.test(c)) found.push('spelling');
+    if(!/if\s*\(\s*lives\s*=\s*0\s*\)/.test(c)) found.push('equals');
+    var open = (c.match(/\{/g)||[]).length, close = (c.match(/\}/g)||[]).length;
+    if(open === close) found.push('bracket');
+    var n = found.length, say = $('bugsSay');
+    say.innerHTML = n === 3 ? '<b style="color:var(--green)">All three fixed. 🏆 Now press Run and play a whole game to prove it.</b>' : (n === 0 ? 'No bugs fixed yet. Press Run and read the red line.' : '<b style="color:var(--yellow)">' + n + ' of 3 fixed.</b> Keep hunting.');
+  });
+
+  /* ---------- game spec ---------- */
+  var KEY = 'eliot_game_spec_v1', data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ data = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e){} }
+  var fields = document.querySelectorAll('#sess-7 .gs-in');
+  fields.forEach(function(el){
+    var k = el.getAttribute('data-f'); if(data[k]) el.value = data[k];
+    el.addEventListener('input', function(){ data[k] = el.value; save(); refresh(); });
+  });
+  document.querySelectorAll('#sess-7 [data-chips]').forEach(function(group){
+    var k = 'chips_' + group.getAttribute('data-chips'); data[k] = data[k] || [];
+    group.querySelectorAll('.gs-chip').forEach(function(c){
+      if(data[k].indexOf(c.textContent) >= 0) c.classList.add('on');
+      c.addEventListener('click', function(){ c.classList.toggle('on'); var t = c.textContent, i = data[k].indexOf(t); if(i >= 0) data[k].splice(i,1); else data[k].push(t); save(); refresh(); });
+    });
+  });
+  var SECTIONS = {name:['name'], pitch:['pitch'], player:['player','goal'], controls:['controls'], rules:['rules','win','lose'], look:['look'], must:['must1'], nice:[], not:['not']};
+  function filled(k){ return (data[k] || '').trim().length > 0; }
+  function refresh(){
+    var done = 0, total = 0;
+    document.querySelectorAll('#sess-7 .gs-lever').forEach(function(sec){
+      var key = sec.getAttribute('data-key'), ok;
+      if(key === 'nice') ok = filled('nice1') || filled('nice2') || filled('nice3'); else ok = SECTIONS[key].every(filled);
+      sec.classList.toggle('done', ok); total++; if(ok) done++;
+    });
+    $('gsBar').style.width = Math.round(100*done/total) + '%'; $('gsPct').textContent = done + ' of ' + total + ' filled';
+    var musts = ['must1','must2','must3'].filter(filled).length;
+    $('gsScopeWarn').textContent = musts === 0 ? '' : (musts < 3 ? 'You have ' + musts + ' must-have' + (musts>1?'s':'') + '. Three is the magic number.' : 'Three must-haves. Good. Anything else you think of goes in nice-to-haves.');
+  }
+  function val(k){ return (data[k] || '').trim(); }
+  function list(ks){ return ks.map(val).filter(Boolean); }
+  function chips(k){ return (data['chips_'+k] || []).join(', '); }
+  function specText(){
+    var t = 'GAME SPEC: ' + (val('name') || '(untitled)') + '\n\n';
+    t += 'PITCH\n' + val('pitch') + '\n\nPLAYER\nYou control: ' + val('player') + '\nTrying to: ' + val('goal') + '\n\n';
+    t += 'CONTROLS (iPad: touch only)\n' + [chips('controls'), val('controls')].filter(Boolean).join('\n') + '\n\n';
+    t += 'RULES\n' + val('rules') + '\nWin when: ' + val('win') + '\nLose when: ' + val('lose') + '\n\n';
+    t += 'LOOK & SOUND\n' + [chips('look'), val('look')].filter(Boolean).join('\n') + '\n\n';
+    t += 'MUST-HAVES (build these first)\n' + list(['must1','must2','must3']).map(function(m,i){ return (i+1) + '. ' + m; }).join('\n') + '\n\n';
+    var nice = list(['nice1','nice2','nice3']);
+    t += 'NICE-TO-HAVES (only if there is time)\n' + (nice.length ? nice.map(function(m,i){ return (i+1) + '. ' + m; }).join('\n') : '(none)') + '\n\nNOT IN THIS GAME\n' + val('not') + '\n';
+    return t;
+  }
+  function promptText(){
+    return 'ROLE\nYou are a patient coding partner helping a 12-year-old build his first web game. Keep the code simple and well commented so he can read it and change numbers himself.\n\n' +
+      'TASK\nBuild the simplest playable version of this game as ONE file (index.html) with the HTML, CSS and JavaScript all inside it. Build ONLY the must-haves. Do not add anything from the nice-to-haves.\n\n' + specText() + '\n' +
+      'CONSTRAINTS\n- One file, no libraries, no images (use emoji or shapes).\n- Must work on an iPad in Safari with touch. No keyboard.\n- Keep it under about 150 lines so I can read it.\n- Put the important numbers (speed, points, lives, timer) in clearly named variables at the top, with a comment saying what each one does.\n\n' +
+      'FORMAT\nFirst, in 3 sentences, tell me how the game will work. Then give me the complete file in one code block. Then list 3 things I could try changing myself.';
+  }
+  var out = $('gsOut'), note = $('gsNote'), lastPrompt = '';
+  function copy(text, what){
+    function ok(){ note.textContent = what + ' copied. Paste it into Gemini.'; setTimeout(function(){ note.textContent=''; }, 3000); }
+    function fb(){ var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){ note.textContent = 'Could not copy. Press and hold the text below to select it.'; } document.body.removeChild(ta); }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fb); else fb();
+  }
+  $('gsBuildBtn').addEventListener('click', function(){ if(!val('pitch') || !list(['must1','must2','must3']).length){ note.textContent = 'Fill in at least the Pitch and one Must-Have first.'; return; } lastPrompt = promptText(); out.textContent = lastPrompt; note.textContent = 'Prompt built. Now copy it.'; });
+  $('gsCopyPromptBtn').addEventListener('click', function(){ if(!lastPrompt){ lastPrompt = promptText(); out.textContent = lastPrompt; } copy(lastPrompt, 'Prompt'); });
+  $('gsCopySpecBtn').addEventListener('click', function(){ copy(specText(), 'Spec'); });
+  $('gsClearBtn').addEventListener('click', function(){ if(!confirm('Erase the whole spec and start over?')) return; data = {}; save(); fields.forEach(function(el){ el.value=''; }); document.querySelectorAll('#sess-7 .gs-chip').forEach(function(c){ c.classList.remove('on'); }); document.querySelectorAll('#sess-7 [data-chips]').forEach(function(g){ data['chips_'+g.getAttribute('data-chips')] = []; }); out.textContent = 'Your prompt will appear here.'; lastPrompt=''; refresh(); });
+  refresh();
 })();
 </script>
 </body>
