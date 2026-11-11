@@ -1045,10 +1045,20 @@
   .lab-code{width:100%; min-height:340px; background:#05070F; color:#E6ECFF; border:2px solid var(--whisper); border-radius:8px; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; resize:vertical; white-space:pre; overflow:auto; tab-size:2; -webkit-appearance:none; outline:none;}
   .lab-code:focus{border-color:var(--cyan);}
   .lab-tall .lab-code{min-height:460px;}
-  .lab-edit{display:flex; border:2px solid var(--whisper); border-radius:8px; background:#05070F; overflow:hidden;}
+  .lab-edit{display:block; position:relative; border:2px solid var(--whisper); border-radius:8px; background:#05070F; overflow:hidden;}
   .lab-edit:focus-within{border-color:var(--cyan);}
   .lab-edit .lab-code{border:none; border-radius:0; flex:1; min-width:0; margin:0;}
-  .lab-gutter{margin:0; padding:12px 8px 12px 10px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; color:#4A5680; text-align:right; background:#080C1E; border-right:1px solid var(--whisper); user-select:none; overflow:hidden; white-space:pre; min-width:44px;}
+  .hl-area{position:relative; flex:1; min-width:0;}
+  .lab-edit .hl-area{margin-left:46px;}
+  .hl-area > textarea{position:relative; z-index:2; background:transparent !important; color:transparent !important; caret-color:#fff; width:100%; display:block;}
+  .hl-area > textarea::selection{background:rgba(0,229,255,.35);}
+  .hl-layer{position:absolute; inset:0; margin:0; padding:12px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; white-space:pre; overflow:hidden; color:#E6ECFF; pointer-events:none; z-index:1; tab-size:2;}
+  .mini .hl-layer{padding:10px 12px; border-left:3px solid transparent;}
+  .hl-tag{color:#FFC178;} .hl-attr{color:#FFE2B8;} .hl-css{color:#C7B5FF;} .hl-js{color:#7CF5C2;} .hl-str{color:#FFF3A3;} .hl-cm{color:#6F7BA3; font-style:italic;} .hl-kw{color:#5ED3FF;}
+  .hl-key{display:flex; gap:12px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-left:auto;}
+  .hl-key i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:middle;}
+  .lab-bar .hl-key{margin-left:0; flex:1 1 100%;}
+  .lab-gutter{position:absolute; left:0; top:0; bottom:0; width:46px; box-sizing:border-box; margin:0; padding:12px 8px 12px 10px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; line-height:1.5; color:#4A5680; text-align:right; background:#080C1E; border-right:1px solid var(--whisper); user-select:none; overflow:hidden; white-space:pre; min-width:44px;}
   .lad-wrap{position:relative;}
   .lad-tools{position:absolute; top:6px; right:6px; display:flex; gap:6px;}
   .lad-tools button{font-family:'Chakra Petch',sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#141B36; color:var(--cyan); border:1px solid var(--card-edge); border-radius:5px; padding:4px 9px; cursor:pointer;}
@@ -4927,6 +4937,43 @@ setInterval(countdown, 500);</pre>
   if(!document.getElementById('sess-7')) return;
   function $(id){ return document.getElementById(id); }
 
+  /* ---------- syntax colouring: HTML vs CSS vs JavaScript ---------- */
+  function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function hlJS(t){
+    // comments and strings first, keywords after, everything else JS green
+    return '<span class="hl-js">' + esc(t).replace(/(\/\/[^\n]*)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|\b(var|let|const|function|if|else|return|true|false|new)\b/g, function(m, cm, str, kw){
+      if(cm) return '<span class="hl-cm">' + cm + '</span>';
+      if(str) return '<span class="hl-str">' + str + '</span>';
+      return '<span class="hl-kw">' + kw + '</span>';
+    }) + '</span>';
+  }
+  function hlHTML(t){
+    return esc(t).replace(/(&lt;\/?)([a-zA-Z][\w-]*)([^&]*?)(\/?&gt;)/g, function(m, o, name, attrs, c){
+      return '<span class="hl-tag">' + o + name + '</span><span class="hl-attr">' + attrs + '</span><span class="hl-tag">' + c + '</span>';
+    });
+  }
+  function hlDoc(t){
+    var out = '', re = /(<script\b[^>]*>)([\s\S]*?)(<\/script>)|(<style\b[^>]*>)([\s\S]*?)(<\/style>)/gi, last = 0, m;
+    while((m = re.exec(t))){
+      out += hlHTML(t.slice(last, m.index));
+      if(m[1]) out += hlHTML(m[1]) + hlJS(m[2]) + hlHTML(m[3]);
+      else out += hlHTML(m[4]) + '<span class="hl-css">' + esc(m[5]) + '</span>' + hlHTML(m[6]);
+      last = m.index + m[0].length;
+    }
+    return out + hlHTML(t.slice(last));
+  }
+  function addOverlay(ta, mode){
+    var area = document.createElement('div'); area.className = 'hl-area';
+    ta.parentNode.insertBefore(area, ta); area.appendChild(ta);
+    var layer = document.createElement('pre'); layer.className = 'hl-layer'; area.insertBefore(layer, ta);
+    function paint(){ layer.innerHTML = (mode === 'js' ? hlJS(ta.value) : hlDoc(ta.value)) + '\n '; }
+    function sync(){ layer.scrollTop = ta.scrollTop; layer.scrollLeft = ta.scrollLeft; }
+    ta.addEventListener('input', paint); ta.addEventListener('scroll', sync);
+    paint();
+    return paint;
+  }
+  var KEY_HTML = '<span class="hl-key"><span><i style="background:#FFC178"></i>HTML</span><span><i style="background:#C7B5FF"></i>CSS</span><span><i style="background:#7CF5C2"></i>JavaScript</span></span>';
+
   /* ---------- code labs ---------- */
   var HOOK = '<script>window.onerror=function(m,s,l){parent.postMessage({labErr:String(m),line:(l||0)-1},"*");};<\/script>';
   var labs = {};
@@ -4943,21 +4990,26 @@ setInterval(countdown, 500);</pre>
     code.addEventListener('input', function(){ try { localStorage.setItem(KEY, code.value); } catch(e){} });
     code.addEventListener('keydown', function(e){ if(e.key === 'Tab'){ e.preventDefault(); var s = code.selectionStart, en = code.selectionEnd; code.value = code.value.slice(0,s) + '  ' + code.value.slice(en); code.selectionStart = code.selectionEnd = s+2; } });
     lab.querySelector('.lab-run').addEventListener('click', run);
-    lab.querySelector('.lab-reset').addEventListener('click', function(){ if(code.value !== starter && !confirm('Put the original code back? Your changes will be lost.')) return; code.value = starter; try { localStorage.removeItem(KEY); } catch(e){} run(); });
+    lab.querySelector('.lab-reset').addEventListener('click', function(){ if(code.value !== starter && !confirm('Put the original code back? Your changes will be lost.')) return; code.value = starter; try { localStorage.removeItem(KEY); } catch(e){} code.dispatchEvent(new Event('input')); run(); });
     lab.querySelector('.lab-copy').addEventListener('click', function(){
       var btn = this, t = code.value;
       function ok(){ btn.textContent = 'Copied!'; setTimeout(function(){ btn.textContent = 'Copy Code'; }, 2000); }
       function fb(){ code.focus(); code.select(); try{ document.execCommand('copy'); ok(); }catch(e){} }
       if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
     });
+    // colour layer + legend
+    var paint = addOverlay(code, 'doc');
+    var firstBar = lab.querySelector('.lab-bar'); firstBar.insertAdjacentHTML('beforeend', KEY_HTML);
     // line numbers
     var gutter = lab.querySelector('.lab-gutter');
     function lines(){ var n = code.value.split('\n').length, t = ''; for(var i=1;i<=n;i++) t += i + '\n'; gutter.textContent = t; }
     if(gutter){ lines(); code.addEventListener('input', lines); code.addEventListener('scroll', function(){ gutter.scrollTop = code.scrollTop; }); }
-    labs[id] = {run:run, code:code, err:err, frame:frame, starter:starter, lines:lines};
+    labs[id] = {run:run, code:code, err:err, frame:frame, starter:starter, lines:function(){ lines(); paint(); }};
   });
   // copy / try buttons on every code snippet
   document.querySelectorAll('#sess-7 pre.lad-code').forEach(function(pre){
+    var raw = pre.textContent, isDoc = /<\/?[a-z]/i.test(raw) && pre.getAttribute('data-try') === 'no';
+    if(pre.closest('[data-pane="js101"]') || pre.getAttribute('data-try') !== 'no') pre.innerHTML = (isDoc ? hlDoc(raw) : (/^\s*&?lt;|^\s*</.test(raw) ? hlHTML(raw) : hlJS(raw)));
     var wrap = document.createElement('div'); wrap.className = 'lad-wrap'; pre.parentNode.insertBefore(wrap, pre); wrap.appendChild(pre);
     var tools = document.createElement('div'); tools.className = 'lad-tools';
     var cp = document.createElement('button'); cp.textContent = 'Copy'; tools.appendChild(cp);
@@ -4983,6 +5035,7 @@ setInterval(countdown, 500);</pre>
       outBox.appendChild(er); outBox.appendChild(fr);
       mini.appendChild(bar); mini.appendChild(ta); mini.appendChild(outBox);
       wrap.parentNode.replaceChild(mini, wrap);
+      addOverlay(ta, 'js');
       function runMini(){
         var sc = labs.scratch, marker = '  // ▼ your code goes here ▼';
         var snippet = ta.value.split('\n').map(function(l){ return '  ' + l; }).join('\n');
@@ -4992,7 +5045,7 @@ setInterval(countdown, 500);</pre>
         setTimeout(function(){ if(!er.textContent){ er.textContent = 'Running. No errors.'; er.className = 'mini-err ok'; } }, 400);
       }
       runB.addEventListener('click', runMini);
-      rsB.addEventListener('click', function(){ ta.value = original; runMini(); });
+      rsB.addEventListener('click', function(){ ta.value = original; ta.dispatchEvent(new Event('input')); runMini(); });
       cpB.addEventListener('click', function(){
         var t = ta.value;
         function ok(){ cpB.textContent = 'Copied!'; setTimeout(function(){ cpB.textContent = 'Copy'; }, 1800); }
